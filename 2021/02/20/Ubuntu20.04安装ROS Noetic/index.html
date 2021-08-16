@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huffiema.github.io","root":"/","images":"/images","scheme":"Mist","version":"8.7.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"always","padding":18,"offset":12,"b2t":true,"scrollpercent":true},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="本文参考ros官网的有关安装教程。首先进行准备工作：打开软件与更新，将下载选项前四个都选上。一定要确保都勾选上，不然后续安装时会出现依赖关系问题...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu20.04安装ROS Noetic">
+<meta property="og:url" content="https://huffiema.github.io/2021/02/20/Ubuntu20.04%E5%AE%89%E8%A3%85ROS%20Noetic/index.html">
+<meta property="og:site_name" content="Half_A Studio">
+<meta property="og:description" content="本文参考ros官网的有关安装教程。首先进行准备工作：打开软件与更新，将下载选项前四个都选上。一定要确保都勾选上，不然后续安装时会出现依赖关系问题...">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210219145021840.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210220234744581.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2021-02-19T16:09:51.000Z">
+<meta property="article:modified_time" content="2021-08-16T08:00:55.510Z">
+<meta property="article:author" content="Huffie">
+<meta property="article:tag" content="软件安装">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210219145021840.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
+
+
+<link rel="canonical" href="https://huffiema.github.io/2021/02/20/Ubuntu20.04%E5%AE%89%E8%A3%85ROS%20Noetic/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://huffiema.github.io/2021/02/20/Ubuntu20.04%E5%AE%89%E8%A3%85ROS%20Noetic/","path":"2021/02/20/Ubuntu20.04安装ROS Noetic/","title":"Ubuntu20.04安装ROS Noetic"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Ubuntu20.04安装ROS Noetic | Half_A Studio</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Half_A Studio</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">7</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">9</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">58</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-text">一、准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E6%B7%BB%E5%8A%A0ROS%E8%BD%AF%E4%BB%B6%E6%BA%90"><span class="nav-text">1. 添加ROS软件源</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E6%B7%BB%E5%8A%A0%E5%85%AC%E9%92%A5"><span class="nav-text">2. 添加公钥</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E6%9B%B4%E6%96%B0%E7%B4%A2%E5%BC%95"><span class="nav-text">3. 更新索引</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85ROS"><span class="nav-text">二、安装ROS</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85ROS"><span class="nav-text">1. 安装ROS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E8%AE%BE%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-text">2. 设置环境变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E5%88%9D%E5%A7%8B%E5%8C%96rosdep"><span class="nav-text">3. 初始化rosdep</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E5%AE%89%E8%A3%85%E5%85%B6%E5%AE%83%E5%B7%A5%E5%85%B7%E5%92%8C%E4%BE%9D%E8%B5%96%E5%8C%85"><span class="nav-text">4. 安装其它工具和依赖包</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%B5%8B%E8%AF%95"><span class="nav-text">三、测试</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Huffie"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Huffie</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">博客</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/weixin_44543463" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_44543463" rel="noopener" target="_blank"><i class="fab fa-cuttlefish fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/HuffieMa" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HuffieMa" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:haofei_ma@163.com" title="E-Mail → mailto:haofei_ma@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/huffie65380272" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;huffie65380272" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://huffiema.github.io/2021/02/20/Ubuntu20.04%E5%AE%89%E8%A3%85ROS%20Noetic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Huffie">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Half_A Studio">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Ubuntu20.04安装ROS Noetic
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-20 00:09:51" itemprop="dateCreated datePublished" datetime="2021-02-20T00:09:51+08:00">2021-02-20</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-16 16:00:55" itemprop="dateModified" datetime="2021-08-16T16:00:55+08:00">2021-08-16</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/" itemprop="url" rel="index"><span itemprop="name">机器人</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/ROS/" itemprop="url" rel="index"><span itemprop="name">ROS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">本文参考ros官网的有关安装教程。首先进行准备工作：打开软件与更新，将下载选项前四个都选上。一定要确保都勾选上，不然后续安装时会出现依赖关系问题...</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>本文参考ros官网<a target="_blank" rel="noopener" href="http://wiki.ros.org/">http://wiki.ros.org/</a>的有关<a target="_blank" rel="noopener" href="http://wiki.ros.org/noetic/Installation/Ubuntu">安装教程</a></p>
+</blockquote>
+<h3 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h3><h5 id="1-添加ROS软件源"><a href="#1-添加ROS软件源" class="headerlink" title="1. 添加ROS软件源"></a>1. 添加ROS软件源</h5><p>打开软件与更新，将下载选项前四个都选上。<br><strong>一定要确保都勾选上，不然后续安装时会出现依赖关系问题</strong><br><img src="https://img-blog.csdnimg.cn/20210219145021840.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后执行以下命令添加软件源</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sh -c <span class="string">&#x27;echo &quot;deb https://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu $(lsb_release -sc) main&quot; &gt; /etc/apt/sources.list.d/ros-latest.list&#x27;</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-添加公钥"><a href="#2-添加公钥" class="headerlink" title="2. 添加公钥"></a>2. 添加公钥</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-key adv --keyserver <span class="string">&#x27;hkp://keyserver.ubuntu.com:80&#x27;</span> --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654</span><br></pre></td></tr></table></figure>
+<h5 id="3-更新索引"><a href="#3-更新索引" class="headerlink" title="3. 更新索引"></a>3. 更新索引</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+<h3 id="二、安装ROS"><a href="#二、安装ROS" class="headerlink" title="二、安装ROS"></a>二、安装ROS</h3><h5 id="1-安装ROS"><a href="#1-安装ROS" class="headerlink" title="1. 安装ROS"></a>1. 安装ROS</h5><p>建议安装桌面完整版</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install ros-noetic-desktop-full</span><br></pre></td></tr></table></figure>
+<h5 id="2-设置环境变量"><a href="#2-设置环境变量" class="headerlink" title="2. 设置环境变量"></a>2. 设置环境变量</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;source /opt/ros/noetic/setup.bash&quot;</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+<h5 id="3-初始化rosdep"><a href="#3-初始化rosdep" class="headerlink" title="3. 初始化rosdep"></a>3. 初始化rosdep</h5><p>在使用许多ROS工具之前，需要初始化rosdep。rosdep是运行ROS中某些核心组件所必需的，首先安装rosdep</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install python3-rosdep</span><br></pre></td></tr></table></figure>
+<p>然后进行初始化</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo rosdep init</span><br><span class="line">rosdep update</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>rosdep init如果出现【ERROR: cannot download default sources list from:…<br>Website may be down.】<br> rosdep update如果出现超时问题<br> 以上两个问题的都可以通过修改host主机解决，只是update的问题在修改主机后，还要求网络必须可靠<br>参考博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44543463/article/details/113875658">https://blog.csdn.net/weixin_44543463/article/details/113875658</a></p>
+</blockquote>
+<h5 id="4-安装其它工具和依赖包"><a href="#4-安装其它工具和依赖包" class="headerlink" title="4. 安装其它工具和依赖包"></a>4. 安装其它工具和依赖包</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential</span><br></pre></td></tr></table></figure>
+<h3 id="三、测试"><a href="#三、测试" class="headerlink" title="三、测试"></a>三、测试</h3><p><strong>打开</strong>终端，输入<code>roscore</code>，运行ros<br><strong>再打开</strong>一个新终端，输入：<code>rosrun turtlesim turtlesim_node</code>，可以看到小乌龟的仿真界面已经打开了。<strong>再打开</strong>一个新终端输入指令：<code>rosrun turtlesim turtle_teleop_key</code>，可以在这个key终端内，通过键盘的方向键控制小乌龟在界面中移动<br><img src="https://img-blog.csdnimg.cn/20210220234744581.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://blog.csdn.net/weixin_44543463">
+          <span class="icon">
+            <i class="fab fa-cuttlefish"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/" rel="tag"># 软件安装</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/02/18/ubuntu%E4%BD%BF%E7%94%A8VNC%E5%AE%9E%E7%8E%B0%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/" rel="prev" title="ubuntu使用VNC实现远程桌面">
+                  <i class="fa fa-chevron-left"></i> ubuntu使用VNC实现远程桌面
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/02/20/ROS%E5%AE%89%E8%A3%85%E6%97%B6rosdep%20init%E4%B8%8Erosdep%20update%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%EF%BC%882021.2.20%E4%BA%B2%E6%B5%8B%EF%BC%89/" rel="next" title="ROS安装时rosdep init与rosdep update问题解决方法（2021.2.20亲测）">
+                  ROS安装时rosdep init与rosdep update问题解决方法（2021.2.20亲测） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-grip-lines-vertical"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Powered by Huffie.</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

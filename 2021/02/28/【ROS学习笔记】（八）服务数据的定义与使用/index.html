@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huffiema.github.io","root":"/","images":"/images","scheme":"Mist","version":"8.7.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"always","padding":18,"offset":12,"b2t":true,"scrollpercent":true},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Client每Request一次数据请求，Server发送一次数据。数据格式为个人信息，如姓名、性别等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【ROS学习笔记】（八）服务数据的定义与使用">
+<meta property="og:url" content="https://huffiema.github.io/2021/02/28/%E3%80%90ROS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E5%85%AB%EF%BC%89%E6%9C%8D%E5%8A%A1%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Half_A Studio">
+<meta property="og:description" content="Client每Request一次数据请求，Server发送一次数据。数据格式为个人信息，如姓名、性别等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210226165019544.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210226165101181.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210226165232230.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210226170000400.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210226165520183.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210226170154807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210226170247867.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210226170849300.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2021-02-28T00:52:16.000Z">
+<meta property="article:modified_time" content="2021-08-16T08:09:59.996Z">
+<meta property="article:author" content="Huffie">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210226165019544.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
+
+
+<link rel="canonical" href="https://huffiema.github.io/2021/02/28/%E3%80%90ROS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E5%85%AB%EF%BC%89%E6%9C%8D%E5%8A%A1%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E4%BD%BF%E7%94%A8/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://huffiema.github.io/2021/02/28/%E3%80%90ROS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E5%85%AB%EF%BC%89%E6%9C%8D%E5%8A%A1%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E4%BD%BF%E7%94%A8/","path":"2021/02/28/【ROS学习笔记】（八）服务数据的定义与使用/","title":"【ROS学习笔记】（八）服务数据的定义与使用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【ROS学习笔记】（八）服务数据的定义与使用 | Half_A Studio</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Half_A Studio</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">7</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">9</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">58</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%9B%AE%E7%9A%84"><span class="nav-text">一、目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9C%8D%E5%8A%A1%E6%95%B0%E6%8D%AE"><span class="nav-text">二、自定义服务数据</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E5%AE%9A%E4%B9%89srv%E6%96%87%E4%BB%B6"><span class="nav-text">1. 定义srv文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E5%9C%A8package-xml%E4%B8%AD%E6%B7%BB%E5%8A%A0%E5%8A%9F%E8%83%BD%E5%8C%85%E4%BE%9D%E8%B5%96"><span class="nav-text">2. 在package.xml中添加功能包依赖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E5%9C%A8CMakeLists-txt%E4%B8%AD%E6%B7%BB%E5%8A%A0%E7%BC%96%E8%AF%91%E9%80%89%E9%A1%B9"><span class="nav-text">3. 在CMakeLists.txt中添加编译选项</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E7%BC%96%E8%AF%91%E7%94%9F%E6%88%90%E7%9B%B8%E5%85%B3%E6%96%87%E4%BB%B6"><span class="nav-text">4. 编译生成相关文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%88%9B%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BB%A3%E7%A0%81"><span class="nav-text">三、创建服务器代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%88%9B%E5%BB%BA%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BB%A3%E7%A0%81"><span class="nav-text">四、创建客户端代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%99%A8-%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BB%A3%E7%A0%81%E7%BC%96%E8%AF%91%E8%A7%84%E5%88%99"><span class="nav-text">五、配置服务器&#x2F;客户端代码编译规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E7%BC%96%E8%AF%91%E5%B9%B6%E8%BF%90%E8%A1%8C%E5%8F%91%E5%B8%83%E8%80%85%E5%92%8C%E8%AE%A2%E9%98%85%E8%80%85"><span class="nav-text">六、编译并运行发布者和订阅者</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Huffie"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Huffie</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">博客</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/weixin_44543463" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_44543463" rel="noopener" target="_blank"><i class="fab fa-cuttlefish fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/HuffieMa" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HuffieMa" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:haofei_ma@163.com" title="E-Mail → mailto:haofei_ma@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/huffie65380272" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;huffie65380272" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://huffiema.github.io/2021/02/28/%E3%80%90ROS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E5%85%AB%EF%BC%89%E6%9C%8D%E5%8A%A1%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Huffie">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Half_A Studio">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【ROS学习笔记】（八）服务数据的定义与使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-28 08:52:16" itemprop="dateCreated datePublished" datetime="2021-02-28T08:52:16+08:00">2021-02-28</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-16 16:09:59" itemprop="dateModified" datetime="2021-08-16T16:09:59+08:00">2021-08-16</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/" itemprop="url" rel="index"><span itemprop="name">机器人</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/ROS/" itemprop="url" rel="index"><span itemprop="name">ROS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">Client每Request一次数据请求，Server发送一次数据。数据格式为个人信息，如姓名、性别等。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="一、目的"><a href="#一、目的" class="headerlink" title="一、目的"></a>一、目的</h3><p>Client每Request一次数据请求，Server发送一次数据。数据格式为个人信息，如姓名、性别等。</p>
+<h3 id="二、自定义服务数据"><a href="#二、自定义服务数据" class="headerlink" title="二、自定义服务数据"></a>二、自定义服务数据</h3><p>此步骤与<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44543463/article/details/114108345">话题消息的定义与使用</a>过程类似</p>
+<h5 id="1-定义srv文件"><a href="#1-定义srv文件" class="headerlink" title="1. 定义srv文件"></a>1. 定义srv文件</h5><p>再<code>learning_service</code>文件夹下新建一个文件夹<code>srv</code>，再在<code>srv</code>文件夹内新建一个<code>Person.srv</code>文件，内容如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">string name</span><br><span class="line">uint8  age</span><br><span class="line">uint8  sex</span><br><span class="line"></span><br><span class="line">uint8 unknown = <span class="number">0</span></span><br><span class="line">uint8 male    = <span class="number">1</span></span><br><span class="line">uint8 female  = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">string result</span><br></pre></td></tr></table></figure>
+
+<p>—以上是request的数据，—以下是response的数据<br><img src="https://img-blog.csdnimg.cn/20210226165019544.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="2-在package-xml中添加功能包依赖"><a href="#2-在package-xml中添加功能包依赖" class="headerlink" title="2. 在package.xml中添加功能包依赖"></a>2. 在package.xml中添加功能包依赖</h5><p>打开<code>learning_service/package.xml</code>，在文件最后部分添加如下代码</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build_depend</span>&gt;</span>message_generation<span class="tag">&lt;/<span class="name">build_depend</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">exec_depend</span>&gt;</span>message_runtime<span class="tag">&lt;/<span class="name">exec_depend</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20210226165101181.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="3-在CMakeLists-txt中添加编译选项"><a href="#3-在CMakeLists-txt中添加编译选项" class="headerlink" title="3. 在CMakeLists.txt中添加编译选项"></a>3. 在CMakeLists.txt中添加编译选项</h5><p>首先在<code>find_package</code>最后一行添加一条语句<code>message_generation</code>，用以添加依赖的功能包</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">find_package</span>(catkin REQUIRED COMPONENTS</span><br><span class="line">  geometry_msgs</span><br><span class="line">  roscpp</span><br><span class="line">  rospy</span><br><span class="line">  std_msgs</span><br><span class="line">  turtlesim</span><br><span class="line">  message_generation</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20210226165232230.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>在此函数下面再添加</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">add_service_files</span>(</span><br><span class="line">  FILES</span><br><span class="line">  Person.srv</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">generate_messages</span>(</span><br><span class="line">  DEPENDENCIES</span><br><span class="line">  std_msgs</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>add_message_files，将Person.srv作为定义的接口</p>
+<p>generate_messages，在编译Person.srv文件时需要依赖的功能包<br><img src="https://img-blog.csdnimg.cn/20210226170000400.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>然后在下方<code>catkin specific configuration</code>内的<code>catkin_packages</code>中，添加依赖<code>message_runtime</code>，修改后的代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">catkin_package</span>(</span><br><span class="line">#  INCLUDE_DIRS include</span><br><span class="line">#  LIBRARIES learning_topic</span><br><span class="line">   CATKIN_DEPENDS geometry_msgs roscpp rospy std_msgs turtlesim message_runtime</span><br><span class="line">#  DEPENDS system_lib</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20210226165520183.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="4-编译生成相关文件"><a href="#4-编译生成相关文件" class="headerlink" title="4. 编译生成相关文件"></a>4. 编译生成相关文件</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/catkin_ws</span><br><span class="line">catkin_make</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、创建服务器代码"><a href="#三、创建服务器代码" class="headerlink" title="三、创建服务器代码"></a>三、创建服务器代码</h3><p>在<code>~/catkin_ws/src/learning_service/src</code>目录下创建一个person_server.cpp`的文件</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 该例程将执行/show_person服务，服务数据类型learning_service::Person</span></span><br><span class="line"><span class="comment">REFERENCE:www.guyuehome.com</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> </span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ros/ros.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;learning_service/Person.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// service回调函数，输入参数req，输出参数res</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">personCallback</span><span class="params">(learning_service::Person::Request  &amp;req,</span></span></span><br><span class="line"><span class="params"><span class="function">         			learning_service::Person::Response &amp;res)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 显示请求数据</span></span><br><span class="line">    <span class="built_in">ROS_INFO</span>(<span class="string">&quot;Person: name:%s  age:%d  sex:%d&quot;</span>, req.name.<span class="built_in">c_str</span>(), req.age, req.sex);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 设置反馈数据</span></span><br><span class="line">	res.result = <span class="string">&quot;OK&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// ROS节点初始化</span></span><br><span class="line">    ros::<span class="built_in">init</span>(argc, argv, <span class="string">&quot;person_server&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建节点句柄</span></span><br><span class="line">    ros::NodeHandle n;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建一个名为/show_person的server，注册回调函数personCallback</span></span><br><span class="line">    ros::ServiceServer person_service = n.<span class="built_in">advertiseService</span>(<span class="string">&quot;/show_person&quot;</span>, personCallback);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 循环等待回调函数</span></span><br><span class="line">    <span class="built_in">ROS_INFO</span>(<span class="string">&quot;Ready to show person informtion.&quot;</span>);</span><br><span class="line">    ros::<span class="built_in">spin</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="四、创建客户端代码"><a href="#四、创建客户端代码" class="headerlink" title="四、创建客户端代码"></a>四、创建客户端代码</h3><p>同样在<code>~/catkin_ws/src/learning_service/src</code>目录下创建一个<code>person_client.cpp</code>的文件，其内容为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 该例程将请求/show_person服务，服务数据类型learning_service::Person</span></span><br><span class="line"><span class="comment">REFERENCE:www.guyuehome.com</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ros/ros.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;learning_service/Person.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 初始化ROS节点</span></span><br><span class="line">	ros::<span class="built_in">init</span>(argc, argv, <span class="string">&quot;person_client&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建节点句柄</span></span><br><span class="line">	ros::NodeHandle node;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 发现/spawn服务后，创建一个服务客户端，连接名为/spawn的service</span></span><br><span class="line">	ros::service::<span class="built_in">waitForService</span>(<span class="string">&quot;/show_person&quot;</span>);</span><br><span class="line">	ros::ServiceClient person_client = node.serviceClient&lt;learning_service::Person&gt;(<span class="string">&quot;/show_person&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化learning_service::Person的请求数据</span></span><br><span class="line">	learning_service::Person srv;</span><br><span class="line">	srv.request.name = <span class="string">&quot;Huffie&quot;</span>;</span><br><span class="line">	srv.request.age  = <span class="number">21</span>;</span><br><span class="line">	srv.request.sex  = learning_service::Person::Request::male;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 请求服务调用</span></span><br><span class="line">	<span class="built_in">ROS_INFO</span>(<span class="string">&quot;Call service to show person[name:%s, age:%d, sex:%d]&quot;</span>, </span><br><span class="line">			 srv.request.name.<span class="built_in">c_str</span>(), srv.request.age, srv.request.sex);</span><br><span class="line"></span><br><span class="line">	person_client.<span class="built_in">call</span>(srv);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 显示服务调用结果</span></span><br><span class="line">	<span class="built_in">ROS_INFO</span>(<span class="string">&quot;Show person result : %s&quot;</span>, srv.response.result.<span class="built_in">c_str</span>());</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20210226170154807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="五、配置服务器-客户端代码编译规则"><a href="#五、配置服务器-客户端代码编译规则" class="headerlink" title="五、配置服务器/客户端代码编译规则"></a>五、配置服务器/客户端代码编译规则</h3><p>打开<code>learning_service</code>中的<code>CMakeLists.txt</code>，在图示区域添加代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">add_executable</span>(person_server src/person_server.cpp)</span><br><span class="line"><span class="built_in">target_link_libraries</span>(person_server $&#123;catkin_LIBRARIES&#125;)</span><br><span class="line"><span class="built_in">add_dependencies</span>(person_server $&#123;PROJECT_NAME&#125;_gencpp)</span><br><span class="line"></span><br><span class="line"><span class="built_in">add_executable</span>(person_client src/person_client.cpp)</span><br><span class="line"><span class="built_in">target_link_libraries</span>(person_client $&#123;catkin_LIBRARIES&#125;)</span><br><span class="line"><span class="built_in">add_dependencies</span>(person_client $&#123;PROJECT_NAME&#125;_gencpp)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20210226170247867.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="六、编译并运行发布者和订阅者"><a href="#六、编译并运行发布者和订阅者" class="headerlink" title="六、编译并运行发布者和订阅者"></a>六、编译并运行发布者和订阅者</h3><p>首先进行编译</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> catkin_ws</span><br><span class="line">catkin_make</span><br></pre></td></tr></table></figure>
+
+<p>运行发布者和订阅者</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">roscore</span><br><span class="line">rosrun learning_service person_server</span><br><span class="line">rosrun learning_service person_client</span><br></pre></td></tr></table></figure>
+
+<p>client每请求一次，会接受到一次数据<br><img src="https://img-blog.csdnimg.cn/20210226170849300.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://blog.csdn.net/weixin_44543463">
+          <span class="icon">
+            <i class="fab fa-cuttlefish"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/02/26/%E3%80%90ROS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E4%B8%83%EF%BC%89%E6%9C%8D%E5%8A%A1%E7%AB%AFServer%E7%9A%84%E5%AE%9E%E7%8E%B0/" rel="prev" title="【ROS学习笔记】（七）服务端Server的实现">
+                  <i class="fa fa-chevron-left"></i> 【ROS学习笔记】（七）服务端Server的实现
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/02/28/%E3%80%90ROS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E4%B9%9D%EF%BC%89%E5%8F%82%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E7%BC%96%E7%A8%8B%E6%96%B9%E6%B3%95/" rel="next" title="【ROS学习笔记】（九）参数的使用与编程方法">
+                  【ROS学习笔记】（九）参数的使用与编程方法 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-grip-lines-vertical"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Powered by Huffie.</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
