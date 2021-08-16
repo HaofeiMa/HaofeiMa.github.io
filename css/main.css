@@ -1989,17 +1989,6 @@ pre code {
   top: 0;
   width: 100%;
 }
-.post-block {
-  background: rgba(255,255,255,0.84);
-  padding: 25px;
-}
-.post {
-  margin-top: 60px;
-  margin-bottom: 60px;
-  padding: 0px;
-  -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
-  -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
-}
 .post-gallery {
   display: flex;
   min-height: 200px;
@@ -2752,7 +2741,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #7f019d;
+  background: #ec8234;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
