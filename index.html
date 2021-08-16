@@ -84,7 +84,7 @@
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">32</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
   </ul>
 </nav>
 
@@ -130,7 +130,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">博客</span>
         </a>
       </div>
@@ -225,7 +225,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-16 11:42:04" itemprop="dateModified" datetime="2021-08-16T11:42:04+08:00">2021-08-16</time>
+        <time title="修改时间：2021-08-16 12:11:44" itemprop="dateModified" datetime="2021-08-16T12:11:44+08:00">2021-08-16</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -251,18 +251,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>从夹爪夹住工件后，系统的载荷就发生了变化，对于仿真程序中效果区别可能不明显，但在实际系统中，必须要考虑载荷的区别。</p>
-<ol>
-<li>打开手动操作-有效载荷<img src="https://img-blog.csdnimg.cn/20210131230940711.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
-<li>新建一个有效载荷<img src="https://img-blog.csdnimg.cn/20210131231245338.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
-<img src="https://img-blog.csdnimg.cn/20210131231252329.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
-<img src="https://img-blog.csdnimg.cn/20210131231300677.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
-<li>修改程序，在程序开始处，添加指令-settings-gripload<img src="https://img-blog.csdnimg.cn/20210131231314809.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
-<img src="https://img-blog.csdnimg.cn/20210131231318175.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
-<li>添加到上方，负载为load0<img src="https://img-blog.csdnimg.cn/20210131231341397.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
-<li>在夹爪夹取工件后，即set dol0_1语句下，再次添加一条gripload语句，负载为load_Box。同理，在夹爪松开后，再次添加一条gripload语句，负载为load0.<img src="https://img-blog.csdnimg.cn/20210131231356461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
-</ol>
-
+          <p>从夹爪夹住工件后，系统的载荷就发生了变化，对于仿真程序中效果区别可能不明显，但在实际系统中，必须要考虑载荷的区别。打开手动操作-有效载荷，新建一个有效载荷，修改程序，在程序开始处，添加指令-settings-gripload，添加到上方，负载为load0，在夹爪夹取工件后，即set dol0_1语句下，再次添加一条gripload语句，负载为load_Box。同理，在夹爪松开后，再次添加一条gripload语句，负载为load0。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/31/%E3%80%90RobotStudio%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E5%85%AD%EF%BC%89%E6%9C%89%E6%95%88%E8%BD%BD%E8%8D%B7/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -319,7 +316,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-16 11:41:15" itemprop="dateModified" datetime="2021-08-16T11:41:15+08:00">2021-08-16</time>
+        <time title="修改时间：2021-08-16 12:11:08" itemprop="dateModified" datetime="2021-08-16T12:11:08+08:00">2021-08-16</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -345,16 +342,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <ol>
-<li>拆除夹爪，测量夹爪末端坐标<img src="https://img-blog.csdnimg.cn/20210130224218166.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-<li>点击建模-测量-点到点，选择夹爪底面和末端面，记录得到的z坐标值<img src="https://img-blog.csdnimg.cn/20210130224307753.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-<li>将夹爪安装回机器人末端<img src="https://img-blog.csdnimg.cn/20210130224323148.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-<li>打开虚拟示教器，进入手动操纵-工具坐标-新建，修改名称，点击左下角初始值<img src="https://img-blog.csdnimg.cn/20210130224339453.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
-<li>修改第一个z（坐标位置）为刚才测得得值215.30，mass（质量）为1，第二个z（重心位置）初估一个数<img src="https://img-blog.csdnimg.cn/20210130224351960.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
-<img src="https://img-blog.csdnimg.cn/20210130224356614.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
-<li>验证坐标，选择动作模式为重定位，工具坐标为刚才新建坐标。操纵摇杆可看到机器人绕夹爪两末端中心点转动。</li>
-</ol>
-
+          <p>拆除夹爪，测量夹爪末端坐标。点击建模-测量-点到点，选择夹爪底面和末端面，记录得到的z坐标值。将夹爪安装回机器人末端。打开虚拟示教器，进入手动操纵-工具坐标-新建，修改名称，点击左下角初始值。修改第一个z（坐标位置）为刚才测得得值215.30，mass（质量）为1，第二个z（重心位置）初估一个数。验证坐标，选择动作模式为重定位，工具坐标为刚才新建坐标。操纵摇杆可看到机器人绕夹爪两末端中心点转动。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/30/%E3%80%90RobotStudio%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E4%BA%94%EF%BC%89%E5%B7%A5%E5%85%B7%E6%95%B0%E6%8D%AE/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -411,7 +407,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-16 11:40:18" itemprop="dateModified" datetime="2021-08-16T11:40:18+08:00">2021-08-16</time>
+        <time title="修改时间：2021-08-16 12:10:34" itemprop="dateModified" datetime="2021-08-16T12:10:34+08:00">2021-08-16</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -437,29 +433,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>@[TOC]</p>
-<h3 id="一、指令"><a href="#一、指令" class="headerlink" title="一、指令"></a>一、指令</h3><ol>
-<li>MoveJ：移动到某位置</li>
-<li>Set/Reset：控制外部设备<h3 id="二、实现过程"><a href="#二、实现过程" class="headerlink" title="二、实现过程"></a>二、实现过程</h3></li>
-<li>在初始位置添加一句MoveJ指令<img src="https://img-blog.csdnimg.cn/20210130223152519.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-<li>将机器人爪调至工件的正上方，再添加一条MoveJ指令（在工件上方添加一个位置点，是为了防止机器人直接夹取，可能会从侧面撞到工件）<img src="https://img-blog.csdnimg.cn/20210130223224740.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-<li>将机器人爪子向下移动到夹取工件的位置，添加一条MoveJ指令<img src="https://img-blog.csdnimg.cn/20210130223249635.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-<li>使用Set指令，使机器人爪子夹紧工件。<img src="https://img-blog.csdnimg.cn/20210130223307362.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-<li>将机器人竖直向上移动，使工件脱离工作台，添加一条MoveJ指令。<img src="https://img-blog.csdnimg.cn/20210130223325749.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-<li>将工件移动到夹具台上方，再次添加一条MoveJ指令。<img src="https://img-blog.csdnimg.cn/20210130223346194.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-<li>将工具放到工作台上，添加一条MoveJ指令，再使用Reset指令松开夹爪。<img src="https://img-blog.csdnimg.cn/20210130223407578.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-<li>使用MoveJ指令将机器人先竖直向上移动，再回到初始位置，即可完成一个动作周期。<h3 id="三、增强代码可读性-创建robtarget数据"><a href="#三、增强代码可读性-创建robtarget数据" class="headerlink" title="三、增强代码可读性-创建robtarget数据"></a>三、增强代码可读性-创建robtarget数据</h3>点击MoveJ指令后的<em>，点击ToPoint，点击新建，即可创建一个robotarget数据，代替</em>所在位置，增强程序的可读性。<br>（注意，新建robtarget数据时，是记录机器人<strong>现在位置</strong>，而非原指位置）<img src="https://img-blog.csdnimg.cn/2021013022383614.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
-<img src="https://img-blog.csdnimg.cn/2021013022384658.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
-<img src="https://img-blog.csdnimg.cn/20210130223849295.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
-<img src="https://img-blog.csdnimg.cn/2021013022385995.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
-### 四、修改程序中的工具数据
-为了输出负载等其它参数的正常与机器人的稳定运行，需要将指令后的工具坐标修改为正确的工具坐标。</li>
-<li>当机器人系统处于此行程序对应位置时，点击tool0修改为tGrip<img src="https://img-blog.csdnimg.cn/20210131231140252.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210131230745750.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-<li>因工具坐标发生变化，所以对应的位置坐标也需要改变，点击修改位置即可将更改正确位置<img src="https://img-blog.csdnimg.cn/20210131230807560.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
-<li>将机器人移动到下一个位置，然后再修改工具坐标，再更正位置。<img src="https://img-blog.csdnimg.cn/20210131230828617.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
-</ol>
-
+          <p>MoveJ：移动到某位置。Set/Reset：控制外部设备。在初始位置添加一句MoveJ指令，将机器人爪调至工件的正上方，再添加一条MoveJ指令（在工件上方添加一个位置点，是为了防止机器人直接夹取，可能会从侧面撞到工件）。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/30/%E3%80%90RobotStudio%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E5%9B%9B%EF%BC%89%E5%A4%B9%E5%8F%96%E5%B7%A5%E4%BB%B6%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -516,7 +498,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-16 11:39:31" itemprop="dateModified" datetime="2021-08-16T11:39:31+08:00">2021-08-16</time>
+        <time title="修改时间：2021-08-16 12:09:38" itemprop="dateModified" datetime="2021-08-16T12:09:38+08:00">2021-08-16</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -542,8 +524,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><strong>1. 层级结构</strong><br>打开主菜单-程序 可以看到最上面一行是程序名称，T_ROB1/MainModule/main。<br><img src="https://img-blog.csdnimg.cn/20210128232141274.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br>其中T_ROB1是任务，有几个机械单元就有几个任务可以选择。比如两个机械臂协同工作，就会出现ROB2等。<br><img src="https://img-blog.csdnimg.cn/20210128232154943.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br>第二层是模块，分成系统模块和程序模块。模块就是将机器人需要实现的各个功能分成不同模块。可以理解成文件夹。<br><img src="https://img-blog.csdnimg.cn/20210128232221908.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br>第三层是例行程序，是机器人系统真正执行的一些程序。<br><img src="https://img-blog.csdnimg.cn/2021012823223232.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br><strong>2. 新建程序</strong><br>新建模块：点击文件-新建模块。<br><img src="https://img-blog.csdnimg.cn/20210128232339667.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br><img src="https://img-blog.csdnimg.cn/20210128232342799.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br>进入新建的模块，可以看到现在的模块只是相当于一个文件夹，并没有创建程序的地方。所以我们需要先创建一个例行程序。点击右上方例行程序，文件-新建例行程序。<br><img src="https://img-blog.csdnimg.cn/20210128232354418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br><img src="https://img-blog.csdnimg.cn/20210128232357133.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br>点击显示例行程序，就可以进入到程序编辑页面了。<br>把当前位置记录下来，使用添加指令-MoveJ指令。<br>将机器人移动至另一个位置，再次添加MoveJ指令。点击调试-pp移至Main，点击右边的单步执行，可以看到机器人进行了一步移动。<br><img src="https://img-blog.csdnimg.cn/20210128232421755.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br>同时，程序可以切换单周执行与连续执行。<br><img src="https://img-blog.csdnimg.cn/2021012823243114.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></p>
-
+          <p>打开主菜单-程序 可以看到最上面一行是程序名称，其中T_ROB1是任务，有几个机械单元就有几个任务可以选择。第二层是模块，分成系统模块和程序模块。模块就是将机器人需要实现的各个功能分成不同模块。可以理解成文件夹。第三层是例行程序，是机器人系统真正执行的一些程序。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/28/%E3%80%90RobotStudio%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E4%B8%89%EF%BC%89%E7%A8%8B%E5%BA%8F%E5%88%9B%E5%BB%BA/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -600,7 +589,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-16 11:38:56" itemprop="dateModified" datetime="2021-08-16T11:38:56+08:00">2021-08-16</time>
+        <time title="修改时间：2021-08-16 12:08:52" itemprop="dateModified" datetime="2021-08-16T12:08:52+08:00">2021-08-16</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -626,32 +615,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="手动单轴操作"><a href="#手动单轴操作" class="headerlink" title="手动单轴操作"></a>手动单轴操作</h2><ol>
-<li>打开一个机器人系统，打开虚拟示教器</li>
-<li>点击<strong>菜单-手动操纵-动作模式</strong>，可以看到下方有四个动作模型，其中轴1-3和轴4-6为单轴操作，后面是线性操作，和重定位操作，这里<strong>选择轴1-3</strong>，点击确定。<img src="https://img-blog.csdnimg.cn/20210125140527223.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
-<img src="https://img-blog.csdnimg.cn/20210125140532834.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
-<img src="https://img-blog.csdnimg.cn/20210125140536765.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
-<li>可以看到在手动操作界面右方有机器人的位置信息和操纵杆方向。 操纵杆方向处的箭头对应示教器控制器的箭头，数字代表轴的序号。 如第一个代表上下箭头控制二轴的运动，下箭头为正方向第二个代表左右箭头控制1轴的运动，第三个代表顺时针，逆时针按钮控制3轴的运动。如果想要控制4-6，点击动作模式选择轴4-6即可。<img src="https://img-blog.csdnimg.cn/20210125140715773.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
-## 手动线性操作</li>
-<li>进入手动操纵的菜单栏，可以看到现在的动作模式是单轴动作，坐标系不可选。<img src="https://img-blog.csdnimg.cn/20210125140811571.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
-<li>点击动作模式，将<strong>动作模式更改为线性</strong>，确定后，可以看到此时的坐标系可以选择了。<img src="https://img-blog.csdnimg.cn/20210125140849441.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
-<li>进入坐标系菜单，可以看到有四种坐标系，分别是大地坐标、基坐标、工具、工件坐标。<img src="https://img-blog.csdnimg.cn/20210125140931116.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
-<li>首先看大地坐标，选择大地坐标确定后，可以看到控制器右侧的位置信息变成了xyz坐标值。操纵杆方向也变成了xyz，大地坐标系就是以机器人视图左下角的坐标系为基准进行运动。<img src="https://img-blog.csdnimg.cn/20210125141017416.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
-<img src="https://img-blog.csdnimg.cn/20210125141024981.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-<li>基坐标系，选中机器人底座，可以看到有一个坐标系，此时xyz就是沿着这个坐标系确定的。<img src="https://img-blog.csdnimg.cn/2021012514111936.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-<li>工具坐标，可以看到菜单栏有一项为工具坐标tool0，这个坐标系就是以机器人末端第六关节的坐标运动。<img src="https://img-blog.csdnimg.cn/20210125141147664.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
-<img src="https://img-blog.csdnimg.cn/20210125141151479.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-<li>工件坐标，可以看到菜单栏有一项为工件坐标tool0，这个坐标系是以工件的坐标系运动。<h2 id="重定位操作"><a href="#重定位操作" class="headerlink" title="重定位操作"></a>重定位操作</h2></li>
-<li>打开虚拟示教器，<strong>手动操纵-动作模式</strong>，切换动作模式为重定位。<img src="https://img-blog.csdnimg.cn/20210126112359422.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
-<li>回到手动操纵的菜单栏，可以看到此时的坐标系为工具，工具坐标为tool0<img src="https://img-blog.csdnimg.cn/20210126112814805.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
-<li>按下示教器的箭头，手动操作进行观察，可以发现位置坐标XYZ始终不发生变化。<img src="https://img-blog.csdnimg.cn/20210126113447236.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-<li>将爪子隐藏，可以看出系统运动过程中，第6关节末端中心点位置保持不变。<img src="https://img-blog.csdnimg.cn/20210126113725826.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="30%">
-<img src="https://img-blog.csdnimg.cn/20210126113827573.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-## 动作模式的切换</li>
-<li>在摇杆的左侧切换操作模式，第二个按钮是切换重定位和线性，第三个按钮切换轴1-3和轴4-6。面板右下角显示当前操作模式。<img src="https://img-blog.csdnimg.cn/20210126142144107.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
-<li>点击示教器右下角图标，可以看到机器人系统的详细信息，在这里同样可以对手动操纵菜单栏里所有的选项进行更改。<img src="https://img-blog.csdnimg.cn/20210126142226534.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
-</ol>
-
+          <p>打开一个机器人系统，打开虚拟示教器。点击菜单-手动操纵-动作模式，可以看到下方有四个动作模型，其中轴1-3和轴4-6为单轴操作，后面是线性操作，和重定位操作，这里选择轴1-3，点击确定，可以看到在手动操作界面右方有机器人的位置信息和操纵杆方向。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/28/%E3%80%90RobotStudio%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E4%BA%8C%EF%BC%89%E6%89%8B%E5%8A%A8%E6%93%8D%E4%BD%9C/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -708,7 +680,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-16 11:38:33" itemprop="dateModified" datetime="2021-08-16T11:38:33+08:00">2021-08-16</time>
+        <time title="修改时间：2021-08-16 12:08:21" itemprop="dateModified" datetime="2021-08-16T12:08:21+08:00">2021-08-16</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -734,37 +706,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="RobotStudio-6-03-02-的安装"><a href="#RobotStudio-6-03-02-的安装" class="headerlink" title="RobotStudio 6.03.02 的安装"></a>RobotStudio 6.03.02 的安装</h2><blockquote>
-<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1NyDTu_OCcPJLbfaQLtCHCw">https://pan.baidu.com/s/1NyDTu_OCcPJLbfaQLtCHCw</a><br>提取码：robo </p>
-</blockquote>
-<h5 id="1-安装注意事项"><a href="#1-安装注意事项" class="headerlink" title="1. 安装注意事项"></a>1. 安装注意事项</h5><p>（1）PC用户名为英文<br>（2）安装路径为英文<br>（3）安装过程全程联网</p>
-<h5 id="2-安装方法"><a href="#2-安装方法" class="headerlink" title="2. 安装方法"></a>2. 安装方法</h5><p>（1）将安装包解压，运行安装包内的setup.exe程序，按照提示安装即可，比较简单。<br>（2）安装完成后双击<code>RobotStudio_5.61.02注册补丁.reg</code>。<br>（3）打开RobotStudio即可完成安装。</p>
-<h2 id="初次测试"><a href="#初次测试" class="headerlink" title="初次测试"></a>初次测试</h2><ol>
-<li>打开RobotStudio软件，新建一个空工作站解决方案。<img src="https://img-blog.csdnimg.cn/20210125115511712.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-<li>点击左上角ABB模型库，导入一个IRB 120确定<img src="https://img-blog.csdnimg.cn/20210125115613611.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210125115623160.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="40%">
-<img src="https://img-blog.csdnimg.cn/2021012511561873.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-<li>然后点击机器人系统-从布局创建系统，选择一个6.03的软件版本<img src="https://img-blog.csdnimg.cn/20210125115737139.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210125115741617.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="40%">
-<img src="https://img-blog.csdnimg.cn/20210125115744637.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="40%">
-点击选项，将其中的默认语言改为中文，点击完成即可，稍等一段时间等待系统创建完成。
-<img src="https://img-blog.csdnimg.cn/20210125115854259.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="40%">
-<img src="https://img-blog.csdnimg.cn/20210125115857844.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="40%"></li>
-<li>当下方控制器状态变成绿色的时候说明系统已经创建完成了。<img src="https://img-blog.csdnimg.cn/20210125120032477.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210125120039330.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-<li>点击上方 控制器-示教器-虚拟示教器<img src="https://img-blog.csdnimg.cn/20210125120130585.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-在弹出的示教器窗口，打开控制面板切换为手动并使能。
-<img src="https://img-blog.csdnimg.cn/20210125120154143.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
-<li>在机器人视图内，Ctrl+左键为平移，Ctrl+Shift+左键为旋转，调整视图，使虚拟示教器和机器人能够同时看到。</li>
-<li>点击菜单-程序编辑器，新建一个程序。<img src="https://img-blog.csdnimg.cn/20210125120329622.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-添加一条MoveJ指令
-<img src="https://img-blog.csdnimg.cn/20210125120404443.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-长按示教器右边的箭头，使机器人转动一个角度，然后在下方再添加一条MoveJ指令。（一定要看示教器上访的状态，保证机器人是手动控制模式、电机开启）
-<img src="https://img-blog.csdnimg.cn/20210125120415784.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-然后点击调试-PP移至Main，再点击右下方的运行按钮，即可看到机器人在起始位置和刚才转动的位置进行往复运动。
-<img src="https://img-blog.csdnimg.cn/20210125120426558.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-</ol>
-
+          <p>将安装包解压，运行安装包内的setup.exe程序，按照提示安装即可，比较简单。安装完成后双击RobotStudio_5.61.02注册补丁.reg。打开RobotStudio即可完成安装。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/26/%E3%80%90RobotStudio%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E4%B8%80%EF%BC%89%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E5%88%9D%E6%AD%A5%E6%B5%8B%E8%AF%95/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -821,7 +771,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-16 11:37:48" itemprop="dateModified" datetime="2021-08-16T11:37:48+08:00">2021-08-16</time>
+        <time title="修改时间：2021-08-16 12:07:54" itemprop="dateModified" datetime="2021-08-16T12:07:54+08:00">2021-08-16</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -847,19 +797,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h2><h4 id="1-安装Elementor插件"><a href="#1-安装Elementor插件" class="headerlink" title="1. 安装Elementor插件"></a>1. 安装Elementor插件</h4><p>进入wordpress后台，搜索插件Elementor进行安装。<br><img src="https://img-blog.csdnimg.cn/20210122171337715.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></p>
-<blockquote>
-<p>如果安装失败，可以在官网下载安装包，手动上传安装，安装方法参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44543463/article/details/112839933">此篇文章</a><br>下载地址：<a target="_blank" rel="noopener" href="https://cn.wordpress.org/plugins/elementor/">https://cn.wordpress.org/plugins/elementor/</a></p>
-</blockquote>
-<h4 id="2-安装主题"><a href="#2-安装主题" class="headerlink" title="2. 安装主题"></a>2. 安装主题</h4><p>这里以Astra主题为例，进入wordpress后台，搜索主题Astra进行安装。<br><img src="https://img-blog.csdnimg.cn/20210125142357851.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></p>
-<h4 id="3-安装辅助插件"><a href="#3-安装辅助插件" class="headerlink" title="3. 安装辅助插件"></a>3. 安装辅助插件</h4><p>根据不同主题的要求，可能需要安装不同的辅助插件，才能导入网站模板。Astra主题需要的插件是Starter Templates。<br><img src="https://img-blog.csdnimg.cn/20210125142716805.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></p>
-<h2 id="二、导入模板"><a href="#二、导入模板" class="headerlink" title="二、导入模板"></a>二、导入模板</h2><p>点击<strong>外观-Starter Templates</strong>，可以看到Astra的一些网站模板。在这里我们可以选择一个符合自己网站主题的模板（点击详情可以预览网页），导入到我们的网站中。<br><img src="https://img-blog.csdnimg.cn/20210125143120692.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br><img src="https://img-blog.csdnimg.cn/20210125143354910.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></p>
-<h2 id="三、可视化编辑"><a href="#三、可视化编辑" class="headerlink" title="三、可视化编辑"></a>三、可视化编辑</h2><h4 id="1-修改网站logo和标识"><a href="#1-修改网站logo和标识" class="headerlink" title="1. 修改网站logo和标识"></a>1. 修改网站logo和标识</h4><p>（1）进入自己的网站界面，点击上方的使用Elementor编辑，进入Elementor的编辑界面。<br><img src="https://img-blog.csdnimg.cn/20210125144617113.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br>（2）点击左上角进入<strong>站点设置-网站标识</strong>，可以修改网站的Logo和标识。<br><img src="https://img-blog.csdnimg.cn/20210125145014221.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br><img src="https://img-blog.csdnimg.cn/20210125145038629.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br><img src="https://img-blog.csdnimg.cn/20210125145314609.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></p>
-<h4 id="2-修改内容"><a href="#2-修改内容" class="headerlink" title="2. 修改内容"></a>2. 修改内容</h4><p>Elementor是模块化的编辑器，它将网站从上到下按不同段进行拼接，每个段内部分成一个或多个栏，可以填加不同的功能模块。<br>（1）修改文字：将鼠标放在要求改的文字上，单击可以直接修改，或者在左侧编辑菜单中修改。<br><img src="https://img-blog.csdnimg.cn/20210125145751962.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br>（2）更换图片：点击要修改的图片，可以看到左侧编辑菜单出现了相应的选项，此处可以更换图像，图像可以选择媒体库中已存在的图像，也可以上传图像。同时下方能够修改图像的尺寸和对齐方式。此外还可以在高级设置中进行更多的设置。<br><img src="https://img-blog.csdnimg.cn/20210125150258960.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br><img src="https://img-blog.csdnimg.cn/20210125150701232.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br>（3）更改图标：还是点击要求改的图标，以Read More→的→为例，在左侧可以选择图标库中已经有的图标，也可以自己上传图标。<br><img src="https://img-blog.csdnimg.cn/20210125151020486.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br><img src="https://img-blog.csdnimg.cn/20210125151045717.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></p>
-<h4 id="3-修改布局"><a href="#3-修改布局" class="headerlink" title="3. 修改布局"></a>3. 修改布局</h4><p>（1）点击段上方中间的按钮，在左侧可以更改此段的布局（边距、对齐）、结构（分栏数）等。<br><img src="https://img-blog.csdnimg.cn/20210125151413750.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br>（2）点击段内部各个栏的左上方的小窗子，可以修改内部各栏的布局。<br><img src="https://img-blog.csdnimg.cn/2021012515165162.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br>（3）修改段的位置，点击Elementor编辑菜单下方的导航器。可看到右侧出现了网站的大纲列表，直接拖动对应的段即可直接排序。<br><img src="https://img-blog.csdnimg.cn/20210125153008401.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br><img src="https://img-blog.csdnimg.cn/20210125153032288.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></p>
-<h4 id="4-添加段"><a href="#4-添加段" class="headerlink" title="4. 添加段"></a>4. 添加段</h4><p>（1）翻到页面最下端或者点击某段上方的+，可以添加段<br><img src="https://img-blog.csdnimg.cn/20210125152108814.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br>（2）添加新段：选择分栏的方式数目，然后从左侧Elementor的编辑菜单直接拖动需要的功能模块至各栏即可。<br><img src="https://img-blog.csdnimg.cn/20210125152200844.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br><img src="https://img-blog.csdnimg.cn/20210125152327441.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br>（3）使用Elementor的模板，这里可以在左上角选择模板的分类，比如我要添加About的相关模块。选好后直接插入即可。<br><img src="https://img-blog.csdnimg.cn/20210125152432962.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br>（4）有些主题也有自己内置的模块，添加方法类似。<br><img src="https://img-blog.csdnimg.cn/20210125152637596.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></p>
-<h2 id="四、修改网页导航"><a href="#四、修改网页导航" class="headerlink" title="四、修改网页导航"></a>四、修改网页导航</h2><p>网页导航就是网站最上方的一排导航按钮，在wordpress后台的外观-菜单中可以修改。可以选择不同的页面添加到导航菜单中，也可以修改导航菜单的顺序，或者修改页面之间的从属关系，实现下拉菜单的效果。<br><img src="https://img-blog.csdnimg.cn/20210125153219863.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"><br><img src="https://img-blog.csdnimg.cn/20210125153326303.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></p>
-
+          <p>首先准备工作（安装Elementor插件、主题、辅助插件），然后导入模板，使用Elementor进行可视化编辑，最后在wordpress后台修改网站导航即可。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/25/%E3%80%90WordPress%E7%BD%91%E7%AB%99%E8%AE%BE%E8%AE%A1%E3%80%91%E5%B0%8F%E7%99%BD%E7%BD%91%E7%AB%99%E8%AE%BE%E8%AE%A1%E6%B5%81%E7%A8%8B%EF%BC%88%E4%BD%BF%E7%94%A8Elementor%E5%8F%AF%E8%A7%86%E5%8C%96%E7%BC%96%E8%BE%91%E7%BD%91%E7%AB%99%EF%BC%89/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -916,7 +862,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-16 11:36:19" itemprop="dateModified" datetime="2021-08-16T11:36:19+08:00">2021-08-16</time>
+        <time title="修改时间：2021-08-16 12:06:29" itemprop="dateModified" datetime="2021-08-16T12:06:29+08:00">2021-08-16</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -942,77 +888,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>@<a href="%E5%8A%9F%E8%83%BD%E7%9B%AE%E5%BD%95">TOC</a></p>
-<h2 id="一、媒体库"><a href="#一、媒体库" class="headerlink" title="一、媒体库"></a>一、媒体库</h2><p>媒体库是主要用来管理，你使用wordpress上传的附件的，比如图片、视频等其他文件。 点击左上角可以切换视图（列表/缩略图）</p>
-<h4 id="媒体文件的管理"><a href="#媒体文件的管理" class="headerlink" title="媒体文件的管理"></a>媒体文件的管理</h4><ol>
-<li>编辑：可以修改图片的的标题，说明文字，替代文本。替代文本是当图片没有办法正常显示的时候，会用文本代替图片。</li>
-<li>永久删除：在媒体库中删除媒体，已经在文章中添加过的不受影响</li>
-<li>查看：以网页的形式查看图片<img src="https://img-blog.csdnimg.cn/20210122101633801.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-#### 媒体文件添加</li>
-<li>在此处可以上传到上传文件最大允许尺寸为2M</li>
-<li>常用的图片格式、文档格式、压缩格式都可以上传。可以利用这里上传文件供用户下载。<img src="https://img-blog.csdnimg.cn/20210122101809159.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-</ol>
-<h2 id="二、评论管理"><a href="#二、评论管理" class="headerlink" title="二、评论管理"></a>二、评论管理</h2><ol>
-<li>列表从左到右依次是：评论的用户，评论内容，用户评论的文章，评论时间。</li>
-<li>在评论内容处可以管理评论，具体操作有<br>（1）驳回/批准：wordpress默认设置用户发表评论，批准后才会在网页显示<br>（2）回复：就是回复用户的评论<br>（3）编辑：可以修改用户的评论<br>（4）垃圾评论和移至回收站操作后，评论都不会在网页中显示。<img src="https://img-blog.csdnimg.cn/20210122102236146.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-</ol>
-<h2 id="三、用户管理"><a href="#三、用户管理" class="headerlink" title="三、用户管理"></a>三、用户管理</h2><h4 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h4><p>可以在此给网站添加用户，一般是不会手动添加用户的，手动添加用户一般只用来添加管理员，普通用户通常是会有注册渠道。<br>填写用户名，电子邮件，名字，姓氏，密码，选择用户角色后即可完成用户的添加。<br><img src="https://img-blog.csdnimg.cn/20210122103135103.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></p>
-<h4 id="用户资料"><a href="#用户资料" class="headerlink" title="用户资料"></a>用户资料</h4><p>点击个人资料即可看到自己的资料<br><img src="https://img-blog.csdnimg.cn/20210122103558110.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></p>
-<ol>
-<li>可视化编辑器<br>不使用可视化编辑器：<img src="https://img-blog.csdnimg.cn/2021012210331455.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
-使用可视化编辑器
-<img src="https://img-blog.csdnimg.cn/2021012210335138.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%"></li>
-<li>管理界面的配色：后台左侧和上侧的颜色</li>
-<li>工具栏：在登录之后，打开自己的网站，会看到最上面有一条工具条。<img src="https://img-blog.csdnimg.cn/20210122103742533.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-<li>资料图片：需要到gravatar网站上注册账户，并设置头像。当在wordpress的网站中使用相同的邮件账户注册会员，那么wordpress就会根据邮件账户信息，从gravatar网站中获取头像<h4 id="管理用户"><a href="#管理用户" class="headerlink" title="管理用户"></a>管理用户</h4>在所有用户页面内可以管理此网站的所有用户<br>在这里插入图片描述<img src="https://img-blog.csdnimg.cn/20210122104125701.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-</ol>
-<h2 id="四、工具"><a href="#四、工具" class="headerlink" title="四、工具"></a>四、工具</h2><h4 id="快速发布"><a href="#快速发布" class="headerlink" title="快速发布"></a>快速发布</h4><p>将按钮拖动到收藏夹栏即可添加这个工具。再打开别人的网站时，点击快速发布按钮，可以将该网页的标题，内容，图片等copy下来形成一个文章。</p>
-<h4 id="直接链接"><a href="#直接链接" class="headerlink" title="直接链接"></a>直接链接</h4><p>类似快速发布，点击直接连接按钮，可以看到最上方有一栏可以输入url，找到想要剪辑的网页，将url复制到此栏即可生成一篇文章。</p>
-<h4 id="导入和导出"><a href="#导入和导出" class="headerlink" title="导入和导出"></a>导入和导出</h4><p>导入可以从其它博客平台等网站，将自己的文章和评论等导入到此网站。到处则是创建一个xml文件，保存网站的内容。</p>
-<h2 id="五、外观"><a href="#五、外观" class="headerlink" title="五、外观"></a>五、外观</h2><h4 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h4><ol>
-<li>主题的作用<br>更换不同的主题，网站的视觉效果会发生改变。用户看到的网站内容也会发生改变。站点的功能也会发生变化。</li>
-<li>主题的安装方法<br>点击添加主题即可进入安装页面，可以在此页面安装主题<br>（1）在线安装：在wordpress的特色、热门、最新等栏目中选择主题，也可以搜索主题安装。安装后点击实时预览可以看到网站更换主题的效果。点击启用即可更换主题。<img src="https://img-blog.csdnimg.cn/20210122105005590.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-（2）手动安装：将主题下载到本地，点击上传主题，选择下载好的主题zip文件，点击现在安装即可。
-<img src="https://img-blog.csdnimg.cn/20210122105121342.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-（3）直接安装：直接将解压后的主题文件夹，放置在wp-content/themes/文件夹内。回到主提页面，刷新一下即可看到刚才安装的主题。</li>
-<li>自定义主题<br>点击自定义按钮后，可以看到左侧是自定义的栏目（不同的主题栏目会不一样），右侧是实时效果预览<img src="https://img-blog.csdnimg.cn/20210122105310748.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-#### 小工具
-有的主题没有提供这个功能，有没有这个功能是由主题决定的。</li>
-<li>小工具右侧可以看到一些容器，修改这些容器可以更改网页的效果。</li>
-<li>小工具左侧可用的选项，可以拖动到右面的容器中使用。<img src="https://img-blog.csdnimg.cn/2021012210562168.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-## 六、设置
-#### 常规设置</li>
-<li>站点标题：网站的名称</li>
-<li>副标题：一般情况下，显示在网站的标题旁边 </li>
-<li>wordpress地址和站点地址一般使用默认</li>
-<li>电子邮件地址：用于接收站点相关通知的邮</li>
-<li>成员资格：网站是否允许其他人注册</li>
-<li>新用户默认角色：考虑权限以及安全问题，订阅者权限即可。</li>
-<li>ICP备案号：可以填写网站的备案号，是否会在网站显示取决于主题。<img src="https://img-blog.csdnimg.cn/20210122105910627.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-#### 撰写设置</li>
-<li>默认文章分类：发布文章时没有勾选分类目录时，wordpress会自动将这篇文章放到此处设置的分类目录里面</li>
-<li>更新服务：在更新服务里面填写的网址，当发布新的内容的时候，wordpress会自动通知此处的链接地址。（主要用于搜索优化）<img src="https://img-blog.csdnimg.cn/20210122110028192.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-#### 阅读设置</li>
-<li>首页显示：默认显示最新文章，选择静态页面时可以设置站点首页为后台发布的某张页面</li>
-<li>Feed中显示最近：用户订阅我们网站内容时，每页显示多少内容<img src="https://img-blog.csdnimg.cn/20210122110140495.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-#### 讨论设置
-尝试通知文章链接的博客：在发布文章时，如果文章内容发布链接时，如果勾选此选项，则会通知对方我们的链接指向了他们（一般不使用）。
-<img src="https://img-blog.csdnimg.cn/20210122110305572.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-#### 多媒体设置
-上传图片后，wordpress会自动在此图片基础上转换出不同像素大小的图片。
-#### 固定链接
-通过切换不同的链接结构，可以改变网页网址。更改的主要原因是为了搜索引擎检索的优化。一般使用文章名较好。
-<img src="https://img-blog.csdnimg.cn/20210122110437112.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-自定义结构
-| 代码       | 作用       |
-| ---------- | ---------- |
-| %post_id%  | 内容的编号 |
-| %postname% | 内容的名称 |
-| %year%     | 发布的年份 |
-| %monthnum% | 发布的月份 |
-| %day%      | 具体哪一天 |</li>
-</ol>
-
+          <p>媒体库是主要用来管理，你使用wordpress上传的附件的，比如图片、视频等其他文件。 点击左上角可以切换视图（列表/缩略图）。在评论内容处可以管理评论，更换不同的主题，网站的视觉效果会发生改变。用户看到的网站内容也会发生改变。站点的功能也会发生变化。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/24/WordPress%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E5%85%B6%E4%BB%96%E5%8A%9F%E8%83%BD/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1069,7 +953,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-16 11:35:20" itemprop="dateModified" datetime="2021-08-16T11:35:20+08:00">2021-08-16</time>
+        <time title="修改时间：2021-08-16 12:05:39" itemprop="dateModified" datetime="2021-08-16T12:05:39+08:00">2021-08-16</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1095,13 +979,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>插件可以实现为wordpress站点增加、修改、删除功能。<br>WordPress有许多安装插件的安装方法，可以在线安装，可以手动上传插件包，也可以直接配置文件视线插件的安装。<br><img src="https://img-blog.csdnimg.cn/20210119153133414.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70#pic_center" width="60%"></p>
-<ol>
-<li>在线安装插件，可以在wordpress的特色、热门、推荐菜单中寻找插件，也可以搜索插件。找到合适的插件后点击安装即可。<img src="https://img-blog.csdnimg.cn/20210119153246819.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70#pic_center" width="60%"></li>
-<li>手动安装插件：当在线安装插件失败或者需要安装wordpress插件库中没有的插件时，从对应网站下载插件包，点击上传插件，选择手动下载下来的插件包即可。<img src="https://img-blog.csdnimg.cn/20210119153405170.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70#pic_center" width="60%"></li>
-<li>解压安装插件：如果手动安装插件仍然出错而且无法解决时，可以将下载的zip压缩包解压，将整个文件夹放到wp-content/plugins/文件夹内</li>
-</ol>
-
+          <p>插件可以实现为wordpress站点增加、修改、删除功能。WordPress有许多安装插件的安装方法，可以在线安装，可以手动上传插件包，也可以直接配置文件视线插件的安装。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/24/WordPress%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1158,7 +1044,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-16 11:34:44" itemprop="dateModified" datetime="2021-08-16T11:34:44+08:00">2021-08-16</time>
+        <time title="修改时间：2021-08-16 12:05:24" itemprop="dateModified" datetime="2021-08-16T12:05:24+08:00">2021-08-16</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1184,37 +1070,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="一、简述"><a href="#一、简述" class="headerlink" title="一、简述"></a>一、简述</h2><h5 id="1-网站的内容"><a href="#1-网站的内容" class="headerlink" title="1. 网站的内容"></a>1. 网站的内容</h5><p>对于一个网站来说，内容是最重要的一部分，用户之所以访问你的网站，也是因为你的内容。在WordPress中，内容主要分成两个部分：文章和页面。</p>
-<ul>
-<li>文章：用于发布网站的主要内容（如博客类网站，文章处发布博文）</li>
-<li>页面：用于发布网站的其他内容（如博客类网站，页面处发布博主/网站信息）<img src="https://img-blog.csdnimg.cn/20210120095736266.png" width="20%">
-##### 2. 网站的规划
-（1）划分出网站的主要内容和其他内容
-（2）对主要内容进行分门别类，划分出分类目录
-（3）不需要事先划分标签
->**分类目录**：对文章按内容进行分类
->**标签**：可以理解为是一种标记，通过给文章添加一个标记，如果需要查看带有某个标记的文章的时候，wordpress就能快速筛选出来。</li>
-</ul>
-<img src="https://img-blog.csdnimg.cn/20210120100513357.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
-
-<h2 id="二、文章"><a href="#二、文章" class="headerlink" title="二、文章"></a>二、文章</h2><ul>
-<li>右边可以看到文章的发布信息、状态、分类目录、标签、特色图片等信息<img src="https://img-blog.csdnimg.cn/20210120101214344.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="30%"></li>
-<li>点击右上角显示选项可以看到更多信息，这里可以先把所有复选框都选上，后面一个一个看他们的作用。（我们的选项可能不一样，这是因为安装的插件不同导致的，这个不用在意）<br><img src="https://img-blog.csdnimg.cn/202101201018334.png
-?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
-</ul>
-<ol>
-<li><strong>标题</strong>：从上到下，第一个就是文章内容的标题，这里就不多说。</li>
-<li><strong>添加媒体</strong>：可以上传图片等文件，插入进文章中光标所在位置</li>
-<li><strong>文章摘要</strong>：在文章内容下面，可以看到文章摘要的填写框，文章摘要就是文章主要内容的概述，作用为在网站的文章列表中显示摘要，让用户快速的了解文章的主要内容，如果用户感兴趣的话可以进一步查看内容。</li>
-<li><strong>发送Trackback</strong>：如果应用或借鉴了其他人的文章，可以在此处填写ulr通知对方，这个功能目前很少使用。</li>
-<li><strong>自定义栏目</strong>：在正文内无法添加，需要添加更多的内容，可以在自定义栏目中实现。</li>
-<li><strong>讨论</strong>：允许评论勾选则允许评论，不勾选则不允许用户评论</li>
-<li><strong>评论</strong>：可以添加，或者管理评论</li>
-<li><strong>别名</strong>：修改链接网址，使网址更符合搜索引擎的索引要求</li>
-<li><strong>标签</strong>：可以给文章打上标记，将来如果想查看文章，只需要使用标签即可。</li>
-<li><strong>特色图像</strong>：相当于文章的缩略图</li>
-</ol>
-
+          <p>对于一个网站来说，内容是最重要的一部分，用户之所以访问你的网站，也是因为你的内容。在WordPress中，内容主要分成两个部分：文章和页面。文章：用于发布网站的主要内容（如博客类网站，文章处发布博文）页面：用于发布网站的其他内容（如博客类网站，页面处发布博主/网站信息）。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/22/WordPress%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%E6%96%87%E7%AB%A0%E6%93%8D%E4%BD%9C/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

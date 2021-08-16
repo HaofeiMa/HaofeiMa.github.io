@@ -20,12 +20,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"huffiema.github.io","root":"/","images":"/images","scheme":"Mist","version":"8.7.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"always","padding":18,"offset":12,"b2t":true,"scrollpercent":true},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="一、搭建LAMP服务器即Linux+Apache+MySQL+PHP 1. 安装apache打开控制台，输入命令，确保软件安装是最新的。 12sudo apt updatesudo apt upgrade 安装apache 1sudo apt install apache2 安装完成后给apache文件赋予权限 12sudo chown -R pi:www-data &#x2F;var&#x2F;www&#x2F;html&#x2F;s">
+<meta name="description" content="树莓派搭建个人网站主要包括以下几个步骤：搭建LAMP服务器（即Linux+Apache+MySQL+PHP），创建数据库用户（这一步需要安装PhpMyAdmin，并使用SQL语句添加mariaDB数据库用户）。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【树莓派搭建个人网站】环境配置">
 <meta property="og:url" content="https://huffiema.github.io/2021/01/18/%E3%80%90%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E3%80%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Half_A Studio">
-<meta property="og:description" content="一、搭建LAMP服务器即Linux+Apache+MySQL+PHP 1. 安装apache打开控制台，输入命令，确保软件安装是最新的。 12sudo apt updatesudo apt upgrade 安装apache 1sudo apt install apache2 安装完成后给apache文件赋予权限 12sudo chown -R pi:www-data &#x2F;var&#x2F;www&#x2F;html&#x2F;s">
+<meta property="og:description" content="树莓派搭建个人网站主要包括以下几个步骤：搭建LAMP服务器（即Linux+Apache+MySQL+PHP），创建数据库用户（这一步需要安装PhpMyAdmin，并使用SQL语句添加mariaDB数据库用户）。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210115160502183.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210115162214961.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210115164056922.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210115164108861.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2021-01-18T15:30:32.000Z">
-<meta property="article:modified_time" content="2021-08-16T03:28:26.143Z">
+<meta property="article:modified_time" content="2021-08-16T04:02:49.411Z">
 <meta property="article:author" content="Huffie">
 <meta property="article:tag" content="经验分享">
 <meta property="article:tag" content="配置">
@@ -99,7 +99,7 @@
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">32</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
   </ul>
 </nav>
 
@@ -146,7 +146,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">博客</span>
         </a>
       </div>
@@ -242,7 +242,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-16 11:28:26" itemprop="dateModified" datetime="2021-08-16T11:28:26+08:00">2021-08-16</time>
+        <time title="修改时间：2021-08-16 12:02:49" itemprop="dateModified" datetime="2021-08-16T12:02:49+08:00">2021-08-16</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -261,6 +261,7 @@
   
 </div>
 
+            <div class="post-description">树莓派搭建个人网站主要包括以下几个步骤：搭建LAMP服务器（即Linux+Apache+MySQL+PHP），创建数据库用户（这一步需要安装PhpMyAdmin，并使用SQL语句添加mariaDB数据库用户）。</div>
         </div>
       </header>
 

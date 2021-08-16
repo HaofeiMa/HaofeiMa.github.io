@@ -20,12 +20,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"huffiema.github.io","root":"/","images":"/images","scheme":"Mist","version":"8.7.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"always","padding":18,"offset":12,"b2t":true,"scrollpercent":true},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="一、下载wordpress在wordpress官网下载安装包，解压后把worpress文件夹内容放在html文件夹内。 123sudo wget https:&#x2F;&#x2F;cn.wordpress.org&#x2F;latest-zh_CN.tar.gztar -xzvf latest-zh_CN.tar.gzmv wordpress&#x2F;* &#x2F;var&#x2F;www&#x2F;html&#x2F;   二、在phpmyadmin内新建一个数据库">
+<meta name="description" content="在wordpress官网下载安装包，解压后把worpress文件夹内容放在html文件夹内。浏览器输入localhost&#x2F;phpmyadmin进入phpmyadmin，输入自己的phpmyadmin用户名和密码，点击数据库栏，新建数据库，输入一个数据库的名字，点击创建即可，暂时不需要数据表。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【树莓派搭建个人网站】WordPress安装">
 <meta property="og:url" content="https://huffiema.github.io/2021/01/19/%E3%80%90%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E3%80%91WordPress%E5%AE%89%E8%A3%85/index.html">
 <meta property="og:site_name" content="Half_A Studio">
-<meta property="og:description" content="一、下载wordpress在wordpress官网下载安装包，解压后把worpress文件夹内容放在html文件夹内。 123sudo wget https:&#x2F;&#x2F;cn.wordpress.org&#x2F;latest-zh_CN.tar.gztar -xzvf latest-zh_CN.tar.gzmv wordpress&#x2F;* &#x2F;var&#x2F;www&#x2F;html&#x2F;   二、在phpmyadmin内新建一个数据库">
+<meta property="og:description" content="在wordpress官网下载安装包，解压后把worpress文件夹内容放在html文件夹内。浏览器输入localhost&#x2F;phpmyadmin进入phpmyadmin，输入自己的phpmyadmin用户名和密码，点击数据库栏，新建数据库，输入一个数据库的名字，点击创建即可，暂时不需要数据表。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210119141212782.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210119141601975.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210119142707113.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210119154653738.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2021-01-19T07:45:13.000Z">
-<meta property="article:modified_time" content="2021-08-16T03:29:42.638Z">
+<meta property="article:modified_time" content="2021-08-16T04:03:35.020Z">
 <meta property="article:author" content="Huffie">
 <meta property="article:tag" content="安装">
 <meta property="article:tag" content="经验分享">
@@ -99,7 +99,7 @@
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">32</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
   </ul>
 </nav>
 
@@ -146,7 +146,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">博客</span>
         </a>
       </div>
@@ -242,7 +242,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-16 11:29:42" itemprop="dateModified" datetime="2021-08-16T11:29:42+08:00">2021-08-16</time>
+        <time title="修改时间：2021-08-16 12:03:35" itemprop="dateModified" datetime="2021-08-16T12:03:35+08:00">2021-08-16</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -261,6 +261,7 @@
   
 </div>
 
+            <div class="post-description">在wordpress官网下载安装包，解压后把worpress文件夹内容放在html文件夹内。浏览器输入localhost/phpmyadmin进入phpmyadmin，输入自己的phpmyadmin用户名和密码，点击数据库栏，新建数据库，输入一个数据库的名字，点击创建即可，暂时不需要数据表。</div>
         </div>
       </header>
 
