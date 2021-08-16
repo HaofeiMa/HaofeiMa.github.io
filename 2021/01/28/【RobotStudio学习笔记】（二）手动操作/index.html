@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huffiema.github.io","root":"/","images":"/images","scheme":"Mist","version":"8.7.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"always","padding":18,"offset":12,"b2t":true,"scrollpercent":true},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="手动单轴操作 打开一个机器人系统，打开虚拟示教器 点击菜单-手动操纵-动作模式，可以看到下方有四个动作模型，其中轴1-3和轴4-6为单轴操作，后面是线性操作，和重定位操作，这里选择轴1-3，点击确定。   可以看到在手动操作界面右方有机器人的位置信息和操纵杆方向。 操纵杆方向处的箭头对应示教器控制器的箭头，数字代表轴的序号。 如第一个代表上下箭头控制二轴的运动，下箭头为正方向第二个代表左右箭头控制">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【RobotStudio学习笔记】（二）手动操作">
+<meta property="og:url" content="https://huffiema.github.io/2021/01/28/%E3%80%90RobotStudio%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E4%BA%8C%EF%BC%89%E6%89%8B%E5%8A%A8%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="Half_A Studio">
+<meta property="og:description" content="手动单轴操作 打开一个机器人系统，打开虚拟示教器 点击菜单-手动操纵-动作模式，可以看到下方有四个动作模型，其中轴1-3和轴4-6为单轴操作，后面是线性操作，和重定位操作，这里选择轴1-3，点击确定。   可以看到在手动操作界面右方有机器人的位置信息和操纵杆方向。 操纵杆方向处的箭头对应示教器控制器的箭头，数字代表轴的序号。 如第一个代表上下箭头控制二轴的运动，下箭头为正方向第二个代表左右箭头控制">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210125140527223.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210125140532834.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210125140536765.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210125140715773.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210125140811571.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210125140849441.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210125140931116.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210125141017416.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210125141024981.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021012514111936.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210125141147664.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210125141151479.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210126112359422.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210126112814805.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210126113447236.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210126113725826.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210126113827573.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210126142144107.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210126142226534.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2021-01-28T15:17:46.000Z">
+<meta property="article:modified_time" content="2021-08-16T03:38:56.386Z">
+<meta property="article:author" content="Huffie">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210125140527223.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70">
+
+
+<link rel="canonical" href="https://huffiema.github.io/2021/01/28/%E3%80%90RobotStudio%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E4%BA%8C%EF%BC%89%E6%89%8B%E5%8A%A8%E6%93%8D%E4%BD%9C/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://huffiema.github.io/2021/01/28/%E3%80%90RobotStudio%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E4%BA%8C%EF%BC%89%E6%89%8B%E5%8A%A8%E6%93%8D%E4%BD%9C/","path":"2021/01/28/【RobotStudio学习笔记】（二）手动操作/","title":"【RobotStudio学习笔记】（二）手动操作"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【RobotStudio学习笔记】（二）手动操作 | Half_A Studio</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Half_A Studio</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">32</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E5%8D%95%E8%BD%B4%E6%93%8D%E4%BD%9C"><span class="nav-text">手动单轴操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%AE%9A%E4%BD%8D%E6%93%8D%E4%BD%9C"><span class="nav-text">重定位操作</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Huffie"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Huffie</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">博客</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/weixin_44543463" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_44543463" rel="noopener" target="_blank"><i class="fab fa-cuttlefish fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/HuffieMa" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HuffieMa" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:haofei_ma@163.com" title="E-Mail → mailto:haofei_ma@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/huffie65380272" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;huffie65380272" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://huffiema.github.io/2021/01/28/%E3%80%90RobotStudio%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E4%BA%8C%EF%BC%89%E6%89%8B%E5%8A%A8%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Huffie">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Half_A Studio">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【RobotStudio学习笔记】（二）手动操作
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-28 23:17:46" itemprop="dateCreated datePublished" datetime="2021-01-28T23:17:46+08:00">2021-01-28</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-16 11:38:56" itemprop="dateModified" datetime="2021-08-16T11:38:56+08:00">2021-08-16</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/" itemprop="url" rel="index"><span itemprop="name">机器人</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/RobotStudio/" itemprop="url" rel="index"><span itemprop="name">RobotStudio</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="手动单轴操作"><a href="#手动单轴操作" class="headerlink" title="手动单轴操作"></a>手动单轴操作</h2><ol>
+<li>打开一个机器人系统，打开虚拟示教器</li>
+<li>点击<strong>菜单-手动操纵-动作模式</strong>，可以看到下方有四个动作模型，其中轴1-3和轴4-6为单轴操作，后面是线性操作，和重定位操作，这里<strong>选择轴1-3</strong>，点击确定。<img src="https://img-blog.csdnimg.cn/20210125140527223.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
+<img src="https://img-blog.csdnimg.cn/20210125140532834.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
+<img src="https://img-blog.csdnimg.cn/20210125140536765.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
+<li>可以看到在手动操作界面右方有机器人的位置信息和操纵杆方向。 操纵杆方向处的箭头对应示教器控制器的箭头，数字代表轴的序号。 如第一个代表上下箭头控制二轴的运动，下箭头为正方向第二个代表左右箭头控制1轴的运动，第三个代表顺时针，逆时针按钮控制3轴的运动。如果想要控制4-6，点击动作模式选择轴4-6即可。<img src="https://img-blog.csdnimg.cn/20210125140715773.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
+## 手动线性操作</li>
+<li>进入手动操纵的菜单栏，可以看到现在的动作模式是单轴动作，坐标系不可选。<img src="https://img-blog.csdnimg.cn/20210125140811571.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
+<li>点击动作模式，将<strong>动作模式更改为线性</strong>，确定后，可以看到此时的坐标系可以选择了。<img src="https://img-blog.csdnimg.cn/20210125140849441.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
+<li>进入坐标系菜单，可以看到有四种坐标系，分别是大地坐标、基坐标、工具、工件坐标。<img src="https://img-blog.csdnimg.cn/20210125140931116.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
+<li>首先看大地坐标，选择大地坐标确定后，可以看到控制器右侧的位置信息变成了xyz坐标值。操纵杆方向也变成了xyz，大地坐标系就是以机器人视图左下角的坐标系为基准进行运动。<img src="https://img-blog.csdnimg.cn/20210125141017416.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
+<img src="https://img-blog.csdnimg.cn/20210125141024981.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
+<li>基坐标系，选中机器人底座，可以看到有一个坐标系，此时xyz就是沿着这个坐标系确定的。<img src="https://img-blog.csdnimg.cn/2021012514111936.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
+<li>工具坐标，可以看到菜单栏有一项为工具坐标tool0，这个坐标系就是以机器人末端第六关节的坐标运动。<img src="https://img-blog.csdnimg.cn/20210125141147664.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
+<img src="https://img-blog.csdnimg.cn/20210125141151479.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
+<li>工件坐标，可以看到菜单栏有一项为工件坐标tool0，这个坐标系是以工件的坐标系运动。<h2 id="重定位操作"><a href="#重定位操作" class="headerlink" title="重定位操作"></a>重定位操作</h2></li>
+<li>打开虚拟示教器，<strong>手动操纵-动作模式</strong>，切换动作模式为重定位。<img src="https://img-blog.csdnimg.cn/20210126112359422.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
+<li>回到手动操纵的菜单栏，可以看到此时的坐标系为工具，工具坐标为tool0<img src="https://img-blog.csdnimg.cn/20210126112814805.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
+<li>按下示教器的箭头，手动操作进行观察，可以发现位置坐标XYZ始终不发生变化。<img src="https://img-blog.csdnimg.cn/20210126113447236.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%"></li>
+<li>将爪子隐藏，可以看出系统运动过程中，第6关节末端中心点位置保持不变。<img src="https://img-blog.csdnimg.cn/20210126113725826.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="30%">
+<img src="https://img-blog.csdnimg.cn/20210126113827573.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+## 动作模式的切换</li>
+<li>在摇杆的左侧切换操作模式，第二个按钮是切换重定位和线性，第三个按钮切换轴1-3和轴4-6。面板右下角显示当前操作模式。<img src="https://img-blog.csdnimg.cn/20210126142144107.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
+<li>点击示教器右下角图标，可以看到机器人系统的详细信息，在这里同样可以对手动操纵菜单栏里所有的选项进行更改。<img src="https://img-blog.csdnimg.cn/20210126142226534.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%"></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://blog.csdn.net/weixin_44543463">
+          <span class="icon">
+            <i class="fab fa-cuttlefish"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/01/26/%E3%80%90RobotStudio%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E4%B8%80%EF%BC%89%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E5%88%9D%E6%AD%A5%E6%B5%8B%E8%AF%95/" rel="prev" title="【RobotStudio学习笔记】（一）软件的安装与初步测试">
+                  <i class="fa fa-chevron-left"></i> 【RobotStudio学习笔记】（一）软件的安装与初步测试
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/01/28/%E3%80%90RobotStudio%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E4%B8%89%EF%BC%89%E7%A8%8B%E5%BA%8F%E5%88%9B%E5%BB%BA/" rel="next" title="【RobotStudio学习笔记】（三）程序创建">
+                  【RobotStudio学习笔记】（三）程序创建 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-grip-lines-vertical"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Powered by Huffie.</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
