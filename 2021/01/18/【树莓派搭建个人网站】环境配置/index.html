@@ -72,6 +72,9 @@ color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
+  
+  <!--Follow me on CSDN-->
+  <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44543463"><img loading="lazy" width="149" height="149" style="position: absolute; top: 0; right: 0; border: 0;" src="https://img-blog.csdnimg.cn/abe3797b7d77419b81ecc02dd1bf8c34.png" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
 
   <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -403,8 +406,7 @@ color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com
         mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
         seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
         snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
-        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
-        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
     } 
 setInterval("createtime()",250);
 </script>
