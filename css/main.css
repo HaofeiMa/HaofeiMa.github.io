@@ -1758,16 +1758,6 @@ pre code {
   margin-top: 40px;
   text-align: center;
 }
-.use-motion .post_block,
-.use-motion .pagination,
-.use-motion .comments {
-  opacity: 0;
-  margin-top: 60px;
-  margin-bottom: 60px;
-  padding: 25px;
-  -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
-  -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
-}
 .use-motion .post-header {
   visibility: hidden;
 }
@@ -2760,14 +2750,14 @@ hr {
   margin-top: 15px;
 }
 .links-of-author a {
-  border-bottom-color: #fff;
+  border-bottom-color: #555;
   display: inline-block;
   margin-bottom: 10px;
   margin-right: 10px;
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #f97a6b;
+  background: #ff8fff;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2799,15 +2789,4 @@ hr {
   background-repeat: no-repeat;
   height: 1rem;
   width: 1rem;
-}
-sidebar {
-  background: url("/images/sidebar-bg.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-sidebar p,
-sidebar span,
-sidebar a {
-  color: #ffb6c1;
 }
