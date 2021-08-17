@@ -2749,25 +2749,25 @@ hr {
   z-index: 1200;
 }
 .sidebar a {
-  border-bottom-color: #555;
-  color: #999;
+  border-bottom-color: #fff;
+  color: #fff;
 }
 .sidebar a:hover {
-  border-bottom-color: #eee;
-  color: #eee;
+  border-bottom-color: $FFFFFF;
+  color: #fff;
 }
 .links-of-author:not(:first-child) {
   margin-top: 15px;
 }
 .links-of-author a {
-  border-bottom-color: #555;
+  border-bottom-color: #fff;
   display: inline-block;
   margin-bottom: 10px;
   margin-right: 10px;
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #6c3dff;
+  background: #26cb30;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
