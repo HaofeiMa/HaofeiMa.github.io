@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huffiema.github.io","root":"/","images":"/images","scheme":"Mist","version":"8.7.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"always","padding":18,"offset":12,"b2t":true,"scrollpercent":true},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="常见的图像变换方法包括图像的放缩、图像的翻转、图像的旋转等。在OpenCV中，这些图像变换操作都有着其对应的函数。通过对函数定义的解释以及具体例子，介绍各种图像变换的方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【学习OpenCV4】图像变换方法总结（放缩、翻转、旋转）">
+<meta property="og:url" content="https://huffiema.github.io/2021/07/26/%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E5%9B%BE%E5%83%8F%E5%8F%98%E6%8D%A2%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93%EF%BC%88%E6%94%BE%E7%BC%A9%E3%80%81%E7%BF%BB%E8%BD%AC%E3%80%81%E6%97%8B%E8%BD%AC%EF%BC%89/index.html">
+<meta property="og:site_name" content="Half_A Studio">
+<meta property="og:description" content="常见的图像变换方法包括图像的放缩、图像的翻转、图像的旋转等。在OpenCV中，这些图像变换操作都有着其对应的函数。通过对函数定义的解释以及具体例子，介绍各种图像变换的方法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/987f0cfaee9847d4bf0412faea421bd4.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e2029c4ad3e244ff9e66bb31c5754475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ba9cdfa1a2fa47bc8b00d41066f6a368.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/89c181d9f82540a2825e2d83307fd13e.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8f4af030a0e84267b032af302d0f8f5b.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e5971bef2056432e84b36bc93d34cb08.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2021-07-26T03:48:41.000Z">
+<meta property="article:modified_time" content="2021-08-17T06:05:54.621Z">
+<meta property="article:author" content="Huffie">
+<meta property="article:tag" content="c++">
+<meta property="article:tag" content="opencv">
+<meta property="article:tag" content="图像处理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/987f0cfaee9847d4bf0412faea421bd4.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center">
+
+
+<link rel="canonical" href="https://huffiema.github.io/2021/07/26/%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E5%9B%BE%E5%83%8F%E5%8F%98%E6%8D%A2%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93%EF%BC%88%E6%94%BE%E7%BC%A9%E3%80%81%E7%BF%BB%E8%BD%AC%E3%80%81%E6%97%8B%E8%BD%AC%EF%BC%89/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://huffiema.github.io/2021/07/26/%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E5%9B%BE%E5%83%8F%E5%8F%98%E6%8D%A2%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93%EF%BC%88%E6%94%BE%E7%BC%A9%E3%80%81%E7%BF%BB%E8%BD%AC%E3%80%81%E6%97%8B%E8%BD%AC%EF%BC%89/","path":"2021/07/26/【学习OpenCV4】图像变换方法总结（放缩、翻转、旋转）/","title":"【学习OpenCV4】图像变换方法总结（放缩、翻转、旋转）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【学习OpenCV4】图像变换方法总结（放缩、翻转、旋转） | Half_A Studio</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?3fd06b1b63f9b056d19abc6f5a943aed"></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  
+  <!--Follow me on CSDN-->
+  <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44543463"><img loading="lazy" width="149" height="149" style="position: absolute; top: 0; right: 0; border: 0;" src="https://img-blog.csdnimg.cn/abe3797b7d77419b81ecc02dd1bf8c34.png" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Half_A Studio</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Huffie's Blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">20</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">107</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%9B%BE%E5%83%8F%E6%94%BE%E7%BC%A9Resize"><span class="nav-text">一、图像放缩Resize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%9B%BE%E5%83%8F%E7%BF%BB%E8%BD%ACflip"><span class="nav-text">二、图像翻转flip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%9B%BE%E5%83%8F%E6%97%8B%E8%BD%ACwarpAffine"><span class="nav-text">三、图像旋转warpAffine</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Huffie"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Huffie</p>
+  <div class="site-description" itemprop="description"><font color="#FFFFFF">Done is better than perfect.</font></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">107</span>
+          <span class="site-state-item-name">博客</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/weixin_44543463" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_44543463" rel="noopener" target="_blank"><i class="fab fa-cuttlefish fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/HuffieMa" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HuffieMa" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:haofei_ma@163.com" title="E-Mail → mailto:haofei_ma@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/huffie65380272" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;huffie65380272" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://huffiema.github.io/2021/07/26/%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E5%9B%BE%E5%83%8F%E5%8F%98%E6%8D%A2%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93%EF%BC%88%E6%94%BE%E7%BC%A9%E3%80%81%E7%BF%BB%E8%BD%AC%E3%80%81%E6%97%8B%E8%BD%AC%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Huffie">
+      <meta itemprop="description" content="<font color="#FFFFFF">Done is better than perfect.</font>">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Half_A Studio">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【学习OpenCV4】图像变换方法总结（放缩、翻转、旋转）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-26 11:48:41" itemprop="dateCreated datePublished" datetime="2021-07-26T11:48:41+08:00">2021-07-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-17 14:05:54" itemprop="dateModified" datetime="2021-08-17T14:05:54+08:00">2021-08-17</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">程序设计</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/OpenCV/" itemprop="url" rel="index"><span itemprop="name">OpenCV</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">常见的图像变换方法包括图像的放缩、图像的翻转、图像的旋转等。在OpenCV中，这些图像变换操作都有着其对应的函数。通过对函数定义的解释以及具体例子，介绍各种图像变换的方法。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="一、图像放缩Resize"><a href="#一、图像放缩Resize" class="headerlink" title="一、图像放缩Resize"></a>一、图像放缩Resize</h3><p><strong>1.1 基本知识</strong><br>&emsp;&emsp;图像放缩用到了许多插值方法，常见的差值算法有线性插值、立方差值、双立方差值、采样放缩算法等等。<br>&emsp;&emsp;所使用的API为 <code>resize()</code>，函数的定义如下</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">resize</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">InputArray src,	<span class="comment">//输入图像</span></span></span></span><br><span class="line"><span class="params"><span class="function">OutputArray dst,<span class="comment">//输出图像</span></span></span></span><br><span class="line"><span class="params"><span class="function">Size dsize,		<span class="comment">//输出尺寸</span></span></span></span><br><span class="line"><span class="params"><span class="function"><span class="keyword">double</span> fx=<span class="number">0</span>,	<span class="comment">//水平缩放比例</span></span></span></span><br><span class="line"><span class="params"><span class="function"><span class="keyword">double</span> fy=<span class="number">0</span>,	<span class="comment">//垂直缩放比例</span></span></span></span><br><span class="line"><span class="params"><span class="function"><span class="keyword">int</span> interpolation=INTER_LINEAR	<span class="comment">//插值方式</span></span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li>其中dsize为0时，fx和fy均不可为零；fx和fy为0时，输出图像按dsize输出</li>
+<li>interpolation内插方式有以下四种：<ul>
+<li>CV_INTER_NEAREST&emsp;&emsp;最邻近插值点法</li>
+<li>CV_INTER_LINEAR&emsp;&emsp;&emsp;双线性插值法</li>
+<li>CV_INTER_AREA&emsp;&emsp;&emsp;&emsp;邻域像素再取样插补</li>
+<li>CV_INTER_CUBIC &emsp;&emsp;&emsp; 双立方插补，4*4大小的补点</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p><strong>1.2 示例程序</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyDemo::resize_Demo</span><span class="params">(Mat&amp; image)</span> </span>&#123;</span><br><span class="line">	Mat zoomin, zoomout;	<span class="comment">//定义输出图像</span></span><br><span class="line">	<span class="keyword">int</span> h = image.rows;		<span class="comment">//获取原图像的宽高</span></span><br><span class="line">	<span class="keyword">int</span> w = image.cols;</span><br><span class="line">	<span class="built_in">resize</span>(image, zoomin, <span class="built_in">Size</span>(w * <span class="number">1.5</span>, h * <span class="number">1.5</span>), <span class="number">0</span>, <span class="number">0</span>, INTER_LINEAR);	<span class="comment">//图像放大1.5倍</span></span><br><span class="line">	<span class="built_in">imshow</span>(<span class="string">&quot;zoomin&quot;</span>, zoomin);</span><br><span class="line">	<span class="built_in">resize</span>(image, zoomout, <span class="built_in">Size</span>(w / <span class="number">2</span>, h / <span class="number">2</span>), <span class="number">0</span>, <span class="number">0</span>, INTER_LINEAR);		<span class="comment">//图像缩小2倍</span></span><br><span class="line">	<span class="built_in">imshow</span>(<span class="string">&quot;zoomout&quot;</span>, zoomout);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="https://img-blog.csdnimg.cn/987f0cfaee9847d4bf0412faea421bd4.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+
+<h3 id="二、图像翻转flip"><a href="#二、图像翻转flip" class="headerlink" title="二、图像翻转flip"></a>二、图像翻转flip</h3><p>&emsp;&emsp;图像反转就是将图像左右或上下反转镜像。所用到的函数是 <code>flip()</code>，函数的定义如下。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cv::flip</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">	cv::InputArray 	src, 			<span class="comment">// 输入图像</span></span></span></span><br><span class="line"><span class="params"><span class="function">	cv::OutputArray dst, 			<span class="comment">// 输出图像</span></span></span></span><br><span class="line"><span class="params"><span class="function">	<span class="keyword">int</span> 			flipCode = <span class="number">0</span>	<span class="comment">// &gt;0: 沿y轴翻转, 0: 沿x轴翻转, &lt;0: x、y轴同时翻转</span></span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>测试程序如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyDemo::flip_Demo</span><span class="params">(Mat&amp; image)</span> </span>&#123;</span><br><span class="line">	Mat dst;</span><br><span class="line">	<span class="built_in">flip</span>(image, dst, <span class="number">0</span>);	<span class="comment">//上下翻转</span></span><br><span class="line">	<span class="built_in">imshow</span>(<span class="string">&quot;上下翻转&quot;</span>, dst);</span><br><span class="line">	<span class="built_in">flip</span>(image, dst, <span class="number">1</span>);	<span class="comment">//左右翻转</span></span><br><span class="line">	<span class="built_in">imshow</span>(<span class="string">&quot;左右翻转&quot;</span>, dst);</span><br><span class="line">	<span class="built_in">flip</span>(image, dst, <span class="number">-1</span>);	<span class="comment">//对角线翻转（180°旋转）</span></span><br><span class="line">	<span class="built_in">imshow</span>(<span class="string">&quot;对角线翻转（180°旋转）&quot;</span>, dst);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<img src="https://img-blog.csdnimg.cn/e2029c4ad3e244ff9e66bb31c5754475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+
+<h3 id="三、图像旋转warpAffine"><a href="#三、图像旋转warpAffine" class="headerlink" title="三、图像旋转warpAffine"></a>三、图像旋转warpAffine</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cv::warpAffine</span> <span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">	InputArray 		src,	<span class="comment">//输入图像</span></span></span></span><br><span class="line"><span class="params"><span class="function">	OutputArray 	dst,	<span class="comment">//输出图像</span></span></span></span><br><span class="line"><span class="params"><span class="function">	InputArray 		M,		<span class="comment">//变换矩阵</span></span></span></span><br><span class="line"><span class="params"><span class="function">	Size			dsize,	<span class="comment">//输出图像大小</span></span></span></span><br><span class="line"><span class="params"><span class="function">	<span class="keyword">int</span>				flags = INTER_LINEAR,			<span class="comment">//插值方式</span></span></span></span><br><span class="line"><span class="params"><span class="function">	<span class="keyword">int</span> 			borderMode = BORDER_CONSTANT,	<span class="comment">//图像边缘像素模式</span></span></span></span><br><span class="line"><span class="params"><span class="function">	<span class="keyword">const</span> Scalar&amp;	borderValue = Scalar()			<span class="comment">//边界填充值</span></span></span></span><br></pre></td></tr></table></figure>
+
+<p>其中M变换矩阵可以通过如下函数获得，旋转矩阵的形式如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">M=cv2.<span class="built_in">getRotationMatrix2D</span>(center, angle, scale)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/ba9cdfa1a2fa47bc8b00d41066f6a368.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/89c181d9f82540a2825e2d83307fd13e.png" alt="在这里插入图片描述"></p>
+<p>由于旋转之后，图像的大小会发生变化，因此需要重新计算图像的长宽，计算方法可以参考下图：</p>
+<img src="https://img-blog.csdnimg.cn/8f4af030a0e84267b032af302d0f8f5b.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
+
+<p>图像旋转的示例程序如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyDemo::rotate_Demo</span><span class="params">(Mat&amp; image)</span> </span>&#123;</span><br><span class="line">	Mat dst, M;</span><br><span class="line">	<span class="keyword">int</span> h = image.rows;</span><br><span class="line">	<span class="keyword">int</span> w = image.cols;</span><br><span class="line">	M = <span class="built_in">getRotationMatrix2D</span>(<span class="built_in">Point2f</span>(w / <span class="number">2</span>, h / <span class="number">2</span>), <span class="number">45</span>, <span class="number">1.0</span>);	<span class="comment">//定义变换矩阵M</span></span><br><span class="line">	<span class="keyword">double</span> cos = <span class="built_in">abs</span>(M.at&lt;<span class="keyword">double</span>&gt;(<span class="number">0</span>, <span class="number">0</span>));	<span class="comment">//求cos值</span></span><br><span class="line">	<span class="keyword">double</span> sin = <span class="built_in">abs</span>(M.at&lt;<span class="keyword">double</span>&gt;(<span class="number">0</span>, <span class="number">1</span>));	<span class="comment">//求sin值</span></span><br><span class="line">	<span class="keyword">int</span> nw = cos * w + sin * h;		<span class="comment">//计算新的长、宽</span></span><br><span class="line">	<span class="keyword">int</span> nh = sin * w + cos * h;</span><br><span class="line">	M.at&lt;<span class="keyword">double</span>&gt;(<span class="number">0</span>, <span class="number">2</span>) += (nw / <span class="number">2</span> - w / <span class="number">2</span>);		<span class="comment">//计算新的中心</span></span><br><span class="line">	M.at&lt;<span class="keyword">double</span>&gt;(<span class="number">1</span>, <span class="number">2</span>) += (nh / <span class="number">2</span> - h / <span class="number">2</span>);</span><br><span class="line">	<span class="built_in">warpAffine</span>(image, dst, M, <span class="built_in">Size</span>(nw,nh), INTER_LINEAR,<span class="number">0</span>,<span class="built_in">Scalar</span>(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>));</span><br><span class="line">	<span class="built_in">imshow</span>(<span class="string">&quot;Rotation&quot;</span>, dst);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="https://img-blog.csdnimg.cn/e5971bef2056432e84b36bc93d34cb08.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://blog.csdn.net/weixin_44543463">
+          <span class="icon">
+            <i class="fab fa-cuttlefish"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/c/" rel="tag"># c++</a>
+              <a href="/tags/opencv/" rel="tag"># opencv</a>
+              <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag"># 图像处理</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/07/25/%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E5%9B%BE%E5%83%8F%E5%83%8F%E7%B4%A0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%BD%AC%E6%8D%A2%E4%B8%8E%E5%BD%92%E4%B8%80/" rel="prev" title="【学习OpenCV4】图像像素数据类型的转换与归一">
+                  <i class="fa fa-chevron-left"></i> 【学习OpenCV4】图像像素数据类型的转换与归一
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/07/27/%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E7%9A%84%E8%AF%BB%E5%8F%96%E4%B8%8E%E5%AD%98%E5%82%A8/" rel="next" title="【学习OpenCV4】摄像头视频的读取与存储">
+                  【学习OpenCV4】摄像头视频的读取与存储 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-grip-lines-vertical"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Powered by Huffie.</span>
+</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+
+
+
+</script>
+<span id="runtime_span"></span>
+<script type="text/javascript">function show_runtime(){window.setTimeout("show_runtime()",1000);X=new 
+Date("1/21/2021 14:56:40");
+Y=new Date();T=(Y.getTime()-X.getTime());M=24*60*60*1000;
+a=T/M;A=Math.floor(a);b=(a-A)*24;B=Math.floor(b);c=(b-B)*60;C=Math.floor((b-B)*60);D=Math.floor((c-C)*60);
+runtime_span.innerHTML="本站已安全运行: "+A+"天"+B+"小时"+C+"分"+D+"秒"}show_runtime();</script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":230,"height":300},"mobile":{"show":true},"react":{"opacity":1}});</script></body>
+</html>

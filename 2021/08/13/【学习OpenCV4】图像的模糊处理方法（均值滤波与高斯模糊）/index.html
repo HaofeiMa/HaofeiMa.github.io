@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huffiema.github.io","root":"/","images":"/images","scheme":"Mist","version":"8.7.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"always","padding":18,"offset":12,"b2t":true,"scrollpercent":true},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="均值滤波用到的是图像卷积原理。由下图所示，卷积核为三阶单位矩阵时，进行均值滤波，原图像的每个三阶子矩阵都会求其均值，并将均值赋给中间的元素。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【学习OpenCV4】图像的模糊处理方法（均值滤波与高斯模糊）">
+<meta property="og:url" content="https://huffiema.github.io/2021/08/13/%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E5%9B%BE%E5%83%8F%E7%9A%84%E6%A8%A1%E7%B3%8A%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95%EF%BC%88%E5%9D%87%E5%80%BC%E6%BB%A4%E6%B3%A2%E4%B8%8E%E9%AB%98%E6%96%AF%E6%A8%A1%E7%B3%8A%EF%BC%89/index.html">
+<meta property="og:site_name" content="Half_A Studio">
+<meta property="og:description" content="均值滤波用到的是图像卷积原理。由下图所示，卷积核为三阶单位矩阵时，进行均值滤波，原图像的每个三阶子矩阵都会求其均值，并将均值赋给中间的元素。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5f9cf63ca53d4181b79dbe1946972549.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c54b4602aa2c4801b2c545697fe7df69.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/432e023fa7e344679195a7f1ae930ce0.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4622448ccb724304aeafec9b839d2060.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2021-08-13T10:50:08.000Z">
+<meta property="article:modified_time" content="2021-08-17T06:09:01.383Z">
+<meta property="article:author" content="Huffie">
+<meta property="article:tag" content="c++">
+<meta property="article:tag" content="opencv">
+<meta property="article:tag" content="图像处理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/5f9cf63ca53d4181b79dbe1946972549.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center">
+
+
+<link rel="canonical" href="https://huffiema.github.io/2021/08/13/%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E5%9B%BE%E5%83%8F%E7%9A%84%E6%A8%A1%E7%B3%8A%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95%EF%BC%88%E5%9D%87%E5%80%BC%E6%BB%A4%E6%B3%A2%E4%B8%8E%E9%AB%98%E6%96%AF%E6%A8%A1%E7%B3%8A%EF%BC%89/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://huffiema.github.io/2021/08/13/%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E5%9B%BE%E5%83%8F%E7%9A%84%E6%A8%A1%E7%B3%8A%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95%EF%BC%88%E5%9D%87%E5%80%BC%E6%BB%A4%E6%B3%A2%E4%B8%8E%E9%AB%98%E6%96%AF%E6%A8%A1%E7%B3%8A%EF%BC%89/","path":"2021/08/13/【学习OpenCV4】图像的模糊处理方法（均值滤波与高斯模糊）/","title":"【学习OpenCV4】图像的模糊处理方法（均值滤波与高斯模糊）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【学习OpenCV4】图像的模糊处理方法（均值滤波与高斯模糊） | Half_A Studio</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?3fd06b1b63f9b056d19abc6f5a943aed"></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  
+  <!--Follow me on CSDN-->
+  <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44543463"><img loading="lazy" width="149" height="149" style="position: absolute; top: 0; right: 0; border: 0;" src="https://img-blog.csdnimg.cn/abe3797b7d77419b81ecc02dd1bf8c34.png" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Half_A Studio</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Huffie's Blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">20</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">107</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%9D%87%E5%80%BC%E6%BB%A4%E6%B3%A2"><span class="nav-text">一、均值滤波</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E5%9D%87%E5%80%BC%E6%BB%A4%E6%B3%A2%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-text">1.1 均值滤波的原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-OpenCV%E4%B8%AD%E7%9A%84%E5%9D%87%E5%80%BC%E6%BB%A4%E6%B3%A2"><span class="nav-text">1.2 OpenCV中的均值滤波</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E9%AB%98%E6%96%AF%E6%A8%A1%E7%B3%8A"><span class="nav-text">二、高斯模糊</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Huffie"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Huffie</p>
+  <div class="site-description" itemprop="description"><font color="#FFFFFF">Done is better than perfect.</font></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">107</span>
+          <span class="site-state-item-name">博客</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/weixin_44543463" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_44543463" rel="noopener" target="_blank"><i class="fab fa-cuttlefish fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/HuffieMa" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HuffieMa" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:haofei_ma@163.com" title="E-Mail → mailto:haofei_ma@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/huffie65380272" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;huffie65380272" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://huffiema.github.io/2021/08/13/%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E5%9B%BE%E5%83%8F%E7%9A%84%E6%A8%A1%E7%B3%8A%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95%EF%BC%88%E5%9D%87%E5%80%BC%E6%BB%A4%E6%B3%A2%E4%B8%8E%E9%AB%98%E6%96%AF%E6%A8%A1%E7%B3%8A%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Huffie">
+      <meta itemprop="description" content="<font color="#FFFFFF">Done is better than perfect.</font>">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Half_A Studio">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【学习OpenCV4】图像的模糊处理方法（均值滤波与高斯模糊）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-13 18:50:08" itemprop="dateCreated datePublished" datetime="2021-08-13T18:50:08+08:00">2021-08-13</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-17 14:09:01" itemprop="dateModified" datetime="2021-08-17T14:09:01+08:00">2021-08-17</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">程序设计</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/OpenCV/" itemprop="url" rel="index"><span itemprop="name">OpenCV</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">均值滤波用到的是图像卷积原理。由下图所示，卷积核为三阶单位矩阵时，进行均值滤波，原图像的每个三阶子矩阵都会求其均值，并将均值赋给中间的元素。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="一、均值滤波"><a href="#一、均值滤波" class="headerlink" title="一、均值滤波"></a>一、均值滤波</h2><h4 id="1-1-均值滤波的原理"><a href="#1-1-均值滤波的原理" class="headerlink" title="1.1 均值滤波的原理"></a>1.1 均值滤波的原理</h4><p>&emsp;&emsp;均值滤波用到的是图像卷积原理。由下图所示，卷积核为三阶单位矩阵时，进行均值滤波，原图像的每个三阶子矩阵都会求其均值，并将均值赋给中间的元素。</p>
+<p>&emsp;&emsp;以左上角为例：<br>（$A_{11}$·1+$A_{12}$·1+$A_{13}$·1+<br> &emsp;$A_{21}$·1+$A_{22}$·1+$A_{23}$·1+<br>&emsp;$A_{31}$·1+$A_{32}$·1+$A_{33}$·1 ）/  9 -&gt;$A_{22}$<br><img src="https://img-blog.csdnimg.cn/5f9cf63ca53d4181b79dbe1946972549.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%"></p>
+<h4 id="1-2-OpenCV中的均值滤波"><a href="#1-2-OpenCV中的均值滤波" class="headerlink" title="1.2 OpenCV中的均值滤波"></a>1.2 OpenCV中的均值滤波</h4><p>&emsp;&emsp;在OpenCV/C++中，提供了blur函数用于实现上述的均值滤波操作：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">blur</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">	InputArray 	src,						<span class="comment">//输入图像</span></span></span></span><br><span class="line"><span class="params"><span class="function">	OutputArray dst,						<span class="comment">//输出图像</span></span></span></span><br><span class="line"><span class="params"><span class="function">	Size 		ksize,						<span class="comment">//卷积核Size类型</span></span></span></span><br><span class="line"><span class="params"><span class="function">	Point 		anchor=Point(<span class="number">-1</span>,<span class="number">-1</span>),		<span class="comment">//Point类型的锚点（-1表示锚点在核中心）</span></span></span></span><br><span class="line"><span class="params"><span class="function">	<span class="keyword">int</span> 		borderType=BORDER_DEFAULT	<span class="comment">//边界模式</span></span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;其中 <code>Size(w, h)</code>来表示内核的大小，w 为像素宽度，h为像素高度。</p>
+<p>&emsp;&emsp;根据上面的 <code>blur()</code> 函数的定义，可以写出均值滤波的测试代码。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyDemo::blur_Demo</span><span class="params">(Mat&amp; image)</span> </span>&#123;</span><br><span class="line">	Mat dst;</span><br><span class="line">	<span class="built_in">blur</span>(image, dst, <span class="built_in">Size</span>(<span class="number">10</span>, <span class="number">10</span>), <span class="built_in">Point</span>(<span class="number">-1</span>, <span class="number">-1</span>));</span><br><span class="line">	<span class="built_in">imshow</span>(<span class="string">&quot;Blur&quot;</span>, dst);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;下图是卷积核为 <code>Size(10,10)</code> 的效果。<br><img src="https://img-blog.csdnimg.cn/c54b4602aa2c4801b2c545697fe7df69.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>&emsp;&emsp;下图为卷积核为 <code>Size(1,15)</code> 的效果。<br><img src="https://img-blog.csdnimg.cn/432e023fa7e344679195a7f1ae930ce0.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="二、高斯模糊"><a href="#二、高斯模糊" class="headerlink" title="二、高斯模糊"></a>二、高斯模糊</h2><p>&emsp;&emsp;有时候我们并不希望模糊处理时卷积核的系数都一样。而高斯模糊就是用于解决这类问题的一个方法。高斯模糊产生的系数在中心最大，离中心越远系数越小。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cv::GaussianBlur</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">	InputArray 	src,		<span class="comment">//输入图片，可以使是任意通道数，该函数对通道是独立处理的</span></span></span></span><br><span class="line"><span class="params"><span class="function">	OutputArray dst,		<span class="comment">//输出图片</span></span></span></span><br><span class="line"><span class="params"><span class="function">	Size 		ksize,		<span class="comment">//高斯内核大小</span></span></span></span><br><span class="line"><span class="params"><span class="function">	<span class="keyword">double</span> 		sigmaX,		<span class="comment">//高斯内核在X方向的标准偏差</span></span></span></span><br><span class="line"><span class="params"><span class="function">	<span class="keyword">double</span> 		sigmaY,		<span class="comment">//高斯内核在Y方向的标准偏差</span></span></span></span><br><span class="line"><span class="params"><span class="function">	<span class="keyword">int</span> 		borderType	<span class="comment">//判断图像边界的模式</span></span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span></span><br></pre></td></tr></table></figure>
+<p>其中<code>ksize</code>的行数和列数允许不相同，但必须是正奇数。<br>如果sigmaY为0，他将和sigmaX的值相同，如果他们都为0，那么他们由ksize的行数列数计算得出。</p>
+<p>示例程序：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyDemo::gaussianBlur_Demo</span><span class="params">(Mat&amp; image)</span> </span>&#123;</span><br><span class="line">	Mat dst;</span><br><span class="line">	<span class="built_in">GaussianBlur</span>(image, dst, <span class="built_in">Size</span>(<span class="number">5</span>, <span class="number">5</span>), <span class="number">15</span>);</span><br><span class="line">	<span class="built_in">imshow</span>(<span class="string">&quot;GaussianBlur&quot;</span>, dst);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/4622448ccb724304aeafec9b839d2060.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://blog.csdn.net/weixin_44543463">
+          <span class="icon">
+            <i class="fab fa-cuttlefish"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/c/" rel="tag"># c++</a>
+              <a href="/tags/opencv/" rel="tag"># opencv</a>
+              <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag"># 图像处理</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/08/12/%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E4%BB%80%E4%B9%88%E6%98%AF%E5%9B%BE%E5%83%8F%E7%9A%84%E7%9B%B4%E6%96%B9%E5%9B%BE%EF%BC%9F%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E7%9B%B4%E6%96%B9%E5%9B%BE%EF%BC%9F/" rel="prev" title="【学习OpenCV4】什么是图像的直方图？如何获取直方图？">
+                  <i class="fa fa-chevron-left"></i> 【学习OpenCV4】什么是图像的直方图？如何获取直方图？
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/08/14/%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95/" rel="next" title="【学习OpenCV4】人脸检测的实现方法">
+                  【学习OpenCV4】人脸检测的实现方法 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-grip-lines-vertical"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Powered by Huffie.</span>
+</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+
+
+
+</script>
+<span id="runtime_span"></span>
+<script type="text/javascript">function show_runtime(){window.setTimeout("show_runtime()",1000);X=new 
+Date("1/21/2021 14:56:40");
+Y=new Date();T=(Y.getTime()-X.getTime());M=24*60*60*1000;
+a=T/M;A=Math.floor(a);b=(a-A)*24;B=Math.floor(b);c=(b-B)*60;C=Math.floor((b-B)*60);D=Math.floor((c-C)*60);
+runtime_span.innerHTML="本站已安全运行: "+A+"天"+B+"小时"+C+"分"+D+"秒"}show_runtime();</script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":230,"height":300},"mobile":{"show":true},"react":{"opacity":1}});</script></body>
+</html>
