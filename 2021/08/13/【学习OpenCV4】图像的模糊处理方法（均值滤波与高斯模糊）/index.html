@@ -26,11 +26,11 @@ color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"huffiema.github.io","root":"/","images":"/images","scheme":"Mist","version":"8.7.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"always","padding":18,"offset":12,"b2t":true,"scrollpercent":true},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.huffie.cn","root":"/","images":"/images","scheme":"Mist","version":"8.7.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"always","padding":18,"offset":12,"b2t":true,"scrollpercent":true},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 <meta name="description" content="均值滤波用到的是图像卷积原理。由下图所示，卷积核为三阶单位矩阵时，进行均值滤波，原图像的每个三阶子矩阵都会求其均值，并将均值赋给中间的元素。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【学习OpenCV4】图像的模糊处理方法（均值滤波与高斯模糊）">
-<meta property="og:url" content="https://huffiema.github.io/2021/08/13/%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E5%9B%BE%E5%83%8F%E7%9A%84%E6%A8%A1%E7%B3%8A%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95%EF%BC%88%E5%9D%87%E5%80%BC%E6%BB%A4%E6%B3%A2%E4%B8%8E%E9%AB%98%E6%96%AF%E6%A8%A1%E7%B3%8A%EF%BC%89/index.html">
+<meta property="og:url" content="http://www.huffie.cn/2021/08/13/%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E5%9B%BE%E5%83%8F%E7%9A%84%E6%A8%A1%E7%B3%8A%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95%EF%BC%88%E5%9D%87%E5%80%BC%E6%BB%A4%E6%B3%A2%E4%B8%8E%E9%AB%98%E6%96%AF%E6%A8%A1%E7%B3%8A%EF%BC%89/index.html">
 <meta property="og:site_name" content="Half_A Studio">
 <meta property="og:description" content="均值滤波用到的是图像卷积原理。由下图所示，卷积核为三阶单位矩阵时，进行均值滤波，原图像的每个三阶子矩阵都会求其均值，并将均值赋给中间的元素。">
 <meta property="og:locale" content="zh_CN">
@@ -48,11 +48,11 @@ color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/5f9cf63ca53d4181b79dbe1946972549.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center">
 
 
-<link rel="canonical" href="https://huffiema.github.io/2021/08/13/%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E5%9B%BE%E5%83%8F%E7%9A%84%E6%A8%A1%E7%B3%8A%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95%EF%BC%88%E5%9D%87%E5%80%BC%E6%BB%A4%E6%B3%A2%E4%B8%8E%E9%AB%98%E6%96%AF%E6%A8%A1%E7%B3%8A%EF%BC%89/">
+<link rel="canonical" href="http://www.huffie.cn/2021/08/13/%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E5%9B%BE%E5%83%8F%E7%9A%84%E6%A8%A1%E7%B3%8A%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95%EF%BC%88%E5%9D%87%E5%80%BC%E6%BB%A4%E6%B3%A2%E4%B8%8E%E9%AB%98%E6%96%AF%E6%A8%A1%E7%B3%8A%EF%BC%89/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://huffiema.github.io/2021/08/13/%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E5%9B%BE%E5%83%8F%E7%9A%84%E6%A8%A1%E7%B3%8A%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95%EF%BC%88%E5%9D%87%E5%80%BC%E6%BB%A4%E6%B3%A2%E4%B8%8E%E9%AB%98%E6%96%AF%E6%A8%A1%E7%B3%8A%EF%BC%89/","path":"2021/08/13/【学习OpenCV4】图像的模糊处理方法（均值滤波与高斯模糊）/","title":"【学习OpenCV4】图像的模糊处理方法（均值滤波与高斯模糊）"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.huffie.cn/2021/08/13/%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E5%9B%BE%E5%83%8F%E7%9A%84%E6%A8%A1%E7%B3%8A%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95%EF%BC%88%E5%9D%87%E5%80%BC%E6%BB%A4%E6%B3%A2%E4%B8%8E%E9%AB%98%E6%96%AF%E6%A8%A1%E7%B3%8A%EF%BC%89/","path":"2021/08/13/【学习OpenCV4】图像的模糊处理方法（均值滤波与高斯模糊）/","title":"【学习OpenCV4】图像的模糊处理方法（均值滤波与高斯模糊）"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>【学习OpenCV4】图像的模糊处理方法（均值滤波与高斯模糊） | Half_A Studio</title>
@@ -110,7 +110,7 @@ color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">22</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">13</span></a></li>
-        <li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">114</span></a></li>
   </ul>
 </nav>
 
@@ -222,7 +222,7 @@ color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://huffiema.github.io/2021/08/13/%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E5%9B%BE%E5%83%8F%E7%9A%84%E6%A8%A1%E7%B3%8A%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95%EF%BC%88%E5%9D%87%E5%80%BC%E6%BB%A4%E6%B3%A2%E4%B8%8E%E9%AB%98%E6%96%AF%E6%A8%A1%E7%B3%8A%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://www.huffie.cn/2021/08/13/%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E5%9B%BE%E5%83%8F%E7%9A%84%E6%A8%A1%E7%B3%8A%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95%EF%BC%88%E5%9D%87%E5%80%BC%E6%BB%A4%E6%B3%A2%E4%B8%8E%E9%AB%98%E6%96%AF%E6%A8%A1%E7%B3%8A%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
