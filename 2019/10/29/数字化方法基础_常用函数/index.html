@@ -30,29 +30,29 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.huffie.cn","root":"/","images":"/images","scheme":"Mist","version":"8.7.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"always","padding":18,"offset":12,"b2t":true,"scrollpercent":true},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":null,"post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="Done is better than perfect.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://www.huffie.cn/tags/index.html">
+<meta name="description" content="数字化方法基础_常用函数1.叉乘2.单位化矢量3.矩阵乘法4.矩阵乘法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数字化方法基础_常用函数">
+<meta property="og:url" content="http://www.huffie.cn/2019/10/29/%E6%95%B0%E5%AD%97%E5%8C%96%E6%96%B9%E6%B3%95%E5%9F%BA%E7%A1%80_%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="Half_A Studio">
-<meta property="og:description" content="Done is better than perfect.">
+<meta property="og:description" content="数字化方法基础_常用函数1.叉乘2.单位化矢量3.矩阵乘法4.矩阵乘法。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-08-16T02:27:44.000Z">
-<meta property="article:modified_time" content="2021-08-16T02:39:32.984Z">
+<meta property="article:published_time" content="2019-10-29T13:12:14.000Z">
+<meta property="article:modified_time" content="2021-08-17T06:44:45.616Z">
 <meta property="article:author" content="Huffie">
-<meta property="article:tag" content="Control Robot Programming">
+<meta property="article:tag" content="OpenGL">
+<meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://www.huffie.cn/tags/">
+<link rel="canonical" href="http://www.huffie.cn/2019/10/29/%E6%95%B0%E5%AD%97%E5%8C%96%E6%96%B9%E6%B3%95%E5%9F%BA%E7%A1%80_%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"http://www.huffie.cn/tags/index.html","path":"tags/index.html","title":"标签"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.huffie.cn/2019/10/29/%E6%95%B0%E5%AD%97%E5%8C%96%E6%96%B9%E6%B3%95%E5%9F%BA%E7%A1%80_%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/","path":"2019/10/29/数字化方法基础_常用函数/","title":"数字化方法基础_常用函数"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>标签 | Half_A Studio
-</title>
+<title>数字化方法基础_常用函数 | Half_A Studio</title>
   
 
   <script src="/js/third-party/analytics/baidu-analytics.js"></script>
@@ -151,7 +151,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -164,6 +164,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8F%89%E4%B9%98"><span class="nav-text">1. 叉乘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%8D%95%E4%BD%8D%E5%8C%96%E7%9F%A2%E9%87%8F"><span class="nav-text">2. 单位化矢量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%954%C3%974-%C3%97-4%C3%971"><span class="nav-text">3. 矩阵乘法4×4  ×  4×1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95-4%C3%974-%C3%97-4%C3%974"><span class="nav-text">4. 矩阵乘法 4×4  ×  4×4</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -235,43 +236,126 @@
 </noscript>
 
 
-    <div class="main-inner page posts-expand">
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
   
   
 
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.huffie.cn/2019/10/29/%E6%95%B0%E5%AD%97%E5%8C%96%E6%96%B9%E6%B3%95%E5%9F%BA%E7%A1%80_%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">
 
-    
-    
-    
-    <div class="post-block" lang="zh-CN"><header class="post-header">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Huffie">
+      <meta itemprop="description" content="<font color="#FFFFFF">Done is better than perfect.</font>">
+    </span>
 
-<h1 class="post-title" itemprop="name headline">标签
-</h1>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Half_A Studio">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数字化方法基础_常用函数
+        </h1>
 
-<div class="post-meta-container">
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-10-29 21:12:14" itemprop="dateCreated datePublished" datetime="2019-10-29T21:12:14+08:00">2019-10-29</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-17 14:44:45" itemprop="dateModified" datetime="2021-08-17T14:44:45+08:00">2021-08-17</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/" itemprop="url" rel="index"><span itemprop="name">机器人</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/OpenGL/" itemprop="url" rel="index"><span itemprop="name">OpenGL</span></a>
+        </span>
+    </span>
+
+  
 </div>
 
-</header>
+            <div class="post-description">数字化方法基础_常用函数1.叉乘2.单位化矢量3.矩阵乘法4.矩阵乘法。</div>
+        </div>
+      </header>
 
-      
-      
-      <div class="post-body"><div class="tag-cloud">
-  <div class="tag-cloud-title">
-    目前共计 2 个标签
-  </div>
-  <div class="tag-cloud-tags">
-    <a href="/tags/OpenGL/" style="font-size: 30px;" class="tag-cloud-10">OpenGL</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 12px;" class="tag-cloud-0">笔记</a>
-  </div>
-</div>
-
-      </div>
-      
-      
-      
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="1-叉乘"><a href="#1-叉乘" class="headerlink" title="1. 叉乘"></a>1. 叉乘</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">void</span> <span class="title">crossproject</span><span class="params">(<span class="keyword">float</span> vec1[<span class="number">3</span>],<span class="keyword">float</span> vec2[<span class="number">3</span>],<span class="keyword">float</span> n[<span class="number">3</span>])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	n[<span class="number">0</span>] = vec1[<span class="number">1</span>]*vec2[<span class="number">2</span>]-vec1[<span class="number">2</span>]*vec2[<span class="number">1</span>];</span><br><span class="line">	n[<span class="number">1</span>] = vec1[<span class="number">2</span>]*vec2[<span class="number">0</span>]-vec1[<span class="number">0</span>]*vec2[<span class="number">2</span>];</span><br><span class="line">	n[<span class="number">2</span>] = vec1[<span class="number">0</span>]*vec2[<span class="number">1</span>]-vec1[<span class="number">1</span>]*vec2[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-单位化矢量"><a href="#2-单位化矢量" class="headerlink" title="2. 单位化矢量"></a>2. 单位化矢量</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Normalize</span><span class="params">(<span class="keyword">float</span> n[<span class="number">3</span>])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">float</span> length;</span><br><span class="line">	length = <span class="built_in">sqrt</span>(n[<span class="number">0</span>]*n[<span class="number">0</span>]+n[<span class="number">1</span>]*n[<span class="number">1</span>]+n[<span class="number">2</span>]*n[<span class="number">2</span>]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">3</span>;i++)</span><br><span class="line">		n[i] /= length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-矩阵乘法4×4-×-4×1"><a href="#3-矩阵乘法4×4-×-4×1" class="headerlink" title="3. 矩阵乘法4×4  ×  4×1"></a>3. 矩阵乘法4×4  ×  4×1</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ApplyMatrix</span><span class="params">(<span class="keyword">float</span> *P0,<span class="keyword">float</span> *translation,<span class="keyword">float</span> *P1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">3</span>;i++)</span><br><span class="line">		P1[i] = P0[<span class="number">0</span>]*translation[i]+P0[<span class="number">1</span>]*translation[i+<span class="number">4</span>]+P0[<span class="number">2</span>]*translation[i+<span class="number">8</span>]+translation[i+<span class="number">12</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-矩阵乘法-4×4-×-4×4"><a href="#4-矩阵乘法-4×4-×-4×4" class="headerlink" title="4. 矩阵乘法 4×4  ×  4×4"></a>4. 矩阵乘法 4×4  ×  4×4</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mul</span><span class="params">(<span class="keyword">float</span> *rotation,<span class="keyword">float</span> *translation,<span class="keyword">float</span> *tran)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">4</span>;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; <span class="number">4</span>;j++)</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>;k &lt; <span class="number">4</span>;k++)</span><br><span class="line">				tran[<span class="number">4</span>*i+j] += rotation[<span class="number">4</span>*k+j]*translation[<span class="number">4</span>*i+k];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
     
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://blog.csdn.net/weixin_44543463">
+          <span class="icon">
+            <i class="fab fa-cuttlefish"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/OpenGL/" rel="tag"><i class="fa fa-tag"></i> OpenGL</a>
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/10/29/%E6%95%B0%E5%AD%97%E5%8C%96%E6%96%B9%E6%B3%95%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%89%EF%BC%89_%E5%AF%BC%E5%85%A5%E6%9C%AC%E5%9C%B0%E6%A8%A1%E5%9E%8B/" rel="prev" title="数字化方法基础（三）_导入本地模型">
+                  <i class="fa fa-chevron-left"></i> 数字化方法基础（三）_导入本地模型
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
 
 
 </div>
