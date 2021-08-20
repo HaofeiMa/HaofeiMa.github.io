@@ -1926,11 +1926,11 @@
       
         <tags>
             
-            <tag> RobotStudio </tag>
-            
             <tag> 实验 </tag>
             
             <tag> 经验分享 </tag>
+            
+            <tag> RobotStudio </tag>
             
         </tags>
       
@@ -1957,11 +1957,11 @@
       
         <tags>
             
-            <tag> RobotStudio </tag>
-            
             <tag> 实验 </tag>
             
             <tag> 经验分享 </tag>
+            
+            <tag> RobotStudio </tag>
             
         </tags>
       
@@ -1988,11 +1988,11 @@
       
         <tags>
             
-            <tag> RobotStudio </tag>
-            
             <tag> 实验 </tag>
             
             <tag> 经验分享 </tag>
+            
+            <tag> RobotStudio </tag>
             
         </tags>
       
@@ -2019,11 +2019,11 @@
       
         <tags>
             
-            <tag> RobotStudio </tag>
-            
             <tag> 实验 </tag>
             
             <tag> 经验分享 </tag>
+            
+            <tag> RobotStudio </tag>
             
         </tags>
       
@@ -2050,11 +2050,11 @@
       
         <tags>
             
-            <tag> RobotStudio </tag>
-            
             <tag> 实验 </tag>
             
             <tag> 经验分享 </tag>
+            
+            <tag> RobotStudio </tag>
             
         </tags>
       
@@ -2081,11 +2081,11 @@
       
         <tags>
             
-            <tag> RobotStudio </tag>
-            
             <tag> 实验 </tag>
             
             <tag> 经验分享 </tag>
+            
+            <tag> RobotStudio </tag>
             
         </tags>
       
@@ -2112,9 +2112,9 @@
       
         <tags>
             
-            <tag> RobotStudio </tag>
-            
             <tag> 经验分享 </tag>
+            
+            <tag> RobotStudio </tag>
             
             <tag> bug解决 </tag>
             
@@ -2708,9 +2708,9 @@
       
         <tags>
             
-            <tag> 软件安装 </tag>
-            
             <tag> 经验分享 </tag>
+            
+            <tag> 软件安装 </tag>
             
             <tag> 树莓派 </tag>
             
@@ -2866,11 +2866,11 @@
     
     
     <entry>
-      <title>LabView学习笔记（六）：while循环与for循环</title>
-      <link href="/2021/01/10/LabView%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9Awhile%E5%BE%AA%E7%8E%AF%E4%B8%8Efor%E5%BE%AA%E7%8E%AF/"/>
-      <url>/2021/01/10/LabView%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9Awhile%E5%BE%AA%E7%8E%AF%E4%B8%8Efor%E5%BE%AA%E7%8E%AF/</url>
+      <title>LabView学习笔记（四）：动态数据类型</title>
+      <link href="/2021/01/10/LabView%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
+      <url>/2021/01/10/LabView%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
       
-        <content type="html"><![CDATA[<p><strong>Labview学习笔记</strong>：<br><a href="https://blog.csdn.net/weixin_44543463/article/details/112325523">LabView学习笔记（一）：基础介绍</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112329185">LabView学习笔记（二）：滤波器实验</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112364388">LabView学习笔记（三）：基本控件</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112366358">LabView学习笔记（四）：动态数据类型</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112392799">LabView学习笔记（五）：数据类型综合实验</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112393383">LabView学习笔记（六）：while循环与for循环</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112431393">LabView学习笔记（七）：变量与移位寄存器</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112470713">LabView学习笔记（八）：属性节点</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112529983">LabView学习笔记（九）：数组与簇</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112571924">LabView学习笔记（十）：条件结构</a><br><a href="https://blog.csdn.net/weixin_44543463/category_10714833.html">其它实验过程记录</a></p><hr><h2 id="while循环（图片循环播放程序）"><a href="#while循环（图片循环播放程序）" class="headerlink" title="while循环（图片循环播放程序）"></a>while循环（图片循环播放程序）</h2><p>实验：完成三张图片的循环放映</p><ol><li>插入一个图片下拉列表，并导入n张图片<img src="https://img-blog.csdnimg.cn/20210109161918931.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%"><img src="https://img-blog.csdnimg.cn/20210109161957452.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="30%"><img src="https://img-blog.csdnimg.cn/20210109162022893.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="20%"><img src="https://img-blog.csdnimg.cn/20210109162103514.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%"></li><li>打开程序框图，利用While循环实现图片的循环播放，首先将图片下拉列表转换为显示控件<img src="https://img-blog.csdnimg.cn/20210109162221504.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="30%"></li><li>创建一个While循环<img src="https://img-blog.csdnimg.cn/20210109162258677.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%"></li><li>因下拉图片列表中各个图片的值为0，1，2……n，利用循环次数与n的余数作为图片的选择依据（n为图片个数），插入数值中的商与余树控件并连线<img src="https://img-blog.csdnimg.cn/20210109162517679.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">在我的程序中图片数是3所以除数为3</li><li>创建停止条件<img src="https://img-blog.csdnimg.cn/20210109162620541.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%"></li><li>回到前面板中添加一个旋钮，用于调整图片切换速度<img src="https://img-blog.csdnimg.cn/20210109162712203.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%"></li><li>在while循环中插入一个等待时间，等待时间的输入端以毫秒作为单位，同时考虑旋钮越大图片切换速度应该越快，因此将旋钮的数值取倒数再乘1000作为while循环的等待时间<img src="https://img-blog.csdnimg.cn/20210109162913137.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%"><img src="https://img-blog.csdnimg.cn/20210109162933676.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%"></li><li>运行程序，即可观察到图片循环播放，拖动旋钮可以看到图片切换速度也会随之变化。</li></ol><h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><ol><li>for循环的创建</li></ol><ul><li>创建for循环的方法和while循环类似</li><li>可以右键单击while循环的边框，在右键菜单中将while循环转换为for循环</li></ul><ol start="2"><li>for循环的接线端</li></ol><ul><li>N为循环次数，循环次数必须指定为非负整数（如果将双精度浮点数值连接至总线接线端，LabView将把较长的数值转换为32位有符号整数）</li><li>为了避免强制转换，以增强程序性能，选择匹配的数据类型，或者通过编程进行数据类型的转换</li></ul><ol start="3"><li>与while循环的区别</li></ol><ul><li>while循环至少执行一次，for循环可以执行0次</li><li>while循环自动输出最后一次执行的值，for循环自动输出一个数组</li></ul>]]></content>
+        <content type="html"><![CDATA[<p><strong>Labview学习笔记</strong>：<br><a href="https://blog.csdn.net/weixin_44543463/article/details/112325523">LabView学习笔记（一）：基础介绍</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112329185">LabView学习笔记（二）：滤波器实验</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112364388">LabView学习笔记（三）：基本控件</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112366358">LabView学习笔记（四）：动态数据类型</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112392799">LabView学习笔记（五）：数据类型综合实验</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112393383">LabView学习笔记（六）：while循环与for循环</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112431393">LabView学习笔记（七）：变量与移位寄存器</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112470713">LabView学习笔记（八）：属性节点</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112529983">LabView学习笔记（九）：数组与簇</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112571924">LabView学习笔记（十）：条件结构</a><br><a href="https://blog.csdn.net/weixin_44543463/category_10714833.html">其它实验过程记录</a></p><hr><h2 id="动态数据类型介绍"><a href="#动态数据类型介绍" class="headerlink" title="动态数据类型介绍"></a>动态数据类型介绍</h2><ol><li>在LabView中，动态数据类型表示为深蓝色</li><li>只有Express VI才能产生和接收ExpressVI （如要使用内置VI或函数处理动态数据类型，必须先进行数据类型转换，连线时一般会自动转换动态数据）</li><li>动态数据类型转换</li></ol><ul><li>从动态数据类型转换：在程序框图上放置“从动态数据转换”Express VI，配置转换的数据类型</li><li>转换至动态数据：在程序框图上放置“转换至动态数据”ExpressVI</li></ul><ol start="4"><li>获取和设置动态数据</li></ol><ul><li>使用获取动态数据ExpressVI获取动态数据的属性</li><li>使用设置动态数据属性ExpressVI设置动态数据的属性，如信号名、时间标识、时间模式等</li></ul><h2 id="实验：波形显示和数据获取"><a href="#实验：波形显示和数据获取" class="headerlink" title="实验：波形显示和数据获取"></a>实验：波形显示和数据获取</h2><ol><li>主要目的：模拟信号输入，在波形图上显示波形，获取采样数据，采样时间和信号名称</li><li>实验过程<br>（1）添加并配置仿真信号<img src="https://img-blog.csdnimg.cn/2021010815504847.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%" ><img src="https://img-blog.csdnimg.cn/20210108155308782.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">（2）创建图形显示控件（示波器），用来显示输出波形<img src="https://img-blog.csdnimg.cn/20210108155405692.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%">（3）获得信号数据，并进行显示<img src="https://img-blog.csdnimg.cn/20210108155502565.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%"><img src="https://img-blog.csdnimg.cn/2021010815552310.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%"><img src="https://img-blog.csdnimg.cn/20210108155603114.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%">（4）获得信号属性并显示<img src="https://img-blog.csdnimg.cn/20210108155635301.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%"><img src="https://img-blog.csdnimg.cn/20210108155658283.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="30%"><img src="https://img-blog.csdnimg.cn/20210108155722160.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%">（5）运行程序查看结果<img src="https://img-blog.csdnimg.cn/20210108155806130.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%"></li></ol>]]></content>
       
       
       <categories>
@@ -2895,11 +2895,11 @@
     
     
     <entry>
-      <title>LabView学习笔记（四）：动态数据类型</title>
-      <link href="/2021/01/10/LabView%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
-      <url>/2021/01/10/LabView%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+      <title>LabView学习笔记（六）：while循环与for循环</title>
+      <link href="/2021/01/10/LabView%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9Awhile%E5%BE%AA%E7%8E%AF%E4%B8%8Efor%E5%BE%AA%E7%8E%AF/"/>
+      <url>/2021/01/10/LabView%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9Awhile%E5%BE%AA%E7%8E%AF%E4%B8%8Efor%E5%BE%AA%E7%8E%AF/</url>
       
-        <content type="html"><![CDATA[<p><strong>Labview学习笔记</strong>：<br><a href="https://blog.csdn.net/weixin_44543463/article/details/112325523">LabView学习笔记（一）：基础介绍</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112329185">LabView学习笔记（二）：滤波器实验</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112364388">LabView学习笔记（三）：基本控件</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112366358">LabView学习笔记（四）：动态数据类型</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112392799">LabView学习笔记（五）：数据类型综合实验</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112393383">LabView学习笔记（六）：while循环与for循环</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112431393">LabView学习笔记（七）：变量与移位寄存器</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112470713">LabView学习笔记（八）：属性节点</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112529983">LabView学习笔记（九）：数组与簇</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112571924">LabView学习笔记（十）：条件结构</a><br><a href="https://blog.csdn.net/weixin_44543463/category_10714833.html">其它实验过程记录</a></p><hr><h2 id="动态数据类型介绍"><a href="#动态数据类型介绍" class="headerlink" title="动态数据类型介绍"></a>动态数据类型介绍</h2><ol><li>在LabView中，动态数据类型表示为深蓝色</li><li>只有Express VI才能产生和接收ExpressVI （如要使用内置VI或函数处理动态数据类型，必须先进行数据类型转换，连线时一般会自动转换动态数据）</li><li>动态数据类型转换</li></ol><ul><li>从动态数据类型转换：在程序框图上放置“从动态数据转换”Express VI，配置转换的数据类型</li><li>转换至动态数据：在程序框图上放置“转换至动态数据”ExpressVI</li></ul><ol start="4"><li>获取和设置动态数据</li></ol><ul><li>使用获取动态数据ExpressVI获取动态数据的属性</li><li>使用设置动态数据属性ExpressVI设置动态数据的属性，如信号名、时间标识、时间模式等</li></ul><h2 id="实验：波形显示和数据获取"><a href="#实验：波形显示和数据获取" class="headerlink" title="实验：波形显示和数据获取"></a>实验：波形显示和数据获取</h2><ol><li>主要目的：模拟信号输入，在波形图上显示波形，获取采样数据，采样时间和信号名称</li><li>实验过程<br>（1）添加并配置仿真信号<img src="https://img-blog.csdnimg.cn/2021010815504847.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%" ><img src="https://img-blog.csdnimg.cn/20210108155308782.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">（2）创建图形显示控件（示波器），用来显示输出波形<img src="https://img-blog.csdnimg.cn/20210108155405692.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%">（3）获得信号数据，并进行显示<img src="https://img-blog.csdnimg.cn/20210108155502565.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%"><img src="https://img-blog.csdnimg.cn/2021010815552310.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%"><img src="https://img-blog.csdnimg.cn/20210108155603114.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%">（4）获得信号属性并显示<img src="https://img-blog.csdnimg.cn/20210108155635301.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%"><img src="https://img-blog.csdnimg.cn/20210108155658283.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="30%"><img src="https://img-blog.csdnimg.cn/20210108155722160.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%">（5）运行程序查看结果<img src="https://img-blog.csdnimg.cn/20210108155806130.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%"></li></ol>]]></content>
+        <content type="html"><![CDATA[<p><strong>Labview学习笔记</strong>：<br><a href="https://blog.csdn.net/weixin_44543463/article/details/112325523">LabView学习笔记（一）：基础介绍</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112329185">LabView学习笔记（二）：滤波器实验</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112364388">LabView学习笔记（三）：基本控件</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112366358">LabView学习笔记（四）：动态数据类型</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112392799">LabView学习笔记（五）：数据类型综合实验</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112393383">LabView学习笔记（六）：while循环与for循环</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112431393">LabView学习笔记（七）：变量与移位寄存器</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112470713">LabView学习笔记（八）：属性节点</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112529983">LabView学习笔记（九）：数组与簇</a><br><a href="https://blog.csdn.net/weixin_44543463/article/details/112571924">LabView学习笔记（十）：条件结构</a><br><a href="https://blog.csdn.net/weixin_44543463/category_10714833.html">其它实验过程记录</a></p><hr><h2 id="while循环（图片循环播放程序）"><a href="#while循环（图片循环播放程序）" class="headerlink" title="while循环（图片循环播放程序）"></a>while循环（图片循环播放程序）</h2><p>实验：完成三张图片的循环放映</p><ol><li>插入一个图片下拉列表，并导入n张图片<img src="https://img-blog.csdnimg.cn/20210109161918931.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%"><img src="https://img-blog.csdnimg.cn/20210109161957452.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="30%"><img src="https://img-blog.csdnimg.cn/20210109162022893.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="20%"><img src="https://img-blog.csdnimg.cn/20210109162103514.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%"></li><li>打开程序框图，利用While循环实现图片的循环播放，首先将图片下拉列表转换为显示控件<img src="https://img-blog.csdnimg.cn/20210109162221504.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="30%"></li><li>创建一个While循环<img src="https://img-blog.csdnimg.cn/20210109162258677.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%"></li><li>因下拉图片列表中各个图片的值为0，1，2……n，利用循环次数与n的余数作为图片的选择依据（n为图片个数），插入数值中的商与余树控件并连线<img src="https://img-blog.csdnimg.cn/20210109162517679.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">在我的程序中图片数是3所以除数为3</li><li>创建停止条件<img src="https://img-blog.csdnimg.cn/20210109162620541.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%"></li><li>回到前面板中添加一个旋钮，用于调整图片切换速度<img src="https://img-blog.csdnimg.cn/20210109162712203.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%"></li><li>在while循环中插入一个等待时间，等待时间的输入端以毫秒作为单位，同时考虑旋钮越大图片切换速度应该越快，因此将旋钮的数值取倒数再乘1000作为while循环的等待时间<img src="https://img-blog.csdnimg.cn/20210109162913137.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%"><img src="https://img-blog.csdnimg.cn/20210109162933676.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%"></li><li>运行程序，即可观察到图片循环播放，拖动旋钮可以看到图片切换速度也会随之变化。</li></ol><h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><ol><li>for循环的创建</li></ol><ul><li>创建for循环的方法和while循环类似</li><li>可以右键单击while循环的边框，在右键菜单中将while循环转换为for循环</li></ul><ol start="2"><li>for循环的接线端</li></ol><ul><li>N为循环次数，循环次数必须指定为非负整数（如果将双精度浮点数值连接至总线接线端，LabView将把较长的数值转换为32位有符号整数）</li><li>为了避免强制转换，以增强程序性能，选择匹配的数据类型，或者通过编程进行数据类型的转换</li></ul><ol start="3"><li>与while循环的区别</li></ol><ul><li>while循环至少执行一次，for循环可以执行0次</li><li>while循环自动输出最后一次执行的值，for循环自动输出一个数组</li></ul>]]></content>
       
       
       <categories>
@@ -3151,9 +3151,9 @@
             
             <tag> 经验分享 </tag>
             
-            <tag> bug解决 </tag>
-            
             <tag> Proteus </tag>
+            
+            <tag> bug解决 </tag>
             
         </tags>
       
