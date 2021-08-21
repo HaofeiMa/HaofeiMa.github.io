@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<style>
+// 桌面、手机显示
+.sjfollow{display: none;}
+@media (max-width: 768px){.sjfollow{display: block !important;}
+.pcfollow{display: block;}
+@media (max-width: 768px){.pcfollow{display: none;}
+</style>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.huffie.cn","root":"/","images":"/images","scheme":"Mist","version":"8.7.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"always","padding":18,"offset":12,"b2t":true,"scrollpercent":true},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":null,"post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="运算符重载的目的是对已有的运算符重新定义，赋予其另一种功能，以适应不同的数据类型。包括加号、左移、递增、赋值、关系、函数调用等运算符重载。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【C++笔记】运算符重载">
+<meta property="og:url" content="https://www.huffie.cn/2021/03/09/076-%E3%80%90C++%E7%AC%94%E8%AE%B0%E3%80%91%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/index.html">
+<meta property="og:site_name" content="HalfA Studio">
+<meta property="og:description" content="运算符重载的目的是对已有的运算符重新定义，赋予其另一种功能，以适应不同的数据类型。包括加号、左移、递增、赋值、关系、函数调用等运算符重载。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-09T00:25:50.000Z">
+<meta property="article:modified_time" content="2021-08-21T03:46:45.333Z">
+<meta property="article:author" content="Huffie">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="c++">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.huffie.cn/2021/03/09/076-%E3%80%90C++%E7%AC%94%E8%AE%B0%E3%80%91%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.huffie.cn/2021/03/09/076-%E3%80%90C++%E7%AC%94%E8%AE%B0%E3%80%91%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/","path":"2021/03/09/076-【C++笔记】运算符重载/","title":"【C++笔记】运算符重载"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【C++笔记】运算符重载 | HalfA Studio</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?3fd06b1b63f9b056d19abc6f5a943aed"></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  
+  <!--Follow me on CSDN-->
+  <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44543463"><img loading="lazy" width="149" height="149" style="position: absolute; top: 0; right: 0; border: 0;" src="https://img-blog.csdnimg.cn/abe3797b7d77419b81ecc02dd1bf8c34.png" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">HalfA Studio</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-资源"><a href="/resource/" rel="section"><i class="fa fa-cloud-download-alt fa-fw"></i>资源</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%8A%A0%E5%8F%B7%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD"><span class="nav-text">一、加号运算符重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%B7%A6%E7%A7%BB%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD"><span class="nav-text">二、左移运算符重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E9%80%92%E5%A2%9E%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD"><span class="nav-text">三、递增运算符重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD"><span class="nav-text">四、赋值运算符重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD"><span class="nav-text">五、关系运算符重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD"><span class="nav-text">六、函数调用运算符重载</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Huffie"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Huffie</p>
+  <div class="site-description" itemprop="description">Done is better than perfect.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-name">博客</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/weixin_44543463" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_44543463" rel="noopener" target="_blank"><i class="fab fa-cuttlefish fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/HuffieMa" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HuffieMa" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:haofei_ma@163.com" title="E-Mail → mailto:haofei_ma@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/huffie65380272" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;huffie65380272" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.huffie.cn/2021/03/09/076-%E3%80%90C++%E7%AC%94%E8%AE%B0%E3%80%91%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Huffie">
+      <meta itemprop="description" content="Done is better than perfect.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HalfA Studio">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【C++笔记】运算符重载
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-09 08:25:50" itemprop="dateCreated datePublished" datetime="2021-03-09T08:25:50+08:00">2021-03-09</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-21 11:46:45" itemprop="dateModified" datetime="2021-08-21T11:46:45+08:00">2021-08-21</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">程序设计</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">运算符重载的目的是对已有的运算符重新定义，赋予其另一种功能，以适应不同的数据类型。包括加号、左移、递增、赋值、关系、函数调用等运算符重载。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>运算符重载的目的是对已有的运算符重新定义，赋予其另一种功能，以适应不同的数据类型。</p>
+<h3 id="一、加号运算符重载"><a href="#一、加号运算符重载" class="headerlink" title="一、加号运算符重载"></a>一、加号运算符重载</h3><p>作用：实现两个自定义数据类型的加法运算</p>
+<p><strong>1.1 通过成员函数重载+号</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">例：</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>&#123;</span></span><br><span class="line">    Person <span class="keyword">operator</span>+(Person &amp;p)&#123;</span><br><span class="line">		Person temp;</span><br><span class="line">		temp.m_A = <span class="keyword">this</span>-&gt;m_A + p.m_A;</span><br><span class="line">		temp.m_B = <span class="keyword">this</span>-&gt;m_B + p.m_B;</span><br><span class="line">		<span class="keyword">return</span> temp;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">int</span> m_A;</span><br><span class="line">    <span class="keyword">int</span> m_B;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>调用方法：</p>
+<ol>
+<li>本质调用：<code>Person p3 = p1.operator+(p2);</code></li>
+<li>简化调用：<code>Person p3 = p1 + p2;</code></li>
+</ol>
+<p><strong>1.2 通过全局函数重载+号</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Person <span class="keyword">operator</span>+(Person &amp;p1, Person &amp;p2)&#123;</span><br><span class="line">	Person temp;</span><br><span class="line">	temp.m_A = p1.m_A + p2.m_A;</span><br><span class="line">	temp.m_B = p1.m_B + p2.m_B;</span><br><span class="line">	<span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br><span class="line">Person <span class="keyword">operator</span>+(Person &amp;p1, <span class="keyword">int</span> num)&#123;</span><br><span class="line">	Person temp;</span><br><span class="line">	temp.m_A = p1.m_A + num;</span><br><span class="line">	temp.m_B = p1.m_B + num;</span><br><span class="line">	<span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用方法：</p>
+<ol>
+<li>本质调用：<code>Person p3 = operator+(p1, p2);</code></li>
+<li>简化调用：<code>Person p3 = p1 + p2;</code></li>
+</ol>
+<p>运算符重载也可以发生函数重载：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Person p3 = p1 + p2;</span><br><span class="line">Person p4 = p1 + <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>1.3 注意事项</strong>：</p>
+<ul>
+<li>对于内置的数据类型的表达式的运算符是不可能改变的</li>
+<li>不要滥用运算符重载</li>
+</ul>
+<h3 id="二、左移运算符重载"><a href="#二、左移运算符重载" class="headerlink" title="二、左移运算符重载"></a>二、左移运算符重载</h3><p><strong>通过全局函数重载&lt;&lt;左移运算符</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream &amp;cout,Person &amp;p)&#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;p.m_A = &quot;</span> &lt;&lt; p.m_A &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;p.m_B = &quot;</span> &lt;&lt; p.m_B &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> cout;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>选中cout，右键转到声明，可以看到cout属于ostream这个类</li>
+<li>返回cout是为了实现链式编程，使得可以无限追加&lt;&lt;</li>
+<li>不通过成员函数重载是因为，成员函数重载只能实现p.operator&lt;&lt;(cout)，即p&lt;&lt;cout，与预期不符。</li>
+</ul>
+<p>调用方法：</p>
+<p><code>cout &lt;&lt; p &lt;&lt; endl;</code></p>
+<h3 id="三、递增运算符重载"><a href="#三、递增运算符重载" class="headerlink" title="三、递增运算符重载"></a>三、递增运算符重载</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyInteger</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">MyInteger</span>()&#123;</span><br><span class="line">		m_Num = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//重载前置++运算符</span></span><br><span class="line">	MyInteger&amp; <span class="keyword">operator</span>++()&#123;</span><br><span class="line">		++m_Num;</span><br><span class="line">		<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//重载后置++运算符	此处的int代表占位参数，可以用于区分前置和后置递增</span></span><br><span class="line">	MyInteger <span class="keyword">operator</span>++(<span class="keyword">int</span>)&#123;</span><br><span class="line">		MyInteger temp = *<span class="keyword">this</span>;</span><br><span class="line">		m_Num++;</span><br><span class="line">		<span class="keyword">return</span> temp;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> m_Num;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>前置++：</p>
+<ul>
+<li>返回值是引用，是因为需要实现++(++a)，保证自增的都是同一个数据</li>
+</ul>
+<p>后置++：</p>
+<ul>
+<li>因为后置++要先返回当前值，再递增。因此先把当前值记录下来，递增之后，再返回记录值。</li>
+<li>返回值以值传递形式，是因为返回的是局部对象temp，局部对象不能通过引用返回。</li>
+</ul>
+<h3 id="四、赋值运算符重载"><a href="#四、赋值运算符重载" class="headerlink" title="四、赋值运算符重载"></a>四、赋值运算符重载</h3><p>c++编译器至少给一个类添加四个函数</p>
+<ol>
+<li>默认构造函数（无参，函数体为空）</li>
+<li>默认析构函数（无参，函数体为空）</li>
+<li>默认拷贝构造函数，对属性进行值拷贝</li>
+<li>赋值运算符 operator=对属性进行值拷贝</li>
+</ol>
+<p>如果类中有属性指向堆区，做赋值操作时也会出现深浅拷贝问题。</p>
+<p>解决方法：利用深拷贝，解决浅拷贝带来的问题</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">Person</span>(<span class="keyword">int</span> age)&#123;</span><br><span class="line">		m_Age = <span class="keyword">new</span> <span class="built_in"><span class="keyword">int</span></span>(age);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	~<span class="built_in">Person</span>()&#123;</span><br><span class="line">		<span class="keyword">if</span>(m_Age != <span class="literal">NULL</span>)&#123;</span><br><span class="line">			<span class="keyword">delete</span> m_Age;</span><br><span class="line">			m_Age = <span class="literal">NULL</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//重载赋值运算符</span></span><br><span class="line">	Person&amp; <span class="keyword">operator</span>=(Person &amp;p)&#123;</span><br><span class="line">		<span class="comment">//先判断是否有属性在堆区，如果有，先释放干净，再深拷贝</span></span><br><span class="line">		<span class="keyword">if</span>(m_Age != <span class="literal">NULL</span>)&#123;</span><br><span class="line">			<span class="keyword">delete</span> m_Age;</span><br><span class="line">			m_Age = <span class="literal">NULL</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//进行深拷贝</span></span><br><span class="line">		m_Age = <span class="keyword">new</span> <span class="built_in"><span class="keyword">int</span></span>(*p.m_Age);</span><br><span class="line">		<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> *m_Age;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">Person <span class="title">p1</span><span class="params">(<span class="number">18</span>)</span></span>;</span><br><span class="line">	<span class="function">Person <span class="title">p2</span><span class="params">(<span class="number">20</span>)</span></span>;</span><br><span class="line">	<span class="function">Person <span class="title">p3</span><span class="params">(<span class="number">24</span>)</span></span>;</span><br><span class="line">	p3 = p2 = p1;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;p1.m_Age = &quot;</span> &lt;&lt; *p1.m_Age &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;p2.m_Age = &quot;</span> &lt;&lt; *p2.m_Age &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;p3.m_Age = &quot;</span> &lt;&lt; *p3.m_Age &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">test01</span>();</span><br><span class="line"></span><br><span class="line">	<span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意事项：</p>
+<ul>
+<li>重载=的逻辑是，如p2=p1，先释放p2内的属性（因为浅拷贝p2和p1内的m_Age指向同一块内存），然后再重新开辟内存空间进行深拷贝。</li>
+<li>返回值是Person&amp;，是为了连续赋值操作</li>
+</ul>
+<h3 id="五、关系运算符重载"><a href="#五、关系运算符重载" class="headerlink" title="五、关系运算符重载"></a>五、关系运算符重载</h3><p><strong>作用：</strong>重载关系运算符时，可以让两个自定义类型对象进行对比操作。（如==、!=）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//例：重载==运算符</span></span><br><span class="line"><span class="keyword">bool</span> <span class="keyword">operator</span>==(Person &amp;p)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>-&gt;m_Name == p.m_Name &amp;&amp; <span class="keyword">this</span>-&gt;m_Age == p.m_Age)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="六、函数调用运算符重载"><a href="#六、函数调用运算符重载" class="headerlink" title="六、函数调用运算符重载"></a>六、函数调用运算符重载</h3><ul>
+<li>函数调用运算符是()</li>
+<li>由于重载后使用方式非常像函数的调用，因此称为仿函数</li>
+<li>仿函数没有固定写法，非常灵活</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//例：重载()实现自定义打印</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyPrint</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">(string test)</span></span>&#123;</span><br><span class="line">		cout &lt;&lt; test &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">---------</span><br><span class="line"><span class="comment">//调用方法</span></span><br><span class="line">	MyPrint myprint;</span><br><span class="line">	<span class="built_in">myprint</span>(<span class="string">&quot;hello world&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>重载()很像函数调用，比如上面的功能也可以用函数实现</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myPrint</span><span class="params">(string test)</span></span>&#123;</span><br><span class="line">	cout &lt;&lt; test &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line">---------</span><br><span class="line"><span class="built_in">myPrint</span>(<span class="string">&quot;hello world&quot;</span>)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>参考</strong>：黑马程序员匠心之作|C++教程从0到1入门编程,学习编程不再难<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z">https://www.bilibili.com/video/BV1et411b73Z</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://blog.csdn.net/weixin_44543463">
+          <span class="icon">
+            <i class="fab fa-cuttlefish"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+              <a href="/tags/c/" rel="tag"><i class="fa fa-tag"></i> c++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/08/075-%E3%80%90C++%E7%AC%94%E8%AE%B0%E3%80%91%E5%8F%8B%E5%85%83/" rel="prev" title="【C++笔记】友元">
+                  <i class="fa fa-chevron-left"></i> 【C++笔记】友元
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/03/10/077-%E3%80%90C++%E7%AC%94%E8%AE%B0%E3%80%91%E7%BB%A7%E6%89%BF/" rel="next" title="【C++笔记】继承">
+                  【C++笔记】继承 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian">
+
+  </div>
+
+<div class="copyright">
+    <span class="with-love">
+      <img src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@3.0.9/images/icp.png" alt="" style="height:17px;margin-bottom:-3px">
+    </span><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">正在备案中 </a>
+  丨<a href="https://www.huffie.cn/">Copyright
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <!--<span class="with-love"><i class="fa fa-grip-lines-vertical"></i></span>--></a>丨
+  <span class="author" itemprop="copyrightHolder">
+  <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">Powered by Hexo</a>
+  </span>丨
+  <span>
+    <!-- 网站运行时间 -->
+    <a target="_blank" rel="noopener" href="https://wangzhan.baidu.com/web/welcome/ico?s=3fd06b1b63f9b056d19abc6f5a943aed">
+    </script>
+    <span id="runtime_span"></span>
+    <script type="text/javascript">function show_runtime(){window.setTimeout("show_runtime()",1000);X=new 
+    Date("1/21/2021 14:56:40");
+    Y=new Date();T=(Y.getTime()-X.getTime());M=24*60*60*1000;
+    a=T/M;A=Math.floor(a);b=(a-A)*24;B=Math.floor(b);c=(b-B)*60;C=Math.floor((b-B)*60);D=Math.floor((c-C)*60);
+    runtime_span.innerHTML="本站已运行 "+A+"天"+B+"小时"+C+"分"+D+"秒"}show_runtime();</script>
+    </a>丨
+  </span>
+  <span class="with-love">
+    <a target="_blank" rel="noopener" href="https://wangzhan.baidu.com/web/welcome/ico?s=3fd06b1b63f9b056d19abc6f5a943aed">
+      <img src="https://wangzhan.baidu.com/sc-web/image/icon/45.gif?__v=1628562176659" alt="" style="height:17px;margin-bottom:-3px">
+    </a>
+  </span>
+</div><script color="6,6,6" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  
+
+
+
+
+{% if page.type ==='about' %}
+  <script src="//cdn.jsdelivr.net/npm/minigrid@3.1.1/dist/minigrid.min.js"></script>
+  <script src="/js/photo.js"></script>
+{% endif %}
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":200},"mobile":{"show":true},"react":{"opacity":1}});</script></body>
+</html>

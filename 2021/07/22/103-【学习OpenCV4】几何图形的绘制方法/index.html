@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<style>
+// 桌面、手机显示
+.sjfollow{display: none;}
+@media (max-width: 768px){.sjfollow{display: block !important;}
+.pcfollow{display: block;}
+@media (max-width: 768px){.pcfollow{display: none;}
+</style>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.huffie.cn","root":"/","images":"/images","scheme":"Mist","version":"8.7.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"always","padding":18,"offset":12,"b2t":true,"scrollpercent":true},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":null,"post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="本文介绍了使用C++与OpenCV4完成矩形、圆形、直线、椭圆的绘制方法，重点总结了OpenCV内置函数（如rectangle()、circle()、line()、ellipse()）的定义以及各参数的作用，并给出了示例程序作为参考。此外本文还总结了多边形的绘制方法，包括多边形边框的绘制函数polylines()、多边形填充函数fillPoly()、绘制多个多边形的函数drawContours()">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【学习OpenCV4】几何图形的绘制方法">
+<meta property="og:url" content="https://www.huffie.cn/2021/07/22/103-%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E5%87%A0%E4%BD%95%E5%9B%BE%E5%BD%A2%E7%9A%84%E7%BB%98%E5%88%B6%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="HalfA Studio">
+<meta property="og:description" content="本文介绍了使用C++与OpenCV4完成矩形、圆形、直线、椭圆的绘制方法，重点总结了OpenCV内置函数（如rectangle()、circle()、line()、ellipse()）的定义以及各参数的作用，并给出了示例程序作为参考。此外本文还总结了多边形的绘制方法，包括多边形边框的绘制函数polylines()、多边形填充函数fillPoly()、绘制多个多边形的函数drawContours()">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/af671a2b45e802c3e63209fa87a96666.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/952ed890a5696533968b9ba4c8e2377a.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/dacd9d0f6a5f9d67a50aee48aaed60a6.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/317de319b10cab926f53fa6a76bb1d00.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/c94a4045c4b42787be70c97ffb011795.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/66c1611508015c694e917fda36d19db9.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/141a149f6cc64488d35f2a2cf4f7316b.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2021-07-22T03:31:42.000Z">
+<meta property="article:modified_time" content="2021-08-21T05:32:05.149Z">
+<meta property="article:author" content="Huffie">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="c++">
+<meta property="article:tag" content="opencv">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/img_convert/af671a2b45e802c3e63209fa87a96666.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center">
+
+
+<link rel="canonical" href="https://www.huffie.cn/2021/07/22/103-%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E5%87%A0%E4%BD%95%E5%9B%BE%E5%BD%A2%E7%9A%84%E7%BB%98%E5%88%B6%E6%96%B9%E6%B3%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.huffie.cn/2021/07/22/103-%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E5%87%A0%E4%BD%95%E5%9B%BE%E5%BD%A2%E7%9A%84%E7%BB%98%E5%88%B6%E6%96%B9%E6%B3%95/","path":"2021/07/22/103-【学习OpenCV4】几何图形的绘制方法/","title":"【学习OpenCV4】几何图形的绘制方法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【学习OpenCV4】几何图形的绘制方法 | HalfA Studio</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?3fd06b1b63f9b056d19abc6f5a943aed"></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  
+  <!--Follow me on CSDN-->
+  <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44543463"><img loading="lazy" width="149" height="149" style="position: absolute; top: 0; right: 0; border: 0;" src="https://img-blog.csdnimg.cn/abe3797b7d77419b81ecc02dd1bf8c34.png" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">HalfA Studio</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-资源"><a href="/resource/" rel="section"><i class="fa fa-cloud-download-alt fa-fw"></i>资源</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%BD%A2%E7%9A%84%E7%BB%98%E5%88%B6"><span class="nav-text">一、基本图形的绘制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%9F%A9%E5%BD%A2"><span class="nav-text">1. 矩形</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%9C%86%E5%BD%A2"><span class="nav-text">2. 圆形</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%9B%B4%E7%BA%BF"><span class="nav-text">3. 直线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E6%A4%AD%E5%9C%86"><span class="nav-text">4. 椭圆</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%A4%9A%E8%BE%B9%E5%BD%A2%E7%BB%98%E5%88%B6%E6%96%B9%E6%B3%95"><span class="nav-text">二、多边形绘制方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E5%A4%9A%E8%BE%B9%E5%BD%A2%E8%BE%B9%E6%A1%86"><span class="nav-text">2.1 多边形边框</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E5%A4%9A%E8%BE%B9%E5%BD%A2%E5%A1%AB%E5%85%85"><span class="nav-text">2.2 多边形填充</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E7%BB%98%E5%88%B6%E5%A4%9A%E4%B8%AA%E5%A4%9A%E8%BE%B9%E5%BD%A2"><span class="nav-text">2.3 绘制多个多边形</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Huffie"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Huffie</p>
+  <div class="site-description" itemprop="description">Done is better than perfect.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-name">博客</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/weixin_44543463" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_44543463" rel="noopener" target="_blank"><i class="fab fa-cuttlefish fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/HuffieMa" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HuffieMa" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:haofei_ma@163.com" title="E-Mail → mailto:haofei_ma@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/huffie65380272" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;huffie65380272" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.huffie.cn/2021/07/22/103-%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E5%87%A0%E4%BD%95%E5%9B%BE%E5%BD%A2%E7%9A%84%E7%BB%98%E5%88%B6%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Huffie">
+      <meta itemprop="description" content="Done is better than perfect.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HalfA Studio">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【学习OpenCV4】几何图形的绘制方法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-22 11:31:42" itemprop="dateCreated datePublished" datetime="2021-07-22T11:31:42+08:00">2021-07-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-21 13:32:05" itemprop="dateModified" datetime="2021-08-21T13:32:05+08:00">2021-08-21</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">程序设计</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/OpenCV/" itemprop="url" rel="index"><span itemprop="name">OpenCV</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">本文介绍了使用C++与OpenCV4完成矩形、圆形、直线、椭圆的绘制方法，重点总结了OpenCV内置函数（如rectangle()、circle()、line()、ellipse()）的定义以及各参数的作用，并给出了示例程序作为参考。此外本文还总结了多边形的绘制方法，包括多边形边框的绘制函数polylines()、多边形填充函数fillPoly()、绘制多个多边形的函数drawContours()等。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>&emsp;&emsp;在正文开始之前，首先要知道屏幕中 <strong>(0, 0) 坐标点</strong>在左上角，最大坐标在右下角。</p>
+<h2 id="一、基本图形的绘制"><a href="#一、基本图形的绘制" class="headerlink" title="一、基本图形的绘制"></a>一、基本图形的绘制</h2><h4 id="1-矩形"><a href="#1-矩形" class="headerlink" title="1. 矩形"></a>1. 矩形</h4><p>&emsp;&emsp;OpenCV中绘制矩形的函数为 <code>rectangle()</code> 。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rectangle</span><span class="params">(InputOutputArray img, Rect rec, <span class="keyword">const</span> Scalar&amp; color, <span class="keyword">int</span> thickness = <span class="number">1</span>, <span class="keyword">int</span> lineType = LINE_8, <span class="keyword">int</span> shift = <span class="number">0</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>InputOutputArray img</td>
+<td>要绘制的目标图像</td>
+</tr>
+<tr>
+<td>Rect rec</td>
+<td>rect类对象</td>
+</tr>
+<tr>
+<td>const Scalar&amp; color</td>
+<td>线条的颜色</td>
+</tr>
+<tr>
+<td>int thickness = 1</td>
+<td>正数表示线条宽度，-1表示填充矩形</td>
+</tr>
+<tr>
+<td>int lineType = LINE_8</td>
+<td>线条的类型</td>
+</tr>
+<tr>
+<td>int shift = 0</td>
+<td>坐标点的小数点位数</td>
+</tr>
+</tbody></table>
+<p>绘制矩形的示例程序如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyDemo::drawing_Demo</span><span class="params">(Mat&amp; image)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//绘制矩形</span></span><br><span class="line">	Rect rect;</span><br><span class="line">	rect.x = <span class="number">250</span>;	<span class="comment">//左上端点x坐标</span></span><br><span class="line">	rect.y = <span class="number">170</span>;	<span class="comment">//左上端点x坐标</span></span><br><span class="line">	rect.width = <span class="number">100</span>;	<span class="comment">//宽度</span></span><br><span class="line">	rect.height = <span class="number">100</span>;	<span class="comment">//高度</span></span><br><span class="line">	<span class="built_in">rectangle</span>(image, rect, <span class="built_in">Scalar</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">2</span>, <span class="number">8</span>, <span class="number">0</span>);</span><br><span class="line">	<span class="built_in">imshow</span>(<span class="string">&quot;Drawing&quot;</span>, image);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="https://img-blog.csdnimg.cn/img_convert/af671a2b45e802c3e63209fa87a96666.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+
+<h4 id="2-圆形"><a href="#2-圆形" class="headerlink" title="2. 圆形"></a>2. 圆形</h4><p>&emsp;&emsp;OpenCV中绘制圆形的函数为 <code>rectangle()</code> 。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cv::circle</span> <span class="params">(InputOutputArray img, Point center, <span class="keyword">int</span> radius, <span class="keyword">const</span> Scalar &amp;color, <span class="keyword">int</span> thickness=<span class="number">1</span>, <span class="keyword">int</span> lineType=LINE_8, <span class="keyword">int</span> shift=<span class="number">0</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>InputOutputArray img</td>
+<td>要绘制的目标图像</td>
+</tr>
+<tr>
+<td>Point center</td>
+<td>圆心坐标</td>
+</tr>
+<tr>
+<td>int radius</td>
+<td>圆的半径</td>
+</tr>
+<tr>
+<td>const Scalar &amp;color</td>
+<td>圆的颜色</td>
+</tr>
+<tr>
+<td>int thickness=1</td>
+<td>正数表示线条宽度，-1表示填充圆</td>
+</tr>
+<tr>
+<td>int lineType = LINE_8</td>
+<td>线条的类型</td>
+</tr>
+<tr>
+<td>int shift = 0</td>
+<td>坐标点的小数点位数</td>
+</tr>
+</tbody></table>
+<p>绘制圆形的示例程序如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyDemo::drawing_Demo</span><span class="params">(Mat&amp; image)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//绘制圆</span></span><br><span class="line">	<span class="built_in">circle</span>(image, <span class="built_in">Point</span>(<span class="number">250</span>, <span class="number">170</span>), <span class="number">20</span>, <span class="built_in">Scalar</span>(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>), <span class="number">-1</span>, <span class="number">8</span>, <span class="number">0</span>);</span><br><span class="line">	<span class="built_in">imshow</span>(<span class="string">&quot;Drawing&quot;</span>, image);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="https://img-blog.csdnimg.cn/img_convert/952ed890a5696533968b9ba4c8e2377a.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+
+<p>&emsp;&emsp;</p>
+<h4 id="3-直线"><a href="#3-直线" class="headerlink" title="3. 直线"></a>3. 直线</h4><p>&emsp;&emsp;OpenCV中绘制直线的函数为 <code>rectangle()</code> 。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cv::line</span><span class="params">(InputOutputArray img, Point pt1, Point pt2, <span class="keyword">const</span> Scalar &amp;color, <span class="keyword">int</span> thickness=<span class="number">1</span>, <span class="keyword">int</span> lineType=LINE_8, <span class="keyword">int</span> shift=<span class="number">0</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>InputOutputArray img</td>
+<td>要绘制的目标图像</td>
+</tr>
+<tr>
+<td>Point pt1r</td>
+<td>端点1的坐标</td>
+</tr>
+<tr>
+<td>Point pt2</td>
+<td>端点2的坐标</td>
+</tr>
+<tr>
+<td>const Scalar &amp;color</td>
+<td>线条的颜色</td>
+</tr>
+<tr>
+<td>int thickness=1</td>
+<td>线条宽度</td>
+</tr>
+<tr>
+<td>int lineType = LINE_8</td>
+<td>线条的类型</td>
+</tr>
+<tr>
+<td>int shift = 0</td>
+<td>坐标点的小数点位数</td>
+</tr>
+</tbody></table>
+<p>绘制圆形的示例程序如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyDemo::drawing_Demo</span><span class="params">(Mat&amp; image)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//绘制直线</span></span><br><span class="line">	<span class="built_in">line</span>(image, <span class="built_in">Point</span>(<span class="number">250</span>, <span class="number">170</span>), <span class="built_in">Point</span>(<span class="number">350</span>, <span class="number">270</span>), <span class="built_in">Scalar</span>(<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>), <span class="number">2</span>, LINE_AA, <span class="number">0</span>);</span><br><span class="line">	<span class="built_in">imshow</span>(<span class="string">&quot;Drawing&quot;</span>, image);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="https://img-blog.csdnimg.cn/img_convert/dacd9d0f6a5f9d67a50aee48aaed60a6.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+&emsp;&emsp;
+
+<h4 id="4-椭圆"><a href="#4-椭圆" class="headerlink" title="4. 椭圆"></a>4. 椭圆</h4><p>&emsp;&emsp;OpenCV中绘制椭圆的函数为 <code>ellipse()</code> 。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ellipse</span><span class="params">(Mat&amp;img, <span class="keyword">const</span> RotatedRect&amp;box, <span class="keyword">const</span> Scalar&amp; color, <span class="keyword">int</span> thickness=<span class="number">1</span>, <span class="keyword">int</span> lineType=<span class="number">8</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Mat&amp;img</td>
+<td>要绘制的目标图像</td>
+</tr>
+<tr>
+<td>const RotatedRect&amp;box</td>
+<td>椭圆类</td>
+</tr>
+<tr>
+<td>const Scalar &amp;color</td>
+<td>椭圆的颜色</td>
+</tr>
+<tr>
+<td>int thickness=1</td>
+<td>正数表示线条宽度，-1表示填充圆</td>
+</tr>
+<tr>
+<td>int lineType = LINE_8</td>
+<td>线条的类型</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>其中椭圆类RotatedRect的属性如下（示例）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;RotatedRect rrt;	<span class="comment">//创建对象</span></span><br><span class="line">&gt;rrt.center = <span class="built_in">Point</span>(<span class="number">100</span>, <span class="number">200</span>);	<span class="comment">//椭圆中心点</span></span><br><span class="line">&gt;rrt.size = <span class="built_in">Size</span>(<span class="number">100</span>, <span class="number">200</span>);		<span class="comment">//椭圆大小（横轴，纵轴长度）</span></span><br><span class="line">&gt;rrt.angle = <span class="number">0</span>;		<span class="comment">//旋转角度</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>绘制圆形的示例程序如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyDemo::drawing_Demo</span><span class="params">(Mat&amp; image)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//绘制椭圆</span></span><br><span class="line">	RotatedRect rrt;</span><br><span class="line">	rrt.center = <span class="built_in">Point</span>(<span class="number">100</span>, <span class="number">200</span>);</span><br><span class="line">	rrt.size = <span class="built_in">Size</span>(<span class="number">100</span>, <span class="number">200</span>);</span><br><span class="line">	rrt.angle = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">ellipse</span>(image, rrt, <span class="built_in">Scalar</span>(<span class="number">0</span>, <span class="number">255</span>, <span class="number">255</span>), <span class="number">1</span>, <span class="number">8</span>);</span><br><span class="line">	<span class="built_in">imshow</span>(<span class="string">&quot;Drawing&quot;</span>, image);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="https://img-blog.csdnimg.cn/img_convert/317de319b10cab926f53fa6a76bb1d00.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+
+<p>&emsp;&emsp;</p>
+<h2 id="二、多边形绘制方法"><a href="#二、多边形绘制方法" class="headerlink" title="二、多边形绘制方法"></a>二、多边形绘制方法</h2><p>&emsp;&emsp;多边形绘制的本质是定义一个由多个点组成的点集，以此连接点集中的各个点，从而形成多边形。</p>
+<h4 id="2-1-多边形边框"><a href="#2-1-多边形边框" class="headerlink" title="2.1 多边形边框"></a>2.1 多边形边框</h4><p>&emsp;&emsp;绘制多边形的边框使用到的函数是 <code>ploylines()</code> 。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cv::polylines</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">		InputOutputArray	img,</span></span></span><br><span class="line"><span class="params"><span class="function">		InputArrayOfArrays	pts,</span></span></span><br><span class="line"><span class="params"><span class="function">		<span class="keyword">bool</span>	isClosed,</span></span></span><br><span class="line"><span class="params"><span class="function">		<span class="keyword">const</span> Scalar &amp; color,</span></span></span><br><span class="line"><span class="params"><span class="function">		<span class="keyword">int</span>		thickness = <span class="number">1</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">		<span class="keyword">int</span>		lineType = LINE_8,</span></span></span><br><span class="line"><span class="params"><span class="function">		<span class="keyword">int</span>		shift = <span class="number">0</span></span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>img</td>
+<td>要绘制的目标图像</td>
+</tr>
+<tr>
+<td>pts</td>
+<td>提前构造的点集</td>
+</tr>
+<tr>
+<td>isClosed</td>
+<td>多边形是否是封闭图形</td>
+</tr>
+<tr>
+<td>color</td>
+<td>多边形边框的颜色</td>
+</tr>
+<tr>
+<td>thickness</td>
+<td>线条宽度（只能为正数）</td>
+</tr>
+<tr>
+<td>lineType</td>
+<td>线条的类型</td>
+</tr>
+<tr>
+<td>shift</td>
+<td>坐标点的小数点位数</td>
+</tr>
+</tbody></table>
+<p>示例程序：绘制五边形</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyDemo::polyDrawing_Demo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">//创建画布</span></span><br><span class="line">	Mat bg = Mat::<span class="built_in">zeros</span>(<span class="built_in">Size</span>(<span class="number">512</span>, <span class="number">512</span>), CV_8UC3);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//创建五个点，作为多边形五个顶点</span></span><br><span class="line">	<span class="function">Point <span class="title">p1</span><span class="params">(<span class="number">100</span>, <span class="number">100</span>)</span></span>;</span><br><span class="line">	<span class="function">Point <span class="title">p2</span><span class="params">(<span class="number">350</span>, <span class="number">100</span>)</span></span>;</span><br><span class="line">	<span class="function">Point <span class="title">p3</span><span class="params">(<span class="number">450</span>, <span class="number">300</span>)</span></span>;</span><br><span class="line">	<span class="function">Point <span class="title">p4</span><span class="params">(<span class="number">250</span>, <span class="number">450</span>)</span></span>;</span><br><span class="line">	<span class="function">Point <span class="title">p5</span><span class="params">(<span class="number">80</span>, <span class="number">200</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//将五个点依次添加到点集中</span></span><br><span class="line">	std::vector&lt;Point&gt; pts;</span><br><span class="line">	pts.<span class="built_in">push_back</span>(p1);</span><br><span class="line">	pts.<span class="built_in">push_back</span>(p2);</span><br><span class="line">	pts.<span class="built_in">push_back</span>(p3);</span><br><span class="line">	pts.<span class="built_in">push_back</span>(p4);</span><br><span class="line">	pts.<span class="built_in">push_back</span>(p5);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//绘制多边形边框</span></span><br><span class="line">	<span class="built_in">polylines</span>(bg, pts, <span class="literal">true</span>, <span class="built_in">Scalar</span>(<span class="number">0</span>, <span class="number">255</span>, <span class="number">255</span>), <span class="number">3</span>, LINE_AA, <span class="number">0</span>);</span><br><span class="line">	<span class="built_in">imshow</span>(<span class="string">&quot;Poly Drawing!&quot;</span>, bg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其中 <code>pts.push_back</code> 用于将点加入到点集数组中，用于不知道点集数量的情况。本程序已知共五个点，因此也可以使用如下的代码创建点集：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::vector&lt;Point&gt; <span class="title">pts</span><span class="params">(<span class="number">5</span>)</span></span>;</span><br><span class="line">pts[<span class="number">0</span>] = p1;</span><br><span class="line">pts[<span class="number">1</span>] = p2;</span><br><span class="line">pts[<span class="number">2</span>] = p3;</span><br><span class="line">pts[<span class="number">3</span>] = p4;</span><br><span class="line">pts[<span class="number">4</span>] = p5;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<img src="https://img-blog.csdnimg.cn/img_convert/c94a4045c4b42787be70c97ffb011795.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+
+<h4 id="2-2-多边形填充"><a href="#2-2-多边形填充" class="headerlink" title="2.2 多边形填充"></a>2.2 多边形填充</h4><p>&emsp;&emsp;绘制填充的多边形使用到的函数是 <code>fillPoly()</code> 。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cv::fillPoly</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">		InputOutputArray	img,</span></span></span><br><span class="line"><span class="params"><span class="function">		InputArrayOfArrays	pts,</span></span></span><br><span class="line"><span class="params"><span class="function">		<span class="keyword">const</span> Scalar &amp; color,</span></span></span><br><span class="line"><span class="params"><span class="function">		<span class="keyword">int</span>		lineType = LINE_8,</span></span></span><br><span class="line"><span class="params"><span class="function">		<span class="keyword">int</span>		shift = <span class="number">0</span></span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>img</td>
+<td>要绘制的目标图像</td>
+</tr>
+<tr>
+<td>pts</td>
+<td>提前构造的点集</td>
+</tr>
+<tr>
+<td>color</td>
+<td>多边形边框的颜色</td>
+</tr>
+<tr>
+<td>lineType</td>
+<td>线条的类型</td>
+</tr>
+<tr>
+<td>shift</td>
+<td>坐标点的小数点位数</td>
+</tr>
+</tbody></table>
+<p>示例程序：绘制填充的五边形</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyDemo::polyDrawing_Demo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">//创建画布</span></span><br><span class="line">	Mat bg = Mat::<span class="built_in">zeros</span>(<span class="built_in">Size</span>(<span class="number">512</span>, <span class="number">512</span>), CV_8UC3);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//创建五个点，作为多边形五个顶点</span></span><br><span class="line">	<span class="function">Point <span class="title">p1</span><span class="params">(<span class="number">100</span>, <span class="number">100</span>)</span></span>;</span><br><span class="line">	<span class="function">Point <span class="title">p2</span><span class="params">(<span class="number">350</span>, <span class="number">100</span>)</span></span>;</span><br><span class="line">	<span class="function">Point <span class="title">p3</span><span class="params">(<span class="number">450</span>, <span class="number">300</span>)</span></span>;</span><br><span class="line">	<span class="function">Point <span class="title">p4</span><span class="params">(<span class="number">250</span>, <span class="number">450</span>)</span></span>;</span><br><span class="line">	<span class="function">Point <span class="title">p5</span><span class="params">(<span class="number">80</span>, <span class="number">200</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//将五个点依次添加到点集中</span></span><br><span class="line">	std::vector&lt;Point&gt; pts;</span><br><span class="line">	pts.<span class="built_in">push_back</span>(p1);</span><br><span class="line">	pts.<span class="built_in">push_back</span>(p2);</span><br><span class="line">	pts.<span class="built_in">push_back</span>(p3);</span><br><span class="line">	pts.<span class="built_in">push_back</span>(p4);</span><br><span class="line">	pts.<span class="built_in">push_back</span>(p5);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//绘制封闭的五边形</span></span><br><span class="line">	<span class="built_in">fillPoly</span>(bg, pts, <span class="built_in">Scalar</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">0</span>), <span class="number">8</span>, <span class="number">0</span>);</span><br><span class="line">	<span class="built_in">imshow</span>(<span class="string">&quot;Poly Drawing!&quot;</span>, bg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="https://img-blog.csdnimg.cn/img_convert/66c1611508015c694e917fda36d19db9.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+
+<h4 id="2-3-绘制多个多边形"><a href="#2-3-绘制多个多边形" class="headerlink" title="2.3 绘制多个多边形"></a>2.3 绘制多个多边形</h4><p>&emsp;&emsp;绘制多个多边形使用到的函数是 <code>drawContours()</code> 。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">drawContours</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">	InputOutputArray 	image,</span></span></span><br><span class="line"><span class="params"><span class="function">	InputArrayOfArrays 	contours,</span></span></span><br><span class="line"><span class="params"><span class="function">	<span class="keyword">int</span> 	contourIdx,</span></span></span><br><span class="line"><span class="params"><span class="function">	<span class="keyword">const</span> Scalar&amp; color,</span></span></span><br><span class="line"><span class="params"><span class="function">	<span class="keyword">int</span> 	thickness=<span class="number">1</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">	<span class="keyword">int</span> 	lineType=<span class="number">8</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">	InputArray 	hierarchy=noArray(),</span></span></span><br><span class="line"><span class="params"><span class="function">	<span class="keyword">int</span> 		maxLevel=INT_MAX,</span></span></span><br><span class="line"><span class="params"><span class="function">	Point 		offset=Point() )</span></span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>img</td>
+<td>要绘制的目标图像</td>
+</tr>
+<tr>
+<td>contours</td>
+<td>输入的轮廓组，每一组轮廓由点vector构成</td>
+</tr>
+<tr>
+<td>contourIdx</td>
+<td>画第几个轮廓，如果该参数为负值，则画全部轮廓</td>
+</tr>
+<tr>
+<td>color</td>
+<td>线条的颜色</td>
+</tr>
+<tr>
+<td>thickness</td>
+<td>线条宽度，负值或CV_FILLED表示填充轮廓内部</td>
+</tr>
+<tr>
+<td>lineType</td>
+<td>线条的类型</td>
+</tr>
+</tbody></table>
+<p>示例程序：绘制一个五边形</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyDemo::polyDrawing_Demo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">//创建画布</span></span><br><span class="line">	Mat bg = Mat::<span class="built_in">zeros</span>(<span class="built_in">Size</span>(<span class="number">512</span>, <span class="number">512</span>), CV_8UC3);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//创建五个点，作为多边形五个顶点</span></span><br><span class="line">	<span class="function">Point <span class="title">p1</span><span class="params">(<span class="number">100</span>, <span class="number">100</span>)</span></span>;</span><br><span class="line">	<span class="function">Point <span class="title">p2</span><span class="params">(<span class="number">350</span>, <span class="number">100</span>)</span></span>;</span><br><span class="line">	<span class="function">Point <span class="title">p3</span><span class="params">(<span class="number">450</span>, <span class="number">300</span>)</span></span>;</span><br><span class="line">	<span class="function">Point <span class="title">p4</span><span class="params">(<span class="number">250</span>, <span class="number">450</span>)</span></span>;</span><br><span class="line">	<span class="function">Point <span class="title">p5</span><span class="params">(<span class="number">80</span>, <span class="number">200</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//将五个点依次添加到点集中</span></span><br><span class="line">	std::vector&lt;Point&gt; pts;</span><br><span class="line">	pts.<span class="built_in">push_back</span>(p1);</span><br><span class="line">	pts.<span class="built_in">push_back</span>(p2);</span><br><span class="line">	pts.<span class="built_in">push_back</span>(p3);</span><br><span class="line">	pts.<span class="built_in">push_back</span>(p4);</span><br><span class="line">	pts.<span class="built_in">push_back</span>(p5);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//添加点集到contours</span></span><br><span class="line">	<span class="comment">//（相当于contours是点集的集合）</span></span><br><span class="line">	std::vector&lt;std::vector&lt;Point&gt;&gt; contours;</span><br><span class="line">	contours.<span class="built_in">push_back</span>(pts);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//绘制多边形</span></span><br><span class="line">	<span class="built_in">drawContours</span>(bg, contours, <span class="number">-1</span>, <span class="built_in">Scalar</span>(<span class="number">255</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">-1</span>);</span><br><span class="line">	<span class="built_in">imshow</span>(<span class="string">&quot;Poly Drawing!&quot;</span>, bg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="https://img-blog.csdnimg.cn/img_convert/141a149f6cc64488d35f2a2cf4f7316b.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://blog.csdn.net/weixin_44543463">
+          <span class="icon">
+            <i class="fab fa-cuttlefish"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+              <a href="/tags/c/" rel="tag"><i class="fa fa-tag"></i> c++</a>
+              <a href="/tags/opencv/" rel="tag"><i class="fa fa-tag"></i> opencv</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/07/21/102-%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E6%95%99%E4%BD%A0%E6%9B%BF%E6%8D%A2%E7%BB%BF%E5%B9%95%E8%83%8C%E6%99%AF/" rel="prev" title="【学习OpenCV4】教你替换绿幕背景">
+                  <i class="fa fa-chevron-left"></i> 【学习OpenCV4】教你替换绿幕背景
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/07/23/104-%E3%80%90%E5%AD%A6%E4%B9%A0OpenCV4%E3%80%91%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E9%9A%8F%E6%9C%BA%E7%BA%BF%E6%9D%A1%E7%9A%84%E7%94%9F%E6%88%90/" rel="next" title="【学习OpenCV4】随机数的使用与随机线条的生成">
+                  【学习OpenCV4】随机数的使用与随机线条的生成 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian">
+
+  </div>
+
+<div class="copyright">
+    <span class="with-love">
+      <img src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@3.0.9/images/icp.png" alt="" style="height:17px;margin-bottom:-3px">
+    </span><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">正在备案中 </a>
+  丨<a href="https://www.huffie.cn/">Copyright
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <!--<span class="with-love"><i class="fa fa-grip-lines-vertical"></i></span>--></a>丨
+  <span class="author" itemprop="copyrightHolder">
+  <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">Powered by Hexo</a>
+  </span>丨
+  <span>
+    <!-- 网站运行时间 -->
+    <a target="_blank" rel="noopener" href="https://wangzhan.baidu.com/web/welcome/ico?s=3fd06b1b63f9b056d19abc6f5a943aed">
+    </script>
+    <span id="runtime_span"></span>
+    <script type="text/javascript">function show_runtime(){window.setTimeout("show_runtime()",1000);X=new 
+    Date("1/21/2021 14:56:40");
+    Y=new Date();T=(Y.getTime()-X.getTime());M=24*60*60*1000;
+    a=T/M;A=Math.floor(a);b=(a-A)*24;B=Math.floor(b);c=(b-B)*60;C=Math.floor((b-B)*60);D=Math.floor((c-C)*60);
+    runtime_span.innerHTML="本站已运行 "+A+"天"+B+"小时"+C+"分"+D+"秒"}show_runtime();</script>
+    </a>丨
+  </span>
+  <span class="with-love">
+    <a target="_blank" rel="noopener" href="https://wangzhan.baidu.com/web/welcome/ico?s=3fd06b1b63f9b056d19abc6f5a943aed">
+      <img src="https://wangzhan.baidu.com/sc-web/image/icon/45.gif?__v=1628562176659" alt="" style="height:17px;margin-bottom:-3px">
+    </a>
+  </span>
+</div><script color="6,6,6" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  
+
+
+
+
+{% if page.type ==='about' %}
+  <script src="//cdn.jsdelivr.net/npm/minigrid@3.1.1/dist/minigrid.min.js"></script>
+  <script src="/js/photo.js"></script>
+{% endif %}
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":200},"mobile":{"show":true},"react":{"opacity":1}});</script></body>
+</html>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<style>
+// 桌面、手机显示
+.sjfollow{display: none;}
+@media (max-width: 768px){.sjfollow{display: block !important;}
+.pcfollow{display: block;}
+@media (max-width: 768px){.pcfollow{display: none;}
+</style>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.huffie.cn","root":"/","images":"/images","scheme":"Mist","version":"8.7.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"always","padding":18,"offset":12,"b2t":true,"scrollpercent":true},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":null,"post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Launch文件作用为通过XML文件实现多节点的配置和启动，同时可以自动启动ROS Master（不需要单独&#96;roscore&#96;）。语法规范如下...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【ROS学习笔记】（十一）launch启动文件的使用方法">
+<meta property="og:url" content="https://www.huffie.cn/2021/03/02/069-%E3%80%90ROS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89launch%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="HalfA Studio">
+<meta property="og:description" content="Launch文件作用为通过XML文件实现多节点的配置和启动，同时可以自动启动ROS Master（不需要单独&#96;roscore&#96;）。语法规范如下...">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210302172409787.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210302172453240.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2021-03-02T09:25:48.000Z">
+<meta property="article:modified_time" content="2021-08-21T03:46:24.053Z">
+<meta property="article:author" content="Huffie">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="ros">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210302172409787.png">
+
+
+<link rel="canonical" href="https://www.huffie.cn/2021/03/02/069-%E3%80%90ROS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89launch%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.huffie.cn/2021/03/02/069-%E3%80%90ROS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89launch%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/","path":"2021/03/02/069-【ROS学习笔记】（十一）launch启动文件的使用方法/","title":"【ROS学习笔记】（十一）launch启动文件的使用方法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【ROS学习笔记】（十一）launch启动文件的使用方法 | HalfA Studio</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?3fd06b1b63f9b056d19abc6f5a943aed"></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  
+  <!--Follow me on CSDN-->
+  <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44543463"><img loading="lazy" width="149" height="149" style="position: absolute; top: 0; right: 0; border: 0;" src="https://img-blog.csdnimg.cn/abe3797b7d77419b81ecc02dd1bf8c34.png" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">HalfA Studio</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-资源"><a href="/resource/" rel="section"><i class="fa fa-cloud-download-alt fa-fw"></i>资源</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81Launch%E6%96%87%E4%BB%B6%E4%BD%9C%E7%94%A8"><span class="nav-text">一、Launch文件作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Launch%E6%96%87%E4%BB%B6%E8%AF%AD%E6%B3%95"><span class="nav-text">二、Launch文件语法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-lt-launch-gt"><span class="nav-text">1. &lt;launch&gt;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-lt-node-gt"><span class="nav-text">2. &lt;node&gt;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="nav-text">3. 参数设置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E9%87%8D%E6%98%A0%E5%B0%84-lt-remap-gt"><span class="nav-text">4. 重映射&lt;remap&gt;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-%E5%B5%8C%E5%A5%97-lt-include-gt"><span class="nav-text">5. 嵌套&lt;include&gt;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81Launch%E7%A4%BA%E4%BE%8B"><span class="nav-text">三、Launch示例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8A%9F%E8%83%BD%E5%8C%85"><span class="nav-text">1. 新建一个功能包</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E5%88%9B%E5%BB%BAlaunch%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-text">2. 创建launch文件夹</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E5%88%9B%E5%BB%BAlaunch%E6%96%87%E4%BB%B6"><span class="nav-text">3. 创建launch文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E8%BF%90%E8%A1%8Claunch%E6%96%87%E4%BB%B6"><span class="nav-text">4. 运行launch文件</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Huffie"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Huffie</p>
+  <div class="site-description" itemprop="description">Done is better than perfect.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-name">博客</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/weixin_44543463" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_44543463" rel="noopener" target="_blank"><i class="fab fa-cuttlefish fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/HuffieMa" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HuffieMa" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:haofei_ma@163.com" title="E-Mail → mailto:haofei_ma@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/huffie65380272" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;huffie65380272" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.huffie.cn/2021/03/02/069-%E3%80%90ROS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89launch%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Huffie">
+      <meta itemprop="description" content="Done is better than perfect.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HalfA Studio">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【ROS学习笔记】（十一）launch启动文件的使用方法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-02 17:25:48" itemprop="dateCreated datePublished" datetime="2021-03-02T17:25:48+08:00">2021-03-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-21 11:46:24" itemprop="dateModified" datetime="2021-08-21T11:46:24+08:00">2021-08-21</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/" itemprop="url" rel="index"><span itemprop="name">机器人</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/ROS/" itemprop="url" rel="index"><span itemprop="name">ROS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">Launch文件作用为通过XML文件实现多节点的配置和启动，同时可以自动启动ROS Master（不需要单独`roscore`）。语法规范如下...</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="一、Launch文件作用"><a href="#一、Launch文件作用" class="headerlink" title="一、Launch文件作用"></a>一、Launch文件作用</h3><ul>
+<li>通过XML文件实现多节点的配置和启动。</li>
+<li>同时可以自动启动ROS Master（不需要单独<code>roscore</code>）。</li>
+</ul>
+<h3 id="二、Launch文件语法"><a href="#二、Launch文件语法" class="headerlink" title="二、Launch文件语法"></a>二、Launch文件语法</h3><h5 id="1-lt-launch-gt"><a href="#1-lt-launch-gt" class="headerlink" title="1. &lt;launch&gt;"></a>1. <code>&lt;launch&gt;</code></h5><p>launch文件中的根元素采用<code>&lt;launch&gt;</code>标签定义</p>
+<h5 id="2-lt-node-gt"><a href="#2-lt-node-gt" class="headerlink" title="2. &lt;node&gt;"></a>2. <code>&lt;node&gt;</code></h5><p>启动节点：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">node</span> <span class="attr">pkg</span>=<span class="string">&quot;package-name&quot;</span> <span class="attr">type</span>=<span class="string">&quot;executable-name&quot;</span> <span class="attr">name</span>=<span class="string">&quot;node-name&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>pkg：节点所在功能包名称</li>
+<li>type：节点的可执行文件名称</li>
+<li>name：节点运行时的名称</li>
+<li>其他可选属性：<ul>
+<li>output（是否打印日志信息）</li>
+<li>respawn（是否在出现错误时重启）</li>
+<li>require（是否要求某个节点必须启动）</li>
+<li>ns（namespace定义命名空间，避免命名冲突）</li>
+<li>args（给每个节点输入参数）</li>
+</ul>
+</li>
+</ul>
+<h5 id="3-参数设置"><a href="#3-参数设置" class="headerlink" title="3. 参数设置"></a>3. 参数设置</h5><ul>
+<li><p><code>&lt;param&gt;</code>或<code>&lt;param&gt;</code></p>
+<p>设置系统中的参数，存储在参数服务器中</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;output_frame&quot;</span> <span class="attr">value</span>=<span class="string">&quot;abcd&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>加载参数文件中的多个参数：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">rosparam</span> <span class="attr">file</span>=<span class="string">&quot;params.yaml&quot;</span> <span class="attr">command</span>=<span class="string">&quot;load&quot;</span> <span class="attr">ns</span>=<span class="string">&quot;params&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p><code>&lt;arg&gt;</code></p>
+<p>launch文件内部的局部变量</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">arg</span> <span class="attr">name</span>=<span class="string">&quot;arg-name&quot;</span> <span class="attr">default</span>=<span class="string">&quot;arg-value&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="4-重映射-lt-remap-gt"><a href="#4-重映射-lt-remap-gt" class="headerlink" title="4. 重映射&lt;remap&gt;"></a>4. 重映射<code>&lt;remap&gt;</code></h5><p>重映射ROS计算图资源的命名</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">remap</span> <span class="attr">from</span>=<span class="string">&quot;/turtlebot/cmd_vel&quot;</span> <span class="attr">to</span>=<span class="string">&quot;/cmd_vel&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="5-嵌套-lt-include-gt"><a href="#5-嵌套-lt-include-gt" class="headerlink" title="5. 嵌套&lt;include&gt;"></a>5. 嵌套<code>&lt;include&gt;</code></h5><p>包含其他launch文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">include</span> <span class="attr">file</span>=<span class="string">&quot;$(dirname)/other.launch&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="三、Launch示例"><a href="#三、Launch示例" class="headerlink" title="三、Launch示例"></a>三、Launch示例</h3><h5 id="1-新建一个功能包"><a href="#1-新建一个功能包" class="headerlink" title="1. 新建一个功能包"></a>1. 新建一个功能包</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/catkin_ws/src</span><br><span class="line">catkin_create_pkg learning_launch</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-创建launch文件夹"><a href="#2-创建launch文件夹" class="headerlink" title="2. 创建launch文件夹"></a>2. 创建launch文件夹</h5><p>在learning_launch文件夹下新建一个名为<code>launch</code>的文件夹。</p>
+<h5 id="3-创建launch文件"><a href="#3-创建launch文件" class="headerlink" title="3. 创建launch文件"></a>3. 创建launch文件</h5><p>在刚才创建的文件夹内新建一个文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touchs simple.launch</span><br></pre></td></tr></table></figure>
+
+<p>其内容为</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">launch</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">node</span> <span class="attr">pkg</span>=<span class="string">&quot;learning_topic&quot;</span> <span class="attr">type</span>=<span class="string">&quot;person_subscriber&quot;</span> <span class="attr">name</span>=<span class="string">&quot;talker&quot;</span> <span class="attr">output</span>=<span class="string">&quot;screen&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">node</span> <span class="attr">pkg</span>=<span class="string">&quot;learning_topic&quot;</span> <span class="attr">type</span>=<span class="string">&quot;person_publisher&quot;</span> <span class="attr">name</span>=<span class="string">&quot;listener&quot;</span> <span class="attr">output</span>=<span class="string">&quot;screen&quot;</span> /&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">launch</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20210302172409787.png" alt="在这里插入图片描述"></p>
+<h5 id="4-运行launch文件"><a href="#4-运行launch文件" class="headerlink" title="4. 运行launch文件"></a>4. 运行launch文件</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roslaunch learning_launch simple.launch</span><br></pre></td></tr></table></figure>
+
+<p>可以看到两个节点都运行起来了。<br><img src="https://img-blog.csdnimg.cn/20210302172453240.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://blog.csdn.net/weixin_44543463">
+          <span class="icon">
+            <i class="fab fa-cuttlefish"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+              <a href="/tags/ros/" rel="tag"><i class="fa fa-tag"></i> ros</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/01/068-%E3%80%90ROS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E5%8D%81%EF%BC%89ROS%E4%B8%AD%E7%9A%84%E5%9D%90%E6%A0%87%E7%B3%BB%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" rel="prev" title="【ROS学习笔记】（十）ROS中的坐标系管理系统">
+                  <i class="fa fa-chevron-left"></i> 【ROS学习笔记】（十）ROS中的坐标系管理系统
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/03/03/070-%E3%80%90ROS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%B8%B8%E7%94%A8%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7/" rel="next" title="【ROS学习笔记】（十二）常用可视化工具">
+                  【ROS学习笔记】（十二）常用可视化工具 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian">
+
+  </div>
+
+<div class="copyright">
+    <span class="with-love">
+      <img src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@3.0.9/images/icp.png" alt="" style="height:17px;margin-bottom:-3px">
+    </span><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">正在备案中 </a>
+  丨<a href="https://www.huffie.cn/">Copyright
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <!--<span class="with-love"><i class="fa fa-grip-lines-vertical"></i></span>--></a>丨
+  <span class="author" itemprop="copyrightHolder">
+  <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">Powered by Hexo</a>
+  </span>丨
+  <span>
+    <!-- 网站运行时间 -->
+    <a target="_blank" rel="noopener" href="https://wangzhan.baidu.com/web/welcome/ico?s=3fd06b1b63f9b056d19abc6f5a943aed">
+    </script>
+    <span id="runtime_span"></span>
+    <script type="text/javascript">function show_runtime(){window.setTimeout("show_runtime()",1000);X=new 
+    Date("1/21/2021 14:56:40");
+    Y=new Date();T=(Y.getTime()-X.getTime());M=24*60*60*1000;
+    a=T/M;A=Math.floor(a);b=(a-A)*24;B=Math.floor(b);c=(b-B)*60;C=Math.floor((b-B)*60);D=Math.floor((c-C)*60);
+    runtime_span.innerHTML="本站已运行 "+A+"天"+B+"小时"+C+"分"+D+"秒"}show_runtime();</script>
+    </a>丨
+  </span>
+  <span class="with-love">
+    <a target="_blank" rel="noopener" href="https://wangzhan.baidu.com/web/welcome/ico?s=3fd06b1b63f9b056d19abc6f5a943aed">
+      <img src="https://wangzhan.baidu.com/sc-web/image/icon/45.gif?__v=1628562176659" alt="" style="height:17px;margin-bottom:-3px">
+    </a>
+  </span>
+</div><script color="6,6,6" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  
+
+
+
+
+{% if page.type ==='about' %}
+  <script src="//cdn.jsdelivr.net/npm/minigrid@3.1.1/dist/minigrid.min.js"></script>
+  <script src="/js/photo.js"></script>
+{% endif %}
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":200},"mobile":{"show":true},"react":{"opacity":1}});</script></body>
+</html>
