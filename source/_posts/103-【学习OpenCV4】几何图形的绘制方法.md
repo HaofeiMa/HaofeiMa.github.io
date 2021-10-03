@@ -14,7 +14,7 @@ tags:
 &emsp;&emsp;在正文开始之前，首先要知道屏幕中 **(0, 0) 坐标点**在左上角，最大坐标在右下角。
 
 ## 一、基本图形的绘制
-#### 1. 矩形
+### 1. 矩形
 &emsp;&emsp;OpenCV中绘制矩形的函数为 `rectangle()` 。
 ```cpp
 void rectangle(InputOutputArray img, Rect rec, const Scalar& color, int thickness = 1, int lineType = LINE_8, int shift = 0);
@@ -44,7 +44,7 @@ void MyDemo::drawing_Demo(Mat& image) {
 ```
 <img src="https://img-blog.csdnimg.cn/img_convert/af671a2b45e802c3e63209fa87a96666.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
 
-#### 2. 圆形
+### 2. 圆形
 &emsp;&emsp;OpenCV中绘制圆形的函数为 `rectangle()` 。
 ```cpp
 void cv::circle (InputOutputArray img, Point center, int radius, const Scalar &color, int thickness=1, int lineType=LINE_8, int shift=0);
@@ -71,7 +71,7 @@ void MyDemo::drawing_Demo(Mat& image) {
 <img src="https://img-blog.csdnimg.cn/img_convert/952ed890a5696533968b9ba4c8e2377a.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
 
 &emsp;&emsp;
-#### 3. 直线
+### 3. 直线
 &emsp;&emsp;OpenCV中绘制直线的函数为 `rectangle()` 。
 ```cpp
 void cv::line(InputOutputArray img, Point pt1, Point pt2, const Scalar &color, int thickness=1, int lineType=LINE_8, int shift=0);
@@ -98,7 +98,7 @@ void MyDemo::drawing_Demo(Mat& image) {
 <img src="https://img-blog.csdnimg.cn/img_convert/dacd9d0f6a5f9d67a50aee48aaed60a6.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
 &emsp;&emsp;
 
-#### 4. 椭圆
+### 4. 椭圆
 
 &emsp;&emsp;OpenCV中绘制椭圆的函数为 `ellipse()` 。
 ```cpp
@@ -138,7 +138,7 @@ void MyDemo::drawing_Demo(Mat& image) {
 
 ## 二、多边形绘制方法
 &emsp;&emsp;多边形绘制的本质是定义一个由多个点组成的点集，以此连接点集中的各个点，从而形成多边形。
-#### 2.1 多边形边框
+### 2.1 多边形边框
 &emsp;&emsp;绘制多边形的边框使用到的函数是 `ploylines()` 。
 ```cpp
 void cv::polylines(
@@ -199,7 +199,7 @@ void MyDemo::polyDrawing_Demo() {
 
 <img src="https://img-blog.csdnimg.cn/img_convert/c94a4045c4b42787be70c97ffb011795.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
 
-#### 2.2 多边形填充
+### 2.2 多边形填充
 &emsp;&emsp;绘制填充的多边形使用到的函数是 `fillPoly()` 。
 ```cpp
 void cv::fillPoly(
@@ -247,7 +247,7 @@ void MyDemo::polyDrawing_Demo() {
 
 <img src="https://img-blog.csdnimg.cn/img_convert/66c1611508015c694e917fda36d19db9.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
 
-#### 2.3 绘制多个多边形
+### 2.3 绘制多个多边形
 
 &emsp;&emsp;绘制多个多边形使用到的函数是 `drawContours()` 。
 ```cpp

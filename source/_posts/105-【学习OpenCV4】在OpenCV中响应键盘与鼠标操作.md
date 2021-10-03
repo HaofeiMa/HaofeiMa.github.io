@@ -12,7 +12,7 @@ tags:
 ---
 
 ## 一、键盘的响应
-#### 1.1 基本知识
+### 1.1 基本知识
 &emsp;&emsp;按键的读取只需要使用waitKey()函数就可以实现，十分简单。
  ```cpp
  int waitKey（int delay=0）
@@ -21,7 +21,7 @@ tags:
 &emsp;&emsp;delay<=0时，等待时间无限长，按下按键时函数结束，**返回按键的键值**。·
 &emsp;&emsp;delay>0时，等待delay毫秒按键响应，等待时间结束仍未按下按键则返回-1。
 >  本人opencv4+vs2019实操时，没有按键时不返回值，有按键按下时返回对应键值。
-#### 1.2 确定按键响应值
+### 1.2 确定按键响应值
 &emsp;&emsp;使用如下代码，可以测试自己的键盘对应的键值是多少。
 ```cpp
 void MyDemo::key_Demo(Mat& image) {
@@ -33,7 +33,7 @@ void MyDemo::key_Demo(Mat& image) {
 ```
 <img src="https://img-blog.csdnimg.cn/20210719114312504.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="30%">
 
-#### 1.3 按键调节亮度
+### 1.3 按键调节亮度
 
 ```cpp
 /*按下1时：图片亮度增大
@@ -60,7 +60,7 @@ void MyDemo::key_Demo(Mat& image) {
 }
 ```
 ## 二、鼠标的响应
-#### 1.1 基本知识
+### 1.1 基本知识
 &emsp;&emsp;鼠标响应所使用的函数主要是 `setMouseCallback()` 。
 ```cpp
  void setMousecallback(
@@ -96,7 +96,7 @@ void on_Mouse(
 | EVENT_RBUTTONDBLCLK | 右键双击 |
 | EVENT_MBUTTONDBLCLK | 中键双击 |
 
-#### 1.2 示例程序
+### 1.2 示例程序
 &emsp;&emsp;在图像上实现拖动绘制矩形的画板功能。
 ![请添加图片描述](https://img-blog.csdnimg.cn/2ffd5983a84e4e63be6282943a5184b6.png)
 ```cpp

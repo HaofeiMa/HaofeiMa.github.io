@@ -16,7 +16,7 @@ tags:
 &emsp;&emsp;归一化的目的，是使得没有可比性的数据变得具有可比性，同时又保持相比较的两个数据之间的相对关系，如大小关系；或是为了作图，原来很难在一张图上作出来，归一化后就可以很方便的给出图上的相对位置等。
 
 ## 二、归一化的方式
-#### 2.1 基本API
+### 2.1 基本API
 ```cpp
 void normalize(
 	InputArray 			src,
@@ -44,7 +44,7 @@ void normalize(
 * NORM_L1 :  归一化数组的L1-范数(绝对值的和)
 * NORM_L2: 归一化数组的(欧几里德)L2-范数
 
-#### 2.2 示例程序
+### 2.2 示例程序
 ```cpp
 void MyDemo::normalize_Demo(Mat& image) {
 	Mat dst;

@@ -33,7 +33,7 @@ tags:
 * 输入端：5V输入接板载5V，12V输入外接电源
 * 使能端：ENA、ENB接板载5V，默认使能
 * 输出端：OUT1、OUT2、OUT3、OUT4分别接步进电机的四条线红绿黄蓝。
-## 四、Proteus仿真
+## 三、Proteus仿真
 在Proteus中的接线情况如下图所示：
 ![Protues接线](https://img-blog.csdnimg.cn/20210101142442184.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
 参考程序如下：

@@ -16,7 +16,7 @@ TF功能包用来管理所有的坐标系。它可以记录十秒钟之内所有
 
 ### 二、举例：小海龟跟随实验
 
-##### 1. 小海龟跟随
+#### 1. 小海龟跟随
 
 两只海龟出现之后，一只海龟在中心点，另一只海龟出现在下方，可以控制中心的海龟进行运动，下方的海龟会自动跟随我们控制的海龟进行运动
 
@@ -29,37 +29,38 @@ roslaunch turtle_tf turtle_tf_demo.launch
 其中的noetic为ROS版本号
 
 在terminal中按方向键即可控制被跟随的乌龟。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210301150223793.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20210301150223793.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+
 > 如果ubuntu20.04 noetic版本出现报错可以参考下面的方法解决
 > ```
 > cd /usr/bin
 > sudo rm -r python		# 有的可能没有这个文件，就省略这一步
 > sudo cp python3 python
 > ```
-##### 2. 查看tf关系
+#### 2. 查看tf关系
 
 ```bash
 rosrun tf view_frames
 ```
 
 等待5秒，生成一个pdf文件，打开可以看到当前系统中tf坐标的位置关系。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210301151603341.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20210301151603341.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
 
 其中world是全局坐标系，另外的turtle1和turtle2是两只海龟上的坐标系。例程的目的是使两个坐标系在坐标上是重叠的。
 
 > 此步如果出错则需要执行修改报错的文件
 > `sudo gedit /opt/ros/noetic/lib/tf/view_frames `
 > 在第88行`print(vstr)`上方添加一句`vstr=str(vstr)`就可以了
-##### 3. tf_echo坐标关系
+#### 3. tf_echo坐标关系
 
 ```bash
 rosrun tf tf_echo turtle1 turtle2
 ```
 
 输出两个坐标系之间的关系，描述turtle2坐标系如何变换到turtle1坐标系。包括Translation平移和Rotation旋转（四元数、弧度、角度三种方式描述旋转）。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210301151641849.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20210301151641849.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
 
-##### 4. rviz三维可视化显示平台
+#### 4. rviz三维可视化显示平台
 
 ```bash
 rosrun rviz rviz -d 'rospack find turtle_tf' /rviz/turtle_rviz.rviz
@@ -68,20 +69,20 @@ rosrun rviz rviz -d 'rospack find turtle_tf' /rviz/turtle_rviz.rviz
 首先将左侧Fixed Frame改成world
 
 点击左下方Add，添加一个TF，用来显示TF位置关系
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210301152021546.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20210301152021546.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
 
 控制海龟运动，可以看到图中两个坐标系在运动
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210301152153434.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20210301152153434.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
 
 ### 三、TF坐标系广播与监听的编程实现
-##### 1. 创建功能包
+#### 1. 创建功能包
 
 ```bash
 cd ~/catkin_ws/src
 catkin_create_pkg learning_tf roscpp rospy tf turtlesim
 ```
 
-##### 2. 创建tf广播器代码
+#### 2. 创建tf广播器代码
 
 打开`learning_tf/src/`目录，在其中创建一个`turtle_tf_broadcaster.cpp`
 
@@ -140,7 +141,7 @@ int main(int argc, char** argv)
 };
 ```
 
-##### 3. 创建监听器listener代码
+#### 3. 创建监听器listener代码
 
 同样的，再创建一个`turtle_tf_listener.cpp`，其内容为
 
@@ -206,7 +207,7 @@ int main(int argc, char** argv)
 };
 ```
 
-##### 4. 配置tf广播器与监听器代码编译规则
+#### 4. 配置tf广播器与监听器代码编译规则
 
 配置`learning_tf`中的`CMakeLists.txt`，在图示位置添加如下代码
 
@@ -217,18 +218,18 @@ target_link_libraries(turtle_tf_broadcaster ${catkin_LIBRARIES})
 add_executable(turtle_tf_listener src/turtle_tf_listener.cpp)
 target_link_libraries(turtle_tf_listener ${catkin_LIBRARIES})
 ```
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210301152515882.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20210301152515882.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
 
 即分别把两个cpp文件编译成两个可执行文件，然后对库进行链接。
 
-##### 5. 编译
+#### 5. 编译
 
 ```bash
 cd ~/catkin_ws
 catkin_make
 ```
 
-##### 6. 运行程序
+#### 6. 运行程序
 
 以下程序每一行均需要一个单独的terminal运行。
 
@@ -241,4 +242,4 @@ rosrun learning_tf turtle_tf_listener
 rosrun turtlesim turtle_teleop_key
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210301153221708.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20210301153221708.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)

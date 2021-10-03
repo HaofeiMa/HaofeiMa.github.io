@@ -13,7 +13,7 @@ tags:
 
 ## 一、软件准备
 
-#### 1.1 下载并解压OpenCV
+### 1.1 下载并解压OpenCV
 &emsp;&emsp;建议到[opencv的官网](https://opencv.org/)下载windows版本的安装包。
 >如果觉得下载速度过慢，我也把opencv4.5.2安装包上传了阿里云
 >[https://www.aliyundrive.com/s/VGkaM7vyuck](https://www.aliyundrive.com/s/VGkaM7vyuck)
@@ -26,7 +26,7 @@ tags:
 <img src="https://img-blog.csdnimg.cn/img_convert/d6262de5383006717ba6700941e85e2d.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
 
 
-#### 1.2 下载并安装Visual Studio
+### 1.2 下载并安装Visual Studio
 &emsp;&emsp;这里我使用的是Visual Studio 2019 专业版，[官网](https://visualstudio.microsoft.com/zh-hans/vs/)就可以下载。使用其他版本的VS也可以，没有特别要求。
 
 &emsp;&emsp;安装时勾选**使用C++的桌面开发**，然后修改安装位置，其他配置都可以默认。
@@ -38,7 +38,7 @@ tags:
 >安装完成后，如果需要VS2019 Pro注册码：`NYWVH-HT4XC-R2WYW-9Y3CM-X4V3Y`
 
 ## 二、配置OpenCV环境
-#### 2.1 创建项目
+### 2.1 创建项目
 &emsp;&emsp;新建一个**控制台项目**。
 <img src="https://img-blog.csdnimg.cn/img_convert/7e245920aa0908dabe4943be4a69f3b5.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
 
@@ -47,7 +47,7 @@ tags:
 &emsp;&emsp;配置如下图中为**Release**和**x64**版本。
 <img src="https://img-blog.csdnimg.cn/img_convert/9d2be154393957abac93b482c367d760.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
 
-#### 2.2 配置属性
+### 2.2 配置属性
 &emsp;&emsp;打开**视图-其他窗口-属性管理器**（其他版本的VS可能是视图-属性管理器）。
 
 <img src="https://img-blog.csdnimg.cn/img_convert/e081a18b614a44e6ce22535970679079.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
@@ -100,7 +100,7 @@ tags:
 
 <img src="https://img-blog.csdnimg.cn/img_convert/f6ab12c5f78033318e5bca7cc2af218d.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
 
-#### 2.3 配置环境变量
+### 2.3 配置环境变量
 &emsp;&emsp;复制bin文件夹目录。
 <img src="https://img-blog.csdnimg.cn/img_convert/fa6e04a589a630088098d0e60f986dde.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
 &emsp;&emsp;回到桌面，**右键计算机-属性-高级系统设置**，打开环境变量。

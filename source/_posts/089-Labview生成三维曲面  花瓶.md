@@ -14,20 +14,22 @@ tags:
 
 ---
 ## 一、程序思路
+
 花瓶这种回转曲面生成的本质是**轮廓沿引导线扫描**。
 <img src="https://img-blog.csdnimg.cn/20210408112207884.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="30%">
 而对于花瓶来说，其生成方法就是一个圆沿一条曲线进行扫描
 
-#### 1.1 底面圆轮廓的生成
+### 1.1 底面圆轮廓的生成
 **圆的生成方法如下：**
 循环总数为360，对应360度，i则对应从0~360的每一角度。将i转换为弧度制，即可得到圆上各点的x坐标和y坐标，将两个坐标进行捆绑，得到的就是圆这个曲线。
 <img src="https://img-blog.csdnimg.cn/202104081113032.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="50%">
 <img src="https://img-blog.csdnimg.cn/20210408114027122.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="30%">
-#### 1.2 引导线的生成
+
+### 1.2 引导线的生成
 花瓶的生成，就是平面曲线圆的基础上，再加一个z轴曲线，作为圆的扫描引导线，这里以正弦曲线作为圆的扫描引导线。
 <img src="https://img-blog.csdnimg.cn/20210408112807110.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="30%">
 
-#### 1.3 圆沿引导线扫描
+### 1.3 圆沿引导线扫描
 基本思路为：
 在刚才生成圆的循环外，再套一个循环。循环的输入是引导线输出的数组。
 引导线上每一个点位数据进入大循环时，内循环就画一个以此数据为半径的圆。
@@ -43,11 +45,11 @@ tags:
 <img src="https://img-blog.csdnimg.cn/20210408115845438.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
 
 ## 二、改进方法
-#### 2.1 修复裂缝
+### 2.1 修复裂缝
 可以看到生成的曲面上有一条裂缝，原因是起始点和终止点没有重合。
 <img src="https://img-blog.csdnimg.cn/20210408120215414.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
 **解决方法：**将起始点添加到终止点，手动实现曲面封闭。索引数组中的第一个元素，将其添加到原数组的最后。
 <img src="https://img-blog.csdnimg.cn/20210408121047907.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="100%">
-#### 2.2 添加底面
+### 2.2 添加底面
 添加底面的方法十分简单，因为labview的三维曲面生成是连接相邻的点组成曲面，因此只需要在底面最中心添加一个点即可。
 <img src="https://img-blog.csdnimg.cn/20210408121426986.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="100%">

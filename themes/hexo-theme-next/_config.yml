@@ -575,7 +575,7 @@ comments:
   style: tabs
   # 选择一个默认显示的评论系统
   # Available values: disqus | disqusjs | changyan | livere | gitalk | utterances
-  active:
+  active: changyan
   # Setting `true` means remembering the comment system selected by the visitor.
   storage: true
   # Lazyload all comment systems.
@@ -592,7 +592,7 @@ comments:
 # For more information: https://disqus.com
 disqus:
   enable: false
-  shortname:
+  shortname: halfa
   count: true
 
 # DisqusJS
@@ -603,16 +603,16 @@ disqusjs:
   # Leave api empty if you are able to connect to Disqus API. Otherwise you need a reverse proxy for it.
   # For example:
   # api: https://disqus.skk.moe/disqus/
-  api:
+  api: 
   apikey: # Register new application from https://disqus.com/api/applications/
   shortname: # See: https://disqus.com/admin/settings/general/
 
 # Changyan
 # For more information: https://changyan.kuaizhan.com
 changyan:
-  enable: false
-  appid:
-  appkey:
+  enable: true
+  appid: cyvG6Q21G
+  appkey: e1a1f7dfae01628aaf6caabe13917fd8
 
 # LiveRe comments system
 # You can get your uid from https://livere.com/insight/myCode (General web site)
@@ -622,18 +622,18 @@ livere_uid: # <your_uid>
 # For more information: https://gitalk.github.io
 gitalk:
   enable: false
-  github_id: # GitHub repo owner
-  repo: # Repository name to store issues
-  client_id: # GitHub Application Client ID
-  client_secret: # GitHub Application Client Secret
-  admin_user: # GitHub repo owner and collaborators, only these guys can initialize gitHub issues
+  github_id: HuffieMa # GitHub repo owner
+  repo: gittalk # Repository name to store issues
+  client_id: 56b6c26cce60bdc46286 # GitHub Application Client ID
+  client_secret: b9368bfbbe1a3f0040c2c4904eab9d51ef9a4225 # GitHub Application Client Secret
+  admin_user: HuffieMa # GitHub repo owner and collaborators, only these guys can initialize gitHub issues
   distraction_free_mode: true # Facebook-like distraction free mode
   # When the official proxy is not available, you can change it to your own proxy address
   proxy: https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token # This is official proxy adress
   # Gitalk's display language depends on user's browser or system environment
   # If you want everyone visiting your site to see a uniform language, you can set a force language value
   # Available values: en | es-ES | fr | ru | zh-CN | zh-TW
-  language:
+  language: zh-CN
 
 # Utterances
 # For more information: https://utteranc.es
@@ -650,6 +650,21 @@ utterances:
 isso: # <data_isso>
 
 
+# 1、Valine[一款快速、简洁且高效的无后端评论系统](https://github.com/xCss/Valine)
+# 启用Valine必须先创建leancloud应用， 获取 id|key 填入即可
+leancloud:
+  enable: true
+  app_id: 3Rw5EHd9mmq2LLj300zrIjI1
+  app_key: FKfDz4V75aXAV87S0ChulTmL
+# Valine配置
+valine:
+  enable: true # 是否启用i
+  verify: false #验证码
+  notify: false #评论回复提醒
+  avatar: wavatar # 头像样式(https://valine.js.org/avatar.html)
+  placeholder: 给我的文章加点评论吧~ # 评论框占位符
+
+
 # ---------------------------------------------------------------
 # 日志小工具和内容分享服务
 # See: https://theme-next.js.org/docs/third-party-services/post-widgets
@@ -658,8 +673,8 @@ isso: # <data_isso>
 # 支持每一篇文章的星级评级
 # To get your ID visit https://widgetpack.com
 rating:
-  enable: false
-  id:     # <app_id>
+  enable: true
+  id:      # <app_id>32337
   color:  "#fc6423"
 
 # AddThis Share. See: https://www.addthis.com
@@ -696,10 +711,10 @@ cloudflare_analytics:
 # You can visit https://www.leancloud.cn to get AppID and AppKey.
 leancloud_visitors:
   enable: false
-  app_id: # <your app id>
-  app_key: # <your app key>
+  app_id: 3Rw5EHd9mmq2LLj300zrIjI1-gzGzoHsz # <your app id>
+  app_key: FKfDz4V75aXAV87S0ChulTmL # <your app key>
   # Required for apps from CN region
-  server_url: # <your server url>
+  server_url: https://3rw5ehd9.lc-cn-n1-shared.com # <your server url>
   # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
   # If you don't care about security in leancloud counter and just want to use it directly
   # (without hexo-leancloud-counter-security plugin), set `security` to `false`.
@@ -955,6 +970,9 @@ vendors:
 
   # Canvas ribbon
   canvas_ribbon:
+  
+  # valine
+  valine: https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js
 
 # 资产
 # 使用CDN加速静态文件的传递

@@ -12,7 +12,7 @@ tags:
 ---
 
 ## 一、Trackbar的创建方法
-#### 1.1 createTrackbar
+### 1.1 createTrackbar
 &emsp;&emsp;OpenCV中使用`createTrackbar()`来创建滚动条，函数的使用方法如下：
 ```cpp
 createTrackbar(const String& trackbarname, const String& winname,int value, int count,TrackbarCallback onChange = 0,void userdata = 0); 
@@ -26,7 +26,7 @@ createTrackbar(const String& trackbarname, const String& winname,int value, int 
 | 5    | TrackbarCallback | 回调函数，拨动Trackbar返回的函数    |
 | 6    | userdata         | 用户传给回调函数的数据，不用默认为0 |
 
-#### 1.2 回调函数
+### 1.2 回调函数
 &emsp;&emsp;第五个参数回调函数TrackbarCallback，是指拨动Trackbar会产生一个事件，系统会捕捉这个事件，然后发送给相应的处理者，因此需要定义一个函数进行相应的处理。回调函数的定义规范如下：
 ```cpp
 void callbackfunc(int value, void* userdata);

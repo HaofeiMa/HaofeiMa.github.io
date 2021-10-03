@@ -12,34 +12,35 @@ tags:
 
 > 本文参考ros官网[http://wiki.ros.org/](http://wiki.ros.org/)的有关[安装教程](http://wiki.ros.org/noetic/Installation/Ubuntu)
 ### 一、准备工作
-##### 1. 添加ROS软件源
+#### 1. 添加ROS软件源
 打开软件与更新，将下载选项前四个都选上。
 **一定要确保都勾选上，不然后续安装时会出现依赖关系问题**
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210219145021840.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20210219145021840.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
 然后执行以下命令添加软件源
+
 ```bash
 sudo sh -c 'echo "deb https://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 ```
-##### 2. 添加公钥
+#### 2. 添加公钥
 ```bash
 sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 ```
-##### 3. 更新索引
+#### 3. 更新索引
 ```bash
 sudo apt-get update
 ```
 ### 二、安装ROS
-##### 1. 安装ROS
+#### 1. 安装ROS
 建议安装桌面完整版
 ```bash
 sudo apt install ros-noetic-desktop-full
 ```
-##### 2. 设置环境变量
+#### 2. 设置环境变量
 ```bash
 echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
-##### 3. 初始化rosdep
+#### 3. 初始化rosdep
 在使用许多ROS工具之前，需要初始化rosdep。rosdep是运行ROS中某些核心组件所必需的，首先安装rosdep
 ```bash
 sudo apt install python3-rosdep
@@ -54,11 +55,11 @@ rosdep update
 >  rosdep update如果出现超时问题
 >  以上两个问题的都可以通过修改host主机解决，只是update的问题在修改主机后，还要求网络必须可靠
 > 参考博客：[https://blog.csdn.net/weixin_44543463/article/details/113875658](https://blog.csdn.net/weixin_44543463/article/details/113875658)
-##### 4. 安装其它工具和依赖包
+#### 4. 安装其它工具和依赖包
 ```bash
 sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
 ```
 ### 三、测试
 **打开**终端，输入`roscore`，运行ros
 **再打开**一个新终端，输入：`rosrun turtlesim turtlesim_node`，可以看到小乌龟的仿真界面已经打开了。**再打开**一个新终端输入指令：`rosrun turtlesim turtle_teleop_key`，可以在这个key终端内，通过键盘的方向键控制小乌龟在界面中移动
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210220234744581.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20210220234744581.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)

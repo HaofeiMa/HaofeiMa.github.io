@@ -65,7 +65,7 @@ HTML有多个不同的版本，只有明白页面使用的确切的HTML版本，
     <h6>标题h6</h6>
 </body>
 ```
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210311114800432.png)
+![](https://img-blog.csdnimg.cn/20210311114800432.png)
 
 #### 2.4 HTML段落
 **段落：**`<p>`
@@ -80,7 +80,7 @@ HTML有多个不同的版本，只有明白页面使用的确切的HTML版本，
 </body>
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210311114811371.png)
+![](https://img-blog.csdnimg.cn/20210311114811371.png)
 
 
 #### 2.5 HTML链接
@@ -92,7 +92,7 @@ HTML有多个不同的版本，只有明白页面使用的确切的HTML版本，
 </body>
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021031111481932.png)
+![](https://img-blog.csdnimg.cn/2021031111481932.png)
 
 
 #### 2.6 HTML图像
@@ -104,7 +104,7 @@ HTML有多个不同的版本，只有明白页面使用的确切的HTML版本，
 </body>
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210311114825458.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70#pic_center)
+![](https://img-blog.csdnimg.cn/20210311114825458.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70#pic_center)
 
 ### 三、HTML元素、属性和格式化
 
@@ -212,7 +212,7 @@ HTML有多个不同的版本，只有明白页面使用的确切的HTML版本，
     <del>标签 del: 欢迎来到我的博客</del>
 </body>
 ```
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210311200601710.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70#pic_center)
+![](https://img-blog.csdnimg.cn/20210311200601710.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70#pic_center)
 
 
 
@@ -269,7 +269,7 @@ HTML有多个不同的版本，只有明白页面使用的确切的HTML版本，
      }
      ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210311200618171.png#pic_center)
+![](https://img-blog.csdnimg.cn/20210311200618171.png#pic_center)
 
 
    * 内部样式表
@@ -309,7 +309,7 @@ HTML有多个不同的版本，只有明白页面使用的确切的HTML版本，
      </html>
      ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210311200629686.png#pic_center)
+![](https://img-blog.csdnimg.cn/20210311200629686.png#pic_center)
 
 
    * 内联样式表
@@ -363,7 +363,7 @@ HTML有多个不同的版本，只有明白页面使用的确切的HTML版本，
 </body>
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210311200746306.png#pic_center)
+![](https://img-blog.csdnimg.cn/20210311200746306.png#pic_center)
 
 
 #### 4.3 表格
@@ -410,7 +410,7 @@ HTML有多个不同的版本，只有明白页面使用的确切的HTML版本，
     </table>
 </body>
 ```
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210311200947290.png#pic_center)
+![](https://img-blog.csdnimg.cn/20210311200947290.png#pic_center)
 
 **（2）表格属性**
 
@@ -428,12 +428,12 @@ HTML有多个不同的版本，只有明白页面使用的确切的HTML版本，
 
 3. 单元格大小：cellpadding    例：`<table border="1" cellpadding="10">`
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210311200823341.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70#pic_center)
+![](https://img-blog.csdnimg.cn/20210311200823341.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70#pic_center)
 
 
 4. 单元格间距：cellspacing    例：`<table border="1" cellspacing="10">`
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210311200843792.png#pic_center)
+![](https://img-blog.csdnimg.cn/20210311200843792.png#pic_center)
 
 5. 单元格背景颜色：bgcolor    例：`<table border="1" bgcolor="#cccccc">`
 6. 单元格背景图片：background    例：`<table border="1" background="huffie.jpg">`
@@ -468,7 +468,7 @@ HTML有多个不同的版本，只有明白页面使用的确切的HTML版本，
 </body>
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210311201007413.png#pic_center)
+![](https://img-blog.csdnimg.cn/20210311201007413.png#pic_center)
 
 
 **（2）属性**
@@ -487,7 +487,7 @@ HTML有多个不同的版本，只有明白页面使用的确切的HTML版本，
      </ul>
      ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021031120102870.png#pic_center)
+![](https://img-blog.csdnimg.cn/2021031120102870.png#pic_center)
 
 
 2. 有序列表
@@ -504,7 +504,7 @@ HTML有多个不同的版本，只有明白页面使用的确切的HTML版本，
          </ol>
      ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021031120104485.png#pic_center)
+![](https://img-blog.csdnimg.cn/2021031120104485.png#pic_center)
 
 
 3. 嵌套列表
@@ -526,7 +526,7 @@ HTML有多个不同的版本，只有明白页面使用的确切的HTML版本，
          </dl>
      ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210311201102444.png#pic_center)
+![](https://img-blog.csdnimg.cn/20210311201102444.png#pic_center)
 
 
 #### 5.2 块
@@ -613,7 +613,7 @@ HTML有多个不同的版本，只有明白页面使用的确切的HTML版本，
 </html>
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210311201119142.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20210311201119142.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
 ### 六、HTML表单
 
 1. 表单用于获取不同类型的用户输入
@@ -699,5 +699,5 @@ HTML有多个不同的版本，只有明白页面使用的确切的HTML版本，
     <b/r>
 </body>
 ```
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021031209433669.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70#pic_center)
+![](https://img-blog.csdnimg.cn/2021031209433669.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70#pic_center)
 ps.如果利用表格搭配表单，可以写出更规范的注册页面

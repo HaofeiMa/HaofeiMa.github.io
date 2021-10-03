@@ -18,31 +18,31 @@ tags:
 &emsp;&emsp;Labview状态机是由**一个While循环、一个条件结构和一个移位寄存器**组成的。其中while循环用来保证程序可以连续的运行；条件结构的各种分支中的代码用来描述状态机的各种状态，以及下一状态的选择；移位寄存器用来将之前状态所作出的选择传递到下一次循环的选择端子。
 ## 二、状态机的基本框架
 &emsp;&emsp;在程序框图中创建一个while循环，并在while循环上添加移位寄存器，然后再while循环内创建一个条件结构，条件结构的选择端是一个枚举常量。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210420175605662.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center)
+![](https://img-blog.csdnimg.cn/20210420175605662.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center)
 
 
 ## 三、例程
-#### 3.1 运行效果
+### 3.1 运行效果
 
 按下开始按钮后，LED开始以输入的时间间隔闪烁，按下停止按钮，程序停止运行。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210420214013472.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center)
+![](https://img-blog.csdnimg.cn/20210420214013472.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center)
 
-#### 3.2 程序框图
+### 3.2 程序框图
 
 **程序框图如下：**
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210420214206601.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210420214221611.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210420214231106.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center)
+![](https://img-blog.csdnimg.cn/20210420214206601.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center)
+![](https://img-blog.csdnimg.cn/20210420214221611.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center)
+![](https://img-blog.csdnimg.cn/20210420214231106.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center)
 
 
 **枚举类型的分支情况如下：**
 &emsp;&emsp;设置三项分别为：“开始”、“亮”、灭。然后在条件结构的分支处，**右键-为每个值添加分支**
 &emsp;&emsp;其中左侧初始值与”开始“分支内的都是同一个枚举常量（即通过复制粘贴得到的）。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210420175448105.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210420175434109.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center)
+![](https://img-blog.csdnimg.cn/20210420175448105.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center)
+![](https://img-blog.csdnimg.cn/20210420175434109.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center)
 
-#### 3.3 程序逻辑
+### 3.3 程序逻辑
 
 * 初始条件的输入值为“开始”，进入“开始”的条件分支进行判断。
   * 如果按钮按下，输出“亮”，并作为下一次条件的输入；

@@ -14,16 +14,16 @@ tags:
 
 ---
 ## 一、Eigen库的介绍与安装
-#### 1.1 Eigen是什么
+### 1.1 Eigen是什么
 &emsp;&emsp;Eigen是一个C++开源的线性代数库，提供了快速的矩阵线性代数运算，解方程等功能。许多上层软件库也使用Eigen进行矩阵运算。
 &emsp;&emsp;Eigen是一个纯用头文件搭建起来的库，因此使用的时候，只需要引用它的头文件即可，不需要链接库文件。
-#### 1.2 Eigen的安装
+### 1.2 Eigen的安装
 &emsp;&emsp;如果你的电脑上没有安装Eigen，可以输入下面的命令进行安装。
 ```bash
 sudo apt-get install libeigen3-dev
 ```
 ## 二、Eigen库的基本使用
-#### 2.1 Eigen库的引用
+### 2.1 Eigen库的引用
 在cpp文件的开头插入如下两个头文件
 ```cpp
 #include <Eigen/Core>
@@ -33,7 +33,7 @@ sudo apt-get install libeigen3-dev
 ```c
 include_directories("/usr/include/eigen3")
 ```
-#### 2.2 Eigen的基本语法
+### 2.2 Eigen的基本语法
 
 |功能|语法
 |-|-
@@ -57,7 +57,7 @@ include_directories("/usr/include/eigen3")
 |特征值|`eigenSolver.eigenvalues()`
 |特征向量|`eigenSolver.eigenvectors()`
 
-#### 2.3 使用Eigen实现旋转变换
+### 2.3 使用Eigen实现旋转变换
 1. **三维旋转矩阵**：创建一个三维矩阵即可
 ```cpp
 //例：创建一个三阶单位矩阵

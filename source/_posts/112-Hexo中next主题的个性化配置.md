@@ -15,7 +15,7 @@ tags:
 ## 一、主题常用配置
 next 主题的配置一般是指修改主题配置文件 <font color='red'> Hexo\themes\hexo-theme-next\_config.yml </font> 文件。
 在_config.yml 中可以修改许多常见的设置。
-#### 1. 更换主题（Scheme Setting）
+### 1. 更换主题（Scheme Setting）
 ```yml
 # 主题
 #scheme: Muse
@@ -26,7 +26,7 @@ scheme: Mist
 # 黑暗模式
 darkmode: false
 ```
-#### 2. 菜单设置（Menu Settings）
+### 2. 菜单设置（Menu Settings）
 ```yml
 menu:
   home: / || fa fa-home
@@ -44,7 +44,7 @@ menu_settings:
   badges: true
 ```
 
-#### 3. 侧边栏设置（Sidebar Settings）
+### 3. 侧边栏设置（Sidebar Settings）
 ```yml
 # 侧边栏位置
 sidebar:
@@ -73,7 +73,7 @@ sidebar:
   scrollpercent: true #是否显示当前阅读进度
 ```
 
-#### 4. 侧边栏头像（Sidebar Avatar）
+### 4. 侧边栏头像（Sidebar Avatar）
 ```yml
 # 侧边栏头像
 avatar:
@@ -85,7 +85,7 @@ avatar:
   # 如果为true，鼠标悬停在头像上时，头像将会旋转
   rotated: false
 ```
-#### 5. 社交链接（Social Links）
+### 5. 社交链接（Social Links）
 ```yml
 social:
   CSDN: https://blog.csdn.net/weixin_44543463 || fab fa-cuttlefish
@@ -105,7 +105,7 @@ social:
 ## 二、网站配置
 网站配置一般是指修改配置文件 <font color='red'> Hexo\_config.yml </font> 文件。
 在_config.yml 中可以修改许多常见的设置。
-#### 1. 网站基本配置（网站名称、作者名字、中英文切换）
+### 1. 网站基本配置（网站名称、作者名字、中英文切换）
 ```yml
 title: Half_A Studio  #浏览器顶部标签栏的显示
 subtitle: ''
@@ -115,7 +115,7 @@ author: Huffie	#侧边栏中的作者名字
 language: zh-CN	 #讲此处修改为zh-CN即可切换中文
 timezone: ''
 ```
-#### 2. 主页显示文章数
+### 2. 主页显示文章数
 ```yml
 index_generator:
   path: ''

@@ -11,15 +11,15 @@ tags:
 ---
 
 ## 一、准备工作
-#### 1. 安装Elementor插件
+### 1. 安装Elementor插件
 进入wordpress后台，搜索插件Elementor进行安装。
 <img src="https://img-blog.csdnimg.cn/20210122171337715.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
 > 如果安装失败，可以在官网下载安装包，手动上传安装，安装方法参考[此篇文章](https://blog.csdn.net/weixin_44543463/article/details/112839933)
 > 下载地址：[https://cn.wordpress.org/plugins/elementor/](https://cn.wordpress.org/plugins/elementor/)
-#### 2. 安装主题
+### 2. 安装主题
 这里以Astra主题为例，进入wordpress后台，搜索主题Astra进行安装。
 <img src="https://img-blog.csdnimg.cn/20210125142357851.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-#### 3. 安装辅助插件
+### 3. 安装辅助插件
 根据不同主题的要求，可能需要安装不同的辅助插件，才能导入网站模板。Astra主题需要的插件是Starter Templates。
 <img src="https://img-blog.csdnimg.cn/20210125142716805.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
 ## 二、导入模板
@@ -27,14 +27,14 @@ tags:
 <img src="https://img-blog.csdnimg.cn/20210125143120692.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
 <img src="https://img-blog.csdnimg.cn/20210125143354910.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
 ## 三、可视化编辑
-#### 1. 修改网站logo和标识
+### 1. 修改网站logo和标识
 （1）进入自己的网站界面，点击上方的使用Elementor编辑，进入Elementor的编辑界面。
 <img src="https://img-blog.csdnimg.cn/20210125144617113.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
 （2）点击左上角进入**站点设置-网站标识**，可以修改网站的Logo和标识。
 <img src="https://img-blog.csdnimg.cn/20210125145014221.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
 <img src="https://img-blog.csdnimg.cn/20210125145038629.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
 <img src="https://img-blog.csdnimg.cn/20210125145314609.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-#### 2. 修改内容
+### 2. 修改内容
 Elementor是模块化的编辑器，它将网站从上到下按不同段进行拼接，每个段内部分成一个或多个栏，可以填加不同的功能模块。
 （1）修改文字：将鼠标放在要求改的文字上，单击可以直接修改，或者在左侧编辑菜单中修改。
 <img src="https://img-blog.csdnimg.cn/20210125145751962.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
@@ -44,7 +44,7 @@ Elementor是模块化的编辑器，它将网站从上到下按不同段进行�
 （3）更改图标：还是点击要求改的图标，以Read More→的→为例，在左侧可以选择图标库中已经有的图标，也可以自己上传图标。
 <img src="https://img-blog.csdnimg.cn/20210125151020486.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
 <img src="https://img-blog.csdnimg.cn/20210125151045717.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-#### 3. 修改布局
+### 3. 修改布局
 （1）点击段上方中间的按钮，在左侧可以更改此段的布局（边距、对齐）、结构（分栏数）等。
 <img src="https://img-blog.csdnimg.cn/20210125151413750.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
 （2）点击段内部各个栏的左上方的小窗子，可以修改内部各栏的布局。
@@ -52,7 +52,8 @@ Elementor是模块化的编辑器，它将网站从上到下按不同段进行�
 （3）修改段的位置，点击Elementor编辑菜单下方的导航器。可看到右侧出现了网站的大纲列表，直接拖动对应的段即可直接排序。
 <img src="https://img-blog.csdnimg.cn/20210125153008401.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
 <img src="https://img-blog.csdnimg.cn/20210125153032288.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-#### 4. 添加段
+
+### 4. 添加段
 （1）翻到页面最下端或者点击某段上方的+，可以添加段
 <img src="https://img-blog.csdnimg.cn/20210125152108814.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
 （2）添加新段：选择分栏的方式数目，然后从左侧Elementor的编辑菜单直接拖动需要的功能模块至各栏即可。

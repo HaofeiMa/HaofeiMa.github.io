@@ -14,7 +14,7 @@ tags:
 
 &emsp;&emsp;本文的目标是实现**识别摄像头图像中的数字**。实际应用场景包括**车牌号识别**，部分竞赛的**A4纸打印数字识别**。项目实现结果如下，完整工程文件[点此下载](https://download.csdn.net/download/weixin_44543463/22349857)：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/ecbade1b7bf44059a01ab11463b0f0e3.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+![](https://img-blog.csdnimg.cn/ecbade1b7bf44059a01ab11463b0f0e3.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
 
 
 >&emsp;&emsp;**摄像头数字识别分为两个步骤：**
@@ -24,7 +24,7 @@ tags:
 &emsp;&emsp;数字识别相对来说较为简单，先介绍数字识别的方法和原理。
 
 ## 一、数字识别的两种方式
-#### 1.1 轮廓提取法
+### 1.1 轮廓提取法
 &emsp;&emsp;实现思路为对ROI区域进行轮廓提取，然后将所有找到的轮廓与模板逐一匹配识别，相似度大于所设阈值，可视为识别成功。
 
 &emsp;&emsp;寻找轮廓所使用的函数为findContours()，利用此函数将所有寻找到的轮廓保存在contours中，然后使用循环画出包围每一个轮廓的最小矩形。
@@ -119,7 +119,7 @@ int imgMatch(Mat& image, int& rate, int& num) {
 }
 ```
 
-#### 1.2 行列扫描法
+### 1.2 行列扫描法
 &emsp;&emsp;此方法主要参考[opencv 数字识别详细教程](https://blog.csdn.net/LTG01/article/details/50492556)这篇文章，在此感谢LTG01大佬的无私分享。
 
 &emsp;&emsp;
@@ -178,7 +178,7 @@ int main()
 3. 对图像进行形态学处理
 4. 设置限制条件寻找目标区域，并框选（这一步是重点）
 
-#### 2.1 读取摄像头图像
+### 2.1 读取摄像头图像
 &emsp;&emsp;摄像头的读取原理在之前的文章中已有介绍[《摄像头视频的读取与存储》](https://blog.csdn.net/weixin_44543463/article/details/119054844)。主要使用函数为 `capture.read()`，此函数用于捕获视频的每一帧，并返回刚刚捕获的帧。示例程序如下：
 ```cpp
 int main()
@@ -211,7 +211,7 @@ int main()
 
 <img src="https://img-blog.csdnimg.cn/df626d0de1eb4df4ae1440a60023d155.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" width="70%">
 
-#### 2.2 对图像进行二值化处理
+### 2.2 对图像进行二值化处理
 &emsp;&emsp;通过每个像素的颜色分量将图片进行二值化。正常曝光情况下**A4纸的BGR均为215左右**，**车牌的颜色信息大约为B=138，G=63，R=23**。但是在不同环境下颜色信息可能会有偏差，因此需要将条件在一定程度上放宽，再通过其他一些条件来准确查找目标区域。
 
 ```cpp
@@ -248,7 +248,7 @@ void binaryProc(Mat& image) {
 ```
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/57af58c3907a42278cb0adc81e2642a2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
 
-#### 2.3 形态学处理
+### 2.3 形态学处理
 &emsp;&emsp;可以看出二值画处理后已经比较明显完整的显示出A4纸区域，但是仍然存在一些噪点，此时进行形态学处理，以消除这些噪点干扰。对图像**先膨胀再腐蚀**，可以填充细小空间，连接临近物体和平滑边界。
 ```cpp
 //形态学处理
@@ -277,7 +277,7 @@ void morphTreat(Mat& binImg) {
 <img src="https://img-blog.csdnimg.cn/d07134964f12426f972d3fcecc1ba1b9.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" width="70%">
 
 
-#### 2.4 设置限制条件寻找目标区域
+### 2.4 设置限制条件寻找目标区域
 &emsp;&emsp;经过形态学处理，图像中已经可以明显看到A4纸所在的区域，但是图像中仍然不可避免存在其他与A4纸颜色接近的物体，在这里也会显示为白色。**这时就需要我们根据A4纸区域的特点设置限制条件，从这些白色区域中找到代表A4纸所在的区域。**
 
 &emsp;&emsp;在这里我使用的限制条件主要有以下几个：

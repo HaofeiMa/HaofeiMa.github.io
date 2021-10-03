@@ -13,7 +13,7 @@ tags:
 
 ## 一、均值滤波
 
-#### 1.1 均值滤波的原理
+### 1.1 均值滤波的原理
 &emsp;&emsp;均值滤波用到的是图像卷积原理。由下图所示，卷积核为三阶单位矩阵时，进行均值滤波，原图像的每个三阶子矩阵都会求其均值，并将均值赋给中间的元素。
 
 &emsp;&emsp;以左上角为例：
@@ -22,7 +22,7 @@ tags:
 &emsp;$A_{31}$·1+$A_{32}$·1+$A_{33}$·1 ）/  9 ->$A_{22}$
 <img src="https://img-blog.csdnimg.cn/5f9cf63ca53d4181b79dbe1946972549.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
 
-#### 1.2 OpenCV中的均值滤波
+### 1.2 OpenCV中的均值滤波
 &emsp;&emsp;在OpenCV/C++中，提供了blur函数用于实现上述的均值滤波操作：
 ```cpp
 void blur(

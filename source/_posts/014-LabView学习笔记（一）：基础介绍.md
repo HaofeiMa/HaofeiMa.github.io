@@ -27,9 +27,11 @@ tags:
 
 # 一、前面板
 ## 1. 控件选板
+
 （1） 控件来源于控件选板，右键可以打开控件选板，控件可以点击后添加到前面板，也可以通过拖拽添加控件。
 <img src="https://img-blog.csdnimg.cn/20210107175250351.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%">
 （2） 分类
+
 * 数值控件：输入和显示数值数据
 * 布尔控件：创建按钮、开关和指示灯
 * 路径控件：输入或返回文件或目录的地址

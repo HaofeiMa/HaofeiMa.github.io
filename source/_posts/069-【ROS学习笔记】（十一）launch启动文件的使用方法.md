@@ -17,11 +17,11 @@ tags:
 
 ### 二、Launch文件语法
 
-##### 1. `<launch>`
+#### 1. `<launch>`
 
 launch文件中的根元素采用`<launch>`标签定义
 
-##### 2. `<node>`
+#### 2. `<node>`
 
 启动节点：
 ```xml
@@ -37,7 +37,7 @@ launch文件中的根元素采用`<launch>`标签定义
   * ns（namespace定义命名空间，避免命名冲突）
   * args（给每个节点输入参数）
 
-##### 3. 参数设置
+#### 3. 参数设置
 
 * `<param>`或`<param>`
 
@@ -61,7 +61,7 @@ launch文件中的根元素采用`<launch>`标签定义
   <arg name="arg-name" default="arg-value" />
   ```
 
-##### 4. 重映射`<remap>`
+#### 4. 重映射`<remap>`
 
 重映射ROS计算图资源的命名
 
@@ -69,7 +69,7 @@ launch文件中的根元素采用`<launch>`标签定义
 <remap from="/turtlebot/cmd_vel" to="/cmd_vel">
 ```
 
-##### 5. 嵌套`<include>`
+#### 5. 嵌套`<include>`
 
 包含其他launch文件
 
@@ -79,18 +79,18 @@ launch文件中的根元素采用`<launch>`标签定义
 
 ### 三、Launch示例
 
-##### 1. 新建一个功能包
+#### 1. 新建一个功能包
 
 ```bash
 cd ~/catkin_ws/src
 catkin_create_pkg learning_launch
 ```
 
-##### 2. 创建launch文件夹
+#### 2. 创建launch文件夹
 
 在learning_launch文件夹下新建一个名为`launch`的文件夹。
 
-##### 3. 创建launch文件
+#### 3. 创建launch文件
 
 在刚才创建的文件夹内新建一个文件
 
@@ -106,13 +106,13 @@ touchs simple.launch
     <node pkg="learning_topic" type="person_publisher" name="listener" output="screen" /> 
 </launch>
 ```
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210302172409787.png)
+![](https://img-blog.csdnimg.cn/20210302172409787.png)
 
-##### 4. 运行launch文件
+#### 4. 运行launch文件
 
 ```bash
 roslaunch learning_launch simple.launch
 ```
 
 可以看到两个节点都运行起来了。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210302172453240.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20210302172453240.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)

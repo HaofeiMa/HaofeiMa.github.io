@@ -1,0 +1,19 @@
+  <HR>
+	<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+	<script src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
+	<script src="//cdn.jsdelivr.net/gh/xcss/valine@v1.1.7/dist/Valine.min.js"></script>
+	<!-- <script src='//unpkg.com/valine/dist/Valine.min.js'></script> -->
+	<div id="vcomments"></div>
+	<script>
+		new Valine({
+			av: AV,
+			el: '#vcomments',
+			app_id: '3Rw5EHd9mmq2LLj300zrIjI1',
+			app_key: 'FKfDz4V75aXAV87S0ChulTmL',
+			placeholder: "Just typing...",
+			avatar: "robohash",
+			notify: true,
+			visitor: false,
+			verify: false
+		});
+	</script>

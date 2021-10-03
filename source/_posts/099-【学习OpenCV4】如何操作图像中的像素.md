@@ -12,7 +12,7 @@ tags:
 ---
 
 ## 一、读写操作
-#### 1.1 数组遍历
+### 1.1 数组遍历
 &emsp;&emsp;由于图像本质就是Mat矩阵，因此要读写像素点，可以**采用数组遍历的方式访问**Mat矩阵内的每一个元素。但我们要注意，灰度图和彩色图的通道数是不一样的，**灰度图是单通道的，彩色图是三通道的**。因此读写像素点就分为了读写灰度图像素和读写彩色图像素两种情况。
 
 ① 读写灰度图像素
@@ -72,7 +72,7 @@ void MyDemo::pixelVisit_Demo(Mat& image) {
 ```
 <img src="https://img-blog.csdnimg.cn/20210718091652147.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
 
-#### 1.2 指针遍历
+### 1.2 指针遍历
 &emsp;&emsp;指针遍历的原理与数组遍历类似。定义一个指针指向当前行的首地址，然后利用此指针即可遍历访问本行所有像素点。
 
 ```cpp
@@ -105,7 +105,7 @@ void MyDemo::pixelVisit_Demo(Mat& image) {
 
 ## 二、算术操作
 
-#### 2.1 像素的
+### 2.1 像素的
 &emsp;&emsp;对一个图像Mat矩阵可以直接进行加减乘除（注意彩色图加法需要Scalar），**加减法处理的结果就是增大/减小图像的亮度，乘除法同理**，但要注意在处理时可能会使像素值**超出(0~255)的范围，可以使用saturate_cast函数进行截断**。
 
 
@@ -144,7 +144,7 @@ void MyDemo::operators_Demo(Mat& image) {
 ```
 <img src="https://img-blog.csdnimg.cn/20210718102155704.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
 
-#### 2.2 图像算术操作API
+### 2.2 图像算术操作API
 | 功能 | 函数                          |
 | ---- | ----------------------------- |
 | 加法 | add(img1, img2, imgout);      |
@@ -168,7 +168,7 @@ void MyDemo::operators_Demo(Mat& image) {
 ```
 
 ## 三、逻辑操作
-#### 3.1 基本知识—真值表
+### 3.1 基本知识—真值表
 | A    | B    | 与   | 或   | 异或 |
 | ---- | ---- | ---- | ---- | ---- |
 | 0    | 0    | 0    | 0    | 0    |
@@ -176,7 +176,7 @@ void MyDemo::operators_Demo(Mat& image) {
 | 0    | 1    | 0    | 1    | 1    |
 | 1    | 1    | 1    | 1    | 0    |
 
-#### 3.2 画个矩形
+### 3.2 画个矩形
 &emsp;&emsp;为了更直观的显示像素逻辑运算的结果，我们可以画两个矩形，让两个矩形的相交区域进行逻辑运算。
 &emsp;&emsp;画矩形方法很简单，只需要先创建一个空白图像，然后调用rectangle函数就可以。
 ```cpp
@@ -195,7 +195,7 @@ void MyDemo::bitWise_Demo(Mat& image) {
 }
 ```
 
-#### 3.3 逻辑运算
+### 3.3 逻辑运算
 | 运算 | 函数                      |
 | ---- | ------------------------- |
 | 与   | bitwise_and(m1, m2, dst); |

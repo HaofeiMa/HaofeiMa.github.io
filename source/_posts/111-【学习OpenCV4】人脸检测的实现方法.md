@@ -21,7 +21,7 @@ tags:
 <img src="https://img-blog.csdnimg.cn/1edd93872e47466d9056cb3371a7d6bb.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
 
 ## 二、程序设计
-#### 2.1 主要函数
+### 2.1 主要函数
 **1. blobFromImage()**
 ```cpp
 blobFromImage(InputArray image, 					//输入神经网络进行处理的图片
@@ -44,7 +44,7 @@ Mat probs = net.forward();
 * 第三个维度：框的个数；
 * 第四个维度：每个框有七个值，前两个是类型和dst，第三个是置信度，最后四个是矩形的左上角和右下角
 
-#### 2.2 示例程序
+### 2.2 示例程序
 ```cpp
 void MyDemo::faceDetector_Demo() {
 	//创建VideoCapture类

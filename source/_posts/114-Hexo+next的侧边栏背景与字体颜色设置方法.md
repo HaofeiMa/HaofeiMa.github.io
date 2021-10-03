@@ -46,7 +46,7 @@ tags:
   }
 }
 ```
-![在这里插入图片描述](https://img-blog.csdnimg.cn/1c864ad02c3e49c7871f0c9b87975cbd.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/1c864ad02c3e49c7871f0c9b87975cbd.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
 
 &emsp;&emsp;另外，侧边栏中头像下方的作者姓名和描述的字体颜色，可以在根目录下的站点配置文件中`_config.yml`中修改。
 ```yml
@@ -62,5 +62,5 @@ timezone: ''
 ```
 设置完成后效果如下：
 
-![请添加图片描述](https://img-blog.csdnimg.cn/0c27da782ed34faa8ad80cc72eeeb4d7.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/0c27da782ed34faa8ad80cc72eeeb4d7.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
 [http://huffie.cn/](http://huffie.cn/)这是我的博客，可以在此查看效果。

@@ -15,6 +15,7 @@ tags:
 	CD4066是四双向模拟开关，主要用作模拟或数字信号的多路传输。CD4066 的每个封装内部有4 个独立的模拟开关，每个模拟开关有输入、输出、控制三个端子，其中输入端和输出端可互换。
 	![CD4066](https://img-blog.csdnimg.cn/20210101164242237.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
 **2. 引脚说明**
+
 * CONTROL：开关控制端 [1] 
 * IN/OUT：输入/输出端
 * OUT/IN：输出/输入端
@@ -26,11 +27,11 @@ tags:
 
 ## Proteus仿真
 Proteus接线图如下图所示。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210101164743892.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20210101164743892.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
 由于Proteus内没有CD4066，只有4066，因此考虑将4个4066组合视为一个整体。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210102105614123.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20210102105614123.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
 仿真结果：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210102105732744.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20210102105732744.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
 代码：
 ```java
 #include<reg52.h>

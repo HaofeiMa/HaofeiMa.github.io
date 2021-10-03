@@ -11,7 +11,8 @@ tags:
 ---
 
 ## 一、服务器和域名的申请
-#### 1.1 服务器的购买
+
+### 1.1 服务器的购买
 1. 进入阿里云官网，购买ECS云服务器（可以看看[开发者成长计划](https://developer.aliyun.com/plan/promotion/1?spm=a2c6h.13813017.1364563.d100010001.5ab41d3cmWpHDS&utm_content=g_1000199894)，虽然我当时是在618这里买的学生ECS）。服务器的系统选择CentOS或Ubuntu。
 <img src="https://img-blog.csdnimg.cn/20210122111836977.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
 购买完成后会进入[控制台](https://ecs.console.aliyun.com/)，在这里可以看到自己刚才购买的服务器。
@@ -20,7 +21,7 @@ tags:
 <img src="https://img-blog.csdnimg.cn/20210122113927832.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
 3. 重置密码完成后就可以通过**公网IP**，使用xshell或者PuTTy或者阿里平台的远程连接工具登陆服务器了。
 
-#### 1.2 域名申请与备案
+### 1.2 域名申请与备案
 1. 进入[域名注册平台](https://wanwang.aliyun.com/domain?utm_content=se_1008301712)，选一个合适的域名，点击结算。（如果之前没有申请过域名的话，在结算时需要创建个人的信息模板，按要求填写信息即可）。
 <img src="https://img-blog.csdnimg.cn/20210122112538994.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
 2. 购买后域名的注册就完成了，然后需要网站备案。进入阿里[备案首页](https://beian.aliyun.com/)，开始备案。
@@ -35,9 +36,9 @@ tags:
 <img src="https://img-blog.csdnimg.cn/20210126114111334.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
 
 ## 二、宝塔面板的安装
-#### 2.1 准备工作
+### 2.1 准备工作
 进入[宝塔官网](https://www.bt.cn/)注册一个宝塔账号，后续需要使用。
-#### 2.2 安装宝塔面板
+### 2.2 安装宝塔面板
 >以下安装过程参考官网：[https://www.bt.cn/bbs/thread-19376-1-1.html](https://www.bt.cn/bbs/thread-19376-1-1.html)
 1. **开放服务器端口**
 进入控制台，点击实例名称，进入安全组-安全组列表页面，点击配置规则。
@@ -76,7 +77,7 @@ LNMP网站环境就是指Linux+Nginx+MySQL+PHP的组合，用来快速搭建各�
 网站站点添加成功后，就可以进入网站的根目录了。后面搭建网站都会在这个网站的根目录下进行。
 <img src="https://img-blog.csdnimg.cn/20210122154617871.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
 ## 三、安装WordPress
-#### 3.1 上传WordPress安装包
+### 3.1 上传WordPress安装包
 1. 前往[WordPress中国官网](https://cn.wordpress.org/download/)下载zip安装包
 > 下载链接：[https://cn.wordpress.org/latest-zh_CN.zip](https://cn.wordpress.org/latest-zh_CN.zip)
 2. 回到宝塔，点击文件，进入域名的根目录，点击左上角上传文件，上传刚才下载的wordpress安装包。
@@ -84,7 +85,7 @@ LNMP网站环境就是指Linux+Nginx+MySQL+PHP的组合，用来快速搭建各�
 3. 上传成功后，解压zip格式的安装包
 <img src="https://img-blog.csdnimg.cn/20210122160251972.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
 <img src="https://img-blog.csdnimg.cn/20210122160354590.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-#### 3.2 修改站点配置文件
+### 3.2 修改站点配置文件
 <img src="https://img-blog.csdnimg.cn/20210122160922643.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
 
 由于安装包解压到站点目录/wordpress下，因此配置文件中的root需要改为
@@ -92,16 +93,17 @@ LNMP网站环境就是指Linux+Nginx+MySQL+PHP的组合，用来快速搭建各�
 root /www/wwwroot/huffie.top/wordpress;
 ```
 修改完成后，点击保存。
-#### 3.3 域名解析绑定
+### 3.3 域名解析绑定
 1. 进入阿里云的域名控制台
 <img src="https://img-blog.csdnimg.cn/20210202224621109.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
 2. 添加记录
 <img src="https://img-blog.csdnimg.cn/20210202224652784.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
 <img src="https://img-blog.csdnimg.cn/20210202230457866.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
 ps.这里遇到了一个小问题，总是显示**您的请求在Web服务器中没有找到对应的站点！**，尝试了许多方法，最后是将PHP版本从7.4更改为5.6，然后成功的，不知道是不是因为这个原因，后来版本改回7.4后也可以继续访问了。
-#### 3.4 WordPress的在线安装
+### 3.4 WordPress的在线安装
 在浏览器地址栏输入自己的域名，即可看到wordpress的欢迎页面。接下来的步骤就是进行wordpress的配置了。
 <img src="https://img-blog.csdnimg.cn/20210122162705578.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
+
 1. **填写数据库信息**
 数据库名、用户名、密码可以到宝塔控制台的数据库栏查到。
 <img src="https://img-blog.csdnimg.cn/20210122162842517.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">

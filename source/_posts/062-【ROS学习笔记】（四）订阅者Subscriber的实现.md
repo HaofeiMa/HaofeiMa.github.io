@@ -1,13 +1,14 @@
 ---
 title: 【ROS学习笔记】（四）订阅者Subscriber的实现
 date: 2021-02-24 22:24:46
-description: 订阅者订阅海龟的位姿信息首先创建工作空间，参【ROS学习笔记】（二）工作空间与功能包的创建，然后用如下代码然后创建一个功能包。进入功能包的src文件夹下...
+description: 在ROS Master中，可以发布与订阅消息，ROS Master内有两个节点，一个是Subscriber(turtlesim)，一个是Publisher，发布者通过程序实现发布Message，Message的内容包括线速度、角度，通过Topic管道，传递给Subscriber，从而控制小海龟的运动。
 categories:
 - 机器人
 - ROS
-tags:
+  tags:
 - 笔记
 - ros
+description: 订阅者订阅海龟的位姿信息首先创建工作空间，参【ROS学习笔记】（二）工作空间与功能包的创建，然后用如下代码然后创建一个功能包。进入功能包的src文件夹下...
 ---
 
 ### 一、目标功能
@@ -79,7 +80,7 @@ int main(int argc, char **argv)
 2. 订阅需要的话题
 3. 循环等待话题消息，接收到消息后进入回调函数
 4. 在回调函数中完成消息处理
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210224221639124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20210224221639124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
 
 ### 四、配置订阅者代码编译规则
 
@@ -93,11 +94,11 @@ int main(int argc, char **argv)
 add_executable(pose_subscriber src/pose_subscriber.cpp)		#描述要把哪个程序文件编译成哪个可执行文件
 target_link_libraries(pose_subscriber ${catkin_LIBRARIES})	#把可执行文件和库做链接
 ```
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210224221910627.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20210224221910627.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
 
 ### 五、编译并运行订阅者SubScriber
 
-##### 1. 编译
+#### 1. 编译
 
 ```bash
 cd ~/catkin_ws
@@ -110,7 +111,7 @@ source devel/setup.bash
 > sudo vim ~/catkin_ws
 > source /home/huffie/catkin_ws/devel/setup.bash
 
-##### 2. 运行
+#### 2. 运行
 打开小海龟的仿真程序，运行subscriber，同时让小海龟动起来，可以看到姿态坐标在实时改变。
 ```bash
 roscore
@@ -118,4 +119,4 @@ rosrun turtlesim turtlesim_node
 rosrun learning_topic pose_subscriber
 rosrun turtlesim turtle_teleop_key
 ```
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021022422230869.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/2021022422230869.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)

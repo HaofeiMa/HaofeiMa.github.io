@@ -13,7 +13,7 @@ tags:
 
 
 ## 一、图像色彩空间转换
-#### 1.1 基本知识
+### 1.1 基本知识
 1. 色彩空间转换函数：cvtColor
 ```cpp
 COLOR_BGR2GRAY = 6	//6彩色到灰度
@@ -31,7 +31,7 @@ COLOR_HSV2BGR = 54	//54HSV到BGR
 >第一个参数是图像保存路径
 >第二个参数是图像内存对象
 
-#### 1.2 创建类
+### 1.2 创建类
 ①首先添加一个头文件。
 
 <img src="https://img-blog.csdnimg.cn/20210717085808806.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
@@ -90,7 +90,7 @@ void MyDemo::colorSpace_Demo(Mat &image) {
 }
 ```
 
-#### 1.3 编写主函数
+### 1.3 编写主函数
 ```cpp
 #include <opencv2/opencv.hpp>
 #include <iostream>
@@ -110,7 +110,7 @@ int main(int argc, char** argv) {
 	return 0;
 }
 ```
-#### 1.4 测试结果
+### 1.4 测试结果
 
 <img src="https://img-blog.csdnimg.cn/20210717100121460.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
 
@@ -120,7 +120,7 @@ int main(int argc, char** argv) {
 >因此对于一个图片想要调整亮度，可以先转换到HSV色彩空间调节亮度，再返回RGB色彩空间即可。
 
 ## 二、图像对象的创建与复制
-#### 2.1 什么是Mat
+### 2.1 什么是Mat
 
 >关于Mat的问题
 >1. 如何操作读进来的图像
@@ -130,7 +130,7 @@ int main(int argc, char** argv) {
 在OpenCV中Mat的数据分为两个部分，**头部和数据部分**。头部包括数据类型、通道数量。
 
 
-#### 2.2 创建空白图像
+### 2.2 创建空白图像
 **创建图像的过程**
 ①所用函数
 ```cpp
@@ -235,7 +235,7 @@ void MyDemo::matCreation_Demo() {
 
 <img src="https://img-blog.csdnimg.cn/20210717114528458.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
 
-#### 2.3 图像的复制
+### 2.3 图像的复制
 
 对于Mat对象进行赋值操作时，只是相当于两个指针指向了同一块内存空间，只有进行**克隆和拷贝**操作时，才是真正的复制。
 

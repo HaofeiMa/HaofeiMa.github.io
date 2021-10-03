@@ -11,18 +11,20 @@ tags:
 ---
 
 ## RobotStudio 6.03.02 的安装
+
 > 链接：[https://pan.baidu.com/s/1NyDTu_OCcPJLbfaQLtCHCw](https://pan.baidu.com/s/1NyDTu_OCcPJLbfaQLtCHCw)
 > 提取码：robo 
-##### 1. 安装注意事项
+### 1. 安装注意事项
 （1）PC用户名为英文
 （2）安装路径为英文
 （3）安装过程全程联网
-##### 2. 安装方法
+### 2. 安装方法
 （1）将安装包解压，运行安装包内的setup.exe程序，按照提示安装即可，比较简单。
 （2）安装完成后双击`RobotStudio_5.61.02注册补丁.reg`。
 （3）打开RobotStudio即可完成安装。
 
 ## 初次测试
+
 1. 打开RobotStudio软件，新建一个空工作站解决方案。
 <img src="https://img-blog.csdnimg.cn/20210125115511712.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
 2. 点击左上角ABB模型库，导入一个IRB 120确定

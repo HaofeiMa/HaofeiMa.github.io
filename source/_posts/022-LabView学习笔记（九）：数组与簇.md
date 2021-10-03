@@ -36,7 +36,7 @@ tags:
 （3）c. 数组的初始化函数
 （注：未初始化的元素只具有维数，不包含任何元素）
 5. 数组函数：包括数组大小、索引数组、创建数组、数组最大值最小值、排序、拆分数组等操作均可以通过数组函数实现。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210112153519739.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20210112153519739.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
 ### 簇
 1. 簇与数组：簇将不同类型数据元素归为一组，簇不同于数组的地方在于簇的大小是固定的，簇可以包含不同的数据类型，数组仅可包含一种数据类型。
 2. 簇的创建方法

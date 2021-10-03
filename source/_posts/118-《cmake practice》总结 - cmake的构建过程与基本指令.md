@@ -11,7 +11,7 @@ tags:
 ---
 
 ## 〇、基本语法规则
-#### 0.1 变量
+### 0.1 变量
 &emsp;&emsp;变量使用 ${VALUENAME} 方式取值，但是在IF控制语句中直接使用变量名。
 1. `CMAKE_BINARY_DIR` 或 `PROJECT_BINARY_DIR` 或 `<ProjectName>_BINARY_DIR`：均代表编译目录。如果是内部构建，就是指工程顶层目录；如果是外部构建，就是指工程编译发生的目录。
 2. `CMAKE_SOURCE_DIR` 或 `PROJECT_SOURCE_DIR` 或 `<ProjectName>_SOURCE_DIR`：均代表工程顶层目录。
@@ -22,13 +22,13 @@ tags:
 7. `CMAKE_MODULE_PATH`：定义cmake模块所在的路径
 8. `EXECUTABLE_OUTPUT_PATH` 和 `LIBRARY_OUTPUT_PATH`：分别重新定义最终结果的存放目录。
 9. `PROJECT_NAME`：项目名称
-#### 0.2 指令规则
+### 0.2 指令规则
 &emsp;&emsp;1. 基本语法为：指令(参数1 参数2 ...)
 &emsp;&emsp;2. 参数之间使用空格或分号隔开，例如`ADD_EXECUTABLE(hello main.c;func.c)`
 &emsp;&emsp;3. 指令不区分大小写，参数和变量区分大小写，但推荐全部使用大写指令
 &emsp;&emsp;4. 当文件名中含有空格时，必须使用双引号，例如`SET(SRC_LIST "fu nc.c")`
 
-#### 0.3 基本构建过程
+### 0.3 基本构建过程
 &emsp;&emsp;1. 编写程序与CMakeLists.txt文件
 &emsp;&emsp;2. 建立外部编译目录：`mkdir build`
 &emsp;&emsp;3. 进入外部编译目录：`cd build`
@@ -37,14 +37,14 @@ tags:
 &emsp;&emsp;6. 运行程序：`./<Executable Filename>`
 &emsp;&emsp;7. 清理工程：`make clean`
 ## 一、基本指令
-#### 1. PROJECT指令
+### 1. PROJECT指令
 ```c
 PROJECT(projectname [CXX] [C] [Java])
 # 例：PROJECT(HELLO)
 ```
 &emsp;&emsp;定义工程名称，并可制订工程支持的语言，默认支持所有语言。此指令隐式的定义了两个变量 `PROJECT_BINARY_DIR` 和 `PROJECT_SOURCE_DIR`。
 
-#### 2. SET指令
+### 2. SET指令
 ```c
 SET(VAR [VALUE] [CACHE TYPE DOCSTRING [FORCE]])
 # 例1：SET(SRC_LIST main.c)
@@ -53,7 +53,7 @@ SET(VAR [VALUE] [CACHE TYPE DOCSTRING [FORCE]])
 &emsp;&emsp;用来显式的定义变量。
 &emsp;&emsp;在`ADD_EXECUTABL`所在的CMakeLists.txt文件中，添加如例2的语句，可以修改最终目标二进制文件输出的路径为`build/bin`
 
-#### 3. MESSAGE指令
+### 3. MESSAGE指令
 ```c
 MESSAGE([SEND_ERROR | STATUS | FATAL_ERROR] "message to display")
 # 例：MESSAGE(STATUS "This is BINARY dir ${HELLO_BINARY_DIR}")
@@ -63,21 +63,21 @@ MESSAGE([SEND_ERROR | STATUS | FATAL_ERROR] "message to display")
 * STATUS：输出前缀为-的信息
 * FATAL_ERROR：立即终止所有cmake过程
 
-#### 4. ADD_EXECUTABLE指令
+### 4. ADD_EXECUTABLE指令
 ```c
 ADD_EXECUTABLE(<Executable Filename> ${SRC_LIST})
 # 例：ADD_EXECUTABLE(hello ${SRC_LIST})
 ```
 &emsp;&emsp;定义工程会生成文件名为`<Executable Filename>`的可执行文件，相关的源文件是SRC_LIST中定义的源文件列表。
 
-#### 5. ADD_SUBDIRECTORY指令
+### 5. ADD_SUBDIRECTORY指令
 ```c
 ADD_SUBDIRECTORY(source_dir [binary_dir] [EXCLUDE_FROM_ALL])
 # 例：ADD_SUBDIRECTORY(src bin)
 ```
 &emsp;&emsp;用于将子目录加入当前工程，并可以指定其二进制文件存放的位置。`EXCLUDE_FROM_ALL`含义是将此目录从编译过程中排除。（例：将src子目录加入工程，并制订编译输出路径为bin，那么编译结果都将放在`build/bin`中）
 
-#### 6. INSTALL指令
+### 6. INSTALL指令
 ```cpp
 INSTALL(TARGETS targets... [EXPORT <export-name>]
         [[ARCHIVE|LIBRARY|RUNTIME|OBJECTS|FRAMEWORK|BUNDLE|
@@ -103,18 +103,18 @@ INSTALL(TARGETS targets... [EXPORT <export-name>]
 	make install
 ```
 
-#### 7. ADD_DEPENDENCIES指令
+### 7. ADD_DEPENDENCIES指令
 ```c
 ADD_DEPENDENCIES(target-name depend-target1 depend-target2 ...)
 ```
 &emsp;&emsp;定义target以来的其他target，确保在本项目编译前，其他target已经被构建
-#### 8. ADD_TEST与ENABLE_TESTING指令
+### 8. ADD_TEST与ENABLE_TESTING指令
 ```c
 ADD_TEST(testname Exename arg1 arg2 ...)
 ENABLE_TEST()
 ```
 &emsp;&emsp;用于创建test目标，生成makefile后就可以通过make test进行测试了。
-#### 9. EXEC_PROGRAM
+### 9. EXEC_PROGRAM
 ```cpp
 EXEC_PROGRAM(Executable
 			[directory in which to run]
@@ -125,7 +125,7 @@ EXEC_PROGRAM(Executable
 &emsp;&emsp;用于指定在特定的目录运行某个程序。
 
 ## 三、静态库与动态库的构建与使用
-#### 3.1 静态库和动态库的构建方法
+### 3.1 静态库和动态库的构建方法
 &emsp;&emsp;1. 在工程目录下新建一个`lib`文件夹，并将其添加进工程目录中。
 ```c
 # 工程目录下的CMakeLists.txt
@@ -155,7 +155,7 @@ make
 make install
 ```
 
-#### 3.2 外部共享库和头文件的使用
+### 3.2 外部共享库和头文件的使用
 &emsp;&emsp;1. 在新工程目录下创建`src`目录，并在其中编写源文件main.c
 &emsp;&emsp;2. 编写工程目录下`CMakeLists.txt`
 ```c
