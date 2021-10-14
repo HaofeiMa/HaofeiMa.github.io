@@ -1,17 +1,19 @@
 ---
-title: 【转】大疆RoboMaster技术总监：我是如何成为一名机器人工程师的
-date: 2021-10-02 07:07:07
+title: 大疆RoboMaster技术总监：我是如何成为一名机器人工程师的
+date: 2021-10-01 00:00:00
 description: 文章来自大疆RoboMaster技术总监YY硕。这篇文章对我的影响十分深远，我有幸在大二时读到了这篇文章，在此分享出来，希望更多的人可以读到，帮助有相同兴趣的同学更早走出迷茫期。
-categories:
-- 机器人
 tags:
 - 经验分享
-top: true
+notshow: true
 ---
 
 
 
 > 作者 | 大疆创新RoboMaster技术总监YY硕
+>
+> 链接：[https://zhuanlan.zhihu.com/p/22266788](https://zhuanlan.zhihu.com/p/22266788)
+>
+> 来源：知乎
 
 ##  
 

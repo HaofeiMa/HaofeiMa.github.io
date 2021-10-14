@@ -10,6 +10,8 @@ tags:
 - robotstudio
 ---
 
+
+
 > 工作站文件：
 > 链接：[https://pan.baidu.com/s/1kikAGbj-vVAH-IR9AWY1sg](https://pan.baidu.com/s/1kikAGbj-vVAH-IR9AWY1sg )
 > 提取码：robo 

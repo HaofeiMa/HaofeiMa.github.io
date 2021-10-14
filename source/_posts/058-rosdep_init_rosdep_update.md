@@ -1,14 +1,21 @@
 ---
 title: ROS安装时rosdep init与rosdep update问题解决方法（2021.2.20亲测）
 date: 2021-02-20 08:15:16
-description: 这两个问题都是网络连接相关的问题，解决方法相同，都是修改host主机。只是修改完成后rosdep init可以直接成功。而rosdep update还需要可靠的网络才行，如果update仍然失败，建议多试几次，或者试着更换手机热点网络...
+description: ROS安装过程可见我的上一篇博客Ubuntu20.04安装ROS Noetic。安装过程中rosdep init出现【ERROR: cannot download default sources list from:…Website may be down.】。rosdep update，总是出现超时问题无法更新。最终找到了一种靠谱可用的方法。
 categories:
 - 机器人
 - ROS
 tags:
 - bug解决
 - ros
+
+description: 这两个问题都是网络连接相关的问题，解决方法相同，都是修改host主机。只是修改完成后rosdep init可以直接成功。而rosdep update还需要可靠的网络才行，如果update仍然失败，建议多试几次，或者试着更换手机热点网络...
+
+
+
 ---
+
+
 
 ROS安装过程可见我的上一篇博客[Ubuntu20.04安装ROS Noetic](https://blog.csdn.net/weixin_44543463/article/details/113862391)
 

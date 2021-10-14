@@ -1,7 +1,7 @@
 ---
 title: 树莓派4B安装Ubuntu20.04
 date: 2021-02-17 00:01:51
-description: 大体过程为：1.下载对应ubuntu安装包；2.格式化SD卡；3.烧录文件。烧录完成后进行ubuntu的环境配置，具体配置方法如下...
+description: 进入Ubuntu官网下载支持树莓派的Ubuntu版本安装包。使用DiskGenius格式化SD卡，将所有扇区删除，然后格式化。下载官方烧录工具，镜像选择刚才下载的.xz文件，SD卡选择自己的卡，写入即可。然后进行ubuntu环境配置……
 categories:
 - 机器人
 - ROS
@@ -9,6 +9,11 @@ tags:
 - 树莓派
 - ubuntu
 ---
+
+
+
+
+
 
 ## 一、树莓派的准备
 1. 进入[Ubuntu官网](http://cdimage.ubuntu.com/ubuntu/releases/20.04/release/)下载支持树莓派的Ubuntu版本安装包。

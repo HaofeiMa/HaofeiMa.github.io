@@ -1,7 +1,7 @@
 ---
 title: Ubuntu20.04安装ROS Noetic
 date: 2021-02-20 00:09:51
-description: 本文参考ros官网的有关安装教程。首先进行准备工作：打开软件与更新，将下载选项前四个都选上。一定要确保都勾选上，不然后续安装时会出现依赖关系问题...
+description: 添加ROS软件源，打开软件与更新，将下载选项前四个都选上。一定要确保都勾选上，不然后续安装时会出现依赖关系问题。然后执行以下命令添加软件源，并添加公钥。
 categories:
 - 机器人
 - ROS
@@ -9,6 +9,11 @@ tags:
 - ubuntu
 - ros
 ---
+
+
+
+
+
 
 > 本文参考ros官网[http://wiki.ros.org/](http://wiki.ros.org/)的有关[安装教程](http://wiki.ros.org/noetic/Installation/Ubuntu)
 ### 一、准备工作

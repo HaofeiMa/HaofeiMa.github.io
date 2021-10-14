@@ -85,14 +85,19 @@ creative_commons:
 # External url should start with http:// or https://
 menu:
   home: / || fa fa-home #fa fa-home 是菜单栏中文字前的图标
+  随笔: /eassy || fa fa-pen-alt
+  资源: /resource/ || fa fa-cloud-download-alt
+  书签: /bookmarks/ || fa fa-bookmark
   about: /about/ || fa fa-user
+  #留言: /messages/ || fa fa-envelope-open-text
+  #read:	/categories/文章
   #tags: /tags/ || fa fa-tags
   #categories: /categories/ || fa fa-th
-  archives: /archives/ || fa fa-archive
+  #archives: /archives/ || fa fa-archive
   #schedule: /schedule/ || fa fa-calendar
   #sitemap: /sitemap.xml || fa fa-sitemap
   #commonweal: /404/ || fa fa-heartbeat
-  资源: /resource/ || fa fa-cloud-download-alt
+  
 
 # 启用/禁用：菜单图标和项目徽章
 menu_settings:
@@ -248,7 +253,7 @@ post_meta:
   item_text: true
   created_at: true
   updated_at:
-    enable: true
+    enable: false
     another_day: true
   categories: true
 

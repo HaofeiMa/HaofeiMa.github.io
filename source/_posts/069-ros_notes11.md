@@ -1,7 +1,7 @@
 ---
 title: 【ROS学习笔记】（十一）launch启动文件的使用方法
 date: 2021-03-02 17:25:48
-description: Launch文件作用为通过XML文件实现多节点的配置和启动，同时可以自动启动ROS Master（不需要单独`roscore`）。语法规范如下...
+description: laubch文件的作用如下，通过XML文件实现多节点的配置和启动。同时可以自动启动ROS Master（不需要单独roscore）。
 categories:
 - 机器人
 - ROS
@@ -9,6 +9,8 @@ tags:
 - 笔记
 - ros
 ---
+
+
 
 ### 一、Launch文件作用
 

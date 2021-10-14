@@ -10,6 +10,13 @@ tags:
 - robotstudio
 ---
 
+
+
+
+
+
+
+
 ### 机械结构的搭建
 1. 导入两个传送带，将第二个传送带以z轴旋转90°，再沿y轴偏移-3200mm。
 <img src="https://img-blog.csdnimg.cn/20210208220925834.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">

@@ -10,6 +10,7 @@ tags:
 - robotstudio
 ---
 
+
 ### 一、安装夹具
 1. 导入一个IRB2600机器人
 ![](https://img-blog.csdnimg.cn/20210213164433918.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
