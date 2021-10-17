@@ -35,7 +35,7 @@ notshow: true
 
 作为学霸，寒假当然不会满足于过过圣诞节，看看之前很火的天朝剧《Nirvana in Fire》（琅琊榜），Tal 打算预学两门下学期的课，完成一个 Research Project，并且平均每天保持1小时以上的锻炼。
 
-![img](https://pica.zhimg.com/50/3fe995503eeb753ec2e65f3e189e3738_720w.jpg?source=1940ef5c)![img](https://pica.zhimg.com/80/3fe995503eeb753ec2e65f3e189e3738_720w.jpg?source=1940ef5c)
+![](https://pica.zhimg.com/50/3fe995503eeb753ec2e65f3e189e3738_720w.jpg?source=1940ef5c)
 
 嗯，结局喜闻乐见：Tal 童鞋跪了，他唯一的成就是如愿看完了 Huge（胡歌）主演的这部大作，哦对，还胖了四斤。啥，你问学习研究和锻炼呢？Tal 只在头两天看了10页书，加起来锻炼了一个小时而已。
 
@@ -50,7 +50,7 @@ notshow: true
 > I can't wait to have the freedom without squash and just focus on my classes. Catch up on all the readings and writings and stuff. Winter holiday came. I stopped playing completely. And instead of becoming more productive, I became far less productive.
 > 我等不及没有壁球的自由，以专注于我的学习，追上阅读、写作的进度。寒假来了，我不用再进行（壁球）训练了，但与高效学习相反，我反而效率变低很多。
 
-![img](https://pic2.zhimg.com/50/97377485d4d9da9d28dc52172419b3aa_720w.jpg?source=1940ef5c)![img](https://pic2.zhimg.com/80/97377485d4d9da9d28dc52172419b3aa_720w.jpg?source=1940ef5c)
+![](https://pic2.zhimg.com/50/97377485d4d9da9d28dc52172419b3aa_720w.jpg?source=1940ef5c)
 
 有些读者已经认出 Tal 了，没错，他现在是哈佛的 Tal 教授，这张图来自于他广为流传的《积极心理学》课程的第11集的39分47秒。（借机安利下，作为哈佛当年最受欢迎的选修课没有之一，这门课于2010年被网易公开课收录，并取了个很鸡汤的名字，叫《哈佛幸福课》，此后长期霸占排行榜第一，累计观看数早已破千万。）
 
@@ -72,7 +72,7 @@ Tal 教授用亲身经历证明了，在寒假计划这种事上，学霸和普�
 
 那么问题来了，“幼年体学霸”是如何成长为“成熟体学霸“的呢？
 
-![img](https://pica.zhimg.com/50/5ccd97b2dce095dcee74912bcd0c4a31_720w.jpg?source=1940ef5c)![img](https://pica.zhimg.com/80/5ccd97b2dce095dcee74912bcd0c4a31_720w.jpg?source=1940ef5c)
+![](https://pica.zhimg.com/50/5ccd97b2dce095dcee74912bcd0c4a31_720w.jpg?source=1940ef5c)
 
 （上面这张图好暴露年龄啊！）
 
@@ -126,7 +126,7 @@ Tal老师为我们揭示了两个真相：
 
 你想想想你起床后刷牙的过程：穿衣服（好吧我知道有人不穿），拿起杯子和牙刷，走到卫生间，接水，挤牙膏，开始刷。即使你可能还睡眼惺忪，但这一套流程你仍然能精确无比、毫不费力的执行下来。这个过程需要一丢丢的自控力吗？基本不需要对不对？
 
-![img](https://pic3.zhimg.com/50/7bef51c0837f384275f2f949ff57422c_720w.jpg?source=1940ef5c)![img](https://pic3.zhimg.com/80/7bef51c0837f384275f2f949ff57422c_720w.jpg?source=1940ef5c)
+![](https://pic3.zhimg.com/50/7bef51c0837f384275f2f949ff57422c_720w.jpg?source=1940ef5c)
 
 
 
@@ -146,7 +146,7 @@ Tal老师为我们揭示了两个真相：
 
 自控力也一样，我们在日常生活中要面对各种各样的诱惑：桌上昨天新买的一大堆零食，双十一淘宝主页玲琅满目的商品，男神胡歌的新剧又开播了……我们要反复抵抗这些诱惑才能专注于那些重要的目标，比如学习和减肥。每拒绝一次诱惑，你的自制力就消耗一分，如果面临的诱惑太多，总会有一个时刻，我们会累到无力抵抗，任由暴饮暴食、刷爆淘宝、熬夜看剧这些行为支配我们的生活。
 
-![img](https://pic1.zhimg.com/50/924d6e92455726b29cdf3c04fca0846d_720w.jpg?source=1940ef5c)![img](https://pic1.zhimg.com/80/924d6e92455726b29cdf3c04fca0846d_720w.jpg?source=1940ef5c)
+![](https://pic1.zhimg.com/50/924d6e92455726b29cdf3c04fca0846d_720w.jpg?source=1940ef5c)
 
 
 
@@ -164,7 +164,7 @@ Tal老师为我们揭示了两个真相：
 
 这话没错，然而肌肉力量有极限，自制力也是有极限的。生活中，我们面临的诱惑如此之多，靠后天锻炼出来的自制力依然会不够用。另一方面，就像上面讲到的第一点：**无论是校园里的“成熟期学霸”，还是社会里的精英人士，其高效的学习和生活，并不像我们往常以为的那样，依赖于强大的自制力，而是得益于后天构建起来的习惯体系。**
 
-![img](https://pic2.zhimg.com/50/cf3b8825d18326e8fb0922d4874acad1_720w.jpg?source=1940ef5c)![img](https://pic2.zhimg.com/80/cf3b8825d18326e8fb0922d4874acad1_720w.jpg?source=1940ef5c)
+![](https://pic2.zhimg.com/50/cf3b8825d18326e8fb0922d4874acad1_720w.jpg?source=1940ef5c)
 
 
 
@@ -198,7 +198,7 @@ Tal老师为我们揭示了两个真相：
 
 在几百万年前，我们的祖先还茹毛饮血的时候，资源稀缺，吃了上顿没下顿，大脑需要持续的分泌化学物质，它们促使人们去寻找并摄入食物，热量越高越好，把自身的脂肪储存的越多越好；如果不是这种机制，人类很可能存活不到今天。 
 
-![img](https://pic2.zhimg.com/50/2ae88e1593e5b06575ab883964a73da5_720w.jpg?source=1940ef5c)![img](https://pic2.zhimg.com/80/2ae88e1593e5b06575ab883964a73da5_720w.jpg?source=1940ef5c)
+![](https://pic2.zhimg.com/50/2ae88e1593e5b06575ab883964a73da5_720w.jpg?source=1940ef5c)
 
 
 
@@ -267,7 +267,7 @@ Tal老师为我们揭示了两个真相：
 
 计划失败了，大多数人会羞愧，会痛苦，会责骂自己。**但少有人去安慰自己，告诉自己“没关系，你是个普通人，你总会有脆弱的时候”；少有人像鼓励朋友一样鼓励自己，跟自己说“加油，还有机会，来！想一想下次怎么可以做得更好”。**
 
-![img](https://pic3.zhimg.com/50/4ee897db920d552539448213ca2ebb07_720w.jpg?source=1940ef5c)![img](https://pic3.zhimg.com/80/4ee897db920d552539448213ca2ebb07_720w.jpg?source=1940ef5c)
+![](https://pic3.zhimg.com/50/4ee897db920d552539448213ca2ebb07_720w.jpg?source=1940ef5c)
 
 真的，在与欲望和弱点搏斗的过程中，我们大多数时候是没有队友的，你只有自己给自己打气。
 
