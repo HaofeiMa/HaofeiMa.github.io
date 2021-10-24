@@ -5,11 +5,13 @@ description: 在ROS Master中，可以发布与订阅消息，ROS Master内有�
 categories:
 - 机器人
 - ROS
-  tags:
+tags:
 - 笔记
 - ros
+
 description: 订阅者订阅海龟的位姿信息首先创建工作空间，参【ROS学习笔记】（二）工作空间与功能包的创建，然后用如下代码然后创建一个功能包。进入功能包的src文件夹下...
----
+
+
 
 ### 一、目标功能
 

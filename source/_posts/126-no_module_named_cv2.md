@@ -1,7 +1,7 @@
 ---
-title: ImportError: No module named cv2问题的解决方法（修改python默认版本）
+title: ImportError No module named cv2问题的解决方法（修改python默认版本）
 date: 2021-10-12 10:14:12
-description: 在调用opencv安装包时，会出现ImportError: No module named cv2的问题。我确定我已经安装了opencv，查阅资料后发现是因为安装opencv是会安装的python版本，与系统默认使用的版本不一致，才会导致找不到模块。
+description: 在调用opencv安装包时，会出现ImportError  No module named cv2的问题。我确定我已经安装了opencv，查阅资料后发现是因为安装opencv是会安装的python版本，与系统默认使用的版本不一致，才会导致找不到模块。
 categories:
 - 程序设计
 - OpenCV
