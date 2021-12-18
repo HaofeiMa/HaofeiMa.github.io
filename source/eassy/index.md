@@ -27,11 +27,12 @@ type: eassy
 
 &emsp;
 
-<p style="font-size: 1.5em; font-family: Roboto Slab, Lato, 'Microsoft YaHei', 'PingFang SC', sans-serif; "><a href="https://www.mahaofei.com/2021/10/01/121-how_to_become_robomaster/" style="text-decoration: none;">大疆RoboMaster技术总监：我是如何成为一名机器人工程师的</a></h1>
+<p style="font-size: 1.5em; font-family: Roboto Slab, Lato, 'Microsoft YaHei', 'PingFang SC', sans-serif; "><a href="https://www.mahaofei.com/2021/10/01/120-how_to_become_robomaster/" style="text-decoration: none;">大疆RoboMaster技术总监：我是如何成为一名机器人工程师的</a></h1>
+
 
 文章来自大疆RoboMaster技术总监YY硕。这篇文章对我的影响十分深远，我有幸在大二时读到了这篇文章，在此分享出来，希望更多的人可以读到，帮助有相同兴趣的同学更早走出迷茫期。
 
-[阅读全文 »](https://www.mahaofei.com/2021/01/01/120-how_to_become_robomaster/)
+[阅读全文 »](https://www.mahaofei.com/2021/10/01/120-how_to_become_robomaster/)
 
 &emsp;
 

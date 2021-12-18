@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: HalfA Studio
+title: HALFA博客
 subtitle: ''
-description: <font color="#FFFFFF">Done is better than perfect.</font>
+description: <font color="#333333">无限进步！</font>
 keywords: Robot, SLAM, ROS, Website
-author: Huffie
+author: HUFFIE
 language: zh-CN
 timezone: ''
 
@@ -102,22 +102,22 @@ theme: hexo-theme-next
 # 看板娘live2d
 live2d:
   enable: true
-  scriptFrom: local
-  pluginRootPath: live2dw/
-  pluginJsPath: lib/
-  pluginModelPath: assets/
-  tagMode: false
-  log: false
-  model:
-    use: live2d-widget-model-hijiki
-  display:
-    position: right
-    width: 150
-    height: 200
-  mobile:
-    show: true
-  react:
-    opacity: 1
+  #scriptFrom: local
+  #pluginRootPath: live2dw/
+  #pluginJsPath: lib/
+  #pluginModelPath: assets/
+  #tagMode: false
+  #log: false
+  #model:
+  #  use: live2d-widget-model-hijiki
+  #display:
+  #  position: right
+  #  width: 150
+  #  height: 200
+  #mobile:
+  #  show: true
+  #react:
+  #  opacity: 1
 
 
 # Deployment
@@ -127,6 +127,7 @@ deploy:
   repo: 
     github: git@github.com:HuffieMa/HuffieMa.github.io.git
     coding: git@e.coding.net:halfa/huffie/HalfA_Studio.git
+    coding2: git@e.coding.net:halfa/huffie/hexo-blog.git
   branch: master
 
 

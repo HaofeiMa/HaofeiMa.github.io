@@ -38,9 +38,9 @@ custom_file_path:
 
 # 主题
 #scheme: Muse
-scheme: Mist
+#scheme: Mist
 #scheme: Pisces
-#scheme: Gemini
+scheme: Gemini
 
 # 黑暗模式
 darkmode: false
@@ -85,9 +85,10 @@ creative_commons:
 # External url should start with http:// or https://
 menu:
   home: / || fa fa-home #fa fa-home 是菜单栏中文字前的图标
-  随笔: /eassy || fa fa-pen-alt
-  资源: /resource/ || fa fa-cloud-download-alt
-  书签: /bookmarks/ || fa fa-bookmark
+  教程: /tutorial || fa fa-desktop
+  资源: /resource/ || fa fa-download
+  网页: /bookmarks/ || fa fa-bookmark
+  随笔: /eassy || fab fa-pencil-alt
   about: /about/ || fa fa-user
   #留言: /messages/ || fa fa-envelope-open-text
   #read:	/categories/文章
@@ -158,14 +159,16 @@ social:
   CSDN: https://blog.csdn.net/weixin_44543463 || fab fa-cuttlefish
   GitHub: https://github.com/HuffieMa || fab fa-github
   E-Mail: mailto:haofei_ma@163.com || fa fa-envelope
+  知乎: https://www.zhihu.com/people/ma-hao-fei-2 || fab fa-zhihu
   #Weibo: https://weibo.com/yourname || fab fa-weibo
   #Google: https://plus.google.com/yourname || fab fa-google
-  Twitter: https://twitter.com/huffie65380272 || fab fa-twitter
+  #Twitter: https://twitter.com/huffie65380272 || fab fa-twitter
   #FB Page: https://www.facebook.com/yourname || fab fa-facebook
   #StackOverflow: https://stackoverflow.com/yourname || fab fa-stack-overflow
   #YouTube: https://youtube.com/yourname || fab fa-youtube
   #Instagram: https://instagram.com/yourname || fab fa-instagram
   #Skype: skype:yourname?call|chat || fab fa-skype
+  陶小桃Blog: https://52txr.cn/ || fab fa-tumblr
 
 
 social_icons:

@@ -18,6 +18,9 @@
   <noscript>
     <link rel="stylesheet" href="{{ url_for(theme.css) }}/noscript.css">
   </noscript>
+  <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+
 </head>
 
 
@@ -61,6 +64,6 @@
   {%- include '_third-party/quicklink.njk' -%}
 
   {{- next_inject('bodyEnd') }}
-
+	<script src="https://huffiema.github.io/live2d/autoload.js"></script>
 </body>
 </html>
