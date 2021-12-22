@@ -4,44 +4,7 @@
   </div>
 {%- endif %}
 
-<div class="copyright">
-    {%- if theme.footer.beian.gongan_icon_url %}
-    <span class="with-love">
-      <img src="{{ url_for(theme.footer.beian.gongan_icon_url) }}" alt="" style="height:17px;margin-bottom:-3px">
-    </span>
-    {%- endif %}
-    {{- next_url('https://beian.miit.gov.cn', theme.footer.beian.icp + ' ') }}
-    {%- if theme.footer.beian.gongan_id and theme.footer.beian.gongan_num %}
-      {{- next_url('http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=' + theme.footer.beian.gongan_id, theme.footer.beian.gongan_num + ' ') }}
-    {%- endif %}
-  丨<a href="https://www.huffie.cn/">Copyright 
-  {%- set copyright_year = date(null, 'YYYY') %}
-  &copy; {% if theme.footer.since and theme.footer.since != copyright_year %}{{ theme.footer.since }} – {% endif %}
-  <span itemprop="copyrightYear">{{ copyright_year }}</span>
-  <!--<span class="with-love"><i class="{{ theme.footer.icon.name }}"></i></span>--></a>丨
-  
-  <!-- <span class="author" itemprop="copyrightHolder"> -->
-  <!-- <a href="https://hexo.io/zh-cn/">{{ theme.footer.copyright or author }}</a> -->
-  <!-- </span>丨 -->
- 
-  <span>
-    <!-- 网站运行时间 -->
-    <a href="https://wangzhan.baidu.com/web/welcome/ico?s=3fd06b1b63f9b056d19abc6f5a943aed">
-    </script>
-    <span id="runtime_span"></span>
-    <script type="text/javascript">function show_runtime(){window.setTimeout("show_runtime()",1000);X=new 
-    Date("1/21/2021 14:56:40");
-    Y=new Date();T=(Y.getTime()-X.getTime());M=24*60*60*1000;
-    a=T/M;A=Math.floor(a);b=(a-A)*24;B=Math.floor(b);c=(b-B)*60;C=Math.floor((b-B)*60);D=Math.floor((c-C)*60);
-    runtime_span.innerHTML="本站已运行 "+A+"天"+B+"小时"+C+"分"+D+"秒"}show_runtime();</script>
-    </a>丨
-  </span>
-  <span class="with-love">
-    <a href="https://wangzhan.baidu.com/web/welcome/ico?s=439a0d0abeb31dd8f338efd8266c999b">
-      <img src="https://wangzhan.baidu.com/sc-web/image/icon/41.gif?__v=1638878820259" alt="" style="height:17px;margin-bottom:-3px">
-    </a>
-  </span>
-</div>
+
 
 {%- if config.symbols_count_time.total_symbols or config.symbols_count_time.total_time %}
 <div class="wordcount">
@@ -111,6 +74,32 @@
 {%- endif %}
 
 <!-- 彩色标签 -->
+<footer id="footerright" class="clearfix">
+	<div class="github-badge">
+	  <a style="color: #fff" rel="license" href="https://beian.miit.gov.cn/" target="_blank" title="津ICP备2021000769号-2 ">
+	  <span class="badge-subject">津ICP备</span><span class="badge-value bg-red">2021000769号-2 </span></a>
+	</div>
+	<div class="github-badge">
+	  <a style="color: #fff" rel="license" href="https://www.mahaofei.com/" target="_blank" title="Copyright:https://www.mahaofei.com/">
+	  <span class="badge-subject">Copyright</span><span class="badge-value bg-lightgray">2020-2022</span></a>
+	</div>
+	<div class="github-badge">
+	  <a style="color: #fff" rel="license" href="https://wangzhan.baidu.com/web/welcome/ico?s=439a0d0abeb31dd8f338efd8266c999b" target="_blank" title="本站建自2021年1月21日">
+	  <span class="badge-subject">运行时间</span><span class="badge-value bg-orange"></script>
+    <span id="runtime_span"></span>
+    <script type="text/javascript">function show_runtime(){window.setTimeout("show_runtime()",1000);X=new 
+    Date("1/21/2021 14:56:40");
+    Y=new Date();T=(Y.getTime()-X.getTime());M=24*60*60*1000;
+    a=T/M;A=Math.floor(a);b=(a-A)*24;B=Math.floor(b);c=(b-B)*60;C=Math.floor((b-B)*60);D=Math.floor((c-C)*60);
+    runtime_span.innerHTML=A+"天"+B+"时"+C+"分"+D+"秒"}show_runtime();</script></span></a>
+	</div>
+  <div class="with-love">
+    <a href="https://wangzhan.baidu.com/web/welcome/ico?s=439a0d0abeb31dd8f338efd8266c999b">
+      <img src="https://wangzhan.baidu.com/sc-web/image/icon/41.gif?__v=1638878820259" alt="" style="height:17px;margin-bottom:-3px">
+    </a>
+  </div>
+</footer>
+
 <footer id="footer" class="clearfix">
 	<div class="github-badge">
 	  <a style="color: #fff" rel="license" href="https://hexo.io/" target="_blank" title="由 Hexo 强力驱动">

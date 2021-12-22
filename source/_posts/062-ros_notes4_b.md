@@ -1,15 +1,14 @@
 ---
 title: 【ROS学习笔记】（四）订阅者Subscriber的实现
 date: 2021-02-24 22:24:46
-description: 在ROS Master中，可以发布与订阅消息，ROS Master内有两个节点，一个是Subscriber(turtlesim)，一个是Publisher，发布者通过程序实现发布Message，Message的内容包括线速度、角度，通过Topic管道，传递给Subscriber，从而控制小海龟的运动。
+description: 在ROS_Master中，可以发布与订阅消息，ROS_Master内有两个节点，一个是Subscriber（turtlesim），一个是Publisher，发布者通过程序实现发布Message，Message的内容包括线速度、角度，通过Topic管道，传递给Subscriber，从而控制小海龟的运动。
 categories:
 - 机器人
 - ROS
 tags:
 - 笔记
 - ros
-
-description: 订阅者订阅海龟的位姿信息首先创建工作空间，参【ROS学习笔记】（二）工作空间与功能包的创建，然后用如下代码然后创建一个功能包。进入功能包的src文件夹下...
+---
 
 
 

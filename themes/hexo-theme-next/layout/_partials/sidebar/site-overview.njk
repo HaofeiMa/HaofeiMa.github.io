@@ -1,7 +1,8 @@
 <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   {%- if theme.avatar.url %}
+  <a href="https://www.mahaofei.com/">
     <img class="site-author-image" itemprop="image" alt="{{ author }}"
-      src="{{ url_for(theme.avatar.url) }}">
+      src="{{ url_for(theme.avatar.url) }}"></a>
   {%- endif %}
   <p class="site-author-name" itemprop="name">{{ author }}</p>
   <div class="site-description" itemprop="description">{{ description }}</div>
@@ -28,8 +29,14 @@
         c.step ? c.step-- : (c.step = g, c.prefixP < l.length ? (c.prefixP >= 0 && (c.text += l[c.prefixP]), c.prefixP++) : "forward" === c.direction ? c.skillP < t.length ? (c.text += t[c.skillP], c.skillP++) : c.delay ? c.delay-- : (c.direction = "backward", c.delay = a) : c.skillP > 0 ? (c.text = c.text.slice(0, -1), c.skillP--) : (c.skillI = (c.skillI + 1) % o.length, c.direction = "forward")), r.textContent = c.text, r.appendChild(n(c.prefixP < l.length ? Math.min(s, s + c.prefixP) : Math.min(s, t.length - c.skillP))), setTimeout(i, d)
       }
       var l = "",
-      o = ["无限进步！！！", "Fighting！！！","这里是Huffie的个人博客", "网站分享各种经验教程","感谢大家光临！！","如果需要资源、教程请看教程资源页。",
-	  "博主为机电准研究生。","博主研究方向为视觉+激光三维环境重建。","欢迎各位交流学习"].map(function (r) {
+      o = [
+	  "保持热爱，奔赴山海","知命不惧，日日自新","但行好事，莫问前程",
+	  "失有所悟，梦有所想","累有所获，忙有所往","洒脱余生，坦然今朝",
+	  "一切尽力，万事胜意","寒來暑往，秋收冬藏","奋发有为，时不我待",
+	  "不勤于始，将悔于终","谈泊明志，宁静致远","学海无涯，心存高远",
+	  "生命不止，奋斗不息","浮舟沧海，立马昆仑","一约既定，万山无阻",
+	  "凡属过往，皆为序章","要么庸俗，要么孤独","一息若存，希望不灭"
+	  ].map(function (r) {
       return r + ""
       }),
       a = 2,
