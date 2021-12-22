@@ -27,6 +27,7 @@
 <body itemscope itemtype="http://schema.org/WebPage"{% if theme.motion.enable %} class="use-motion"{% endif %}>
   <div class="headband"></div>
   
+
   <!--Follow me on CSDN-->
   <a href="https://blog.csdn.net/weixin_44543463" class="pcfollow"><img loading="lazy" width="149" height="149" style="position: absolute; top: 0; right: 0; border: 0;" src="https://img-blog.csdnimg.cn/abe3797b7d77419b81ecc02dd1bf8c34.png" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
 
@@ -62,6 +63,8 @@
 
   {%- include '_third-party/math/index.njk' -%}
   {%- include '_third-party/quicklink.njk' -%}
+  
+  {%- include '_custom/custom.swig' %}
 
   {{- next_inject('bodyEnd') }}
 	<script src="https://huffiema.github.io/live2d/autoload.js"></script>

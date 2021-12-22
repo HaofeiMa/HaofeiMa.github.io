@@ -88,7 +88,7 @@ menu:
   教程: /tutorial || fa fa-desktop
   资源: /resource/ || fa fa-download
   网页: /bookmarks/ || fa fa-bookmark
-  随笔: /eassy || fab fa-pencil-alt
+  随笔: /eassy || fa fa-archive
   about: /about/ || fa fa-user
   #留言: /messages/ || fa fa-envelope-open-text
   #read:	/categories/文章
@@ -740,7 +740,7 @@ firestore:
 # 用busuanzi显示网站的视图/访问者/页面
 # For more information: http://ibruce.info/2015/04/04/busuanzi/
 busuanzi_count:
-  enable: false
+  enable: true
   total_visitors: true
   total_visitors_icon: fa fa-user
   total_views: true
@@ -878,7 +878,7 @@ nprogress:
 # Canvas ribbon
 # For more information: https://github.com/hustcc/ribbon.js
 canvas_ribbon:
-  enable: false
+  enable: true
   size: 300 # The width of the ribbon
   alpha: 0.6 # The transparency of the ribbon
   zIndex: -1 # The display level of the ribbon
@@ -991,13 +991,15 @@ images: images
 
 # 动态背景
 # https://github.com/theme-next/theme-next-canvas-nest
-canvas_nest: # 网络背景
-  enable: true
-  onmobile: false # display on mobile or not
-  color: '0,255,0' # RGB values, use ',' to separate
-  opacity: 0.5 # the opacity of line: 0~1
-  zIndex: -1 # z-index property of the background
-  count: 150 # the number of lines
+#canvas_nest: # 网络背景
+#  enable: true
+#  onmobile: false # display on mobile or not
+#  color: '0,255,0' # RGB values, use ',' to separate
+#  opacity: 0.5 # the opacity of line: 0~1
+#  zIndex: -1 # z-index property of the background
+#  count: 150 # the number of lines
   
 
-
+# 鼠标点击特效
+# mouse click effect: fireworks | explosion | love | text
+cursor_effect: fireworks
