@@ -14,6 +14,7 @@ cache:
   enable: true
 
 # 在hexo生成后删除不必要的文件
+# 在hexo生成后删除不必要的文件
 minify: false
 
 # 自定义文件路径
@@ -168,7 +169,7 @@ social:
   #YouTube: https://youtube.com/yourname || fab fa-youtube
   #Instagram: https://instagram.com/yourname || fab fa-instagram
   #Skype: skype:yourname?call|chat || fab fa-skype
-  陶小桃Blog: https://52txr.cn/ || fab fa-tumblr
+  #陶小桃Blog: https://52txr.cn/ || fab fa-tumblr
 
 
 social_icons:
@@ -258,7 +259,7 @@ post_meta:
   updated_at:
     enable: false
     another_day: true
-  categories: true
+  categories: false
 
 # Post wordcount display settings
 # Dependencies: https://github.com/next-theme/hexo-word-counter
@@ -281,13 +282,13 @@ tag_icon: true
 # Front-matter variable (unsupport animation).
 reward_settings:
   # If true, a donate button will be displayed in every article by default.
-  enable: false
-  animation: false
-  #comment: Buy me a coffee
+  enable: true
+  animation: true
+  comment: 给博主点一杯咖啡
 
 reward:
-  #wechatpay: /images/wechatpay.png
-  #alipay: /images/alipay.png
+  wechatpay: /images/wechatpay.png
+  alipay: /images/alipay.jpg
   #paypal: /images/paypal.png
   #bitcoin: /images/bitcoin.png
 
@@ -384,27 +385,27 @@ codeblock:
   # 代码高亮显示主题
   # All available themes: https://theme-next.js.org/highlight/
   theme:
-    light: default
-    dark: tomorrow-night
+    light: tomorrow
+    dark: vs2015
   prism:
     light: prism
     dark: prism-dark
   # Add copy button on codeblock
   copy_button:
-    enable: false
+    enable: true
     # Available values: default | flat | mac
-    style:
+    style: mac
 
 back2top:
   enable: true
   # Back to top in sidebar.
-  sidebar: false
+  sidebar: true
   # Scroll percent label in b2t button.
-  scrollpercent: false
+  scrollpercent: true
 
 # 阅读进度条
 reading_progress:
-  enable: false
+  enable: true
   # Available values: left | right
   start_at: left
   # Available values: top | bottom
@@ -718,15 +719,15 @@ cloudflare_analytics:
 # 显示每一篇文章的访问者数量
 # You can visit https://www.leancloud.cn to get AppID and AppKey.
 leancloud_visitors:
-  enable: false
-  app_id: 3Rw5EHd9mmq2LLj300zrIjI1-gzGzoHsz # <your app id>
-  app_key: FKfDz4V75aXAV87S0ChulTmL # <your app key>
+  enable: true
+  app_id: zoJ7qANtYQPOmNMEbRTBH6GB-MdYXbMMI # <your app id>
+  app_key: mgI9AwKeE7iCCe3i1CunE5mx # <your app key>
   # Required for apps from CN region
-  server_url: https://3rw5ehd9.lc-cn-n1-shared.com # <your server url>
+  server_url: https://zoj7qant.api.lncldglobal.com # <your server url>
   # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
   # If you don't care about security in leancloud counter and just want to use it directly
   # (without hexo-leancloud-counter-security plugin), set `security` to `false`.
-  security: true
+  security: false
 
 # 另一个工具显示每个文章的访客数量
 # Visit https://console.firebase.google.com/u/0/ to get apiKey and projectId.
@@ -1003,3 +1004,23 @@ images: images
 # 鼠标点击特效
 # mouse click effect: fireworks | explosion | love | text
 cursor_effect: fireworks
+
+
+
+# Darkmode JS
+# For more information: https://github.com/rqh656418510/hexo-next-darkmode, https://github.com/sandoche/Darkmode.js
+darkmode_js:
+  enable: true
+  bottom: '64px' # default: '32px'
+  right: 'unset' # default: '32px'
+  left: '64px' # default: 'unset'
+  time: '0.5s' # default: '0.3s'
+  mixColor: 'transparent' # default: '#fff'
+  backgroundColor: 'transparent' # default: '#fff'
+  buttonColorDark: '#100f2c' # default: '#100f2c'
+  buttonColorLight: '#fff' # default: '#fff'
+  isActivated: false # default false
+  saveInCookies: true # default: true
+  label: '🌓' # default: ''
+  autoMatchOsTheme: true # default: true
+  libUrl: # Set custom library cdn url for Darkmode.js
