@@ -271,10 +271,9 @@ symbols_count_time:
   total_symbols: true
   total_time: true
   exclude_codeblock: false
-  awl: 4
+  awl: 2
   wpm: 275
   suffix: "分"
-
 # 使用图标代替#符号来表示文章底部的标签
 tag_icon: true
 
@@ -584,18 +583,19 @@ comments:
   style: tabs
   # 选择一个默认显示的评论系统
   # Available values: disqus | disqusjs | changyan | livere | gitalk | utterances
-  active: changyan
+  active: gitalk
   # Setting `true` means remembering the comment system selected by the visitor.
   storage: true
   # Lazyload all comment systems.
   lazyload: false
   # Modify texts or order for any navs, here are some examples.
   nav:
-    #disqus:
-    #  text: Load Disqus
-    #  order: -1
-    #gitalk:
-    #  order: -2
+    gitalk:
+      text: Gitalk
+      order: -2
+    changyan:
+      text: 畅言
+      order: -1
 
 # Disqus网页评论系统
 # For more information: https://disqus.com
@@ -630,7 +630,7 @@ livere_uid: # <your_uid>
 # Gitalk
 # For more information: https://gitalk.github.io
 gitalk:
-  enable: false
+  enable: true
   github_id: HuffieMa # GitHub repo owner
   repo: gittalk # Repository name to store issues
   client_id: 56b6c26cce60bdc46286 # GitHub Application Client ID
@@ -663,15 +663,25 @@ isso: # <data_isso>
 # 启用Valine必须先创建leancloud应用， 获取 id|key 填入即可
 leancloud:
   enable: true
-  app_id: 3Rw5EHd9mmq2LLj300zrIjI1
+  app_id: 3Rw5EHd9mmq2LLj300zrIjI1-gzGzoHsz
   app_key: FKfDz4V75aXAV87S0ChulTmL
 # Valine配置
 valine:
-  enable: true # 是否启用i
-  verify: false #验证码
-  notify: false #评论回复提醒
-  avatar: wavatar # 头像样式(https://valine.js.org/avatar.html)
-  placeholder: 给我的文章加点评论吧~ # 评论框占位符
+  enable: true
+  appid: 3Rw5EHd9mmq2LLj300zrIjI1-gzGzoHsz
+  appkey: FKfDz4V75aXAV87S0ChulTmL
+  notify: false # Mail notifier
+  verify: false # Verification code
+  placeholder: 给文章加点评论吧~ # Comment box placeholder
+  avatar: wavatar # Gravatar style
+  guest_info: nick,mail,link # Custom comment header
+  pageSize: 10 # Pagination size
+  language: # Language, available values: en, zh-cn
+  visitor: false # Article reading statistic
+  comment_count: true # If false, comment count will only be displayed in post page, not in home page
+  recordIP: false # Whether to record the commenter IP
+  serverURLs: # When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)
+  #post_meta_order: 0
 
 
 # ---------------------------------------------------------------
@@ -706,7 +716,7 @@ google_analytics:
 
 # 百度统计
 # See: https://tongji.baidu.com
-baidu_analytics: 3fd06b1b63f9b056d19abc6f5a943aed
+baidu_analytics: 439a0d0abeb31dd8f338efd8266c999b
 
 # Growingio Analytics
 # See: https://www.growingio.com
@@ -719,11 +729,11 @@ cloudflare_analytics:
 # 显示每一篇文章的访问者数量
 # You can visit https://www.leancloud.cn to get AppID and AppKey.
 leancloud_visitors:
-  enable: true
-  app_id: zoJ7qANtYQPOmNMEbRTBH6GB-MdYXbMMI # <your app id>
-  app_key: mgI9AwKeE7iCCe3i1CunE5mx # <your app key>
+  enable: false
+  app_id: 3Rw5EHd9mmq2LLj300zrIjI1-gzGzoHsz # <your app id>
+  app_key: FKfDz4V75aXAV87S0ChulTmL # <your app key>
   # Required for apps from CN region
-  server_url: https://zoj7qant.api.lncldglobal.com # <your server url>
+  server_url: https://3rw5ehd9.lc-cn-n1-shared.com # <your server url>
   # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
   # If you don't care about security in leancloud counter and just want to use it directly
   # (without hexo-leancloud-counter-security plugin), set `security` to `false`.
@@ -742,9 +752,9 @@ firestore:
 # For more information: http://ibruce.info/2015/04/04/busuanzi/
 busuanzi_count:
   enable: true
-  total_visitors: true
+  total_visitors: false
   total_visitors_icon: fa fa-user
-  total_views: true
+  total_views: false
   total_views_icon: fa fa-eye
   post_views: true
   post_views_icon: far fa-eye
@@ -879,7 +889,7 @@ nprogress:
 # Canvas ribbon
 # For more information: https://github.com/hustcc/ribbon.js
 canvas_ribbon:
-  enable: true
+  enable: false
   size: 300 # The width of the ribbon
   alpha: 0.6 # The transparency of the ribbon
   zIndex: -1 # The display level of the ribbon
@@ -1017,7 +1027,7 @@ darkmode_js:
   time: '0.5s' # default: '0.3s'
   mixColor: 'transparent' # default: '#fff'
   backgroundColor: 'transparent' # default: '#fff'
-  buttonColorDark: '#100f2c' # default: '#100f2c'
+  buttonColorDark: '#333333' # default: '#100f2c'
   buttonColorLight: '#fff' # default: '#fff'
   isActivated: false # default false
   saveInCookies: true # default: true

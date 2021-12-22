@@ -43,13 +43,14 @@
             {{- post_edit(post.source) }}
           {%- endif %}
         </{%- if is_index %}h2{% else %}h1{%- endif %}>
-
+		
         <div class="post-meta-container">
           {{ partial('_partials/post/post-meta.njk') }}
-
+			
           {%- if post.description and (not theme.excerpt_description or not is_index) %}
             <div class="post-description">{{ post.description }}</div>
           {%- endif %}
+			
         </div>
       </header>
     {%- endif %}

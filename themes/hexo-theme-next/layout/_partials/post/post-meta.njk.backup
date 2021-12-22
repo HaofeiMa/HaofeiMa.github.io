@@ -87,7 +87,7 @@
     <span class="post-meta-break"></span>
   {%- endif %}
 
-  <!--{%- if config.symbols_count_time.symbols %}-->
+  {%- if config.symbols_count_time.symbols %}
     <span class="post-meta-item" title="{{ __('symbols_count_time.count') }}">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
@@ -95,9 +95,9 @@
       <span class="post-meta-item-text">{{ __('symbols_count_time.count') + __('symbol.colon') }}</span>
       <span>{{ symbolsCount(post) }}</span>
     </span>
-  <!--{%- endif %}-->
+  {%- endif %}
 
-  <!--{%- if config.symbols_count_time.time %}-->
+  {%- if config.symbols_count_time.time %}
     <span class="post-meta-item" title="{{ __('symbols_count_time.time') }}">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
@@ -105,5 +105,5 @@
       <span class="post-meta-item-text">{{ __('symbols_count_time.time') }} &asymp;</span>
       <span>{{ symbolsTime(post, config.symbols_count_time.awl, config.symbols_count_time.wpm, __('symbols_count_time.time_minutes')) }}</span>
     </span>
-  <!--{%- endif %}-->
+  {%- endif %}
 </div>

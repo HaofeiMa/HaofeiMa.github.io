@@ -7,7 +7,7 @@ title: HALFA博客
 subtitle: ''
 description: 无限进步！！！
 keywords: Robot, SLAM, ROS, Website
-author: HUFFIE
+author: 马浩飞
 language: zh-CN
 timezone: ''
 
@@ -137,3 +137,12 @@ search:
   field: post
   format: html
   limit: 10000
+
+leancloud_counter_security:
+ enable_sync: true
+ app_id: 3Rw5EHd9mmq2LLj300zrIjI1-gzGzoHsz   # 同前文的id
+ app_key: FKfDz4V75aXAV87S0ChulTmL # 同前文的key
+ username: huffie    #如留空则将在部署时询问
+ password: mahaofei    #建议留空以保证安全性，如留空则将在部署时询问
+ 
+ 
