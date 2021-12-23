@@ -79,7 +79,10 @@ void MyDemo::histShow_Demo(Mat& image) {
 ```
 
 
-<img src="https://img-blog.csdnimg.cn/2b0c19ca59964014b66511e95e51f2a8.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231918681-opencv-notes13-1.png)
+
+
 
 ## 三、二维直方图
 &emsp;&emsp;我们知道RGB虽然有三个通道，但转到HSV色彩空间中只有H和S表示颜色，而V表示亮度。因此要表示一个图像的颜色只有两个维度H和S，因此可以组成一个平面的直方图形式。
@@ -118,4 +121,4 @@ void MyDemo::histShow2_Demo(Mat& image) {
 	imshow("H-S Histogram", hist2d_image);
 }
 ```
-<img src="https://img-blog.csdnimg.cn/00e1e28596a4421aa33a6854cdc473bc.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231919044-opencv-notes13-2.png)

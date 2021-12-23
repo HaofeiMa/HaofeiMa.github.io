@@ -102,4 +102,6 @@ void MyDemo::video_Demo(Mat& image) {
 	writer.release();
 }
 ```
-<img src="https://img-blog.csdnimg.cn/a3349cf9127b4d868dd88fb5aa30cc56.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231918357-opencv-notes12-1.png)

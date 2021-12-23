@@ -90,6 +90,7 @@ menu:
   资源: /resource/ || fa fa-download
   网页: /bookmarks/ || fa fa-bookmark
   随笔: /eassy || fa fa-archive
+  友链: /links || fa fa-link
   about: /about/ || fa fa-user
   #留言: /messages/ || fa fa-envelope-open-text
   #read:	/categories/文章
@@ -264,13 +265,13 @@ post_meta:
 # Post wordcount display settings
 # Dependencies: https://github.com/next-theme/hexo-word-counter
 symbols_count_time:
-  separated_meta: true
-  item_text_total: true
-  symbols: true
-  time: true
-  total_symbols: true
-  total_time: true
-  exclude_codeblock: false
+  separated_meta: false      # 是否另起一行（true的话不和发表时间等同一行）
+  item_text_total: fapse     # 页面底部统计数量前是否显示文字描述（站点总字数、站点阅读时长）
+  symbols: true             # 文章字数统计
+  time: true                # 文章阅读时长
+  total_symbols: false       # 站点总字数统计
+  total_time: false          # 站点总阅读时长
+  exclude_codeblock: false  # 排除代码字数统计
   awl: 2
   wpm: 275
   suffix: "分"
@@ -756,7 +757,7 @@ busuanzi_count:
   total_visitors_icon: fa fa-user
   total_views: false
   total_views_icon: fa fa-eye
-  post_views: true
+  post_views: false
   post_views_icon: far fa-eye
 
 
@@ -999,6 +1000,29 @@ css: css
 js: js
 images: images
 
+# 友情链接
+defaultlinks:
+  - nickname: HALFA博客     # 昵称
+    avatar: https://mahaofei.com/images/avatar.jpg    # 头像地址
+    site: https://mahaofei.com/ #友链地址
+    info: 无限进步！
+
+
+friendslinks:
+  - nickname: 陶小桃Blog     # 昵称
+    avatar: https://s4.ax1x.com/2021/12/08/oWmmAH.jpg    # 头像地址
+    site: https://52txr.cn/ #友链地址
+    info: 鸷鸟不群，前世固然
+  - nickname: 阿正的个人站     # 昵称
+    avatar: https://avatars.githubusercontent.com/u/32945694?s=400&u=13c7304706f04cef537cda9f5e31bcaf9bf37c51&v=4    # 头像地址
+    site: http://wenzheng.club/ #友链地址
+    info: 学无止境，谦虚为人
+  - nickname: 稚晖的个人站     # 昵称
+    avatar: https://pengzhihui.xyz/logo.jpg    # 头像地址
+    site: https://pengzhihui.xyz/ #友链地址
+    info: “十年饮冰，难凉热血”
+    
+    
 
 # 动态背景
 # https://github.com/theme-next/theme-next-canvas-nest
@@ -1034,3 +1058,4 @@ darkmode_js:
   label: '🌓' # default: ''
   autoMatchOsTheme: true # default: true
   libUrl: # Set custom library cdn url for Darkmode.js
+

@@ -70,7 +70,7 @@ void MyDemo::pixelVisit_Demo(Mat& image) {
 	imshow("Pixel Visit Demo", image);
 }
 ```
-<img src="https://img-blog.csdnimg.cn/20210718091652147.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231901936-opencv-notes3-1.png)
 
 ### 1.2 指针遍历
 &emsp;&emsp;指针遍历的原理与数组遍历类似。定义一个指针指向当前行的首地址，然后利用此指针即可遍历访问本行所有像素点。
@@ -142,7 +142,7 @@ void MyDemo::operators_Demo(Mat& image) {
 	imshow("operator",dst);
 }
 ```
-<img src="https://img-blog.csdnimg.cn/20210718102155704.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231901960-opencv-notes3-2.png)
 
 ### 2.2 图像算术操作API
 | 功能 | 函数                          |
@@ -224,6 +224,11 @@ void MyDemo::bitWise_Demo(Mat& image) {
 | 矩形2    | Scalar(0, 255, 255) |
 | 相交区域 | Scalar(0, 255, 0)   |
 | 其他区域 | Scalar(0, 0, 0)     |
-<img src="https://img-blog.csdnimg.cn/20210718110408134.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
-&emsp;&emsp;
+
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231904528-opencv-notes3-3.png)
+
+
+
 &emsp;&emsp;其他的“或”、“非”、“异或”操作类似，有兴趣的可以自己尝试。

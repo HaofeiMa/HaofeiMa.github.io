@@ -31,17 +31,17 @@ tags:
 
 ## 二、实验
 1. 任务要求：通过滑动杆对波形图任意一段进行显示。
-<img src="https://img-blog.csdnimg.cn/20210111155755610.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231105333-labview-notes8-1.png)
 3. 实现过程：
 （1）用for循环产生1000个随机数，通过波形图将1000个点显示出来
-<img src="https://img-blog.csdnimg.cn/20210111154508679.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231105730-labview-notes8-2.png)
 （2）在前面板添加一个水平滑动杆作为拖动的滚动条。
-<img src="https://img-blog.csdnimg.cn/20210111154630269.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231105264-labview-notes8-3.png)
 （3）因需要实时调整波形图，所以用一个while循环，在while循环中创建属性节点（波形图的最大值和最小值），并将其转换为写入。将滑动杆的输出连接至波形图最小值，滑动杆的输出+100连接至波形图最大值。
-<img src="https://img-blog.csdnimg.cn/20210111154832410.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210111155120224.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231105825-labview-notes8-4.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231105330-labview-notes8-5.png)
 （4）设置滑动杆的属性（最大值和最小值）为0和900，初始值为0。
-<img src="https://img-blog.csdnimg.cn/20210111155408823.png" width="20%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231106970-labview-notes8-6.png)
 （5）连接错误簇确定程序执行顺序。
-<img src="https://img-blog.csdnimg.cn/20210111155608532.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
-（6）程序设计完成
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231106405-labview-notes8-7.png)
+（6)程序设计完成

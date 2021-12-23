@@ -53,4 +53,4 @@ void MyDemo::random_Demo() {
 }
 ```
 
-<img src="https://img-blog.csdnimg.cn/img_convert/805c15894954a39e81d5e8e019646617.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231911051-opencv-notes8-1.png)

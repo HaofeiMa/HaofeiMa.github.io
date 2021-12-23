@@ -33,7 +33,7 @@ CSS盒子模型本质上是一个盒子，封装周围的HTML元素，它包括�
 3. padding内边距
 4. margin外边距
 
-![](https://img-blog.csdnimg.cn/20210315114805168.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70#pic_center)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231711309-html-notes4-1.png)
 
 
 ### 1.3 边框border
@@ -95,7 +95,7 @@ div {
 }
 ```
 
-![](https://img-blog.csdnimg.cn/20210315114900771.png#pic_center)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231711571-html-notes4-2.png)
 
 ### 1.4 内边距padding
 
@@ -134,7 +134,7 @@ div {
 }
 ```
 
-![](https://img-blog.csdnimg.cn/20210315114945457.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70#pic_center)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231712713-html-notes4-3.png)
 
 
 ### 1.5 外边距margin
@@ -183,7 +183,7 @@ margin可以让**块级盒子水平居中**，但必须满足两个条件：
 
 对于两个嵌套关系（父子关系）的元素，父元素有上外边距同时子元素也有上外边距，此时父元素会塌陷较大的外边距值。 
 
-![](https://img-blog.csdnimg.cn/20210315115009679.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70#pic_center)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231712550-html-notes4-4.png)
 
 
 解决方案：
@@ -233,7 +233,7 @@ border-radius:length;
 
 * 圆角边框也可以分开写：如border-top-left-radius
 
-![](https://img-blog.csdnimg.cn/20210315115044767.png#pic_center)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231712931-html-notes4-5.png)
 
 ### 2.2 盒子阴影
 
@@ -263,7 +263,7 @@ box-shadow: h-shadow v-shadow blur spread color inset;
 box-shadow: 10px 10px 10px -3px rgba(0, 0, 0, 0.3);
 ```
 
-![](https://img-blog.csdnimg.cn/20210315115203844.png#pic_center)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231712448-html-notes4-6.png)
 
 
 ### 2.3 文字阴影

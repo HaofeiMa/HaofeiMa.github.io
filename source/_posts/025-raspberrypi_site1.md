@@ -29,8 +29,9 @@ sudo chown -R pi:www-data /var/www/html/
 sudo chmod -R 770 /var/www/html/
 ```
 在浏览器输入`127.0.0.1`可以看到apache的页面，说明apache已经顺利安装成功。
-<img src="https://img-blog.csdnimg.cn/20210115160502183.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231115154-raspberrypi-site1-1.png)
 **2. 安装Nginx**
+
 ```bash
 sudo apt-get install nginx
 ```
@@ -97,7 +98,8 @@ sudo rm -rf /var/www/html/index.html
 sudo rm -rf /var/www/html/index.nginx-debian.html
 ```
 完成后，打开浏览器，输入树莓派的ip地址，或者localhost，即可看到网页Helloworld，说明以上步骤顺利完成了。
-<img src="https://img-blog.csdnimg.cn/20210115162214961.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231115939-raspberrypi-site1-2.png)
+
 ## 创建数据库用户
 这一步需要安装PhpMyAdmin，并使用SQL语句添加mariaDB数据库用户。PHPMYADMIN是一个以PHP为基础，以Web-Base防止架构运行在网站主机上的MySQL的数据库管理工具，让管理者可以直接使用Web接口管理MySQL数据库。
 **1.安装phpmyadmin**
@@ -106,19 +108,21 @@ sudo rm -rf /var/www/html/index.nginx-debian.html
 sudo apt-get install phpmyadmin
 ```
 安装过程中会遇到一些选项，按下图设置即可
-<img src="https://img-blog.csdnimg.cn/2021011516274890.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">
-<img src="https://img-blog.csdnimg.cn/20210115162818344.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231116569-raspberrypi-site1-3.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231117712-raspberrypi-site1-4.png)
 这里的密码要记住，一会登录phpmyadmin时要用到。
-<img src="https://img-blog.csdnimg.cn/202101151628373.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231117624-raspberrypi-site1-5.png)
 **2. 设置PHPMYADMIN软连接**
+
 ```bash
 sudo ln -s /usr/share/phpmyadmin /var/www/html
 ```
 **3. 登录phpmyadmin**
 在浏览器输入`localhost/phpmyadmin`进入登陆界面，初始用户名为`phpmyadmin`初始密码为之前安装过程中设置的密码。
-<img src="https://img-blog.csdnimg.cn/2021011516334035.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231117327-raspberrypi-site1-6.png)
 **4. 使用SQL语句添加mariaDB数据库用户**
 输入以下命令进入mariadb环境，这里没有密码，直接回车或者随便输入即可进入
+
 ```bash
 sudo mysql -u root -p
 ```
@@ -140,7 +144,7 @@ flush privileges;
 exit;
 ```
 再次打开浏览器进入phpmyadmin中（`localhost/phpmyadmin`），使用刚刚创建的用户登录。
-<img src="https://img-blog.csdnimg.cn/20210115164056922.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210115164108861.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
-可以看到我们有了很高的权限（甚至可以删库[doge]）
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231118898-raspberrypi-site1-7.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231118685-raspberrypi-site1-8.png)
+可以看到我们有了很高的权限（甚至可以删库[doge])
 到此为止就基本完成了网站环境的搭建，之后就是使用wordpress等工具搭建个人网站了。

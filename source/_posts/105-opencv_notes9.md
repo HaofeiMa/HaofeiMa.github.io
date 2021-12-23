@@ -31,7 +31,11 @@ void MyDemo::key_Demo(Mat& image) {
 	}
 }
 ```
-<img src="https://img-blog.csdnimg.cn/20210719114312504.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="30%">
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231911085-opencv-notes9-1.png)
+
+
 
 ### 1.3 按键调节亮度
 
@@ -98,7 +102,11 @@ void on_Mouse(
 
 ### 1.2 示例程序
 &emsp;&emsp;在图像上实现拖动绘制矩形的画板功能。
-![请添加图片描述](https://img-blog.csdnimg.cn/2ffd5983a84e4e63be6282943a5184b6.png)
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231912888-opencv-notes9-2.png)
+
+
+
 ```cpp
 Point sp(-1, -1);	//起始点（初始值-1，-1）
 Point ep(-1, -1);	//结束点（初始值-1，-1）

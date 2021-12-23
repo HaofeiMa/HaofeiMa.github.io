@@ -13,7 +13,10 @@ tags:
 &emsp;&emsp;[http://huffie.cn/](http://huffie.cn/)这是我的博客，可以在此查看效果。
 ### 简介
 &emsp;&emsp;效果图如下（右上角）：
-![](https://img-blog.csdnimg.cn/315cdc0169d54692a386d2dac503db50.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231924025-fellowme-csdn-1.png)
+
+
 
 &emsp;&emsp;网络上比较多的是Fork me on Github效果，其实要实现Follow me on CSDN原理是一样的。
 
@@ -37,4 +40,4 @@ tags:
   <!--Follow me on CSDN-->
   <a href="https://blog.csdn.net/weixin_44543463"><img loading="lazy" width="149" height="149" style="position: absolute; top: 0; right: 0; border: 0;" src="https://img-blog.csdnimg.cn/1f8e1ef9be9f4f7db01fe3a2d57829de.png" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
 ```
-![](https://img-blog.csdnimg.cn/fadabe4afa5a4bad8a23c95089247c25.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231925595-fellowme-csdn-2.png)

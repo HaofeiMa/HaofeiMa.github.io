@@ -22,7 +22,7 @@ rosrun turtlesim turtlesim_node
 rqt_console
 ```
 上面的窗口显示日志的输出信息，info信息、warning警告、error错误等
-![](https://img-blog.csdnimg.cn/20210303171340312.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231703320-ros-notes12-1.png)
 
 （2）运行键盘控制程序
 
@@ -31,7 +31,7 @@ rosrun turtlesim turtle_teleop_key
 ```
 
 当小海龟碰到边界时，可以看到控制台会输出warning
-![](https://img-blog.csdnimg.cn/20210303171438842.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231703366-ros-notes12-2.png)
 
 #### 2. rqt_plot
 
@@ -40,7 +40,7 @@ rosrun turtlesim turtle_teleop_key
 在Topic栏输入`/turtle1/pose`
 
 可以看到小海龟的位姿信息都会被输出出来
-![](https://img-blog.csdnimg.cn/2021030317173236.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231704699-ros-notes12-3.png)
 
 > 如果打不开的可以在终端输入rqt，进入后选择plugin-visualization-plot打开
 >
@@ -51,14 +51,14 @@ rosrun turtlesim turtle_teleop_key
 rqt_image_view
 ```
 需要驱动摄像头，在这里显示镜头的图像，选择图像的信息后会渲染出来。
-![](https://img-blog.csdnimg.cn/20210303171944840.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231704369-ros-notes12-4.png)
 
 #### 4. rqt
 ```bash
 rqt
 ```
 集成了所有rqt工具，在plugins可以看到所有插件。
-![](https://img-blog.csdnimg.cn/20210303172113987.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231704839-ros-notes12-5.png)
 
 ### Rviz
 
@@ -77,7 +77,7 @@ Rviz是一款三维可视化工具，可以很好的兼容基域ROS软件框架�
 Rviz界面主要包括：3D视图区，视角设置区，工具栏，显示项列表，时间显示区
 
 Rviz是数据显示平台，所以显示数据时，需要选择Topic。
-![](https://img-blog.csdnimg.cn/20210303172221272.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231704368-ros-notes12-6.png)
 
 ### Gazebo
 

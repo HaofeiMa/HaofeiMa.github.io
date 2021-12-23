@@ -69,7 +69,7 @@ CSS提供了三种传统布局方式：
 
   > 如果有两个盒子一个设置浮动，一个没有
   >
-  > ![](https://img-blog.csdnimg.cn/20210315165336189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+  > ![](https://gitee.com/huffiema/pictures/raw/master/image/202112231713946-html-notes5-1.png)
 
 
 **（2）浮动的元素会在一行内显示并且元素顶部对齐**
@@ -86,15 +86,15 @@ CSS提供了三种传统布局方式：
 为了约束浮动元素位置，网页布局一般采取的策略是：
 
 先用标准流的父元素排列上下位置，之后内部子元素采取浮动排列左右位置。
-![](https://img-blog.csdnimg.cn/2021031516535332.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70#pic_center)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231713850-html-notes5-2.png)
 
 
 ## 二、常见网页布局
 
 ### 2.1 常见网页布局
-![](https://img-blog.csdnimg.cn/20210315165419336.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70#pic_center)
-![](https://img-blog.csdnimg.cn/20210315165438761.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70#pic_center)
-![](https://img-blog.csdnimg.cn/20210315165453473.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70#pic_center)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231713951-html-notes5-3.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231713771-html-notes5-4.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231714289-html-notes5-5.png)
 
 ### 2.2 浮动布局注意点
 
@@ -115,7 +115,7 @@ CSS提供了三种传统布局方式：
 ### 3.1 为什么需要清除浮动
 
 由于父盒子在很多情况下，不方便给高度，但是子盒子浮动又不占有位置，导致父盒子高度为0，进而影响下面的标准流盒子。
-![](https://img-blog.csdnimg.cn/20210315165527115.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231714645-html-notes5-6.png)
 
 
 * 浮动元素不在占用原标准流位置，所以会对后面元素的排版产生影响

@@ -18,12 +18,21 @@ tags:
 >如果觉得下载速度过慢，我也把opencv4.5.2安装包上传了阿里云
 >[https://www.aliyundrive.com/s/VGkaM7vyuck](https://www.aliyundrive.com/s/VGkaM7vyuck)
 
-<img src="https://img-blog.csdnimg.cn/img_convert/58ebcb7903702e479292e81f4ddb70c3.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
 
-<img src="https://img-blog.csdnimg.cn/img_convert/7fcdd6daaf59b6348a801b75853dce1f.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231843882-opencv-notes1-1.png)
+
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231843681-opencv-notes1-2.png)
+
+
 
 &emsp;&emsp;下载完之后，双击运行这个文件，**注意解压的路径，一定要是一个英文路径**，等待一段时间解压完成即可。
-<img src="https://img-blog.csdnimg.cn/img_convert/d6262de5383006717ba6700941e85e2d.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231844664-opencv-notes1-3.png)
+
+
 
 
 ### 1.2 下载并安装Visual Studio
@@ -31,88 +40,126 @@ tags:
 
 &emsp;&emsp;安装时勾选**使用C++的桌面开发**，然后修改安装位置，其他配置都可以默认。
 
-<img src="https://img-blog.csdnimg.cn/img_convert/cb0c8efb4ceb3ebe695aa460fa232ce5.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231844878-opencv-notes1-4.png)
 
-<img src="https://img-blog.csdnimg.cn/img_convert/7628f067e20237fc9e9db31c838672ad.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231844934-opencv-notes1-5.png)
+
+
 
 >安装完成后，如果需要VS2019 Pro注册码：`NYWVH-HT4XC-R2WYW-9Y3CM-X4V3Y`
 
 ## 二、配置OpenCV环境
 ### 2.1 创建项目
 &emsp;&emsp;新建一个**控制台项目**。
-<img src="https://img-blog.csdnimg.cn/img_convert/7e245920aa0908dabe4943be4a69f3b5.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
 
-<img src="https://img-blog.csdnimg.cn/img_convert/ba6acdb91b130e1fbe78f7186d1658d1.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231845061-opencv-notes1-6.png)
+
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231845142-opencv-notes1-7.png)
+
+
 
 &emsp;&emsp;配置如下图中为**Release**和**x64**版本。
-<img src="https://img-blog.csdnimg.cn/img_convert/9d2be154393957abac93b482c367d760.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231846358-opencv-notes1-8.png)
+
+
 
 ### 2.2 配置属性
 &emsp;&emsp;打开**视图-其他窗口-属性管理器**（其他版本的VS可能是视图-属性管理器）。
 
-<img src="https://img-blog.csdnimg.cn/img_convert/e081a18b614a44e6ce22535970679079.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231846533-opencv-notes1-9.png)
+
+
 
 &emsp;&emsp;在属性管理器内**右键“Microsoft Cpp x64 user”并点击属性**，打开它的属性页。
 
-<img src="https://img-blog.csdnimg.cn/img_convert/e329837facba80b57592d0121cf14ec7.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231846979-opencv-notes1-10.png)
+
+
 
 &emsp;&emsp;①配置**VC++ 目录->包含目录**
 
-<img src="https://img-blog.csdnimg.cn/img_convert/51591ac9a403ff5b6249622ad9b91e20.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231847544-opencv-notes1-11.png)
+
+
 
 &emsp;&emsp;在编辑页面添加两个新行，第一个是解压的opencv下面的  **`opencv/build/include`**  这个目录，第二个是  **`opencv/build/include/opencv2`**  这个目录，添加完成后点击确定回到属性页。
 
-<img src="https://img-blog.csdnimg.cn/img_convert/9ebac5643a03dc6cd366a0c3929d2797.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231847282-opencv-notes1-12.png)
 
 &emsp;&emsp;
 
-<img src="https://img-blog.csdnimg.cn/img_convert/a975fd9e4b9153139a6c1ae7c4bd1037.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231847556-opencv-notes1-13.png)
 
 &emsp;&emsp;
 
-<img src="https://img-blog.csdnimg.cn/img_convert/00fdf0f70c4d331b1ec609e33c0cd914.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231848108-opencv-notes1-14.png)
 
 &emsp;&emsp;
 
-<img src="https://img-blog.csdnimg.cn/img_convert/891d2e116d39dbe5e5b5478389243106.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231848973-opencv-notes1-15.png)
 
 &emsp;&emsp;②继续配置**VC++目录->库目录**
-&emsp;&emsp;
-<img src="https://img-blog.csdnimg.cn/img_convert/9836148df92c27e350ab6947e88555ae.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231849542-opencv-notes1-16.png)
+
 &emsp;&emsp;在编辑页面添加项  **`opencv/build/x64/vc15`**  ，添加完成后同样点击确定回到属性页。
+
 >这里如果是vs2019，那么用最新的vc15会好一些，如果是之前的版本，可以选择vc14目录
 
-<img src="https://img-blog.csdnimg.cn/img_convert/b5d8cb486c7af5269a2dfdcfdba1973f.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231849165-opencv-notes1-17.png)
+
+
+
 &emsp;&emsp;
-<img src="https://img-blog.csdnimg.cn/img_convert/df376a1c2392d47b46eebff044ad378a.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231850283-opencv-ontes1-18.png)
+
+
 
 &emsp;&emsp;③继续配置**链接器->输入->附加依赖性**
 
-<img src="https://img-blog.csdnimg.cn/img_convert/9f75a83445120d6b60e0653b8e8bf039.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231850837-opencv-notes1-19.png)
 
 &emsp;&emsp;复制release版本的lib文件名，在编辑项中粘贴即可
 
-<img src="https://img-blog.csdnimg.cn/img_convert/a371f4d584dc84e6875643cf3587ed7d.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231851269-opencv-notes1-20.png)
+
 &emsp;&emsp;
-<img src="https://img-blog.csdnimg.cn/img_convert/8a632206d5cebaff8a08b3fa1f45aa5d.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231851586-opencv-notes1-21.png)
 
 &emsp;&emsp;完成以上配置之后，点击右下角的**应用-确定**就可以了。
 
-<img src="https://img-blog.csdnimg.cn/img_convert/f6ab12c5f78033318e5bca7cc2af218d.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231851285-opencv-notes1-22.png)
 
 ### 2.3 配置环境变量
 &emsp;&emsp;复制bin文件夹目录。
-<img src="https://img-blog.csdnimg.cn/img_convert/fa6e04a589a630088098d0e60f986dde.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
-&emsp;&emsp;回到桌面，**右键计算机-属性-高级系统设置**，打开环境变量。
-<img src="https://img-blog.csdnimg.cn/img_convert/092696a76edf928b3cbb12a97ff24935.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
 
-<img src="https://img-blog.csdnimg.cn/img_convert/e98abda2bb7338b82723329c501242ee.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231852406-opencv-notes1-23.png)
+
+&emsp;&emsp;回到桌面，**右键计算机-属性-高级系统设置**，打开环境变量。
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231852254-opencv-notes1-24.png)
+
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231852926-opencv-notes1-25.png)
+
+
 
 &emsp;&emsp;找到系统变量中的Path，点击编辑。
-<img src="https://img-blog.csdnimg.cn/img_convert/f445d0ff81b7d6a57c7e3a237433f668.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231853801-opencv-notes1-26.png)
 
 &emsp;&emsp;添加一项新项，将刚才复制的bin文件夹目录粘贴过来，然后确定。
-<img src="https://img-blog.csdnimg.cn/img_convert/a20530bdd48fb50af6d2634a020494db.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231853227-opencv-notes1-27.png)
+
 &emsp;&emsp;**关掉Visual Studio，再重新打开软件**。
 
 ## 三、测试程序
@@ -133,11 +180,14 @@ int main(int argc, char** argv) {
 ```
 然后生成解决方案，如果没有报错，那么恭喜你！	如果出现错误，那么请自习搜索一下错误原因，或者仔细检查以上的每一步。
 
-<img src="https://img-blog.csdnimg.cn/img_convert/d0c491156520fe70d48963852113bb0d.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231854239-opencv-notes1-28.png)
+
+
 
 测试->开始执行（不调试）
-<img src="https://img-blog.csdnimg.cn/img_convert/f931623d36254451538bc83dfd79ea4d.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
 
-<img src="https://img-blog.csdnimg.cn/img_convert/9994db93fb562b346644f83ee736ebed.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231854619-opencv-notes1-29.png)
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231854767-opencv-notes1-30.png)
 
 &emsp;&emsp;

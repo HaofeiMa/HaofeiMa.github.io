@@ -38,17 +38,17 @@ tags:
 1. 主要目的：模拟信号输入，在波形图上显示波形，获取采样数据，采样时间和信号名称
 2. 实验过程
 （1）添加并配置仿真信号
-<img src="https://img-blog.csdnimg.cn/2021010815504847.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%" >
-<img src="https://img-blog.csdnimg.cn/20210108155308782.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231053478-labview-notes4-1.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231053836-labview-notes4-2.png)
 （2）创建图形显示控件（示波器），用来显示输出波形
-<img src="https://img-blog.csdnimg.cn/20210108155405692.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231053597-labview-notes4-3.png)
 （3）获得信号数据，并进行显示
-<img src="https://img-blog.csdnimg.cn/20210108155502565.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/2021010815552310.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">
-<img src="https://img-blog.csdnimg.cn/20210108155603114.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231054721-labview-notes4-4.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231054013-labview-notes4-5.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231054727-labview-notes4-6.png)
 （4）获得信号属性并显示
-<img src="https://img-blog.csdnimg.cn/20210108155635301.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210108155658283.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="30%">
-<img src="https://img-blog.csdnimg.cn/20210108155722160.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%">
-（5）运行程序查看结果
-<img src="https://img-blog.csdnimg.cn/20210108155806130.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231055401-labview-notes4-7.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231055694-labview-notes4-8.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231055409-labview-notes4-9.png)
+（5)运行程序查看结果
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231056441-labview-notes4-10.png)

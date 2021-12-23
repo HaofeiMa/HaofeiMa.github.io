@@ -62,7 +62,7 @@ rosparam delete param_key
 cd ~/catkin_ws/src
 catkin_create_pkg learning_parameter roscpp rospy std_srvs
 ```
-![](https://img-blog.csdnimg.cn/20210228114900638.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231656763-ros-notes9-1.png)
 
 #### 2. 打开小海龟仿真器
 
@@ -77,7 +77,7 @@ roscore
 ```bash
 rosrun turtlesim turtlesim_node
 ```
-![](https://img-blog.csdnimg.cn/20210228115043902.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231656152-ros-notes9-2.png)
 
 #### 3. rosparam命令行的使用
 
@@ -94,7 +94,7 @@ rosparam get /turtlesim/background_r
 rosparam get /turtlesim/background_g
 rosparam get /turtlesim/background_b
 ```
-![](https://img-blog.csdnimg.cn/20210228115150535.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231656272-ros-notes9-3.png)
 
 （3）修改变量的值：更改背景颜色
 
@@ -107,7 +107,7 @@ rosparam set /turtlesim/background_b 100
 ```bash
 rosservice call /clear "{}"
 ```
-![](https://img-blog.csdnimg.cn/20210228115342345.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231656088-ros-notes9-4.png)
 
 （4）保存参数到文件
 
@@ -116,7 +116,7 @@ rosparam dump param.yaml
 ```
 
 参数默认保存到当前目录
-![](https://img-blog.csdnimg.cn/20210228115456129.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231657663-ros-notes9-5.png)
 
 （5）加载参数文件
 
@@ -127,7 +127,7 @@ rosparam load param.yaml
 ```
 
 即可将文件里面的参数内容修改系统内的参数。
-![](https://img-blog.csdnimg.cn/20210228115605352.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231657124-ros-notes9-6.png)
 
 （6）删除参数
 
@@ -147,7 +147,7 @@ rosparam list
 ```bash
 rosservice call /clear "{}"
 ```
-![](https://img-blog.csdnimg.cn/20210228115700341.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231657366-ros-notes9-7.png)
 
 ### 四、通过程序获取、设置参数的值
 
@@ -208,7 +208,7 @@ int main(int argc, char **argv)
     return 0;
 }
 ```
-![](https://img-blog.csdnimg.cn/2021022812030035.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231658670-ros-notes9-8.png)
 
 #### 2. 编译程序
 
@@ -218,7 +218,7 @@ int main(int argc, char **argv)
 add_executable(parameter_config src/parameter_config.cpp)
 target_link_libraries(parameter_config ${catkin_LIBRARIES})
 ```
-![](https://img-blog.csdnimg.cn/20210228120350415.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231658934-ros-notes9-9.png)
 
 进行编译
 
@@ -248,4 +248,4 @@ rosrun learning_parameter parameter_config
 ```
 
 发现小海龟的颜色被改变了，说明程序执行成功
-![](https://img-blog.csdnimg.cn/20210228120544142.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231658716-ros-notes9-10.png)

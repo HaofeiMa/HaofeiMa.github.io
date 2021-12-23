@@ -42,7 +42,7 @@ source devel/setup.bash
 ```bash
 echo $ROS_PACKAGE_PATH
 ```
-![](https://img-blog.csdnimg.cn/20210223134831798.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231647957-ros-notes2-1.png)
 
 ### 创建功能包
 `catkin_creat_pkg <package_name> [depend1] [depend2] [depend3]`
@@ -66,4 +66,4 @@ cd ~/catkin_ws
 catkin_make
 source ~/catkin_ws/devel/setup.bash
 ```
-![](https://img-blog.csdnimg.cn/20210223135458695.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231647602-ros-notes2-2.png)

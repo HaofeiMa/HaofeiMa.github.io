@@ -31,7 +31,9 @@ void MyDemo::channels_Demo(Mat& image) {
 	imshow("Red Channel", mv[2]);
 }
 ```
-<img src="https://img-blog.csdnimg.cn/20210720121303160.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231906925-opencv-notes5-1.png)
+
+
 
 
 ## 二、通道的合并
@@ -72,7 +74,9 @@ void MyDemo::channels_Demo(Mat& image) {
 }
 ```
 
-<img src="https://img-blog.csdnimg.cn/20210720122023377.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231906838-opencv-notes5-2.png)
+
+
 
 &emsp;&emsp;我们已经知道如何将图像的三个通道提取出来了，因此我们可以将三个通道进行任意组合，合并出我们想要的图片。
 
@@ -97,4 +101,6 @@ void MyDemo::channels_Demo(Mat& image) {
 	imshow("Mix", dst);
 }
 ```
-<img src="https://img-blog.csdnimg.cn/20210720123205231.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231906612-opencv-notes5-3.png)

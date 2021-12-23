@@ -18,7 +18,11 @@ tags:
 
 &emsp;&emsp;由于下载过程可能需要**科学上网**，因此我将所需要的文件打包 [face_detector.zip](https://download.csdn.net/download/weixin_44543463/21068345)，大家将压缩包解压后将里面所有文件复制到本地目录`...\opencv\sources\samples\dnn\face_detector`中即可。
 
-<img src="https://img-blog.csdnimg.cn/1edd93872e47466d9056cb3371a7d6bb.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231922222-opencv-notes15-1.png)
+
+
 
 ## 二、程序设计
 ### 2.1 主要函数
@@ -96,4 +100,4 @@ void MyDemo::faceDetector_Demo() {
 		}
 	}
 ```
-<img src="https://img-blog.csdnimg.cn/e6b3bcf42aa44aa6a6172c7ad60c4ff6.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231922622-opencv-notes15-2.png)

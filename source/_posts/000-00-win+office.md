@@ -15,4 +15,4 @@ notshow: true
 
 **需要注意：解压之前一定退出所有安全管家，如果还是找不到，看一下是不是被Windows Defender删掉了**
 
-![](https://img-blog.csdnimg.cn/797a1d8656a8446a94d183c1df52840e.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112230939435-winoffice-1.png)

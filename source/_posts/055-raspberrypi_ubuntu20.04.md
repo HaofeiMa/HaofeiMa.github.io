@@ -17,11 +17,11 @@ tags:
 
 ## 一、树莓派的准备
 1. 进入[Ubuntu官网](http://cdimage.ubuntu.com/ubuntu/releases/20.04/release/)下载支持树莓派的Ubuntu版本安装包。
-<img src="https://img-blog.csdnimg.cn/20210216202301823.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231639061-raspberrypi-ubuntu20-1.png)
 2. 使用DiskGenius格式化SD卡，将所有扇区删除，然后格式化。
-<img src="https://img-blog.csdnimg.cn/20210215223910879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="70%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231639964-raspberrypi-ubuntu20-2.png)
 3. [下载官方烧录工具](https://downloads.raspberrypi.org/imager/imager.exe)，镜像选择刚才下载的.xz文件，SD卡选择自己的卡，写入即可。
-<img src="https://img-blog.csdnimg.cn/20210216202513364.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231639079-raspberrypi-ubuntu20-3.png)
 ## 二、Ubuntu系统配置
 ### 2.1 进入Ubuntu系统
 将TF卡插到树莓派上。可以通过显示器进行系统初始化配置，也可以用网线将树莓派和电脑连接起来，再进行远程配置。建议使用一个外接显示器，操作会简单许多。**以使用外接屏幕+键盘为例**（这些设备只使用一次就够了）

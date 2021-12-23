@@ -33,18 +33,18 @@ tags:
 （4）保存并运行VI
 **3. 实验过程**
 （1）添加正弦仿真信号，并对正弦信号进行配置，设置频率为100Hz
-<img src="https://img-blog.csdnimg.cn/20210107184427821.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="70%">
-<img src="https://img-blog.csdnimg.cn/20210107184509313.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231047458-labview-notes2-1.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231048500-labview-notes2-2.png)
 （2）添加滤波器，设置截止频率为100Hz，频率低于100Hz就可以进行波形显示
-<img src="https://img-blog.csdnimg.cn/20210107184541660.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="70%">
-<img src="https://img-blog.csdnimg.cn/20210107184558150.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210107184936362.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231048435-labview-notes2-3.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231048260-labview-notes2-4.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231048631-labview-notes2-5.png)
 （3）将正弦信号和滤波后的信号进行合并
-<img src="https://img-blog.csdnimg.cn/20210107184836372.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210107184958755.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231049922-labview-notes2-6.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231049124-labview-notes2-7.png)
 （4）添加图形显示控件
-<img src="https://img-blog.csdnimg.cn/20210107185407224.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210107185437464.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231049374-labview-notes2-8.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231049966-labview-notes2-9.png)
 （5）双击生成的图形显示控件，进入前面板，运行程序
-<img src="https://img-blog.csdnimg.cn/20210107185611823.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
-（6）可以尝试修改正弦信号源和滤波器的配置，观察曲线变化
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231050285-labview-notes2-10.png)
+（6)可以尝试修改正弦信号源和滤波器的配置，观察曲线变化

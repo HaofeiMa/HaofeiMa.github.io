@@ -20,7 +20,10 @@ tags:
 （$A_{11}$·1+$A_{12}$·1+$A_{13}$·1+
  &emsp;$A_{21}$·1+$A_{22}$·1+$A_{23}$·1+
 &emsp;$A_{31}$·1+$A_{32}$·1+$A_{33}$·1 ）/  9 ->$A_{22}$
-<img src="https://img-blog.csdnimg.cn/5f9cf63ca53d4181b79dbe1946972549.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231920160-opencv-notes14-1.png)
+
+
 
 ### 1.2 OpenCV中的均值滤波
 &emsp;&emsp;在OpenCV/C++中，提供了blur函数用于实现上述的均值滤波操作：
@@ -46,9 +49,14 @@ void MyDemo::blur_Demo(Mat& image) {
 }
 ```
 &emsp;&emsp;下图是卷积核为 `Size(10,10)` 的效果。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/c54b4602aa2c4801b2c545697fe7df69.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231920250-opencv-notes14-2.png)
+
 &emsp;&emsp;下图为卷积核为 `Size(1,15)` 的效果。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/432e023fa7e344679195a7f1ae930ce0.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231921584-opencv-notes14-3.png)
+
+
 
 
 ## 二、高斯模糊
@@ -76,4 +84,4 @@ void MyDemo::gaussianBlur_Demo(Mat& image) {
 }
 
 ```
-![在这里插入图片描述](https://img-blog.csdnimg.cn/4622448ccb724304aeafec9b839d2060.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231921544-opencv-notes14-4.png)

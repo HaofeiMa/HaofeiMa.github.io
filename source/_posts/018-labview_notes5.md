@@ -33,35 +33,35 @@ tags:
 
 ## 实现过程
 1. 在程序框图中创建基本函数发生器，按下Ctrl+H查看即时帮助中的接口说明
-<img src="https://img-blog.csdnimg.cn/20210109154923188.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210109155022876.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231056843-labview-notes5-1.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231056869-labview-notes5-2.png)
 2. 按照任务要求配置各个接口，首先在信号类型处右键，创建常量（正弦波）
-<img src="https://img-blog.csdnimg.cn/20210109155152824.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231057916-labview-notes5-3.png)
 3. 在频率、采样信息处右键创建输入控件
-<img src="https://img-blog.csdnimg.cn/20210109155241158.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231057344-labview-notes5-4.png)
 4. 添加两个波形测量的Express VI，分别是提取单频信息、FFT功率谱和PSD
-<img src="https://img-blog.csdnimg.cn/20210109155529693.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210109155604165.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231057877-labview-notes5-5.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231057962-labview-notes5-6.png)
 5. 在 提取单频信息 的Express VI的**检测到的功率**的接口，FFT功率谱和PSD 的Express VI**功率谱/PSD**接口创建显示控件
-<img src="https://img-blog.csdnimg.cn/20210109160019340.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231058600-labview-notes5-7.png)
 6. 在FFT功率谱和PSD的Express VI的**显示为DB**接口创建常量并设置为**True**
-<img src="https://img-blog.csdnimg.cn/20210109160140905.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231058453-labview-notes5-8.png)
 7. 在FFT功率谱和PSD的Express VI的**平均参数**接口创建常量并设置为**RMS均方根平均方式**
-<img src="https://img-blog.csdnimg.cn/20210109160258552.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">
-<img src="https://img-blog.csdnimg.cn/20210109160314783.png" width="15%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231058660-labview-notes5-9.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231058145-labview-notes5-10.png)
 8. 因需要重新开始平均所以在**重新开始平均**接口处创建常量并选择为**真**
-<img src="https://img-blog.csdnimg.cn/20210109160451227.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231059510-labview-notes5-11.png)
 9. 切换回前面板，将功率谱的显示方式替换为波形图，并将频率的显示方式替换为旋钮
-<img src="https://img-blog.csdnimg.cn/20210109160622482.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210109160646834.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231059800-labview-notes5-12.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231059373-labview-notes5-13.png)
 10. 修改旋钮周围的刻度
-<img src="https://img-blog.csdnimg.cn/20210109160717411.png" width="20%">
-<img src="https://img-blog.csdnimg.cn/20210109160736502.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231059667-labview-notes5-14.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231100465-labview-notes5-15.png)
 11. 将采样信息替换为文本下拉列表，然后右键-编辑项，修改下拉列表的菜单，并设置默认值为50M
-<img src="https://img-blog.csdnimg.cn/20210109160848108.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210109160909209.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%">
-<img src="https://img-blog.csdnimg.cn/20210109160942715.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231100878-labview-notes5-16.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231100461-labview-notes5-17.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231101223-labview-notes5-18.png)
 12. 修改检测到的频率的显示格式
-<img src="https://img-blog.csdnimg.cn/20210109161028713.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231101135-labview-notes5-19.png)
 13. 进行简单外观修饰后运行程序
-<img src="https://img-blog.csdnimg.cn/20210109161106102.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231101949-labview-notes5-20.png)

@@ -25,8 +25,15 @@ tags:
 sudo apt install ros-noetic-gazebo-ros-pkgs ros-noetic-gazebo-ros ros-noetic-gazebo-msgs ros-noetic-gazebo-plugins ros-noetic-gazebo-ros-control
 ```
 安装完成后，在命令行执行  `gazebo`命令检查是否正确安装，如果看到下面的界面说明安装没有问题。
-![](https://img-blog.csdnimg.cn/864b10ed628847a2a3cbe35e15302de1.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112232001567-ros-gazebo-1.png)
+
+
+
 然后再在命令行中运行下面的命令，检查Gazebo的ROS接口是否正常：
+
 ```bash
 roscore & rosrun gazebo_ros gazebo
 ```
@@ -107,13 +114,22 @@ roslaunch diff_wheeled_robot_gazebo diff_wheeled_gazebo.launch
 ```
 可以看到已经正常启动Gazebo，并且小车的模型也已经正常加载出来了
 
-![](https://img-blog.csdnimg.cn/19fad2f5d5d44bc48bdab1fbb5ed3e70.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112232001178-ros-gazebo-2.png)
+
+
 
 ### 二、控制小车移动
 **1. 插件介绍**
 控制小车移动所使用的插件是 `libgazebo_ros_diff_drive.so` 。此插件的添加代码已经写在了xacro文件中如下：
 
-![](https://img-blog.csdnimg.cn/e021b13e3e2e47a8b3c5fa2d4b69d70f.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112232001660-ros-gazebo-3.png)
+
+
+
 其中可以指定的参数包括轮子的关节、轮子的间距、车轮直径、里程计的主题等等。这里面最重要的一个参数是控制命令主题 `commandTopic`，用于驱动车轮的运动。在这里我们可以通过向 `/cmd_vel` 主题发布数据来控制小车的运动。
 
 **2. 测试运动**
@@ -125,8 +141,9 @@ rostopic pub -r 10 /cmd_vel geometry_msgs/Twist '{linear: {x: 0.5, y: 0, z: 0}, 
 
 
 
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112232001294-ros-gazebo-4.png)
 
-![](https://img-blog.csdnimg.cn/55946c35ed2f49d5ad5e0cd642859d1e.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
 
 
 ### 三、键盘控制小车移动
@@ -159,6 +176,10 @@ roslaunch diff_wheeled_robot_control keyboard_teleop.launch
 
 这时候终端窗口内会出现提示，在终端内按下按键即可控制小车
 
-![](https://img-blog.csdnimg.cn/3973343d92c0425c9e542db07879effb.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
 
-![](https://img-blog.csdnimg.cn/5f7281e28495455285b03f4f075d7306.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112232002981-ros-gazebo-5.png)
+
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112232002842-ros-gazebo-6.png)

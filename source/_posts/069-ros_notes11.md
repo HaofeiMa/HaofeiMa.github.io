@@ -108,7 +108,7 @@ touchs simple.launch
     <node pkg="learning_topic" type="person_publisher" name="listener" output="screen" /> 
 </launch>
 ```
-![](https://img-blog.csdnimg.cn/20210302172409787.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231702958-ros-notes11-1.png)
 
 #### 4. 运行launch文件
 
@@ -117,4 +117,4 @@ roslaunch learning_launch simple.launch
 ```
 
 可以看到两个节点都运行起来了。
-![](https://img-blog.csdnimg.cn/20210302172453240.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231702374-ros-notes11-2.png)

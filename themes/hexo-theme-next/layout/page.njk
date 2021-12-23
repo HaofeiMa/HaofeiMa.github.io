@@ -8,6 +8,8 @@
     {{- __('title.category') + page_title_suffix }}
   {%- elif page.type === 'tags' and not page.title %}
     {{- __('title.tag') + page_title_suffix }}
+  {% elif page.type === 'links' and not page.title %}
+	{{ __('title.links') + page_title_suffix }}
   {%- elif page.type === 'schedule' and not page.title %}
     {{- __('title.schedule') + page_title_suffix }}
   {%- else %}
@@ -34,6 +36,8 @@
           {%- include '_partials/page/categories.njk' -%}
         {% elif page.type === 'schedule' %}
           {%- include '_partials/page/schedule.njk' -%}
+		{% elif page.type === 'links' %}
+           {% include 'links.swig' %}
         {% else %}
           {{ page.content }}
         {%- endif %}

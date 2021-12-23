@@ -26,31 +26,31 @@ tags:
 ## 初次测试
 
 1. 打开RobotStudio软件，新建一个空工作站解决方案。
-<img src="https://img-blog.csdnimg.cn/20210125115511712.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231142274-robotstudio-notes1-1.png)
 2. 点击左上角ABB模型库，导入一个IRB 120确定
-<img src="https://img-blog.csdnimg.cn/20210125115613611.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210125115623160.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="40%">
-<img src="https://img-blog.csdnimg.cn/2021012511561873.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231142220-robotstudio-notes1-2.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231142041-robotstudio-notes1-3.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231143834-robotstudio-notes1-4.png)
 3. 然后点击机器人系统-从布局创建系统，选择一个6.03的软件版本
-<img src="https://img-blog.csdnimg.cn/20210125115737139.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210125115741617.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="40%">
-<img src="https://img-blog.csdnimg.cn/20210125115744637.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="40%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231143475-robotstudio-notes1-5.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231143090-robotstudio-notes1-6.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231143933-robotstudio-notes1-7.png)
 点击选项，将其中的默认语言改为中文，点击完成即可，稍等一段时间等待系统创建完成。
-<img src="https://img-blog.csdnimg.cn/20210125115854259.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="40%">
-<img src="https://img-blog.csdnimg.cn/20210125115857844.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="40%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231144142-robotstudio-notes1-8.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231144741-robotstudio-notes1-9.png)
 4. 当下方控制器状态变成绿色的时候说明系统已经创建完成了。
-<img src="https://img-blog.csdnimg.cn/20210125120032477.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210125120039330.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231144001-robotstudio-notes1-10.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231144900-robotstudio-notes1-11.png)
 5. 点击上方 控制器-示教器-虚拟示教器
-<img src="https://img-blog.csdnimg.cn/20210125120130585.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231145793-robotstudio-notes1-12.png)
 在弹出的示教器窗口，打开控制面板切换为手动并使能。
-<img src="https://img-blog.csdnimg.cn/20210125120154143.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231145491-robotstudio-notes1-13.png)
 6. 在机器人视图内，Ctrl+左键为平移，Ctrl+Shift+左键为旋转，调整视图，使虚拟示教器和机器人能够同时看到。
 7. 点击菜单-程序编辑器，新建一个程序。
-<img src="https://img-blog.csdnimg.cn/20210125120329622.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231145202-robotstudio-notes1-14.png)
 添加一条MoveJ指令
-<img src="https://img-blog.csdnimg.cn/20210125120404443.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-长按示教器右边的箭头，使机器人转动一个角度，然后在下方再添加一条MoveJ指令。（一定要看示教器上访的状态，保证机器人是手动控制模式、电机开启）
-<img src="https://img-blog.csdnimg.cn/20210125120415784.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231145407-robotstudio-notes1-15.png)
+长按示教器右边的箭头，使机器人转动一个角度，然后在下方再添加一条MoveJ指令。（一定要看示教器上访的状态，保证机器人是手动控制模式、电机开启)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231146603-robotstudio-notes1-16.png)
 然后点击调试-PP移至Main，再点击右下方的运行按钮，即可看到机器人在起始位置和刚才转动的位置进行往复运动。
-<img src="https://img-blog.csdnimg.cn/20210125120426558.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231146967-robotstudio-notes1-17.png)

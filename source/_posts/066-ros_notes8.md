@@ -36,7 +36,7 @@ string result
 ```
 
 ---以上是request的数据，---以下是response的数据
-![](https://img-blog.csdnimg.cn/20210226165019544.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231654771-ros-notes8-1.png)
 
 #### 2. 在package.xml中添加功能包依赖
 
@@ -46,7 +46,7 @@ string result
   <build_depend>message_generation</build_depend>
   <exec_depend>message_runtime</exec_depend>
 ```
-![](https://img-blog.csdnimg.cn/20210226165101181.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231654282-ros-notes8-2.png)
 
 #### 3. 在CMakeLists.txt中添加编译选项
 
@@ -62,7 +62,7 @@ find_package(catkin REQUIRED COMPONENTS
   message_generation
 )
 ```
-![](https://img-blog.csdnimg.cn/20210226165232230.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231654047-ros-notes8-3.png)
 
 在此函数下面再添加
 
@@ -81,7 +81,7 @@ generate_messages(
 add_message_files，将Person.srv作为定义的接口
 
 generate_messages，在编译Person.srv文件时需要依赖的功能包
-![](https://img-blog.csdnimg.cn/20210226170000400.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231654750-ros-notes8-4.png)
 
 
 然后在下方`catkin specific configuration`内的`catkin_packages`中，添加依赖`message_runtime`，修改后的代码如下：
@@ -94,7 +94,7 @@ catkin_package(
 #  DEPENDS system_lib
 )
 ```
-![](https://img-blog.csdnimg.cn/20210226165520183.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231655676-ros-notes8-5.png)
 
 #### 4. 编译生成相关文件
 
@@ -191,7 +191,7 @@ int main(int argc, char** argv)
 	return 0;
 };
 ```
-![](https://img-blog.csdnimg.cn/20210226170154807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231655990-ros-notes8-6.png)
 
 ### 五、配置服务器/客户端代码编译规则
 
@@ -206,7 +206,7 @@ add_executable(person_client src/person_client.cpp)
 target_link_libraries(person_client ${catkin_LIBRARIES})
 add_dependencies(person_client ${PROJECT_NAME}_gencpp)
 ```
-![](https://img-blog.csdnimg.cn/20210226170247867.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231655263-ros-notes8-7.png)
 
 ### 六、编译并运行发布者和订阅者
 
@@ -226,4 +226,4 @@ rosrun learning_service person_client
 ```
 
 client每请求一次，会接受到一次数据
-![](https://img-blog.csdnimg.cn/20210226170849300.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231655403-ros-notes8-8.png)

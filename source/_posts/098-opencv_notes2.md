@@ -24,7 +24,8 @@ COLOR_HSV2BGR = 54	//54HSV到BGR
 >GRAY：指灰度，只有一个参数灰度值Channel
 >BGR：指BGR颜色空间，以红绿蓝三基色(0~255)为基础，叠加形成各种颜色
 >HSV：指六角椎体模型，色调Hue用角度度量（0~180），饱和度Saturation（0 ~ 255），亮度Value（0 ~ 255）
-><img src="https://img-blog.csdnimg.cn/20210717084729949.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="40%">
+>
+>![](https://gitee.com/huffiema/pictures/raw/master/image/202112231855797-opencv-notes2-1.png)
 
 
 2. 图像保存函数：imwrite
@@ -34,11 +35,13 @@ COLOR_HSV2BGR = 54	//54HSV到BGR
 ### 1.2 创建类
 ①首先添加一个头文件。
 
-<img src="https://img-blog.csdnimg.cn/20210717085808806.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231855462-opencv-notes2-2.png)
+
+
 
 &emsp;&emsp;
 
-<img src="https://img-blog.csdnimg.cn/2021071710584123.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231855694-opencv-notes2-3.png)
 &emsp;&emsp;
 
 ②头文件内定义一个MyDemo类，代码如下
@@ -59,21 +62,23 @@ public:
 
 ③添加包含目录。首先在项目名称上**右键-属性**，打开属性页后，编辑**VC++目录->包含目录**这一项，新建项为头文件所在的目录如图。
 
-<img src="https://img-blog.csdnimg.cn/20210717090541121.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231856379-opencv-notes2-4.png)
 
 &emsp;&emsp;
 
-<img src="https://img-blog.csdnimg.cn/20210717090624883.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231856267-opencv-notes2-5.png)
 
 &emsp;&emsp;
 
-<img src="https://img-blog.csdnimg.cn/20210717090745775.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231856561-opencv-notes2-6.png)
 
 &emsp;&emsp;
 
 ④创建一个cpp文件，实现刚才定义的类。
 
-<img src="https://img-blog.csdnimg.cn/20210717090834711.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231856499-opencv-notes2-7.png)
+
+
 
 
 ```cpp
@@ -112,7 +117,7 @@ int main(int argc, char** argv) {
 ```
 ### 1.4 测试结果
 
-<img src="https://img-blog.csdnimg.cn/20210717100121460.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231857455-opencv-notes2-8.png)
 
 &emsp;&emsp;
 
@@ -188,18 +193,18 @@ int main(int argc, char** argv) {
 }
 ```
 输出结果如下图所示，是一个8x8的矩阵：
-<img src="https://img-blog.csdnimg.cn/20210717112130660.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231857465-opencv-notes2-9.png)
 
 **注意事项：**
 &emsp;&emsp;
 如果将通道数改为3，也就是`Mat m_new = Mat::zeros(Size(8, 8),CV_8UC3);`，那么输出结果会变成8x24的矩阵，也就是每个像素点会有三个值：
 
-<img src="https://img-blog.csdnimg.cn/20210717112233126.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="100%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231857776-opencv-notes2-10.png)
 &emsp;&emsp;
 
 如果对三通道使用ones进行初始化，那么只会使每个像素点的第一个通道初始化为1，第二、第三通道仍然初始化为0.
 
-<img src="https://img-blog.csdnimg.cn/2021071711305096.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="100%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231857740-opencv-notes2-11.png)
 &emsp;&emsp;
 
 可以通过使用`Scalar`函数对图像所有像素点同时进行赋值。**Scalar的三个参数分别为B、G、R**
@@ -214,7 +219,7 @@ void MyDemo::matCreation_Demo() {
 }
 ```
 
-<img src="https://img-blog.csdnimg.cn/20210717113957742.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="100%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231858306-opencv-notes2-12.png)
 
 &emsp;&emsp;
 
@@ -233,7 +238,7 @@ void MyDemo::matCreation_Demo() {
 
 这就是我们生成出来的一个图像
 
-<img src="https://img-blog.csdnimg.cn/20210717114528458.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231858552-opencv-notes2-13.png)
 
 ### 2.3 图像的复制
 

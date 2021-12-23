@@ -24,7 +24,7 @@ ROS Master内有两个节点，一个是Subscriber(turtlesim)，一个是Publish
 cd ~/catkin_ws/src
 catkin_create_pkg learning_topic roscpp rospy std_msgs geometry_msgs turtlesim
 ```
-![](https://img-blog.csdnimg.cn/20210224213435285.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231647709-ros-notes3-1.png)
 
 ### 三、创建发布者代码
 
@@ -80,7 +80,7 @@ int main(int argc, char **argv)
 	return 0;
 }
 ```
-![](https://img-blog.csdnimg.cn/20210224213513448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231647723-ros-notes3-2.png)
 
 ### 四、配置发布者代码编译规则
 
@@ -94,7 +94,7 @@ int main(int argc, char **argv)
 add_executable(velocity_publisher src/velocity_publisher.cpp)	#描述要把哪个程序文件编译成哪个可执行文件
 target_link_libraries(velocity_publisher ${catkin_LIBRARIES})	#把可执行文件和库做链接
 ```
-![](https://img-blog.csdnimg.cn/20210224213733508.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231648236-ros-notes3-3.png)
 
 ### 五、编译并运行发布者Publisher
 
@@ -111,7 +111,7 @@ source devel/setup.bash
 > source /home/【Username】/catkin_ws/devel/setup.bash
 > ```
 
-![](https://img-blog.csdnimg.cn/20210224213913493.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231648682-ros-notes3-4.png)
 #### 2. 运行
 
 ```bash
@@ -120,7 +120,7 @@ rosrun turtlesim turtlesim_node
 rosrun learning_topic velocity_publisher
 ```
 
-![](https://img-blog.csdnimg.cn/20210224214729896.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231648643-ros-notes3-5.png)
 >参考教程：**古月ROS入门21讲**
 >GitHub：[https://github.com/guyuehome/ros_21_tutorials](https://github.com/guyuehome/ros_21_tutorials)
 >Bilibili：[https://www.bilibili.com/video/BV1zt411G7Vn](https://www.bilibili.com/video/BV1zt411G7Vn)

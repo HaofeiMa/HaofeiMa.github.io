@@ -15,9 +15,9 @@ tags:
 **使用**：Offs(变量, Δx, Δy, Δz)
 ### 坐标偏移设置方法
 1. 点击要偏移的robtarget数据，选择**功能-Offs**
-<img src="https://img-blog.csdnimg.cn/20210203203127916.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
-<img src="https://img-blog.csdnimg.cn/20210203203140988.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231521620-robotstudio-notes9-1.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231522496-robotstudio-notes9-2.png)
 2. 例如让夹爪夹取工件后竖直上升50mm，则可按如下设置
-<img src="https://img-blog.csdnimg.cn/2021020320315993.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
-<img src="https://img-blog.csdnimg.cn/20210203203201258.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231522604-robotstudio-notes9-3.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231523048-robotstudio-notes9-4.png)
 同理，其它坐标的偏移方式也可按相同的方法进行设置。

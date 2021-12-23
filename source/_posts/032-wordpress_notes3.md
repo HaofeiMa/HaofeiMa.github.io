@@ -17,11 +17,11 @@ tags:
 1. 编辑：可以修改图片的的标题，说明文字，替代文本。替代文本是当图片没有办法正常显示的时候，会用文本代替图片。
 2. 永久删除：在媒体库中删除媒体，已经在文章中添加过的不受影响
 3. 查看：以网页的形式查看图片
-<img src="https://img-blog.csdnimg.cn/20210122101633801.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231124625-wordpress-notes3-1.png)
  ### 媒体文件添加
  1. 在此处可以上传到上传文件最大允许尺寸为2M
  2. 常用的图片格式、文档格式、压缩格式都可以上传。可以利用这里上传文件供用户下载。
-<img src="https://img-blog.csdnimg.cn/20210122101809159.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231124661-wordpress-notes3-2.png)
 
 ## 二、评论管理
 1. 列表从左到右依次是：评论的用户，评论内容，用户评论的文章，评论时间。
@@ -30,29 +30,31 @@ tags:
 （2）回复：就是回复用户的评论
 （3）编辑：可以修改用户的评论
 （4）垃圾评论和移至回收站操作后，评论都不会在网页中显示。
-<img src="https://img-blog.csdnimg.cn/20210122102236146.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231125996-wordpress-notes3-3.png)
 
 ## 三、用户管理
 ### 添加用户
 可以在此给网站添加用户，一般是不会手动添加用户的，手动添加用户一般只用来添加管理员，普通用户通常是会有注册渠道。
 填写用户名，电子邮件，名字，姓氏，密码，选择用户角色后即可完成用户的添加。
-<img src="https://img-blog.csdnimg.cn/20210122103135103.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231125420-wordpress-notes3-4.png)
+
 ### 用户资料
 点击个人资料即可看到自己的资料
-<img src="https://img-blog.csdnimg.cn/20210122103558110.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231125017-wordpress-notes3-5.png)
+
 1. 可视化编辑器
 不使用可视化编辑器：
-<img src="https://img-blog.csdnimg.cn/2021012210331455.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231125549-wordpress-notes3-6.png)
 使用可视化编辑器
-<img src="https://img-blog.csdnimg.cn/2021012210335138.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231126322-wordpress-notes3-7.png)
 2. 管理界面的配色：后台左侧和上侧的颜色
 3. 工具栏：在登录之后，打开自己的网站，会看到最上面有一条工具条。
-<img src="https://img-blog.csdnimg.cn/20210122103742533.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231126870-wordpress-notes3-8.png)
 4. 资料图片：需要到gravatar网站上注册账户，并设置头像。当在wordpress的网站中使用相同的邮件账户注册会员，那么wordpress就会根据邮件账户信息，从gravatar网站中获取头像
 ### 管理用户
 在所有用户页面内可以管理此网站的所有用户
 在这里插入图片描述
-<img src="https://img-blog.csdnimg.cn/20210122104125701.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231126221-wordpress-notes3-9.png)
 
 ## 四、工具
 
@@ -70,18 +72,18 @@ tags:
 2. 主题的安装方法
 点击添加主题即可进入安装页面，可以在此页面安装主题
 （1）在线安装：在wordpress的特色、热门、最新等栏目中选择主题，也可以搜索主题安装。安装后点击实时预览可以看到网站更换主题的效果。点击启用即可更换主题。
-<img src="https://img-blog.csdnimg.cn/20210122105005590.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231126493-wordpress-notes3-10.png)
 （2）手动安装：将主题下载到本地，点击上传主题，选择下载好的主题zip文件，点击现在安装即可。
-<img src="https://img-blog.csdnimg.cn/20210122105121342.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-（3）直接安装：直接将解压后的主题文件夹，放置在wp-content/themes/文件夹内。回到主提页面，刷新一下即可看到刚才安装的主题。
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231127787-wordpress-notes3-11.png)
+（3)直接安装：直接将解压后的主题文件夹，放置在wp-content/themes/文件夹内。回到主提页面，刷新一下即可看到刚才安装的主题。
 3. 自定义主题
 点击自定义按钮后，可以看到左侧是自定义的栏目（不同的主题栏目会不一样），右侧是实时效果预览
-<img src="https://img-blog.csdnimg.cn/20210122105310748.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231127605-wordpress-notes3-12.png)
 ### 小工具
 有的主题没有提供这个功能，有没有这个功能是由主题决定的。
 1. 小工具右侧可以看到一些容器，修改这些容器可以更改网页的效果。
 2. 小工具左侧可用的选项，可以拖动到右面的容器中使用。
-<img src="https://img-blog.csdnimg.cn/2021012210562168.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231127711-wordpress-notes3-13.png)
 ## 六、设置
 ### 常规设置
 1. 站点标题：网站的名称
@@ -91,23 +93,24 @@ tags:
 5. 成员资格：网站是否允许其他人注册
 6. 新用户默认角色：考虑权限以及安全问题，订阅者权限即可。
 7. ICP备案号：可以填写网站的备案号，是否会在网站显示取决于主题。
-<img src="https://img-blog.csdnimg.cn/20210122105910627.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231127549-wordpress-notes3-14.png)
 ### 撰写设置
 1. 默认文章分类：发布文章时没有勾选分类目录时，wordpress会自动将这篇文章放到此处设置的分类目录里面
 2. 更新服务：在更新服务里面填写的网址，当发布新的内容的时候，wordpress会自动通知此处的链接地址。（主要用于搜索优化）
-<img src="https://img-blog.csdnimg.cn/20210122110028192.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231128293-wordpress-notes3-15.png)
 ### 阅读设置
 1. 首页显示：默认显示最新文章，选择静态页面时可以设置站点首页为后台发布的某张页面
 2. Feed中显示最近：用户订阅我们网站内容时，每页显示多少内容
-<img src="https://img-blog.csdnimg.cn/20210122110140495.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231128640-wordpress-notes3-16.png)
 ### 讨论设置
 尝试通知文章链接的博客：在发布文章时，如果文章内容发布链接时，如果勾选此选项，则会通知对方我们的链接指向了他们（一般不使用）。
-<img src="https://img-blog.csdnimg.cn/20210122110305572.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231128717-wordpress-notes3-17.png)
+
 ### 多媒体设置
 上传图片后，wordpress会自动在此图片基础上转换出不同像素大小的图片。
 ### 固定链接
 通过切换不同的链接结构，可以改变网页网址。更改的主要原因是为了搜索引擎检索的优化。一般使用文章名较好。
-<img src="https://img-blog.csdnimg.cn/20210122110437112.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231128743-wordpress-notes3-18.png)
 自定义结构
 
 | 代码       | 作用       |

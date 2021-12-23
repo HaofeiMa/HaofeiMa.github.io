@@ -52,7 +52,12 @@ roslaunch usb_cam-test.launch
 
 输入`rostopic list`查看ros中的主题，检查是否有`/usb_cam/camera_info`和`/usb_cam/image_raw`两个主题。（主题名可能会不一样，有可能是/usb_cam_node记住自己的这两个主题的名字）
 
-![](https://img-blog.csdnimg.cn/b181107aca094125a555a094dcbd924a.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112232015769-camera-calibrate-1.png)
+
+
+
 > 如果出现 ImportError: No module named cv2的问题，请参考下面这篇文章
 > 文章链接：[【ImportError: No module named cv2问题的解决方法（修改python默认版本）】](https://blog.csdn.net/weixin_44543463/article/details/120717831#pic_center)
 >
@@ -64,7 +69,11 @@ rosrun camera_calibration cameracalibrator.py --size 8x6 --square 0.03 image:=/u
 ```
 其中的8x6是指的棋盘格内部角点的个数，如下图我下载的棋盘格内部角点是8x6的。如果你是11x8角点的棋盘格，那么命令里面的8x6替换成11x8即可。
 
-![](https://img-blog.csdnimg.cn/f3d18f55888e49de80a386f4b232dd10.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_15,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112232016343-camera-calibrate-2.png)
+
+
 
 **③ 变换角度使程序记录样本**
 
@@ -74,5 +83,10 @@ rosrun camera_calibration cameracalibrator.py --size 8x6 --square 0.03 image:=/u
 点击CALIBRATE按钮进行标定，等待一小段时间后，就可以在命令行中看到标定的结果。
 标定没有问题的花，点击COMMIT按钮就可以保存了，保存之后，下次再启动usb_camera就会自动使用标定的参数，可以发现摄像头不再畸变了。
 
-![](https://img-blog.csdnimg.cn/de3634f5cd8440d6a70c20a5c0e80714.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
-![](https://img-blog.csdnimg.cn/eb476779f1be4109a71c2ac8094379c4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112232016191-camera-calibrate-3.png)
+
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112232016631-camera-calibrate-4.png)

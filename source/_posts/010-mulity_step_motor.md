@@ -13,7 +13,7 @@ tags:
 ## CD4066介绍
 **1. 功能简介**
 	CD4066是四双向模拟开关，主要用作模拟或数字信号的多路传输。CD4066 的每个封装内部有4 个独立的模拟开关，每个模拟开关有输入、输出、控制三个端子，其中输入端和输出端可互换。
-	![CD4066](https://img-blog.csdnimg.cn/20210101164242237.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+	![](https://gitee.com/huffiema/pictures/raw/master/image/202112231034164-mulity-step-motor-1.png)
 **2. 引脚说明**
 
 * CONTROL：开关控制端 [1] 
@@ -27,11 +27,11 @@ tags:
 
 ## Proteus仿真
 Proteus接线图如下图所示。
-![](https://img-blog.csdnimg.cn/20210101164743892.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231035730-mulity-step-motor-2.png)
 由于Proteus内没有CD4066，只有4066，因此考虑将4个4066组合视为一个整体。
-![](https://img-blog.csdnimg.cn/20210102105614123.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231036221-mulity-step-motor-3.png)
 仿真结果：
-![](https://img-blog.csdnimg.cn/20210102105732744.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231036870-mulity-step-motor-4.png)
 代码：
 ```java
 #include<reg52.h>

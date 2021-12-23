@@ -29,7 +29,7 @@ roslaunch turtle_tf turtle_tf_demo.launch
 其中的noetic为ROS版本号
 
 在terminal中按方向键即可控制被跟随的乌龟。
-![](https://img-blog.csdnimg.cn/20210301150223793.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231659245-ros-notes10-1.png)
 
 > 如果ubuntu20.04 noetic版本出现报错可以参考下面的方法解决
 > ```
@@ -44,7 +44,7 @@ rosrun tf view_frames
 ```
 
 等待5秒，生成一个pdf文件，打开可以看到当前系统中tf坐标的位置关系。
-![](https://img-blog.csdnimg.cn/20210301151603341.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231659486-ros-notes10-2.png)
 
 其中world是全局坐标系，另外的turtle1和turtle2是两只海龟上的坐标系。例程的目的是使两个坐标系在坐标上是重叠的。
 
@@ -58,7 +58,7 @@ rosrun tf tf_echo turtle1 turtle2
 ```
 
 输出两个坐标系之间的关系，描述turtle2坐标系如何变换到turtle1坐标系。包括Translation平移和Rotation旋转（四元数、弧度、角度三种方式描述旋转）。
-![](https://img-blog.csdnimg.cn/20210301151641849.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231659014-ros-notes10-3.png)
 
 #### 4. rviz三维可视化显示平台
 
@@ -69,10 +69,10 @@ rosrun rviz rviz -d 'rospack find turtle_tf' /rviz/turtle_rviz.rviz
 首先将左侧Fixed Frame改成world
 
 点击左下方Add，添加一个TF，用来显示TF位置关系
-![](https://img-blog.csdnimg.cn/20210301152021546.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231659046-ros-notes10-4.png)
 
 控制海龟运动，可以看到图中两个坐标系在运动
-![](https://img-blog.csdnimg.cn/20210301152153434.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231701272-ros-notes10-5.png)
 
 ### 三、TF坐标系广播与监听的编程实现
 #### 1. 创建功能包
@@ -218,7 +218,7 @@ target_link_libraries(turtle_tf_broadcaster ${catkin_LIBRARIES})
 add_executable(turtle_tf_listener src/turtle_tf_listener.cpp)
 target_link_libraries(turtle_tf_listener ${catkin_LIBRARIES})
 ```
-![](https://img-blog.csdnimg.cn/20210301152515882.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231701891-ros-notes10-6.png)
 
 即分别把两个cpp文件编译成两个可执行文件，然后对库进行链接。
 
@@ -242,4 +242,4 @@ rosrun learning_tf turtle_tf_listener
 rosrun turtlesim turtle_teleop_key
 ```
 
-![](https://img-blog.csdnimg.cn/20210301153221708.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231701727-ros-notes10-7.png)

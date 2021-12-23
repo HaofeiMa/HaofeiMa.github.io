@@ -28,24 +28,24 @@ tags:
 ## while循环（图片循环播放程序）
 实验：完成三张图片的循环放映
 1. 插入一个图片下拉列表，并导入n张图片
-<img src="https://img-blog.csdnimg.cn/20210109161918931.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">
-<img src="https://img-blog.csdnimg.cn/20210109161957452.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="30%">
-<img src="https://img-blog.csdnimg.cn/20210109162022893.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="20%">
-<img src="https://img-blog.csdnimg.cn/20210109162103514.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%">
+![image-20211223110219783](C:\Users\82785\AppData\Roaming\Typora\typora-user-images\image-20211223110219783.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231102463-labview-notes6-2.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231102640-labview-notes6-3.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231103974-labview-notes6-4.png)
 2. 打开程序框图，利用While循环实现图片的循环播放，首先将图片下拉列表转换为显示控件
-<img src="https://img-blog.csdnimg.cn/20210109162221504.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="30%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231103789-labview-notes6-5.png)
 3. 创建一个While循环
-<img src="https://img-blog.csdnimg.cn/20210109162258677.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="40%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231103002-labview-notes6-6.png)
 4. 因下拉图片列表中各个图片的值为0，1，2……n，利用循环次数与n的余数作为图片的选择依据（n为图片个数），插入数值中的商与余树控件并连线
-<img src="https://img-blog.csdnimg.cn/20210109162517679.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231103372-labview-notes6-7.png)
 在我的程序中图片数是3所以除数为3
 5. 创建停止条件
-<img src="https://img-blog.csdnimg.cn/20210109162620541.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231103976-labview-notes6-8.png)
 6. 回到前面板中添加一个旋钮，用于调整图片切换速度
-<img src="https://img-blog.csdnimg.cn/20210109162712203.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231104493-labview-notes6-9.png)
 7. 在while循环中插入一个等待时间，等待时间的输入端以毫秒作为单位，同时考虑旋钮越大图片切换速度应该越快，因此将旋钮的数值取倒数再乘1000作为while循环的等待时间
-<img src="https://img-blog.csdnimg.cn/20210109162913137.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210109162933676.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231104454-labview-notes6-10.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231104777-labview-notes6-11.png)
 8. 运行程序，即可观察到图片循环播放，拖动旋钮可以看到图片切换速度也会随之变化。
 
 ## for循环

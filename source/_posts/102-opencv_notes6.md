@@ -68,9 +68,13 @@ void inRange(
 }
  ```
 
-<img src="https://img-blog.csdnimg.cn/img_convert/d53c611cad49825dae3f256ce47108dd.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231907880-opencv-notes6-1.png)
 
-<img src="https://img-blog.csdnimg.cn/img_convert/0aabee7fddc302d712e1e45e41840f16.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="100%">
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231907662-opencv-notes6-2.png)
+
+
 
 
 ## 三、替换背景
@@ -99,6 +103,8 @@ void MyDemo::inRange_Demo(Mat& image) {
 	imshow("Finished", bg);
 }
 ```
-<img src="https://img-blog.csdnimg.cn/img_convert/334066598b20e79263ec0b84df02b0f4.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231908540-opencv-notes6-3.png)
 
-<img src="https://img-blog.csdnimg.cn/img_convert/ad0fda9ead5f0b3cf95e397da4307a2a.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="100%">
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231908875-opencv-notes6-4.png)

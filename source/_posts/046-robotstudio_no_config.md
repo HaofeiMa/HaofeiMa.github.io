@@ -12,7 +12,7 @@ tags:
 
 #### 问题描述：
 RobotStudio在使用路径和目标点的创建目标点时，有时会出现**无法跳转到目标点**的问题，错误为**未找到有效配置**。
-<img src="https://img-blog.csdnimg.cn/20210207223509743.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231544276-robotstudio-noconfig-1.png)
 
 #### 原因分析：
 1. **未使用正确的工具坐标**
@@ -20,5 +20,5 @@ RobotStudio在使用路径和目标点的创建目标点时，有时会出现**�
 #### 解决方法：
 1. 解决方法1：在基本-设置选择正确的工具坐标，例如夹具的工具坐标。
 2. 解决方法2：右键目标点-修改目标-旋转，将坐标系旋转至**工具运动到此位置时的工具坐标系重合**。如果仍然有问题可以多试几个方向，一般不止一个方向可以实现跳转到目标点。
-<img src="https://img-blog.csdnimg.cn/20210207223828674.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210207223831418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231545842-robotstudio-noconfig-2.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231546698-robotstudio-noconfig-3.png)

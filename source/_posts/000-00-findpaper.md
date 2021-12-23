@@ -37,7 +37,7 @@ notshow: true
 
 推荐套餐：1元10G流量（不限时间）
 
-![](https://img-blog.csdnimg.cn/17c2a91009c1422e915327b3d92b29ac.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112230931736-findpaper-1.png)
 
 **[② 可乐云](https://xn--fjqzfu8n.xyz/#/register?code=AunMGOQO)**
 
@@ -49,7 +49,7 @@ notshow: true
 
 * **开代理浏览国内网页时不消耗流量，只有国内无法访问的网页才会消耗流量**
 
-![](https://img-blog.csdnimg.cn/2a5b8f8e257e4214b62d6a082fddb4df.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112230932447-findpaper-2.png)
 
 **③ 其他类似网站还有很多，有兴趣的可以到[【论坛】](https://fanqiangdang.com/forum.php)中找找，这里就只列出我用过的两个。**
 
@@ -75,21 +75,21 @@ notshow: true
 
 打开机场网站，找到【我的订阅 -> 一键订阅 -> 导入到Clash】，即可成功完成订阅的添加。
 
-![](https://img-blog.csdnimg.cn/a34348965f424fa3a98c7402d8e5cc27.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112230932948-findpaper-3.png)
 
 或者复制订阅地址，粘贴到Clash中的如下图所示位置，点击Download，一样可以添加订阅。
 
-![](https://img-blog.csdnimg.cn/f28d9dded2e148fa98a7aafde5c2bb94.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112230933772-findpaper-4.png)
 
 **3. 进入【General】页面，打开【System Proxy】，即可成功访问Google Scholar等网站。**
 
-![](https://img-blog.csdnimg.cn/61c9eda54e4544d097cc73cb47ba1752.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112230933274-findpaper-5.png)
 
-![](https://img-blog.csdnimg.cn/87d3695760c5496895b80e716c2a6a87.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112230933339-findpaper-6.png)
 
 
 
-![](https://img-blog.csdnimg.cn/7078d8ce7af742a389b8616bcb35b5e1.gif)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112230933377-findpaper-7.gif)
 
 > 谨记：本方法仅用于学习交流使用，禁止用于商业用途，严禁访问除学习研究外的其他网站，否则一切后果请用户自负。本页所有信息来自网络，仅供学习参考。
 

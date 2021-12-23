@@ -15,8 +15,14 @@ tags:
 ## 一、KNN原理
 ### 1.1 KNN原理介绍
 &emsp;&emsp;KNN算法，即K最近邻算法，顾名思义其**原理是当要预测一个新的值x的时候，根据离他最近的K个点大多属于什么类别来判断x属于哪个类别**。
->[zzzzMing -大数据技术-深入浅出KNN算法](https://www.cnblogs.com/listenfwind/p/10311496.html)![](https://img-blog.csdnimg.cn/11d3fc70f20b4c67a2c7123c774d56cd.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16)&emsp;&emsp;K=3时，x最近的三个图形包括两个三角形、一个圆形，因为2>1，所以x更有可能是三角形。
->![](https://img-blog.csdnimg.cn/9c438796648b4a6f9837ff752177fde0.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16)
+>[zzzzMing -大数据技术-深入浅出KNN算法](https://www.cnblogs.com/listenfwind/p/10311496.html)
+>
+>![](https://gitee.com/huffiema/pictures/raw/master/image/202112231933950-opencv-knn-1.png)
+>
+>&emsp;&emsp;K=3时，x最近的三个图形包括两个三角形、一个圆形，因为2>1，所以x更有可能是三角形。
+>
+>![](https://gitee.com/huffiema/pictures/raw/master/image/202112231934427-opencv-knn-2.png)
+>
 >&emsp;&emsp;K=5时，x最近的五个图形包括两个三角形、三个圆形，因为3>2，所以x更有可能是圆形。
 
 &emsp;&emsp;同理类比到图像识别方面，**使用KNN算法前我们需要有大量的训练样本，并且知道每个样本所属的类别。**（例如大量的数字图片，并且知道每个图片代表数字几）。当我们要识别数字时，本质上就是在训练样本中找与要识别的图像最接近的K个样本，然后统计出K个样本中出现最多的数字是哪个，那就是要识别的数字。
@@ -37,10 +43,12 @@ tags:
 &emsp;&emsp;距离计算函数一般使用曼哈顿距离或欧氏距离。
 
 &emsp;&emsp;曼哈顿距离就是样本特征每一个维度的差值之合。（对应于图像，就是两图像每个像素做差）
-![](https://img-blog.csdnimg.cn/5aa2e07220794cb899c4d56fc3fdd079.png)
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231934104-opencv-knn-3.png)
 
 &emsp;&emsp;欧式距离是样本特征在每一个维度上差值的平方和的根。
-![](https://img-blog.csdnimg.cn/c0bff7bfcf844b63a9cd496a74a8788c.png)
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231935896-opencv-knn-4.png)
 
 
 ## 二、KNN算法识别手写数字

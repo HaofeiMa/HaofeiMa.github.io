@@ -58,4 +58,4 @@ void MyDemo::checkBar_Demo(Mat& image) {
 	onTrack(lightness, &image);
 }
 ```
-<img src="https://img-blog.csdnimg.cn/20210718220023754.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231905321-opencv-notes4-1.png)

@@ -20,7 +20,12 @@ Ceres是一个最小二乘问题求解库，我们只需要定义待优化的问
 **① 基本概念**
 常用的最小二乘问题形式如下：
 
-![](https://img-blog.csdnimg.cn/e4c28929dd044830a9efbd33405fce27.png#pic_center)
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112232017086-ceres-introduction-1.png)
+
+
+
 * 参数块：$x_1$, ... $x_n$等优化变量
 * 代价函数（残差块/误差项）：$f_i$
 * 核函数：ρ(·)，目标函数由许多平方项经过核函数求和自称
@@ -158,5 +163,7 @@ target_link_libraries(ceresCurveFitting ${OpenCV_LIBS})
 target_link_libraries(ceresCurveFitting ${CERES_LIBRARIES})
 ```
 
-![](https://img-blog.csdnimg.cn/3ee57e1fa0654271911d9323544cf756.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112232017359-ceres-introduction-2.png)
 

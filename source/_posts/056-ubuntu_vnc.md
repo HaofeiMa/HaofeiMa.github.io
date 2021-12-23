@@ -15,7 +15,7 @@ tags:
 **注：已经试验过Ubunt18.04、Ubuntu20.04与Ubuntu20.10，均正常实现**
 ### Windows端
 安装VNC Viewer，进入其[VNC Viewer官网](https://www.realvnc.com/en/connect/download/viewer/)下载安装。
-![](https://img-blog.csdnimg.cn/20210218155650612.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231640381-ubuntu-vnc-1.png)
 
 ### Ubuntu端
 **进行VNC设置之前，需要有图形界面，没有的可以执行以下代码安装图形界面**
@@ -35,7 +35,7 @@ sudo apt-get install x11vnc
 sudo apt-get install lightdm
 ```
 安装过程中会跳出一个界面，**选择lightdm**即可
-![](https://img-blog.csdnimg.cn/20210218145450888.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231640773-ubuntu-vnc-2.png)
 
 #### 3. 创建配置目录
 ```bash
@@ -47,7 +47,7 @@ sudo mkdir -pv /home/【USERNAME】/.vnc
 sudo x11vnc -storepasswd 【Password】 /home/【USERNAME】/.vnc/passwd
 ```
 其中的**【Password】**处设置连接VNC时的密码，**【USERNAME】**替换成你的用户名
-![](https://img-blog.csdnimg.cn/20210219200621716.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231641706-ubuntu-vnc-3.png)
 
 #### 5. 生成VNC配置文件
 ```bash
@@ -80,7 +80,7 @@ sudo systemctl daemon-reload
 ```bash
 sudo systemctl list-unit-files | grep x11vnc
 ```
-![](https://img-blog.csdnimg.cn/20210219125503373.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231641384-ubuntu-vnc-4.png)
 #### 7. 开机启动VNC服务
 ```bash
 sudo systemctl enable x11vnc.service
@@ -95,11 +95,11 @@ sudo reboot
 sudo ss -tunlp
 ```
 可以看到x11vnc的监听端口已经打开了
-![](https://img-blog.csdnimg.cn/20210218154948830.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231641133-ubuntu-vnc-5.png)
 
 ### 远程连接
 
 打开windows端的VNC Viewer，输入IP地址:5900即`192.168.6.6:5900`进行远程连接，密码是之前设置的密码。
-![](https://img-blog.csdnimg.cn/20210218155229939.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231641205-ubuntu-vnc-6.png)
 
-![](https://img-blog.csdnimg.cn/20210218154903345.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231642992-ubuntu-vnc-7.png)

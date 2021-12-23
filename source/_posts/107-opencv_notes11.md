@@ -17,6 +17,7 @@ tags:
 **1.1 基本知识**
 &emsp;&emsp;图像放缩用到了许多插值方法，常见的差值算法有线性插值、立方差值、双立方差值、采样放缩算法等等。
 &emsp;&emsp;所使用的API为 `resize()`，函数的定义如下
+
 ```cpp
 void resize(
 InputArray src,	//输入图像
@@ -47,9 +48,14 @@ void MyDemo::resize_Demo(Mat& image) {
 	imshow("zoomout", zoomout);
 }
 ```
-<img src="https://img-blog.csdnimg.cn/987f0cfaee9847d4bf0412faea421bd4.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231913042-opencv-notes11-1.png)
+
+
 
 ### 二、图像翻转flip
+
 &emsp;&emsp;图像反转就是将图像左右或上下反转镜像。所用到的函数是 `flip()`，函数的定义如下。
 ```cpp
 	void cv::flip(
@@ -73,7 +79,10 @@ void MyDemo::flip_Demo(Mat& image) {
 ```
 
 
-<img src="https://img-blog.csdnimg.cn/e2029c4ad3e244ff9e66bb31c5754475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231916215-opencv-notes11-2.png)
+
+
 
 ### 三、图像旋转warpAffine
 
@@ -92,12 +101,15 @@ void cv::warpAffine (
 ```cpp
 M=cv2.getRotationMatrix2D(center, angle, scale)
 ```
-![在这里插入图片描述](https://img-blog.csdnimg.cn/ba9cdfa1a2fa47bc8b00d41066f6a368.png)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/89c181d9f82540a2825e2d83307fd13e.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231916903-opencv-notes11-3.png)
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231917769-opencv-notes11-4.png)
+
+
 
 由于旋转之后，图像的大小会发生变化，因此需要重新计算图像的长宽，计算方法可以参考下图：
 
-<img src="https://img-blog.csdnimg.cn/8f4af030a0e84267b032af302d0f8f5b.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231917211-opencv-notes11-5.png)
 
 图像旋转的示例程序如下：
 ```cpp
@@ -117,4 +129,6 @@ void MyDemo::rotate_Demo(Mat& image) {
 }
 ```
 
-<img src="https://img-blog.csdnimg.cn/e5971bef2056432e84b36bc93d34cb08.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231917301-opencv-notes11-6.png)

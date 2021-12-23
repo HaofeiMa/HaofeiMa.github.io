@@ -26,4 +26,4 @@ post_max_size = 64M
 upload_max_filesize = 64M
 ```
 （这两条都在比较靠后的位置，不太好找）
-<img src="https://img-blog.csdnimg.cn/20210118095103404.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231121053-wp-bugfix-1.png)

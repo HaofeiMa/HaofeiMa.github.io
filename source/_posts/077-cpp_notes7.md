@@ -42,7 +42,7 @@ tags:
   * 父类中的公共权限成员，子类中是私有权限
   * 父类中的保护权限成员，子类中是私有权限
   * 父类的私有权限成员，子类无法访问
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210308144516842.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+  ![](https://gitee.com/huffiema/pictures/raw/master/image/202112231705496-cpp-notes7-1.png)
 
 #### 6.3 继承中的对象模型
 

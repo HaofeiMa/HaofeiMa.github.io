@@ -28,7 +28,7 @@ tags:
 ## 1. 数值型控件
 * 数值型控件可表示不同类型的数值
 * 程序框图或前面板中，右键单击输入控件、显示控件或常量，从快捷菜单中选择表示法，可以改变数值型数据的表示法
-<img src="https://img-blog.csdnimg.cn/20210108151345661.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="30%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231050733-labview-notes3-1.png)
 ## 2. 布尔型控件
 * 布尔型控件最关键的就是机械动作的选择。
 
@@ -40,19 +40,21 @@ tags:
 | 单击时触发       | 按下按钮时改变状态。LabView读取控件值后恢复原来的状态        |
 | 释放时触发       | 释放按钮时改变状态。LabView读取控件值后返回原状态            |
 | 保持触发直到释放 | 按下按钮时改变状态。松开按钮且LabView读取控件值后恢复原来的状态 |
-<img src="https://img-blog.csdnimg.cn/20210108153209510.png" width="40%">
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231050980-labview-notes3-2.png)
 
 ## 3. 字符型控件
+
 * 可以通过快捷菜单更改显示类型：正常显示、'\'显示、密码显示、十六进制显示
 * 在LabView中字符串颜色为粉红色
 * 字符串的数据/控件可以通过数值/字符串转换函数实现字符串与各种类型数值数据之间的转换，字符串数据也可以与路径、数组之间进行转换
 * 字符串型控件可以通过函数面板的连接字符串以及制表符、回车/换行符将多个字符串数据转换成指定格式的字符串，用于报表的制作
-<img src="https://img-blog.csdnimg.cn/20210108153449908.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231051354-labview-notes3-3.png)
 ## 4. 枚举和下拉控件
 * 下拉列表：右键单击下拉列表控件，并从快捷菜单中选择编辑项，或者在属性对话框中点击编辑项的选项卡，即可向控件的下拉列表中添加内容，并更改项的顺序
-<img src="https://img-blog.csdnimg.cn/20210108153659260.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210108153723261.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231051221-labview-notes3-4.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231052453-labview-notes3-5.png)
 * 枚举型控件：将枚举型控件连接至条件结构的选择器接线端时，LabView将控件中的字符串与分支条件相比较，而不是控件的数值
-<img src="https://img-blog.csdnimg.cn/20210108153829153.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231052099-labview-notes3-6.png)
 * 如果数据过大时，枚举类型可以较好的显示，而下拉列表有时需要更改数据类型以实现存储较大数据。
-<img src="https://img-blog.csdnimg.cn/20210108154006830.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231052110-labview-notes3-7.png)

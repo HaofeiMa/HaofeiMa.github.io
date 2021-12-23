@@ -14,7 +14,11 @@ tags:
 
 &emsp;&emsp;本文的目标是实现**识别摄像头图像中的数字**。实际应用场景包括**车牌号识别**，部分竞赛的**A4纸打印数字识别**。项目实现结果如下，完整工程文件[点此下载](https://download.csdn.net/download/weixin_44543463/22349857)：
 
-![](https://img-blog.csdnimg.cn/ecbade1b7bf44059a01ab11463b0f0e3.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231926851-digital-recognize-1.png)
+
+
 
 
 >&emsp;&emsp;**摄像头数字识别分为两个步骤：**
@@ -82,7 +86,11 @@ int main()
 
 &emsp;&emsp;两图像相减之前，需要先制作一张模板，你可以自己在记事本里敲0-9的数字，截图，使用上面的函数imwrite出来一份模板。也可以到我的[github中下载](https://github.com/HuffieMa/digital_recongize/tree/master/images)，其中0.jpg-9.jpg就是模板文件。
 
-<img src="https://img-blog.csdnimg.cn/589bc4c8da53485e9355ee656f6182a8.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" width="60%">
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231927793-digital-recognize-2.png)
+
+
 
 ```cpp
 //获取所有像素点和，用于求两图像相减后所得图像的所有像素之和
@@ -130,7 +138,11 @@ int imgMatch(Mat& image, int& rate, int& num) {
 4. ，对截取出来的图像进行**逐列扫描求和**，过程同上，记录出数字的左右列号，根据左右列号即可从刚才截取出的图像中，取出包含数字的最小图像。
 5. 利用此最小图像与模板匹配。
 
-<img src="https://img-blog.csdnimg.cn/811b7cbf4bf54a9ba146530119edd226.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" width="60%">
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231928486-digital-recognize-3.png)
+
+
 
 ```cpp
 int main()
@@ -209,7 +221,11 @@ int main()
 }
 ```
 
-<img src="https://img-blog.csdnimg.cn/df626d0de1eb4df4ae1440a60023d155.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" width="70%">
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231928575-digital-recognize-4.png)
+
+
 
 ### 2.2 对图像进行二值化处理
 &emsp;&emsp;通过每个像素的颜色分量将图片进行二值化。正常曝光情况下**A4纸的BGR均为215左右**，**车牌的颜色信息大约为B=138，G=63，R=23**。但是在不同环境下颜色信息可能会有偏差，因此需要将条件在一定程度上放宽，再通过其他一些条件来准确查找目标区域。
@@ -246,7 +262,11 @@ void binaryProc(Mat& image) {
 	}
 }
 ```
-![在这里插入图片描述](https://img-blog.csdnimg.cn/57af58c3907a42278cb0adc81e2642a2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231928141-digital-recognize-5.png)
+
+
 
 ### 2.3 形态学处理
 &emsp;&emsp;可以看出二值画处理后已经比较明显完整的显示出A4纸区域，但是仍然存在一些噪点，此时进行形态学处理，以消除这些噪点干扰。对图像**先膨胀再腐蚀**，可以填充细小空间，连接临近物体和平滑边界。
@@ -274,7 +294,11 @@ void morphTreat(Mat& binImg) {
 ```
 &emsp;&emsp;矩形窗的大小与膨胀腐蚀的次数会影响处理结果，处理完的结果大致如下。
 
-<img src="https://img-blog.csdnimg.cn/d07134964f12426f972d3fcecc1ba1b9.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" width="70%">
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231929044-digital-recognize-6.png)
+
+
 
 
 ### 2.4 设置限制条件寻找目标区域
@@ -290,9 +314,14 @@ void morphTreat(Mat& binImg) {
 &emsp;&emsp;如果矩形区域符合条件，那么就需要将其截取出来，并根据先前计算的倾斜角度将A4纸图像摆正，便于后续对其中的数字进行识别。旋转图像的函数需要一些数学知识，旋转前后的图像的长宽有一定函数关系。（h'、w'为旋转后图像高、宽）
 
 
-<img src="https://img-blog.csdnimg.cn/db916a18a642404c8d9f998e710ec62f.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" width="50%">
 
-<img src="https://img-blog.csdnimg.cn/7288629a7d4244de804a52aaec6807f9.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231929478-digital-recognize-7.png)
+
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231930121-digital-recognize-8.png)
+
+
 
 ```cpp
 //图像旋转
@@ -396,5 +425,10 @@ void rotateProc(Mat& image, double angle) {
 		}
 ```
 
-![请添加图片描述](https://img-blog.csdnimg.cn/8c02ea1502ae4d6293744e5662a63bb4.gif#pic_center)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/c3c3f1b0a1ea4e909aa835b0dc19e8c9.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16)
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231933401-digital-recognize-9.gif)
+
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231933798-digital-recognize-10.png)

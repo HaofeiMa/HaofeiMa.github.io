@@ -12,5 +12,5 @@ tags:
 
 使用ABB RobotStudio的过程中，有时会遇到鼠标拖动平移视角的速度突然变慢的问题，不知道问题出在什么地方，但是发现了解决方法：
 **工作站空白处右键，点击查看全部或查看中心**
-<img src="https://img-blog.csdnimg.cn/20210206211208458.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231528441-robotstudio-mouse-1.png)
 然后就恢复正常了。

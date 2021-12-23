@@ -28,12 +28,12 @@ ROS安装过程可见我的上一篇博客[Ubuntu20.04安装ROS Noetic](https://
 ```bash
 raw.githubusercontent.com
 ```
-![](https://img-blog.csdnimg.cn/20210220080922104.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231643086-rosdep-bug-1.png)
 ##### 3. 将解析出来的IP地址全部添加到/etc/hosts文件最后，格式：185.199.109.133 raw.githubusercontent.com
 ```bash
 sudo gedit /etc/hosts
 ```
-![](https://img-blog.csdnimg.cn/20210220081304582.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231643217-rosdep-bug-2.png)
 ```bash
 127.0.0.1 localhost
   
@@ -51,4 +51,4 @@ ff02::3 ip6-allhosts
 ```
 保存回到命令行
 ##### 5. 重新进行rosdep update
-![](https://img-blog.csdnimg.cn/20210220081443875.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231643953-rosdep-bug-3.png)

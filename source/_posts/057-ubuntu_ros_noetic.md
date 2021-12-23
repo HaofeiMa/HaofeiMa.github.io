@@ -20,7 +20,7 @@ tags:
 #### 1. 添加ROS软件源
 打开软件与更新，将下载选项前四个都选上。
 **一定要确保都勾选上，不然后续安装时会出现依赖关系问题**
-![](https://img-blog.csdnimg.cn/20210219145021840.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231642871-ubuntu-ros-1.png)
 然后执行以下命令添加软件源
 
 ```bash
@@ -67,4 +67,4 @@ sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator 
 ### 三、测试
 **打开**终端，输入`roscore`，运行ros
 **再打开**一个新终端，输入：`rosrun turtlesim turtlesim_node`，可以看到小乌龟的仿真界面已经打开了。**再打开**一个新终端输入指令：`rosrun turtlesim turtle_teleop_key`，可以在这个key终端内，通过键盘的方向键控制小乌龟在界面中移动
-![](https://img-blog.csdnimg.cn/20210220234744581.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231643691-ubuntu-ros-2.png)

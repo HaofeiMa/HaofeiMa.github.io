@@ -36,16 +36,16 @@ tags:
 （3）c. 数组的初始化函数
 （注：未初始化的元素只具有维数，不包含任何元素）
 5. 数组函数：包括数组大小、索引数组、创建数组、数组最大值最小值、排序、拆分数组等操作均可以通过数组函数实现。
-![](https://img-blog.csdnimg.cn/20210112153519739.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231106676-labview-notes9-1.png)
 ### 簇
 1. 簇与数组：簇将不同类型数据元素归为一组，簇不同于数组的地方在于簇的大小是固定的，簇可以包含不同的数据类型，数组仅可包含一种数据类型。
 2. 簇的创建方法
 （1）在前面板上放置一个簇的外框
 （2）推拽数据对象或元素至簇的外框内，拖拽对象可分为数值、布尔值、字符串、路径、引用句柄、数组、簇输入控件和簇显示控件
 3. 簇的顺序：簇元素的逻辑顺序与其在簇内的位置无关，右键单击簇外框，从快捷菜单中选择重新排序簇中控件
-<img src="https://img-blog.csdnimg.cn/20210112154216684.png" width="30%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231107285-labview-notes9-2.png)
 4. 簇函数：簇函数中最重要的就是构造打包生成簇的捆绑函数和从簇中解包提取簇中元素的接触捆绑函数
-<img src="https://img-blog.csdnimg.cn/20210112154316847.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231107463-labview-notes9-3.png)
 6. 错误簇：
 （1）可以控制控件执行的先后顺序
 （2）也可以通过错误簇控制循环的终止

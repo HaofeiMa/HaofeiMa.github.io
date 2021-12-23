@@ -18,7 +18,12 @@ tags:
 ### 问题描述
 
 在调用opencv安装包时，会出现 **ImportError: No module named cv2** 的问题：
-![请添加图片描述](https://img-blog.csdnimg.cn/71fbd4ac8ae14de191199bf4a0d5ef4b.png)
+
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231958111-no-module-1.png)
+
+
 
 ### 产生原因
 我确定我已经安装了opencv，但为什么还是显示没有此模块。查阅资料后发现是因为安装opencv是会安装到它默认的python版本，而这个python版本与系统默认使用的版本不一致，才会导致找不到模块。
@@ -40,8 +45,15 @@ tags:
 更改系统的默认python版本，改为所使用的高版本。
 
 可以先使用`ls /usr/bin/python*`查看系统中存在的python版本
-![请添加图片描述](https://img-blog.csdnimg.cn/55d2b2de3ce8492b8f47afd440253b82.png)
+
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231958436-no-module-2.png)
+
+
+
 然后移除软连接，更改python默认版本
+
 ```bash
 sudo rm /user/bin/python
 sudo ln -s /usr/bin/python3.5 /usr/bin/python
@@ -49,5 +61,8 @@ sudo ln -s /usr/bin/python3.5 /usr/bin/python
 
 &emsp;
  再次启动之前的程序，正常启动，不再显示ImportError: No module named cv2了！
-![请添加图片描述](https://img-blog.csdnimg.cn/44dcb3ce7b7b49a6aa9c58508ea3991b.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16)
+
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231959476-no-module-3.png)
 

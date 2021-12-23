@@ -42,7 +42,9 @@ void MyDemo::drawing_Demo(Mat& image) {
 	imshow("Drawing", image);
 }
 ```
-<img src="https://img-blog.csdnimg.cn/img_convert/af671a2b45e802c3e63209fa87a96666.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231909891-opencv-notes7-1.png)
+
+
 
 ### 2. 圆形
 &emsp;&emsp;OpenCV中绘制圆形的函数为 `rectangle()` 。
@@ -68,7 +70,9 @@ void MyDemo::drawing_Demo(Mat& image) {
 	imshow("Drawing", image);
 }
 ```
-<img src="https://img-blog.csdnimg.cn/img_convert/952ed890a5696533968b9ba4c8e2377a.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231909156-opencv-notes7-2.png)
 
 &emsp;&emsp;
 ### 3. 直线
@@ -95,8 +99,9 @@ void MyDemo::drawing_Demo(Mat& image) {
 	imshow("Drawing", image);
 }
 ```
-<img src="https://img-blog.csdnimg.cn/img_convert/dacd9d0f6a5f9d67a50aee48aaed60a6.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
-&emsp;&emsp;
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231909658-opencv-notes7-3.png)&emsp;&emsp;
 
 ### 4. 椭圆
 
@@ -132,7 +137,7 @@ void MyDemo::drawing_Demo(Mat& image) {
 	imshow("Drawing", image);
 }
 ```
-<img src="https://img-blog.csdnimg.cn/img_convert/317de319b10cab926f53fa6a76bb1d00.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231910341-opencv-notes7-4.png)
 
 &emsp;&emsp;
 
@@ -197,7 +202,11 @@ void MyDemo::polyDrawing_Demo() {
 >	pts[4] = p5;
 >```
 
-<img src="https://img-blog.csdnimg.cn/img_convert/c94a4045c4b42787be70c97ffb011795.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231910682-opencv-notes7-5.png)
+
+
 
 ### 2.2 多边形填充
 &emsp;&emsp;绘制填充的多边形使用到的函数是 `fillPoly()` 。
@@ -245,7 +254,9 @@ void MyDemo::polyDrawing_Demo() {
 }
 ```
 
-<img src="https://img-blog.csdnimg.cn/img_convert/66c1611508015c694e917fda36d19db9.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231910612-opencv-notes7-6.png)
+
+
 
 ### 2.3 绘制多个多边形
 
@@ -303,4 +314,4 @@ void MyDemo::polyDrawing_Demo() {
 }
 ```
 
-<img src="https://img-blog.csdnimg.cn/img_convert/141a149f6cc64488d35f2a2cf4f7316b.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70#pic_center" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231910132-opencv-notes7-7.png)

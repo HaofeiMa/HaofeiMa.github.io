@@ -81,7 +81,7 @@ int main(int argc, char **argv)
 2. 订阅需要的话题
 3. 循环等待话题消息，接收到消息后进入回调函数
 4. 在回调函数中完成消息处理
-![](https://img-blog.csdnimg.cn/20210224221639124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231649178-ros-notes4-1.png)
 
 ### 四、配置订阅者代码编译规则
 
@@ -95,7 +95,7 @@ int main(int argc, char **argv)
 add_executable(pose_subscriber src/pose_subscriber.cpp)		#描述要把哪个程序文件编译成哪个可执行文件
 target_link_libraries(pose_subscriber ${catkin_LIBRARIES})	#把可执行文件和库做链接
 ```
-![](https://img-blog.csdnimg.cn/20210224221910627.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231649732-ros-notes4-2.png)
 
 ### 五、编译并运行订阅者SubScriber
 
@@ -120,4 +120,4 @@ rosrun turtlesim turtlesim_node
 rosrun learning_topic pose_subscriber
 rosrun turtlesim turtle_teleop_key
 ```
-![](https://img-blog.csdnimg.cn/2021022422230869.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231649325-ros-notes4-3.png)

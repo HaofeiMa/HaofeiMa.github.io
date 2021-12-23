@@ -19,32 +19,32 @@ tags:
 
 ### 机械结构的搭建
 1. 导入两个传送带，将第二个传送带以z轴旋转90°，再沿y轴偏移-3200mm。
-<img src="https://img-blog.csdnimg.cn/20210208220925834.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
-<img src="https://img-blog.csdnimg.cn/20210208220928149.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
-<img src="https://img-blog.csdnimg.cn/20210208220932520.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
-<img src="https://img-blog.csdnimg.cn/20210208220938376.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
-<img src="https://img-blog.csdnimg.cn/20210208220951687.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231547151-robotstudio-doubleconveyer-1.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231547014-robotstudio-doubleconveyer-2.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231548275-robotstudio-doubleconveyer-3.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231548997-robotstudio-doubleconveyer-4.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231549817-robotstudio-doubleconveyer-5.png)
 2. 导入机器人IRB120，将其移动到合适的位置上。
-<img src="https://img-blog.csdnimg.cn/20210208221212764.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
-<img src="https://img-blog.csdnimg.cn/20210208221220232.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="70%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231549242-robotstudio-doubleconveyer-6.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231550395-robotstudio-doubleconveyer-7.png)
 3. 创建工件的模型，将工件的第二部分内的物体拖动到第一部分中，形成一个部件
-<img src="https://img-blog.csdnimg.cn/20210208221157676.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
-<img src="https://img-blog.csdnimg.cn/20210208221255491.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="70%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231550097-robotstudio-doubleconveyer-8.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231551500-robotstudio-doubleconveyer-9.png)
 4. 将工件移动到合适的位置
-<img src="https://img-blog.csdnimg.cn/20210208221309199.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231552087-robotstudio-doubleconveyer-10.png)
 5. 导入夹具，将夹具旋转至与大地坐标系平行
-<img src="https://img-blog.csdnimg.cn/20210208222354248.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231552216-robotstudio-doubleconveyer-11.png)
 6. 设置夹具的本地坐标
-<img src="https://img-blog.csdnimg.cn/20210208222418547.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231554863-robotstudio-doubleconveyer-12.png)
 7. 在左侧布局栏中，将夹具拖动到机器人上，更新夹具的位置
-<img src="https://img-blog.csdnimg.cn/20210208222428972.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231554899-robotstudio-doubleconveyer-13.png)
 ### 创建机器人系统
-<img src="https://img-blog.csdnimg.cn/20210208222524806.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="50%">
-<img src="https://img-blog.csdnimg.cn/20210208222531328.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210208222535887.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210208222539823.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
-<img src="https://img-blog.csdnimg.cn/20210208222543443.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
-<img src="https://img-blog.csdnimg.cn/2021020822255042.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="80%">
-<img src="https://img-blog.csdnimg.cn/20210208222552948.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_SGFsZi1BIFN0dWRpbw==,size_16,color_FFFFFF,t_70" width="60%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231554707-robotstudio-doubleconveyer-14.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231554597-robotstudio-doubleconveyer-15.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231555421-robotstudio-doubleconveyer-16.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231555822-robotstudio-doubleconveyer-17.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231555519-robotstudio-doubleconveyer-18.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231556585-robotstudio-doubleconveyer-19.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231556315-robotstudio-doubleconveyer-20.png)
 
 等待一段时间，等待系统创建完成即可进行传送带的试验。

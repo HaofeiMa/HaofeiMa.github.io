@@ -11,16 +11,18 @@ tags:
 ---
 
 ## 一、L298N
-![L298N](https://img-blog.csdnimg.cn/20201231180306615.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231031103-step-motor-1.png)
 	单片机无法直接驱动步进电机，需要L298N进行驱动。L298N的最大功耗为20W，驱动部分端子供电范围+5~+30V，控制信号输入电压范围5V/0V，驱动部分峰值电流2A。
+
 ## 二、两相四线制步进电机
 **1. 技术指标**
 （1）相数：电机内部的线圈组数。
 （2）拍数：完成一个磁场周期性变化所需要脉冲数或导电状态。两相四线电机可以使用单四拍、双四拍和八拍的方式驱动。
 （3）步距角：磁场变化一次电机转过的角度，两相四线电机步距角为0.9°/1.8°。
 **2. 工作原理**
-![电机原理](https://img-blog.csdnimg.cn/20201231184450180.png)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231032895-step-motor-2.png)
 	如图所示，电机有四条控制信号A+、A-、B+、B-，通过控制这四条引线上的励磁脉冲，就可以控制步进电机的转动。以四拍驱动方式为例，顺时针转动时
+
 | STEP | A+   | A-   | B+   | B-   |      |
 | ---- | ---- | ---- | ---- | ---- | ---- |
 | 1    | 1    | 0    | 0    | 0    |      |
@@ -35,8 +37,9 @@ tags:
 * 输出端：OUT1、OUT2、OUT3、OUT4分别接步进电机的四条线红绿黄蓝。
 ## 三、Proteus仿真
 在Proteus中的接线情况如下图所示：
-![Protues接线](https://img-blog.csdnimg.cn/20210101142442184.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231032155-step-motor-3.png)
 参考程序如下：
+
 ```java
 #include<reg52.h>
 sbit enable = P3^0;
@@ -65,4 +68,4 @@ void main()
 }
 ```
 仿真结果：
-![仿真结果](https://img-blog.csdnimg.cn/20210101142900715.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231033161-step-motor-4.png)

@@ -115,7 +115,11 @@ rosrun turtlesim turtlesim_node
 rostopic pub -r 10 /turtle1/cmd_vel geometry_msgs/Twist -r 1 -- '{linear: {x: 1, y: 0, z: 0}, angular: {x: 0, y: 0, z: 1}}'
 ```
 
-<img src="https://img-blog.csdnimg.cn/1f6e2b4e95e546e3a7cc807a8c54ed63.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" width="40%">
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231935919-ros-basic-1.png)
+
+
 
 
 ### 3.3 服务
@@ -134,14 +138,18 @@ rostopic pub -r 10 /turtle1/cmd_vel geometry_msgs/Twist -r 1 -- '{linear: {x: 1,
 使用`rosservice list`可以列出所有的服务，使用`rosservice call [service] [args]`可以调用某个服务，例如`rosservice call /clear`可以清除海龟图上的线条。
 
 此外，使用`rossrv show turtlesim/Spawn`可以查看/spawn服务的详细参数。
-![](https://img-blog.csdnimg.cn/88aaaecaf3484a70a386822ea71f4409.png#pic_center)
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231935033-ros-basic-2.png)
+
 通过这些参数就可以调用/spawn服务创建第二只海龟。
 
 ```bash
 rosservice call /spawn 3 3 0.5 "new_turtle"
 ```
 
-<img src="https://img-blog.csdnimg.cn/ac96dba8d73e4f2b8993c5b3080d68b4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" width="40%">
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231936813-ros-basic-3.png)
+
+
 
 ### 3.4 参数服务器
 **1. rosparam指令**
@@ -162,7 +170,11 @@ rosparam list
 rosparam get /turtlesim/background_g
 rosparam set /turtlesim/background_g 200
 ```
-<img src="https://img-blog.csdnimg.cn/33a8f5180f684a4da4aa13f558985ebf.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" width="40%">
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231936964-ros-basic-4.png)
+
+
 
 ## 四、节点的创建与运行
 这一部分会以一个具体实验为例，通过创建一个talker和一个listener并实现两者之间的信息交流，进而介绍创建节点的方法。
@@ -265,7 +277,11 @@ rosrun test_package example1_a
 rosrun test_package example1_b
 ```
 可以看到消息的接受和发送。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/077c1fff7021431c8deba12bae8d4abe.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231936146-ros-basic-5.png)
+
+
+
 ## 五、服务的创建与使用
 本节将创建两个节点，分别作为服务器和客户端，通过服务的调用实现两个节点的数据传输，并实现数字求和的功能。
 ### 5.1 创建msg文件
@@ -468,7 +484,11 @@ rosrun test_package client 6 4 2
 ```
 可以看到服务端和客户端实现了消息的通信，完成了三个数字的求和计算。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/8c301a56d58c41f9a33f52a02d593c99.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231937487-ros-basic-6.png)
+
+
 
 ## 六、启动文件的配置
 在前面，我们已经实现了节点的创建和使用，但是每个节点都需要打开不同的命令行窗口执行，如果节点数目更多，那么启动节点将会是一件非常麻烦的事情。
@@ -499,11 +519,19 @@ vim test.launch
 roslaunch test_package test.launch
 ```
 系统会输出以下信息，说明启动成功。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/de6d8a001f384aceb50e973c736e3ee0.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231937973-ros-basic-7.png)
+
 使用`rosnode list`可以列出活动的节点，可以看到我们已经成功启动了`talker`和`listener`两个节点。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/f10806210a514c809307b447cde9822d.png#pic_center)
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231938050-ros-basic-8.png)
+
 如果想看到两个节点传递的信息，可以使用`rqt_console`
-![在这里插入图片描述](https://img-blog.csdnimg.cn/9ff1b204910148698e88e59d3588d59c.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231938582-ros-basic-9.png)
+
+
+
 ## 七、动态参数的使用
 一般情况下，我们编写一个节点时，只能以数据初始化节点内的变量，如果我们想要改变这些变量值，可以使用主题，服务或参数服务器，但这种方式无法在线动态更新，如果listener不主动查询，我们无法知道参数是否更新。有时我们需要在线动态更新参数，这时就需要使用动态参数。
 
@@ -614,4 +642,4 @@ rosrun test_package dynamic_param
 rosrun rqt_reconfigure rqt_reconfigure
 ```
 执行完成后，会看到一个`rqt_reconfigure`窗口，在这个窗口中就可以动态的配置节点的参数，并且在调整参数时，可以看到命令行打印参数的改变。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/1f2a8933f74748ada76eeb1eaa1df4fa.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBASGFsZl9B,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+![](https://gitee.com/huffiema/pictures/raw/master/image/202112231938492-ros-basic-10.png)
