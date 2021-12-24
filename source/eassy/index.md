@@ -1,5 +1,5 @@
 ---
-title:  
+title:  文章随笔
 type: eassy
 
 ---

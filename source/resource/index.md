@@ -1,6 +1,6 @@
 ---
 
-title: 资源
+title: 软件资源
 type: resource
 ---
 
