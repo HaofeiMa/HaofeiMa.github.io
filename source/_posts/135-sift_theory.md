@@ -7,6 +7,7 @@ categories:
 - 目标检测与三维重建
 tags:
 - 算法
+mathjax: true
 
 ---
 
