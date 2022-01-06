@@ -26,7 +26,7 @@ date: 2021-08-21 14:25:36
 
 爱好单片机开发，喜欢钻研各种新奇的事物。无论是机械系统建模设计与仿真、嵌入式的设计，还是网站、APP的开发，都有所涉猎。热爱一些新鲜事物，在学习新技术的路上一去不复返。
 
-<img src="https://img-blog.csdnimg.cn/236ca6a3e7da472fb4d30d22291d6db6.png" style="zoom:50%;" >
+![](https://gitee.com/huffiema/pictures/raw/master/image/202201052113753-myself.png)
 
 
 
