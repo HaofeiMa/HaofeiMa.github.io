@@ -14,11 +14,16 @@ timezone: ''
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://www.mahaofei.com/
-permalink: :year/:month/:day/:title/
-permalink_defaults:
-pretty_urls:
-  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
-  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+# permalink: :year/:month/:day/:title/
+# permalink: posts/:category/:year:month:day-:urlname.html
+permalink: post/:abbrlink.html
+abbrlink:
+  alg: crc32  # 算法：crc16(default) and crc32
+  rep: hex    # 进制：dec(default) and hex
+# permalink_defaults:
+# pretty_urls:
+  # trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
+  # trailing_html: true # Set to false to remove trailing '.html' from permalinks
 
 # Directory
 source_dir: source
@@ -126,8 +131,6 @@ deploy:
   type: git
   repo: 
     github: git@github.com:HuffieMa/HuffieMa.github.io.git
-    coding: git@e.coding.net:halfa/huffie/HalfA_Studio.git
-    coding2: git@e.coding.net:halfa/huffie/hexo-blog.git
   branch: master
 
 

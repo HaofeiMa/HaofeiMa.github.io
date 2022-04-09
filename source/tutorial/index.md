@@ -51,7 +51,7 @@ date: 2021-12-17 20:30:52
 
 > 博主本科期间各课程所用到的资料汇总，包括公共课（如线代、大物），专业课等等。请仅用于个人学习使用，谢谢
 
-| [河北工业大学课程资料](https://www.mahaofei.com/2022/01/06/000-00-hebut/) | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; |
+| [河北工业大学课程资料](https://www.mahaofei.com/04_essays/01_experience/02_hebut/) | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 
 
@@ -64,9 +64,9 @@ date: 2021-12-17 20:30:52
 
 > 博主本人总结的一些常用破解方法，比如百度网盘破解、fanqiang方法、各大视频网站破解等，不定期更新
 
-| [百度网盘不限速](https://www.mahaofei.com/1946/02/14/000-00-baiducloud/) | [访问Google…学术](https://www.mahaofei.com/1946/02/14/000-00-findpaper/) | [VIP视频在线播放方法](000-00-vip) |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | --------------------------------- |
-| **[windows+office全系激活](https://www.mahaofei.com/1946/02/14/000-00-win+office/)** |                                                              |                                   |
+| [百度网盘不限速](https://www.mahaofei.com/100_skills/00_crack/02_baiducloud/) | [访问Google…学术](https://www.mahaofei.com/00_skills/00_crack/03_findpaper/) | [VIP视频在线播放方法](https://www.mahaofei.com/00_skills/00_crack/04_vip/) |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| **[windows+office全系激活](https://www.mahaofei.com/00_skills/00_crack/01_win_office/)** |                                                              |                                                              |
 
 
 
