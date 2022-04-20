@@ -1,0 +1,49 @@
+#footer-wrap
+  if theme.footer.owner.enable
+    - var now = new Date()
+    - var nowYear = now.getFullYear()
+    if theme.footer.owner.since && theme.footer.owner.since != nowYear
+      .copyright!= `&copy;${theme.footer.owner.since} - ${nowYear} By ${config.author}`
+    else
+      .copyright!= `&copy;${nowYear} By ${config.author}`
+  if theme.footer.copyright
+    .framework-info
+      span= _p('footer.framework') + ' '
+      a(href='https://hexo.io')= 'Hexo'
+      span.footer-separator |
+      span= _p('footer.theme') + ' '
+      a(href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'
+  if theme.footer.custom_text
+    .footer_custom_text!=`${theme.footer.custom_text}`
+	
+span.footer-left
+  .github-badge
+	a(style='color: #fff', rel='license', href='https://beian.miit.gov.cn/', target='_blank', title='津ICP备2021000769号-2 ')
+	  span.badge-subject 津ICP备
+	  span.badge-value.bg-red 2021000769号-2
+  .github-badge
+	a(style='color: #fff', rel='license', href='https://www.mahaofei.com/', target='_blank', title='Copyright:https://www.mahaofei.com/')
+	  span.badge-subject Copyright
+	  span.badge-value.bg-green 2020-2022
+span.footer-right
+  .github-badge
+	a(style='color: #fff', rel='license', href='https://hexo.io/', target='_blank', title='由 Hexo 强力驱动')
+	  span.badge-subject Powered
+	  span.badge-value.bg-blue Hexo
+  .github-badge
+	a(style='color: #fff', rel='license', href='https://github.com/', target='_blank', title='静态网页托管于 GitHub Pages 和 Coding Pages')
+	  span.badge-subject Hosted
+	  span.badge-value.bg-brightgreen GitHub
+  .github-badge
+	a(style='color: #fff', rel='license', href='https://www.aliyun.com/', target='_blank', title='阿里云提供域名相关服务')
+	  span.badge-subject CDN
+	  span.badge-value.bg-blueviolet Aliyun
+  .github-badge
+	a(style='color: #fff', rel='license', href='https://github.com/next-theme/hexo-theme-next', target='_blank', title='站点使用 NexT 主题')
+	  span.badge-subject Theme
+	  span.badge-value.bg-orange ButterFly
+  // <div class="baidu-analytics"><a href="https://wangzhan.baidu.com/web/welcome/ico?s=439a0d0abeb31dd8f338efd8266c999b"><img src="https://wangzhan.baidu.com/sc-web/image/icon/41.gif?__v=1638878820259" alt="" style="height:17px;margin-bottom:-3px"></a></div> 
+  .github-badge
+	a(style='color: #fff', rel='license', href='hhttps://wangzhan.baidu.com/web/welcome/ico?s=439a0d0abeb31dd8f338efd8266c999b', target='_blank', title='站点使用 NexT 主题')
+	  span.badge-subject 百度
+	  span.badge-value.bg-lightgray 统计

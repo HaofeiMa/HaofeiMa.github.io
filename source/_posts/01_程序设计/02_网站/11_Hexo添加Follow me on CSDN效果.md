@@ -9,8 +9,27 @@ categories:
 tags:
   - 网站搭建
   - Hexo
+cover: 'https://img-blog.csdnimg.cn/abe3797b7d77419b81ecc02dd1bf8c34.png'
 abbrlink: 666fc0fa
 date: 2021-08-17 10:52:06
+updated: 2021-08-17 10:52:06
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 &emsp;&emsp;[http://huffie.cn/](http://huffie.cn/)这是我的博客，可以在此查看效果。

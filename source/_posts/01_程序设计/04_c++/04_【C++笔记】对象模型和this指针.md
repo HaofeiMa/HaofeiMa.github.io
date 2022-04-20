@@ -8,8 +8,27 @@ categories:
 tags:
   - 笔记
   - c++
+cover: 'https://img.mahaofei.com/img/20220410093451.png'
 abbrlink: 5388c9e9
 date: 2021-03-07 22:46:12
+updated: 2021-03-07 22:46:12
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 ### 一、成员变量和成员函数分开存储

@@ -8,8 +8,27 @@ tags:
   - 实验
   - 单片机
   - Proteus
+cover: 'https://img.mahaofei.com/img/202112231719617-proteus-220to5-8.png'
 abbrlink: 706260b4
 date: 2021-04-06 18:10:00
+updated: 2021-04-06 18:10:00
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 ### 一、所用元器件介绍

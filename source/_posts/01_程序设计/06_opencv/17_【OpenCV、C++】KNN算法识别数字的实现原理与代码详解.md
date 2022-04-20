@@ -6,10 +6,29 @@ categories:
   - OpenCV
 tags:
   - OpenCV
-  - C++
   - 实验
+  - C++
+cover: 'https://img.mahaofei.com/img/202112231934427-opencv-knn-2.png'
 abbrlink: c386d502
 date: 2021-09-12 09:48:53
+updated: 2021-09-12 09:48:53
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 

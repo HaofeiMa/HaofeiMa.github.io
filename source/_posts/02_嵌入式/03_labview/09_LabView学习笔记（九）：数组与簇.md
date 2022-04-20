@@ -8,8 +8,27 @@ categories:
 tags:
   - 笔记
   - LabVIEW
+cover: 'https://img.mahaofei.com/img/202112231106676-labview-notes9-1.png'
 abbrlink: 2d7ac11f
 date: 2021-01-15 16:48:13
+updated: 2021-01-15 16:48:13
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 **Labview学习笔记**：

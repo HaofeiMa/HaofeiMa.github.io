@@ -10,8 +10,27 @@ tags:
   - 笔记
   - OpenCV
   - C++
+cover: 'https://img.mahaofei.com/img/202112231918357-opencv-notes12-1.png'
 abbrlink: 4182df17
 date: 2021-07-27 11:42:52
+updated: 2021-07-27 11:42:52
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 ### 1. 如何读取摄像头

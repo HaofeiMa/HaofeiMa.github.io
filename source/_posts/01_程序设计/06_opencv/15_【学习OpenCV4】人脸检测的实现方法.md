@@ -9,8 +9,27 @@ tags:
   - 笔记
   - OpenCV
   - C++
+cover: 'https://img.mahaofei.com/img/202112231922622-opencv-notes15-2.png'
 abbrlink: 30c67132
 date: 2021-08-14 11:09:02
+updated: 2021-08-14 11:09:02
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 &emsp;&emsp;**本文的目标是实现对于摄像头内的人脸进行实时检测。**

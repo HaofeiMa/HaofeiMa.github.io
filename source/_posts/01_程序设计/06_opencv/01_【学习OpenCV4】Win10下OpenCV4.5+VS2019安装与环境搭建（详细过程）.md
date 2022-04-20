@@ -9,8 +9,27 @@ tags:
   - 笔记
   - OpenCV
   - C++
+cover: 'https://img.mahaofei.com/img/202112231843681-opencv-notes1-2.png'
 abbrlink: d2828609
 date: 2021-07-16 22:29:13
+updated: 2021-07-16 22:29:13
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 ## 一、软件准备

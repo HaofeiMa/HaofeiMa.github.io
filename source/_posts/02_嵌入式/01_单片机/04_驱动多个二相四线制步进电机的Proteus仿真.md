@@ -9,8 +9,27 @@ tags:
   - 实验
   - 单片机
   - Proteus
+cover: 'https://img.mahaofei.com/img/202112231036870-mulity-step-motor-4.png'
 abbrlink: 6f10ef99
 date: 2021-01-03 15:30:31
+updated: 2021-01-03 15:30:31
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 ## CD4066介绍

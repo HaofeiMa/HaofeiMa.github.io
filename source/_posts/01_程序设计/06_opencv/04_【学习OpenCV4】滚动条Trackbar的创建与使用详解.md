@@ -8,8 +8,27 @@ tags:
   - 笔记
   - OpenCV
   - C++
+cover: 'https://img.mahaofei.com/img/202112231905321-opencv-notes4-1.png'
 abbrlink: 9a77b96c
 date: 2021-07-19 11:58:27
+updated: 2021-07-19 11:58:27
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 ## 一、Trackbar的创建方法

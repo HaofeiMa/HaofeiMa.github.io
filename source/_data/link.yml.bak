@@ -1,0 +1,28 @@
+class:
+  class_name: 友情链接
+  link_list:
+    1:
+      name: Huffie
+      link: https://www.mahaofei.com/
+      avatar: https://img.mahaofei.com/img/avatar.jpg
+      descr: 无限进步
+    2:
+      name: 陶小桃
+      link: https://www.52txr.cn/
+      avatar: https://img.mahaofei.com/img/20220410160606.png
+      descr: 鸷鸟不群，前世固然
+
+
+# class2:
+   # class_name: 链接无效
+   # link_list:
+     # 1:
+       # name: test
+       # link: https://blog.xxx.com
+       # avatar: https://img.antmoe.com/avatar.png
+       # descr: test
+     # 2:
+       # name: test
+       # link: https://www.axxxx.cn/
+       # avatar: https://img.antmoe.com/avatar.png
+       # descr: test

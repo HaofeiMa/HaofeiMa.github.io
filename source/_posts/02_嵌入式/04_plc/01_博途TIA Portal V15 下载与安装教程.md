@@ -8,7 +8,26 @@ categories:
 tags:
   - 软件安装
   - PLC
+updated: '2022-02-04 15:58'
+cover: 'https://img.mahaofei.com/img/202203261048505.png'
 abbrlink: bb559113
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 

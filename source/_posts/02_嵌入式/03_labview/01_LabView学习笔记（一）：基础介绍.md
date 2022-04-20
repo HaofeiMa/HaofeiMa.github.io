@@ -8,8 +8,27 @@ categories:
 tags:
   - 笔记
   - LabVIEW
+cover: 'https://img.mahaofei.com/img/20220410101018.png'
 abbrlink: 840cf816
 date: 2021-01-07 18:15:23
+updated: 2021-01-07 18:15:23
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 **Labview学习笔记**：
@@ -44,7 +63,9 @@ date: 2021-01-07 18:15:23
 * 容器控件：用于组合各种控件
 ## 2. 工具选板
 ![](https://img.mahaofei.com/img/202112231047795-labview-notes1-2.png)
-<img src="https://img-blog.csdnimg.cn/20210107180117367.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU0MzQ2Mw==,size_16,color_FFFFFF,t_70" width="90%">
+
+
+![](https://img.mahaofei.com/img/20220410101018.png)
 
 # 二、程序框图
 ## 1. 组成

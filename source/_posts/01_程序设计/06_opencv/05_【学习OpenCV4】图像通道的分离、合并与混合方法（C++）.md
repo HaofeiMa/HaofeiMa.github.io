@@ -10,8 +10,27 @@ tags:
   - 笔记
   - OpenCV
   - C++
+cover: 'https://img.mahaofei.com/img/202112231906612-opencv-notes5-3.png'
 abbrlink: 54b66be1
 date: 2021-07-20 12:33:40
+updated: 2021-07-20 12:33:40
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 ## 一、图像通道的分离

@@ -9,8 +9,39 @@ categories:
 tags:
   - 笔记
   - WordPress
+cover: 'https://img.mahaofei.com/img/202112231126493-wordpress-notes3-10.png'
 abbrlink: 1bc25693
 date: 2021-01-24 14:32:36
+updated: 2021-01-24 14:32:36
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
+---
+
+---
+title: WordPress学习笔记（三）其他功能
+date: 2021-01-24 14:32:36
+description: 媒体库是主要用来管理，你使用wordpress上传的附件的，比如图片、视频等其他文件。 点击左上角可以切换视图（列表/缩略图）。在评论内容处可以管理评论，更换不同的主题，网站的视觉效果会发生改变。用户看到的网站内容也会发生改变。站点的功能也会发生变化。
+categories:
+- 程序设计
+- 网站
+tags:
+- 笔记
+- WordPress
 ---
 
 ## 一、媒体库

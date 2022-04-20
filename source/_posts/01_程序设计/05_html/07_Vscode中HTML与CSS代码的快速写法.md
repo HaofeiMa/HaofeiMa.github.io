@@ -7,9 +7,29 @@ categories:
 tags:
   - 笔记
   - HTML
+cover: 'https://img.mahaofei.com/img/20220410094828.png'
 abbrlink: f28961f5
 date: 2021-03-17 13:46:39
+updated: 2021-03-17 13:46:39
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
+
 
 Emmet语法的前身是Zen coding，它使用缩写来提高html/css的编写速度，vscode内部已经集成该语法
 

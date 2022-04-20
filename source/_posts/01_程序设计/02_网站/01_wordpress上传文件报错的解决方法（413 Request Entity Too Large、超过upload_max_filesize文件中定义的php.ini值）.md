@@ -12,8 +12,27 @@ categories:
 tags:
   - WordPress
   - bugs
+cover: 'https://img.mahaofei.com/img/202112231121053-wp-bugfix-1.png'
 abbrlink: 3357eac0
 date: 2021-01-21 22:59:06
+updated: 2021-01-21 22:59:06
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 # 报错：413 Request Entity Too Large
@@ -31,5 +50,8 @@ date: 2021-01-21 22:59:06
 post_max_size = 64M
 upload_max_filesize = 64M
 ```
+
 （这两条都在比较靠后的位置，不太好找）
+
+
 ![](https://img.mahaofei.com/img/202112231121053-wp-bugfix-1.png)

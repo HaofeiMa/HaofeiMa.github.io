@@ -9,8 +9,27 @@ categories:
 tags:
   - opencv
   - c++
+cover: 'https://img.mahaofei.com/img/20220410093824.png'
 abbrlink: 4e7d4c9e
 date: 2021-09-14 19:16:16
+updated: 2021-09-14 19:16:16
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 ## 〇、基本语法规则
@@ -183,3 +202,4 @@ make
 ```
 
 > 参考自[《cmake practice》](https://huffie.lanzoui.com/i2kKdu0fu9e)
+

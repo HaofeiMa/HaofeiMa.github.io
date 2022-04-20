@@ -9,8 +9,27 @@ tags:
   - 笔记
   - OpenCV
   - C++
+cover: 'https://img.mahaofei.com/img/202112231910612-opencv-notes7-6.png'
 abbrlink: 904f4dcd
 date: 2021-07-22 11:31:42
+updated: 2021-07-22 11:31:42
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 &emsp;&emsp;在正文开始之前，首先要知道屏幕中 **(0, 0) 坐标点**在左上角，最大坐标在右下角。
@@ -195,14 +214,16 @@ void MyDemo::polyDrawing_Demo() {
 }
 ```
 >其中 `pts.push_back` 用于将点加入到点集数组中，用于不知道点集数量的情况。本程序已知共五个点，因此也可以使用如下的代码创建点集：
->```cpp
->	std::vector<Point> pts(5);
->	pts[0] = p1;
->	pts[1] = p2;
->	pts[2] = p3;
->	pts[3] = p4;
->	pts[4] = p5;
->```
+
+
+```cpp
+	std::vector<Point> pts(5);
+	pts[0] = p1;
+	pts[1] = p2;
+	pts[2] = p3;
+	pts[3] = p4;
+	pts[4] = p5;
+```
 
 
 

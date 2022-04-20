@@ -7,8 +7,27 @@ categories:
 tags:
   - 软件安装
   - LabVIEW
+cover: 'https://img.mahaofei.com/img/202112230946133-labview2020-17.png'
 abbrlink: 38b2093b
 date: 2021-10-13 00:00:00
+updated: 2021-10-13 00:00:00
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 

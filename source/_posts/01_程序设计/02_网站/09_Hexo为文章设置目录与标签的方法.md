@@ -8,8 +8,27 @@ categories:
 tags:
   - 网站搭建
   - Hexo
+cover: 'https://upload-images.jianshu.io/upload_images/2148839-7b0f9fab0b95424c.jpg'
 abbrlink: c30fb19e
 date: 2021-08-16 17:40:33
+updated: 2021-08-16 17:40:33
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 ### 1. 创建目录页

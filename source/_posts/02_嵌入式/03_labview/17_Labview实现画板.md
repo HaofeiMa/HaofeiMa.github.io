@@ -7,8 +7,27 @@ categories:
 tags:
   - 实验
   - LabVIEW
+cover: 'https://img.mahaofei.com/img/202112231745172-labview-drawpad-1.png'
 abbrlink: eced631e
 date: 2021-04-15 12:24:28
+updated: 2021-04-15 12:24:28
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 **LabVIEW专栏：**[https://blog.csdn.net/weixin_44543463/category_10714833.html](https://blog.csdn.net/weixin_44543463/category_10714833.html)

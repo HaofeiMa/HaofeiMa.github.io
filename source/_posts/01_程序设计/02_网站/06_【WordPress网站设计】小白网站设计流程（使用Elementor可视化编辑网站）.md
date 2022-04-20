@@ -8,9 +8,29 @@ categories:
 tags:
   - WordPress
   - 网站搭建
+cover: 'https://img.mahaofei.com/img/202112231136994-wordpress-elementor-8.png'
 abbrlink: ab6dd331
 date: 2021-01-25 15:38:07
+updated: 2021-01-25 15:38:07
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
+
 
 ## 一、准备工作
 ### 1. 安装Elementor插件

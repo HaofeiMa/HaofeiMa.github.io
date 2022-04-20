@@ -8,10 +8,28 @@ categories:
 tags:
   - Python
   - 实验
+cover: 'https://img.mahaofei.com/img/202112232018814-pyqt5-2.png'
 abbrlink: 6c1e143c
 date: 2021-12-17 16:53:44
+updated: 2021-12-17 16:53:44
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
-
 
 
 ## 一、PyQT的简介与安装

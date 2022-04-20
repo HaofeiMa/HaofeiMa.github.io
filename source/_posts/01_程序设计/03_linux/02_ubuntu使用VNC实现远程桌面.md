@@ -6,9 +6,29 @@ categories:
   - Linux
 tags:
   - Ubuntu
+cover: 'https://img.mahaofei.com/img/202112231642992-ubuntu-vnc-7.png'
 abbrlink: c1d87973
 date: 2021-02-18 15:55:24
+updated: 2021-02-18 15:55:24
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
+
 
 ### 前言
 我是在树莓派4B上安装的Ubuntu20.10，想通过VNC实现远程桌面连接，进行接下来的试验。

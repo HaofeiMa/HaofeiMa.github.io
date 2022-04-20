@@ -1,0 +1,54 @@
+---
+title: LabVIEW2020下载与安装教程
+date: 2021-10-13 00:00:00
+description: LabVIEW2020 中文版安装教程，提供阿里云盘链接与详细安装教程。资源仅供学习参考，请勿用于商业用途！
+categories:
+- 嵌入式
+- LabVIEW
+tags:
+- 软件安装
+- LabVIEW
+---
+
+
+
+> 链接:  [https://pan.baidu.com/s/15mAoxOT_9aMnUQet08Wj4g](https://pan.baidu.com/s/15mAoxOT_9aMnUQet08Wj4g)
+> 提取码: evvm
+
+此教程为Labview2020 中文版的安装教程，英文版安装过程相同。
+
+1. 打开解压后的文件夹，**进入安装包目录**，双击运行【**Install.exe**】开始安装。
+   ![](https://img.mahaofei.com/img/202112230940458-labview2020-1.png)
+2. 接受许可协议，**下一步**
+   ![](https://img.mahaofei.com/img/202112230941389-labview2020-2.png)
+3. 直接**下一步**
+   ![](https://img.mahaofei.com/img/202112230941226-labview2020-3.png)
+4. 莫得选择，继续**下一步**
+   ![](https://img.mahaofei.com/img/202112230942373-labview2020-4.png)
+5. **等待十多秒**安装相关组件，然后会**弹出选择菜单**，按照默认选择**直接下一步**
+   ![](https://img.mahaofei.com/img/202112230942043-labview2020-5.png)
+   ![](https://img.mahaofei.com/img/202112230942214-labview2020-6.png)
+6. **我接受，然后下一步**
+   ![](https://img.mahaofei.com/img/202112230943289-labview2020-7.png)
+7. 还是莫得选择，继续**接受，然后下一步**
+   ![](https://img.mahaofei.com/img/202112230943520-labview2020-8.png)
+8. 核对信息，正常安装不会有问题，**直接下一步**
+   ![](https://img.mahaofei.com/img/202112230943878-labview2020-9.png)
+9. **等待安装**，安装过程耗时分钟左右
+   ![](https://img.mahaofei.com/img/202112230944483-labview2020-10.png)
+ 10. **选择yes**
+     ![](https://img.mahaofei.com/img/202112230944354-labview2020-11.png)
+11. 选择**不加入用户体验改进计划**，**确定**
+    ![](https://img.mahaofei.com/img/202112230944025-labview2020-12.png)
+12. 在弹出的登陆页面**点击取消**
+    ![](https://img.mahaofei.com/img/202112230944296-labview2020-13.png)
+13. 不需要重启，**点击右上角x关闭安装程序即可**
+    ![](https://img.mahaofei.com/img/202112230945782-labview2020-14.png)
+14. 打开安装包，找到【**NI License Acticator 1.2**】，右键**以管理员身份运行**
+    ![](https://img.mahaofei.com/img/202112230945417-labview2020-15.png)
+15. 将**全部选项右键激活**
+    ![](https://img.mahaofei.com/img/202112230945106-labview2020-16.png)
+16. 至此完成安装，在开始菜单找到安装好的程序启动
+    ![](https://img.mahaofei.com/img/202112230946133-labview2020-17.png)
+
+![](https://img.mahaofei.com/img/202112230946156-labview2020-18.png)

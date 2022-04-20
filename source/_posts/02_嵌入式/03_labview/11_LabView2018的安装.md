@@ -8,8 +8,27 @@ categories:
 tags:
   - 软件安装
   - LabVIEW
+cover: 'https://img.mahaofei.com/img/202112231043950-labview2018-3.png'
 abbrlink: 9b2c6c92
 date: 2021-01-07 17:32:35
+updated: 2021-01-07 17:32:35
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 >百度网盘链接：[https://pan.baidu.com/s/1gyiFn5nOdPkLdp-1kRwwHA](https://pan.baidu.com/s/1gyiFn5nOdPkLdp-1kRwwHA )

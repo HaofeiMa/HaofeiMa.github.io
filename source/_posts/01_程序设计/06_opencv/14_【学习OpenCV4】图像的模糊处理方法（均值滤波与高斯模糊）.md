@@ -8,8 +8,27 @@ tags:
   - 笔记
   - OpenCV
   - C++
+cover: 'https://img.mahaofei.com/img/202112231921584-opencv-notes14-3.png'
 abbrlink: f5f492d2
 date: 2021-08-13 18:50:08
+updated: 2021-08-13 18:50:08
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 ## 一、均值滤波

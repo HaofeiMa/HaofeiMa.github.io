@@ -8,8 +8,27 @@ categories:
 tags:
   - 网站搭建
   - Hexo
+cover: 'https://img.mahaofei.com/img/202112231924723-hexo-sidebar-2.png'
 abbrlink: f8e8e418
 date: 2021-08-17 10:26:53
+updated: 2021-08-17 10:26:53
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 &emsp;&emsp;由于next主题经过了几次更新，查阅了许多资料都说要修改<font color="red"> custom.styl </font>这个配置文件，但是我的主题内没有此文件，经过翻阅大量的资料，终于找到了侧边栏的配置文件位置。

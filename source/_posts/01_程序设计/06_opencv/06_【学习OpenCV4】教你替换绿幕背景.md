@@ -8,8 +8,27 @@ tags:
   - 笔记
   - OpenCV
   - C++
+cover: 'https://img.mahaofei.com/img/202112231908875-opencv-notes6-4.png'
 abbrlink: a5e6c283
 date: 2021-07-21 11:30:03
+updated: 2021-07-21 11:30:03
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 绿幕图像的背景替换需要经历①色彩空间转换、②提取绿幕区域、③反转绿幕区域、④复制图像，其中遇到的各种函数和代码也都在本文有详细介绍。

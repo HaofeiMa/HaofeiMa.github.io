@@ -9,8 +9,27 @@ tags:
   - 笔记
   - OpenCV
   - C++
+cover: 'https://img.mahaofei.com/img/202112231901936-opencv-notes3-1.png'
 abbrlink: 3b23ab0d
 date: 2021-07-18 11:22:31
+updated: 2021-07-18 11:22:31
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 ## 一、读写操作

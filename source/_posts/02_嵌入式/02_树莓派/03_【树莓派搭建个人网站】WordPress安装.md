@@ -9,8 +9,27 @@ tags:
   - 树莓派
   - 网站搭建
   - WordPress
+cover: 'https://img.mahaofei.com/img/202112231119135-raspberrypi-site2-5.png'
 abbrlink: ed65ee52
 date: 2021-01-19 15:45:13
+updated: 2021-01-19 15:45:13
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 ## 一、下载wordpress

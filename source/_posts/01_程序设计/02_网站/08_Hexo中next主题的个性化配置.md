@@ -8,8 +8,27 @@ categories:
 tags:
   - 网站搭建
   - Hexo
+cover: 'http://theme-next.iissnan.com/assets/img/NextSchemes3.png'
 abbrlink: 27cabb08
 date: 2021-08-16 17:36:06
+updated: 2021-08-16 17:36:06
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 &emsp;&emsp;Hexo与next主题的安装方法，网上有很多教程，这里不再赘述，直接开始next主题的配置方法。

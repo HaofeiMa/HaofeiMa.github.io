@@ -8,8 +8,27 @@ categories:
 tags:
   - 软件安装
   - Proteus
+cover: 'https://img.mahaofei.com/img/202112231809916-proteus89-32.png'
 abbrlink: abdfd22a
 date: 2021-04-27 16:49:31
+updated: 2021-04-27 16:49:31
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 

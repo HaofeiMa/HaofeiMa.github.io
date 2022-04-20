@@ -8,9 +8,29 @@ tags:
   - 网站搭建
   - WordPress
   - 阿里云
+cover: 'https://img.mahaofei.com/img/202112231629303-ali-bt-wp-1.png'
 abbrlink: bd8011a0
 date: 2021-02-14 23:21:21
+updated: 2021-02-14 23:21:21
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
+
 
 ## 一、服务器和域名的申请
 

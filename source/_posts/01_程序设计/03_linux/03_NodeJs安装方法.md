@@ -7,8 +7,27 @@ categories:
 tags:
   - Ubuntu
   - 网站搭建
+cover: 'https://img.mahaofei.com/img/20220410093312.png'
 abbrlink: 7349121e
 date: 2021-02-18 15:55:24
+updated: 2021-02-18 15:55:24
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 # 问题描述
@@ -43,3 +62,4 @@ sudo apt-get install -y nodejs
 node -v
 npm -v
 ```
+

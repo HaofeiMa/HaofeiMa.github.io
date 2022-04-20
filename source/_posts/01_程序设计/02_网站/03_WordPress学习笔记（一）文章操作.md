@@ -8,8 +8,27 @@ categories:
 tags:
   - 笔记
   - WordPress
+cover: 'https://img.mahaofei.com/img/202112231123221-wordpress-notes1-2.png'
 abbrlink: 9a45b6f9
 date: 2021-01-22 17:07:13
+updated: 2021-01-22 17:07:13
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 ## 一、简述

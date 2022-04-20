@@ -7,12 +7,28 @@ categories:
 tags:
   - bugs
   - Ubuntu
+cover: 'https://img.mahaofei.com/img/20220410093053.png'
 abbrlink: '1e538308'
 date: 2021-02-16 15:45:50
+updated: 2021-02-16 15:45:50
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
-
-
-
 
 
 
@@ -33,3 +49,4 @@ gpg: 密钥 76F1A20FF987672F：公钥“WineHQ packages <wine-devel@winehq.org>�
 gpg: 合计被处理的数量：1
 gpg:               已导入：1
 ```
+

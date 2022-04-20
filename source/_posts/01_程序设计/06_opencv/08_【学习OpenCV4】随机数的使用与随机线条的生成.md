@@ -10,8 +10,27 @@ tags:
   - 笔记
   - OpenCV
   - C++
+cover: 'https://img.mahaofei.com/img/202112231911051-opencv-notes8-1.png'
 abbrlink: 62112aac
 date: 2021-07-23 10:54:17
+updated: 2021-07-23 10:54:17
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 ## 一、随机数的使用方法

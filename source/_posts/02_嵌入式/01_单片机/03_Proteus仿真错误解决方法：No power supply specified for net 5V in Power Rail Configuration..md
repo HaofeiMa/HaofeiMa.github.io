@@ -10,8 +10,27 @@ tags:
   - bugs
   - 单片机
   - Proteus
+cover: 'https://img.mahaofei.com/img/202112231033794-no-power-1.png'
 abbrlink: 1204e2b0
 date: 2021-01-02 11:00:41
+updated: 2021-01-02 11:00:41
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 **错误原因**

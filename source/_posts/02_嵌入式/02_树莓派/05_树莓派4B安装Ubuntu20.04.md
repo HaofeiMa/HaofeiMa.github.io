@@ -8,8 +8,27 @@ categories:
 tags:
   - 树莓派
   - Ubuntu
+cover: 'https://img.mahaofei.com/img/202112231639079-raspberrypi-ubuntu20-3.png'
 abbrlink: 8bd23e63
 date: 2021-02-17 00:01:51
+updated: 2021-02-17 00:01:51
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+katex:
+aplayer:
+highlight_shrink:
+aside:
+stick:
 ---
 
 
