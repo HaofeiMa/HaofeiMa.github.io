@@ -8,6 +8,7 @@ categories:
 tags:
   - 算法
 cover: 'https://img.mahaofei.com/img/202112232029018-sift-theory-19.png'
+katex: true
 abbrlink: f8e83802
 date: 2021-12-21 21:31:40
 updated: 2021-12-21 21:31:40
@@ -23,7 +24,6 @@ copyright_author_href:
 copyright_url:
 copyright_info:
 mathjax:
-katex:
 aplayer:
 highlight_shrink:
 aside:

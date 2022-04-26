@@ -122,9 +122,11 @@ baidu_url_submit:
   path: baidu_urls.txt # 文本文档的地址，新链接会保存在此文本文档里
 
 # 数学公式KaTex
-markdown:
+markdown_it_plus:
   plugins:
     - plugin:
       name: '@neilsustc/markdown-it-katex'
+      enable: true
       options:
-        strict: false
+        strict: false #禁用掉 KaTeX 在命令行上输出的宂长的警告信息
+

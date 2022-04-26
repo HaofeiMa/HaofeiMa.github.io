@@ -114,9 +114,17 @@ deploy:
     branch: master
   - type: baidu_url_submitter
   
+# 百度SEO
 baidu_url_submit:
   count: 100 # 提交最新的一个链接
   host: https://www.mahaofei.com # 站点管理中添加的网站域名
   token: xR6nigjGWFHyybFO # token可以在API提交页面找到
   path: baidu_urls.txt # 文本文档的地址，新链接会保存在此文本文档里
 
+# 数学公式KaTex
+markdown:
+  plugins:
+    - plugin:
+      name: '@neilsustc/markdown-it-katex'
+      options:
+        strict: false
