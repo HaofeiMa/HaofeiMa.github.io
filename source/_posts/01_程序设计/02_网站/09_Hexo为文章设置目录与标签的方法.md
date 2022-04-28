@@ -8,7 +8,7 @@ categories:
 tags:
   - 网站搭建
   - Hexo
-cover: 'https://upload-images.jianshu.io/upload_images/2148839-7b0f9fab0b95424c.jpg'
+cover: 'https://img.mahaofei.com/img/20220428113422.png'
 abbrlink: c30fb19e
 date: 2021-08-16 17:40:33
 updated: 2021-08-16 17:40:33

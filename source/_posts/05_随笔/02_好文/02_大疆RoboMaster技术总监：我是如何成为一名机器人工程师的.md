@@ -9,6 +9,7 @@ copyright_author: YY硕
 copyright_author_href: 'https://www.zhihu.com/people/yyss2037'
 copyright_url: 'https://zhuanlan.zhihu.com/p/22266788'
 copyright_info: 文章来自知乎（大疆创新RoboMaster技术总监YY硕）
+hide: true
 abbrlink: d782e1e8
 date: 2021-10-01 00:00:00
 updated: 2021-10-01 00:00:00

@@ -9,14 +9,15 @@ menu:
     常用网站: /websites/ || fa fa-bookmark
   随笔: /categories/随笔/ || fa fa-pencil
   说说: /artitalk/index.html || fa fa-comment
-  时光轴: /archives/ || fas fa-archive
+  # 时光轴: /archives/ || fas fa-archive
   # 标签: /tags/ || fas fa-tags
   # 分类: /categories/ || fas fa-folder-open
   # List||fas fa-list:
   #   Music: /music/ || fas fa-music
   #   Movie: /movies/ || fas fa-video
   友链: /link/ || fas fa-link
-  关于: /about/ || fas fa-heart
+  # 关于: /about/ || fas fa-heart
+  留言区: /comments/index.html || fa-solid fa-envelope-open-text
 
 # Code Blocks (代碼相關)
 # --------------------------------------
@@ -58,6 +59,24 @@ algolia_search:
 local_search:
   enable: true
 
+# envelope_comment
+# see https://akilar.top/posts/58900a8/
+envelope_comment:
+  enable: true #开关
+  cover: https://img.mahaofei.com/img/avatar.jpg #信笺封面图
+  message: #信笺内容，支持多行
+    - 有什么想问的？
+    - 有什么想说的？
+    - 有什么想吐槽的？
+    - 哪怕是有什么想吃的，都可以告诉我哦~
+  bottom: HalfA博客竭诚为您服务！ #信笺结束语，只能单行
+  height: #调整信笺划出高度，默认1050px
+  path:  #【可选】comments 的路径名称。默认为 comments，生成的页面为 comments/index.html
+  front_matter: #【可选】comments页面的 front_matter 配置
+    title: 留言板
+    comments: true
+
+
 # Math (數學)
 # --------------------------------------
 # About the per_page
@@ -91,7 +110,7 @@ avatar:
 disable_top_img: false
 
 # The banner image of home page
-index_img: https://img.mahaofei.com/img/top_image.jpg
+index_img:  https://img.mahaofei.com/img/top_image.jpg
 
 # If the banner of page not setting, it will show the top_img
 default_top_img: https://img.mahaofei.com/img/top_image.jpg
@@ -135,7 +154,7 @@ error_img:
 
 # A simple 404 page
 error_404:
-  enable: false
+  enable: true
   subtitle: 'Page Not Found'
   background: https://i.loli.net/2020/05/19/aKOcLiyPl2JQdFD.png
 
@@ -179,7 +198,7 @@ anchor: false
 # toc (目錄)
 toc:
   post: true # 文章页是否显示TOC
-  page: false # 普通页面是否显示TOC
+  page: true # 普通页面是否显示TOC
   number: true # 是否显示章节数
   expand: false # 是否展开TOC
   style_simple: false # 简洁模式（侧边栏只显示TOC, 只对文章页有效）
@@ -265,7 +284,7 @@ comments:
   text: false # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
   # If you set it to true, the comment count will be invalid
-  lazyload: true
+  lazyload: false
   count: true # Display comment count in post's top_img
   card_post_count: false # Display comment count in Home Page
 
@@ -360,7 +379,7 @@ facebook_comments:
 # Twikoo
 # https://github.com/imaegoo/twikoo
 twikoo:
-  envId: cloudbase-9g5gxxer186d5cb3
+  envId: cloudbase-9g5gxxer186d5cb3 # https://half-a-blog-twikoo.vercel.app/
   region: ap-shanghai
   visitor: true
   option: 
@@ -385,7 +404,12 @@ artitalk:
   path:  # 【任选】Artitalk的路径名称（默认为artitalk，生成的页面为artitalk/index.html）
   js:  # 【任选】更换Artitalk的js CDN（默认为https://cdn.jsdelivr.net/npm/artitalk）
   option:  # 【任选】Artitalk 需要的额外配置
-  front_matter:  # 【任选】Arttalk页面的front_matter配置
+    atEmoji: {
+      'Mafumafu1':'https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/Mafumafu/199749454.png',
+      'Mafumafu2':'https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/Mafumafu/199749455.png'}
+  front_matter: 说说 # 【任选】Arttalk页面的front_matter配置
+
+
 
 # Chat Services
 # --------------------------------------
@@ -523,7 +547,7 @@ tag_ui: # 留空或 index
 # Website Background (設置網站背景)
 # can set it to color or image (可設置圖片 或者 顔色)
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
-background:
+background: #url(https://img.mahaofei.com/img/top_image.jpg)
 
 # Footer Background
 # footer是否显示图片背景(与top_img一致) 
@@ -658,6 +682,8 @@ aside:
   button: true
   mobile: true # display on mobile
   position: left # left or right
+  card_history: # 添加开关名称  
+    enable: true # 打开card_history开关  
   card_author:
     enable: true
     description: 
@@ -668,9 +694,9 @@ aside:
       link: https://blog.csdn.net/weixin_44543463
   card_announcement:
     enable: true
-    content: 毕设ing！！
+    content: 毕设ing！！！
   card_recent_post:
-    enable: true
+    enable: false
     limit: 3 # if set 0 will show all
     sort: updated # date or updated
     sort_order: # Don't modify the setting unless you know how it works
@@ -714,7 +740,7 @@ runtimeshow:
 newest_comments:
   enable: false
   sort_order: # Don't modify the setting unless you know how it works
-  limit: 3
+  limit: 5
   storage: 10 # unit: mins, save data to localStorage
   avatar: true
 
@@ -863,9 +889,18 @@ css_prefix: true
 # 插入代码到头部 </head> 之前 和 底部 </body> 之前
 inject:
   head:
-    # - <link rel="stylesheet" href="/xxx.css">
+    - <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    - <link rel="stylesheet" href="/css/custom/MainColor.css">
+    - <link rel="stylesheet" href="/css/custom/categoryBar.css">
+    - <link rel="stylesheet" href="/css/custom/404.css">
+    - <link rel="stylesheet" href="/css/custom/cardHistory.css">
+    - <link rel="stylesheet" href="/css/custom/twikoo.css">
   bottom:
-    # - <script src="xxxx"></script>
+    - <script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+    - <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    - <script src="/js/custom/categoryBar.js"></script>
+    - <script src="/js/custom/cardHistory.js"></script>
+    - <script src="/js/custom/light_dark.js"></script>
 
 # CDN
 # Don't modify the following settings unless you know how they work

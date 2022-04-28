@@ -7,6 +7,7 @@ tags:
   - 破解
 description: 介绍如何查阅各种网站所收录的文献，及其下载方法。以及各大期刊的影响因子查询方法。
 cover: 'https://img.mahaofei.com/img/202112230933339-findpaper-6.png'
+hide: true
 abbrlink: 96c83ac9
 date: 2021-10-06 00:00:00
 updated: 2021-10-06 00:00:00

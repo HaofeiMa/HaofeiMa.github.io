@@ -11,7 +11,8 @@ mixin rightsideItem(array)
           button#translateLink(type="button" title=_p('rightside.translate_title'))= translate.default
       when 'darkmode'
         if darkmode.enable && darkmode.button
-          a.hidden(onclick='switchNightMode()',  title=_p('rightside.night_mode_title'))
+          button#darkmode(onclick='switchNightMode()' type="button" title=_p('rightside.night_mode_title'))
+          a.icon-V.hidden(onclick='switchNightMode()',  title=_p('rightside.night_mode_title'))
             i.fas.fa-adjust
               use#modeicon(xlink:href='#icon-moon')
       when 'hideAside'

@@ -15,7 +15,6 @@
           include ./card_post_toc.pug
         if theme.related_post && theme.related_post.enable
           !=related_posts(page,site.posts)
-          !=partial('includes/widget/card_history', {}, {cache: true})
           //- !=partial('includes/widget/card_recent_post', {}, {cache:theme.fragment_cache})
         !=partial('includes/widget/card_ad', {}, {cache: true})
   else
@@ -27,7 +26,6 @@
     .sticky_layout
       if showToc
         include ./card_post_toc.pug
-      !=partial('includes/widget/card_history', {}, {cache: true})
       !=partial('includes/widget/card_recent_post', {}, {cache: true})
       !=partial('includes/widget/card_ad', {}, {cache: true})
       !=partial('includes/widget/card_newest_comment', {}, {cache: true})

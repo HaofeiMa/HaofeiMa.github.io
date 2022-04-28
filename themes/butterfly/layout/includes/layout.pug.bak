@@ -37,7 +37,8 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
           - var footer_bg = ''
 
         footer#footer(style=footer_bg)
-			!=partial('includes/footer', {}, {cache: true})
+          !=partial('includes/footer', {}, {cache: true})
+
     else
       include ./404.pug
 

@@ -6,6 +6,7 @@ categories:
 description: >-
   本站博客ButterFly主题配置的全部方法，呕心沥血整理版，供各位同样使用ButterFly主题的朋友参考。同样记录了Hexo博客的备份方法，防止更换电脑或电脑崩溃后数据丢失。
 cover: 'https://img.mahaofei.com/img/20220425211812.png'
+hide: true
 abbrlink: 8ee3ad86
 date: 2022-03-26 21:14:56
 updated: 2022-03-26 21:14:56
@@ -943,7 +944,772 @@ artitalk:
 
 ![](https://img.mahaofei.com/img/20220412165755.png)
 
+### 3.13 动态分类条
 
+参考[【张洪老师的博客】](https://blog.zhheo.com/p/bc61964d.html)，分类的添加使用纯手工的方式。
+
+![](https://img.mahaofei.com/img/20220427195336.png)
+
+
+**新建文件**
+
+新建一个文件：`themes/butterfly/layout/includes/categoryBar.pug`
+
+```pug
+#category-bar
+    .category-bar-items#category-bar-items
+        .category-bar-item(id='首页')
+            a(href="/") 首页
+        .category-bar-item(id='机器人')
+            a(href="/categories/机器人/") 机器人
+        .category-bar-item(id='程序设计')
+            a(href="/categories/程序设计/") 程序设计
+        .category-bar-item(id='嵌入式')
+            a(href="/categories/嵌入式/") 嵌入式
+        .category-bar-item(id='机械')
+            a(href="/categories/机械/") 机械
+        .category-bar-item(id='破解技巧')
+            a(href="/categories/破解技巧/") 破解技巧
+        .category-bar-item(id='随笔')
+            a(href="/categories/随笔/") 随笔
+    a.category-bar-more(href="/categories/") 更多
+```
+
+**引用文件**
+
+编辑`themes/butterfly/layout/index.pug`
+
+在`+postUI`上一行添加`include includes/categoryBar.pug`，并保持缩进相同。
+
+```pug
+extends includes/layout.pug
+
+block content
+  include ./includes/mixins/post-ui.pug
+  #recent-posts.recent-posts
+	include includes/categoryBar.pug
+    +postUI
+    include includes/pagination.pug
+```
+
+编辑`themes/butterfly/layout/category.pug`，在`#category`下方添加以下代码
+
+```pug
+#category  
+  .category-in-bar  
+    .category-in-bar-tips  
+      | 分类  
+    include includes/categoryBar.pug
+```
+
+**引用CSS和JS**
+
+链接: https://pan.baidu.com/s/13iOkTwWDbtzlFzRLTdQl9Q?pwd=9e32 
+提取码: 9e32
+
+将其中的`MainColor.css`, `categoryBar.css`两个文件复制到`themes/butterfly/source/css`目录下，将`categoryBar.js`复制到`themes/butterfly/source/js`目录下，然后在主题配置文件`_config.yml`中引用这三个文件。
+
+```yaml
+inject:
+  head:
+    - <link rel="stylesheet" href="/css/categoryBar.css">
+    - <link rel="stylesheet" href="/css/MainColor.css">
+  bottom:
+    - <script src="/js/categoryBar.js"></script>
+```
+
+
+### 3.14 Butterfly首页隐藏文章
+
+打开文件：`themes/butterfly/layout/includes/mixins/post-ui.pug`
+
+注意，主要是添加了`if article.hide !== true`这一行，然后这一行后全部需要按下tab缩进一层。
+
+```pug
+mixin postUI(posts)  
+  each article , index in page.posts.data  
+    if article.hide !== true  
+      .recent-post-item
+```
+
+在md文件的头部信息中添加`hide: true`
+
+### 3.15 相关推荐侧边栏化
+
+参考文章：[《Butterfly 布局调整 ——— 相关推荐版块侧栏卡片化》](https://akilar.top/posts/194e1534/)
+
+
+![](https://img.mahaofei.com/img/20220428112259.png)
+
+
+修改 `[Blogroot]\themes\butterfly\scripts\helpers\related_post.js`, 从大概 47 行开始到 70 行的部分。
+
+```js
+if (relatedPosts.length > 0) {  
+    result += '<div class="card-widget card-recommend-post">'  
+    result += `<div class="item-headline"><i class="fas fa-dharmachakra"></i><span>${headlineLang}</span></div>`  
+    result += '<div class="aside-list">'  
+    for (let i = 0; i < Math.min(relatedPosts.length, limitNum); i++) {  
+      const cover =  
+        relatedPosts[i].cover === false  
+          ? relatedPosts[i].randomcover  
+          : relatedPosts[i].cover  
+      result += `<div class="aside-list-item">`  
+      result += `<a class="thumbnail" href="${this.url_for(relatedPosts[i].path)}" title="${relatedPosts[i].title}"><img src="${this.url_for(cover)}" alt="${relatedPosts[i].title}"></a>`  
+      result += `<div class="content">`  
+      result += `<a class="title" href="${this.url_for(relatedPosts[i].path)}" title="${relatedPosts[i].title}">${relatedPosts[i].title}</a>`  
+      if (dateType === 'created') {  
+        result += `<time datetime="${this.date(relatedPosts[i].created, hexoConfig.date_format)}" title="发表于 ${this.date(relatedPosts[i].created, hexoConfig.date_format)}">${this.date(relatedPosts[i].created, hexoConfig.date_format)}</time>`  
+      } else {  
+        result += `<time datetime="${this.date(relatedPosts[i].updated, hexoConfig.date_format)}" title="发表于 ${this.date(relatedPosts[i].updated, hexoConfig.date_format)}">${this.date(relatedPosts[i].updated, hexoConfig.date_format)}</time>`  
+      }  
+      result += `</div></div>`  
+    }  
+    result += '</div></div>'  
+    return result  
+  }
+```
+
+因为原本的版块是在文章下方，而现在我们需要把它改到侧栏。所以需要修改 `[Blogroot]\themes\butterfly\layout\post.pug` 大约 26 行的位置先移除在文章底部的推荐版块。
+
+```diff
+  if theme.post_pagination  
+    include includes/pagination.pug  
+- if theme.related_post && theme.related_post.enable  
+-   != related_posts(page,site.posts)  
+  
+  if page.comments !== false && theme.comments && theme.comments.use
+```
+
+然后修改 `[Blogroot]\themes\butterfly\layout\includes\widget\index.pug`, 这个文件每个版本都长得不太一样，这里仅供参考。因为感觉文章也最新文章和推荐文章同时存在，最新文章就显得有点多余了，所以我把最新文章的侧栏卡片注释了。
+
+```diff
+#aside-content.aside-content  
+  //- post  
+  if is_post()  
+    if showToc && theme.toc.style_simple  
+      .sticky_layout  
+        include ./card_post_toc.pug  
+    else  
+      !=partial('includes/custom/SAO_card_player', {}, {cache:theme.fragment_cache})  
+      !=partial('includes/widget/card_announcement', {}, {cache:theme.fragment_cache})  
+      !=partial('includes/widget/card_top_self', {}, {cache:theme.fragment_cache})    
+      .sticky_layout  
+        if showToc  
+          include ./card_post_toc.pug  
++       if theme.related_post && theme.related_post.enable  
++         != related_posts(page,site.posts)  
+-       - !=partial('includes/widget/card_recent_post', {}, {cache:theme.fragment_cache})  
++       //- !=partial('includes/widget/card_recent_post', {}, {cache:theme.fragment_cache})  
+        !=partial('includes/widget/card_ad', {}, {cache:theme.fragment_cache})
+```
+
+改动完成后运行 `hexo clean`,`hexo generate`,`hexo server` 三件套就能看到完成效果了。
+
+### 3.16 侧边栏添加历史上的今天
+
+在`[Blogroot]\themes\butterfly\layout\includes\widget\` 中新建一个`card_history.pug`文件，内容如下。
+
+```pug
+.card-widget.card-history
+  .card-content
+    .item-headline
+       i.fas.fa-clock.fa-spin
+       span= _p('那年今日')
+    #history-baidu(style='height: 60px;overflow: hidden;')
+      #history-container.history_swiper-container(style="width: 100%;height: 100%;")
+          #history_container_wrapper.swiper-wrapper(style="height:20px" )
+```
+
+修改位于 `[Blogroot]\themes\butterfly\layout\includes\widget\` 中的`index.pug`。
+
+```diff
+#aside-content.aside-content
+  //- post
+  if is_post()
+    - const tocStyle = page.toc_style_simple
+    - const tocStyleVal = tocStyle === true || tocStyle === false ? tocStyle : theme.toc.style_simple
+    if showToc && tocStyleVal
+      .sticky_layout
+        include ./card_post_toc.pug
+    else
+      !=partial('includes/widget/card_author', {}, {cache: true})
+      !=partial('includes/widget/card_announcement', {}, {cache: true})
+      !=partial('includes/widget/card_top_self', {}, {cache: true})
+      .sticky_layout
+        if showToc
+          include ./card_post_toc.pug
+        if theme.related_post && theme.related_post.enable
++         !=partial('includes/widget/card_history', {}, {cache: true})
+          !=partial('includes/widget/card_recent_post', {}, {cache:theme.fragment_cache})
+        !=partial('includes/widget/card_ad', {}, {cache: true})
+  else
+    //- page
+    !=partial('includes/widget/card_author', {}, {cache: true})
+    !=partial('includes/widget/card_announcement', {}, {cache: true})
+    !=partial('includes/widget/card_top_self', {}, {cache: true})      
+
+    .sticky_layout
+      if showToc
+        include ./card_post_toc.pug
++     !=partial('includes/widget/card_history', {}, {cache: true})
+      !=partial('includes/widget/card_recent_post', {}, {cache: true})
+      !=partial('includes/widget/card_ad', {}, {cache: true})
+      !=partial('includes/widget/card_newest_comment', {}, {cache: true})
+      !=partial('includes/widget/card_categories', {}, {cache: true})
+      !=partial('includes/widget/card_tags', {}, {cache: true})
+      !=partial('includes/widget/card_archives', {}, {cache: true})
+      !=partial('includes/widget/card_webinfo', {}, {cache: true})
+      !=partial('includes/widget/card_bottom_self', {}, {cache: true})
+```
+
+打开 主题配置文件`_config.yml` 搜索到 `aside:` 处，添加开关：
+
+```yaml
+aside:  
+  enable: true  
+  mobile: true # display on mobile  
+  position: left # left or right  
+  card_history: # 添加开关名称  
+    enable: true # 打开card_history开关  
+  card_author:  
+    enable: true
+```
+
+然后搜索`inject:`，进行如下修改
+
+```yaml
+inject:  
+  head:  
+    - <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">  
+    - <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css">  
+  
+  bottom:  
+    - <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>  
+    - <script src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script>
+```
+
+### 3.17 白天/黑夜模式切换动画
+
+参考[《Akilarの糖果屋-添加白天夜间模式转换动画》](https://akilar.top/posts/d9550c81/)
+
+新建 `[Blogroot]\themes\butterfly\layout\includes\custom\light_dark.pug`, 这部分其实实质上就是一个 svg 文件，通过 js 操作它的旋转显隐，淡入淡出实现动画效果。
+
+```pug
+svg(aria-hidden='true', style='position:absolute; overflow:hidden; width:0; height:0')  
+  symbol#icon-sun(viewBox='0 0 1024 1024')  
+    path(d='M960 512l-128 128v192h-192l-128 128-128-128H192v-192l-128-128 128-128V192h192l128-128 128 128h192v192z', fill='#FFD878', p-id='8420')  
+    path(d='M736 512a224 224 0 1 0-448 0 224 224 0 1 0 448 0z', fill='#FFE4A9', p-id='8421')  
+    path(d='M512 109.248L626.752 224H800v173.248L914.752 512 800 626.752V800h-173.248L512 914.752 397.248 800H224v-173.248L109.248 512 224 397.248V224h173.248L512 109.248M512 64l-128 128H192v192l-128 128 128 128v192h192l128 128 128-128h192v-192l128-128-128-128V192h-192l-128-128z', fill='#4D5152', p-id='8422')  
+    path(d='M512 320c105.888 0 192 86.112 192 192s-86.112 192-192 192-192-86.112-192-192 86.112-192 192-192m0-32a224 224 0 1 0 0 448 224 224 0 0 0 0-448z', fill='#4D5152', p-id='8423')  
+  symbol#icon-moon(viewBox='0 0 1024 1024')  
+    path(d='M611.370667 167.082667a445.013333 445.013333 0 0 1-38.4 161.834666 477.824 477.824 0 0 1-244.736 244.394667 445.141333 445.141333 0 0 1-161.109334 38.058667 85.077333 85.077333 0 0 0-65.066666 135.722666A462.08 462.08 0 1 0 747.093333 102.058667a85.077333 85.077333 0 0 0-135.722666 65.024z', fill='#FFB531', p-id='11345')  
+    path(d='M329.728 274.133333l35.157333-35.157333a21.333333 21.333333 0 1 0-30.165333-30.165333l-35.157333 35.157333-35.114667-35.157333a21.333333 21.333333 0 0 0-30.165333 30.165333l35.114666 35.157333-35.114666 35.157334a21.333333 21.333333 0 1 0 30.165333 30.165333l35.114667-35.157333 35.157333 35.157333a21.333333 21.333333 0 1 0 30.165333-30.165333z', fill='#030835', p-id='11346')
+```
+
+新建 `[Blogroot]\themes\butterfly\source\css\_layout\light_dark.styl`
+
+```styl
+.Cuteen_DarkSky,  
+.Cuteen_DarkSky:before  
+  content ''  
+  position fixed  
+  left 0  
+  right 0  
+  top 0  
+  bottom 0  
+  z-index 88888888  
+  
+.Cuteen_DarkSky  
+  background linear-gradient(#feb8b0, #fef9db)  
+  &:before  
+    transition 2s ease all  
+    opacity 0  
+    background linear-gradient(#4c3f6d, #6c62bb, #93b1ed)  
+  
+.DarkMode  
+  .Cuteen_DarkSky  
+    &:before  
+      opacity 1  
+  
+.Cuteen_DarkPlanet  
+  z-index 99999999  
+  position fixed  
+  left -50%  
+  top -50%  
+  width 200%  
+  height 200%  
+  -webkit-animation CuteenPlanetMove 2s cubic-bezier(0.7, 0, 0, 1)  
+  animation CuteenPlanetMove 2s cubic-bezier(0.7, 0, 0, 1)  
+  transform-origin center bottom  
+  
+  
+@-webkit-keyframes CuteenPlanetMove {  
+  0% {  
+    transform: rotate(0);  
+  }  
+  to {  
+    transform: rotate(360deg);  
+  }  
+}  
+@keyframes CuteenPlanetMove {  
+  0% {  
+    transform: rotate(0);  
+  }  
+  to {  
+    transform: rotate(360deg);  
+  }  
+}  
+.Cuteen_DarkPlanet  
+  &:after  
+    position absolute  
+    left 35%  
+    top 40%  
+    width 9.375rem  
+    height 9.375rem  
+    border-radius 50%  
+    content ''  
+    background linear-gradient(#fefefe, #fffbe8)  
+  
+.search  
+  span  
+    display none  
+  
+.menus_item  
+  a  
+    text-decoration none!important  
+```
+
+新建 `[Blogroot]\themes\butterfly\source\js\sun_moon.js`
+
+```js
+function switchNightMode() {  
+  document.querySelector('body').insertAdjacentHTML('beforeend', '<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>'),  
+    setTimeout(function() {  
+      document.querySelector('body').classList.contains('DarkMode') ? (document.querySelector('body').classList.remove('DarkMode'), localStorage.setItem('isDark', '0'), document.getElementById('modeicon').setAttribute('xlink:href', '#icon-moon')) : (document.querySelector('body').classList.add('DarkMode'), localStorage.setItem('isDark', '1'), document.getElementById('modeicon').setAttribute('xlink:href', '#icon-sun')),  
+        setTimeout(function() {  
+          document.getElementsByClassName('Cuteen_DarkSky')[0].style.transition = 'opacity 3s';  
+          document.getElementsByClassName('Cuteen_DarkSky')[0].style.opacity = '0';  
+          setTimeout(function() {  
+            document.getElementsByClassName('Cuteen_DarkSky')[0].remove();  
+          }, 1e3);  
+        }, 2e3)  
+    })  
+  const nowMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'  
+  if (nowMode === 'light') {  
+    activateDarkMode()  
+    saveToLocal.set('theme', 'dark', 2)  
+    GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.day_to_night)  
+    document.getElementById('modeicon').setAttribute('xlink:href', '#icon-sun')  
+  } else {  
+    activateLightMode()  
+    saveToLocal.set('theme', 'light', 2)  
+    document.querySelector('body').classList.add('DarkMode'), document.getElementById('modeicon').setAttribute('xlink:href', '#icon-moon')  
+  }  
+  // handle some cases  
+  typeof utterancesTheme === 'function' && utterancesTheme()  
+  typeof FB === 'object' && window.loadFBComment()  
+  window.DISQUS && document.getElementById('disqus_thread').children.length && setTimeout(() => window.disqusReset(), 200)  
+}
+```
+
+修改 `[Blogroot]\themes\butterfly\layout\includes\rightside.pug`, 把原本的昼夜切换按钮替换掉
+
+```diff
+  when 'translate'  
+    if translate.enable  
+      button#translateLink(type="button" title=_p('rightside.translate_title'))= translate.default  
+  when 'darkmode'  
+    if darkmode.enable && darkmode.button  
+-     button#darkmode(type="button" title=_p('rightside.night_mode_title'))  
+-       i.fas.fa-adjust  
++     a.hidden(onclick='switchNightMode()',  title=_p('rightside.night_mode_title'))  
++       i.fas.fa-adjust  
++         use#modeicon(xlink:href='#icon-moon')
+```
+
+修改 `[Blogroot]\_config.butterfly.yml`, 引入一下 js
+
+```yaml
+inject:  
+  head:  
+  bottome:  
+    - <script src="/js/sun_moon.js" async></script>
+```
+
+
+### 3.18 twikoo评论气泡风格
+
+参考[《Akilarの糖果屋-twikoo 评论块气泡风格魔改美化》](https://akilar.top/posts/d99b5f01/)
+
+新建 `[Blogroot]\themes\butterfly\source\css\custom\twikoo_beautify.css`
+
+```css
+/* 调整表情大小 */
+.OwO .OwO-body .OwO-items-image .OwO-item {
+    max-width: calc(25% - 10px) !important;
+}
+
+/* 调整表情位置 */
+.tk-content img.tk-owo-emotion {
+    vertical-align: bottom;
+}
+
+/* 自定义twikoo评论输入框高度 */
+.tk-input[data-v-619b4c52] .el-textarea__inner {
+    height: 130px !important;
+}
+
+/* 输入评论时自动隐藏输入框背景图片 */
+.tk-input[data-v-619b4c52] .el-textarea__inner:focus {
+    background-image: none !important;
+}
+
+/* 调整楼中楼样式 ，整体左移，贴合气泡化效果 */
+.tk-replies {
+    left: -70px;
+    width: calc(100% + 70px);
+}
+
+/* 头像宽度调整 rem单位与全局字体大小挂钩，需配合自己情况调整大小以保证头像显示完整 */
+.tk-avatar {
+    width: 3rem !important;
+    height: 3rem !important;
+}
+
+.tk-avatar img {
+    width: 3rem !important;
+    height: 3rem !important;
+}
+
+/* 回复框左移，避免窄屏时出框 */
+.tk-comments-container .tk-submit {
+    position: relative;
+    left: -70px;
+    width: 110%;
+}
+
+/* 评论块气泡化修改 */
+.tk-content {
+    background: #00a6ff; /* 默认模式访客气泡配色 */
+    padding: 10px;
+    left: 8px;
+    color: white; /* 默认模式访客气泡字体配色 */
+    border-radius: 10px;
+    font-size: 16px !important;
+    width: fit-content;
+    max-width: 100%;
+    position: relative !important;
+    overflow: visible !important;
+    max-height: none !important;
+}
+
+/* 修复图片出框 */
+.tk-content img {
+    max-width: 100% !important;
+}
+
+/* 修复过长文本出框 */
+.tk-content pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.tk-content a {
+    color: #eeecaa; /* 默认模式超链接配色 */
+}
+
+.tk-content::before {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 20px;
+    left: -13px;
+    border-top: 2px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 15px solid #00a6ff; /* 默认模式访客气泡小三角配色 */
+    border-left: 0 solid transparent;
+}
+
+.tk-master .tk-content {
+    background: #ff8080; /* 默认模式博主气泡配色 */
+    color: white; /* 默认模式博主气泡字体配色 */
+    width: fit-content;
+    max-width: 100%;
+    left: 9px;
+}
+
+.tk-master .tk-content a {
+    color: #eeecaa;
+}
+
+.tk-master .tk-content::before {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 20px;
+    left: -13px;
+    border-top: 2px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 15px solid #ff8080; /* 默认模式博主气泡小三角配色 */
+    border-left: 0 solid transparent;
+}
+
+.tk-row[data-v-d82ce9a0] {
+    max-width: 100%;
+    width: fit-content;
+    margin-left: 10px;
+}
+
+.tk-avatar {
+    border-radius: 50%;
+    margin-top: 15px;
+}
+
+.tk-master .tk-avatar {
+    position: relative;
+    left: 6px;
+}
+
+/* 夜间模式配色，具体比照上方默认模式class */
+[data-theme="dark"] .tk-content {
+    background: #1d1d1f;
+    color: white;
+}
+
+[data-theme="dark"] .tk-content a {
+    color: #dfa036;
+}
+
+[data-theme="dark"] .tk-content::before {
+    border-right: 15px solid #1d1d1f;
+}
+
+[data-theme="dark"] .tk-master .tk-content {
+    background: #1c1c1e;
+    color: white;
+}
+
+[data-theme="dark"] .tk-master .tk-content a {
+    color: #dfa036;
+}
+
+[data-theme="dark"] .tk-master .tk-content::before {
+    border-top: 2px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 15px solid #1c1c1e;
+    border-left: 0 solid transparent;
+}
+
+/* 自适应内容 */
+@media screen and (min-width: 1024px) {
+    /* 设置宽度上限，避免挤压博主头像 */
+    .tk-content {
+        max-width: 75%;
+        width: fit-content;
+    }
+
+    .tk-master .tk-content {
+        width: 75%;
+        left: 80px;
+    }
+
+    .tk-master .tk-content::before {
+        left: 100%;
+        border-left: 15px solid #ff8080;
+        border-right: 0 solid transparent;
+    }
+
+    .tk-master .tk-avatar {
+        position: relative;
+        left: calc(75% + 120px);
+    }
+
+    .tk-master .tk-row[data-v-d82ce9a0] {
+        position: relative;
+        top: 0;
+        left: calc(55%);
+    }
+
+    [data-theme="dark"] .tk-master .tk-content::before {
+        border-left: 15px solid #1c1c1e;
+        border-right: 0 solid transparent;
+    }
+}
+
+/* 设备名称常态隐藏，悬停评论时显示 */
+.tk-extras {
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+}
+
+.tk-content:hover + .tk-extras {
+    -webkit-animation: tk-extras-fadeIn 0.5s linear;
+    -moz-animation: tk-extras-fadeIn 0.5s linear;
+    -o-animation: tk-extras-fadeIn 0.5s linear;
+    -ms-animation: tk-extras-fadeIn 0.5s linear;
+    animation: tk-extras-fadeIn 0.5s linear;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    -o-animation-fill-mode: forwards;
+    -ms-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+@-moz-keyframes tk-extras-fadeIn {
+    from {
+        opacity: 0;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        filter: alpha(opacity=0);
+    }
+    to {
+        opacity: 1;
+        -ms-filter: none;
+        filter: none;
+    }
+}
+
+@-webkit-keyframes tk-extras-fadeIn {
+    from {
+        opacity: 0;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        filter: alpha(opacity=0);
+    }
+    to {
+        opacity: 1;
+        -ms-filter: none;
+        filter: none;
+    }
+}
+
+@-o-keyframes tk-extras-fadeIn {
+    from {
+        opacity: 0;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        filter: alpha(opacity=0);
+    }
+    to {
+        opacity: 1;
+        -ms-filter: none;
+        filter: none;
+    }
+}
+
+@keyframes tk-extras-fadeIn {
+    from {
+        opacity: 0;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        filter: alpha(opacity=0);
+    }
+    to {
+        opacity: 1;
+        -ms-filter: none;
+        filter: none;
+    }
+}
+```
+
+修改 `[Blogroot]\_config.butterfly.yml` 的 `inject` 配置项
+
+```diff
+  inject:  
+    head:  
++     - <link rel="stylesheet" href="/css/custom/twikoo_beautify.css"  media="defer" onload="this.media='all'">
+```
+
+### 3.19 留言板
+
+参考[《Akilarの糖果屋-信笺样式留言板》](https://akilar.top/posts/e2d3c450/)
+
+安装插件
+
+```shell
+npm install hexo-butterfly-envelope --save
+```
+
+在站点配置文件或者主题配置文件添加配置项（对，两者任一均可。但不要都写）
+
+```yaml
+# envelope_comment  
+# see https://akilar.top/posts/58900a8/  
+envelope_comment:  
+  enable: true #开关  
+  cover: https://ae01.alicdn.com/kf/U5bb04af32be544c4b41206d9a42fcacfd.jpg #信笺封面图  
+  message: #信笺内容，支持多行  
+    - 有什么想问的？  
+    - 有什么想说的？  
+    - 有什么想吐槽的？  
+    - 哪怕是有什么想吃的，都可以告诉我哦~  
+  bottom: 自动书记人偶竭诚为您服务！ #信笺结束语，只能单行  
+  height: #调整信笺划出高度，默认1050px  
+  path: #【可选】comments 的路径名称。默认为 comments，生成的页面为 comments/index.html  
+  front_matter: #【可选】comments页面的 front_matter 配置  
+    title: 留言板  
+    comments: true
+```
+
+修改留言页：打开`[Blogroot]\node_modules\hexo-butterfly-envelope\lib\html.pug`，在文件末尾添加自己想要的内容。
+
+>HTML转PUG在线工具：[http://www.html2jade.org/](http://www.html2jade.org/)
+
+### 3.20 GitCalendar提交日历
+
+项目地址：[https://github.com/Zfour/hexo-github-calendar](https://github.com/Zfour/hexo-github-calendar)
+
+**（1）安装插件**
+
+```shell
+npm i hexo-githubcalendar --save  
+```
+
+**（2）新增网站根目录_config 配置项 (不是主题的)**
+
+```yaml
+# Ice Kano Plus_in
+# Hexo Github Canlendar
+# Author: Ice Kano
+# Modify: Lete乐特
+githubcalendar:
+  enable: true
+  enable_page: /comments/index.html
+  user: HuffieMa
+  layout:
+    type: id
+    name: recent-posts
+    index: 0
+  githubcalendar_html: '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>'
+  pc_minheight: 280px
+  mobile_minheight: 0px
+# color: "['#e4dfd7', '#f9f4dc', '#f7e8aa', '#f7e8aa', '#f8df72', '#fcd217', '#fcc515', '#f28e16', '#fb8b05', '#d85916', '#f43e06']" #橘黄色调
+# color: "['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f']" #浅紫色调
+# color: "['#ebedf0', '#f0fff4', '#dcffe4', '#bef5cb', '#85e89d', '#34d058', '#28a745', '#22863a', '#176f2c', '#165c26', '#144620']" #翠绿色调
+  color: "['#ebedf0', '#f1f8ff', '#dbedff', '#c8e1ff', '#79b8ff', '#2188ff', '#0366d6', '#005cc5', '#044289', '#032f62', '#05264c']" #天青色调
+  api: https://python-github-calendar-api.vercel.app/api
+  # api: https://python-gitee-calendar-api.vercel.app/api
+  calendar_js: https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js
+  plus_style: ""
+```
+
+更多配置项含义请到[https://zfe.space/post/hexo-githubcalendar.html](https://zfe.space/post/hexo-githubcalendar.html)查看。
+
+**（3）将提交日历插入关于页面**
+
+在关于页面md文件中，想要插入的位置插入
+
+```html
+<div id="recent-posts"></div>
+```
+
+修改站点配置文件中的属性
+
+```yaml
+  enable_page: /comments/index.html
+```
+
+重新`hexo clean`,`hexo g`, `hexo s`即可看到效果
 ## 四、网站优化
 
 ### 4.1 链接预加载
