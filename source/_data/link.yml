@@ -2,11 +2,25 @@ class:
   class_name: 友情链接
   link_list:
     1:
-      name: 陶小桃
+      name: 陶小桃Blog
       link: https://www.52txr.cn/
       avatar: https://img.mahaofei.com/img/20220410160606.png
       descr: 鸷鸟不群，前世固然
-
+    2:
+      name: 张洪HEO
+      link: https://blog.zhheo.com/
+      avatar: https://blog.zhheo.com/img/favicon.png
+      descr: 分享设计与科技生活
+    3:
+      name: Akilarの糖果屋
+      link: https://akilar.top/
+      avatar: https://npm.elemecdn.com/akilar-candyassets/image/author3.webp
+      descr: 欢迎来到Akilarの糖果屋
+    4:
+      name: 小冰博客
+      link: https://zfe.space/
+      avatar: https://zfe.space/images/headimage.png
+      descr: 做个有梦想的人！
 
 # class2:
    # class_name: 链接无效

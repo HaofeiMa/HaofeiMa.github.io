@@ -298,8 +298,4 @@ no-beautify()
   .post-copyright
     box-shadow 2px 2px 5px
 
-@keyframes flashlight
-  from
-    box-shadow 0 0 5px rgb(20, 120, 210)
-  to
-    box-shadow 0 0 2px rgb(20, 120, 210)
+

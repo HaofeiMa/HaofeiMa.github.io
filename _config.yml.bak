@@ -136,7 +136,7 @@ markdown_it_plus:
 # Modify: Lete乐特
 githubcalendar:
   enable: true
-  enable_page: /about/
+  enable_page: /comments/index.html
   user: HuffieMa
   layout:
     type: id
