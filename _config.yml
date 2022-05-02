@@ -113,11 +113,11 @@ deploy:
       github: git@github.com:HuffieMa/HuffieMa.github.io.git
     branch: master
   - type: baidu_url_submitter
-  
+
 # 百度SEO
 baidu_url_submit:
-  count: 100 # 提交最新的一个链接
-  host: https://www.mahaofei.com # 站点管理中添加的网站域名
+  count: 300 # 提交最新的一个链接
+  host: www.mahaofei.com # 站点管理中添加的网站域名
   token: xR6nigjGWFHyybFO # token可以在API提交页面找到
   path: baidu_urls.txt # 文本文档的地址，新链接会保存在此文本文档里
 
@@ -153,3 +153,21 @@ githubcalendar:
   # api: https://python-gitee-calendar-api.vercel.app/api
   calendar_js: https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js
   plus_style: ""
+  
+# enable: 开启/关闭 推送
+# count: 每次提交最新的10篇文章
+# https://github.com/lete114/hexo-seo-autopush
+hexo_seo_autopush:
+  baidu:
+    enable: true
+    count: 100
+  bing:
+    enable: true
+    count: 100
+  google:
+    enable: true
+    count: 100
+    google_file: google_service_account.json # 谷歌服务账户
+  # bing: 95f5ff833eb54c889a3e3842633fd6e8
+  # baidu: xR6nigjGWFHyybFO
+  

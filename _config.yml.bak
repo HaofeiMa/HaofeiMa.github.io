@@ -4,8 +4,8 @@
 
 # Site
 title: HALFA博客
-subtitle: ''
-description: 无限进步！！！
+subtitle: '无限进步！！！'
+description: 
 keywords: Robot, SLAM, ROS, Website
 author: Huffie
 language: zh-CN
@@ -113,11 +113,11 @@ deploy:
       github: git@github.com:HuffieMa/HuffieMa.github.io.git
     branch: master
   - type: baidu_url_submitter
-  
+
 # 百度SEO
 baidu_url_submit:
-  count: 100 # 提交最新的一个链接
-  host: https://www.mahaofei.com # 站点管理中添加的网站域名
+  count: 300 # 提交最新的一个链接
+  host: www.mahaofei.com # 站点管理中添加的网站域名
   token: xR6nigjGWFHyybFO # token可以在API提交页面找到
   path: baidu_urls.txt # 文本文档的地址，新链接会保存在此文本文档里
 
@@ -153,3 +153,34 @@ githubcalendar:
   # api: https://python-gitee-calendar-api.vercel.app/api
   calendar_js: https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js
   plus_style: ""
+  
+# enable: 开启/关闭 推送
+# count: 每次提交最新的10篇文章
+# https://github.com/lete114/hexo-seo-autopush
+hexo_seo_autopush:
+  baidu:
+    enable: true
+    count: 100
+  bing:
+    enable: true
+    count: 100
+  google:
+    enable: true
+    count: 100
+    google_file: google_service_account.json # 谷歌服务账户
+  # bing: 95f5ff833eb54c889a3e3842633fd6e8
+  # baidu: xR6nigjGWFHyybFO
+  
+  
+categoryBar:
+  enable: true
+  column: odd # 显示列数,odd：3列 | even：4列
+  row: 2 #显示行数，默认两行，超过行数切换为滚动显示
+  descr: 
+  cover:
+    - rgba(45,67,89,0.7)
+    - '#abcdef' # HEX格式色值需要用''包裹，不然会被识别成注释
+    - rgba(45,67,89,0.7)
+    - linear-gradient(rgba(0, 0, 0, 0.4) 25%, rgba(200,16 , 16, 0) 100%)
+    - rgba(45,67,89,0.7)
+    - rgba(45,67,89,0.7)

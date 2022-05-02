@@ -1,37 +1,49 @@
 class:
-  class_name: 友情链接
+  class_name: 大佬膜拜
+  link_list:
+    1:
+      name: 张洪HEO
+      link: https://blog.zhheo.com/
+      avatar: https://blog.zhheo.com/img/favicon.png
+      descr: 分享设计与科技生活
+    2:
+      name: Akilarの糖果屋
+      link: https://akilar.top/
+      avatar: https://npm.elemecdn.com/akilar-candyassets/image/author3.webp
+      descr: 欢迎来到Akilarの糖果屋
+    3:
+      name: 小冰博客
+      link: https://zfe.space/
+      avatar: https://zfe.space/images/headimage.png
+      descr: 做个有梦想的人！
+    4:
+      name: 小N同学
+      link: https://www.nesxc.com/
+      avatar: https://public.cdn.nesxc.com/avatar.jpg
+      descr: 青石落晚巷，故人未还乡
+    5:
+      name: 贰猹の小窝
+      link: https://noionion.top/
+      avatar: https://noionion-picture-bed.oss-cn-hangzhou.aliyuncs.com/img/head.jpg
+      descr: 奋力奔跑，去追心中的那一道光
+class2:
+  class_name: 同学好哇
   link_list:
     1:
       name: 陶小桃Blog
       link: https://www.52txr.cn/
       avatar: https://img.mahaofei.com/img/20220410160606.png
       descr: 鸷鸟不群，前世固然
+class3:
+  class_name: 小伙伴们
+  link_list:
+    1:
+      name: ImCaO's Blog
+      link: https://www.imcao.cn
+      avatar: https://www.imcao.cn/avatar.png
+      descr: 花有重开日，人无再少年。
     2:
-      name: 张洪HEO
-      link: https://blog.zhheo.com/
-      avatar: https://blog.zhheo.com/img/favicon.png
-      descr: 分享设计与科技生活
-    3:
-      name: Akilarの糖果屋
-      link: https://akilar.top/
-      avatar: https://npm.elemecdn.com/akilar-candyassets/image/author3.webp
-      descr: 欢迎来到Akilarの糖果屋
-    4:
-      name: 小冰博客
-      link: https://zfe.space/
-      avatar: https://img.mahaofei.com/img/20220410160606.pnghttps://zfe.space/images/headimage.png
-      descr: 做个有梦想的人！
-
-# class2:
-   # class_name: 链接无效
-   # link_list:
-     # 1:
-       # name: test
-       # link: https://blog.xxx.com
-       # avatar: https://img.antmoe.com/avatar.png
-       # descr: test
-     # 2:
-       # name: test
-       # link: https://www.axxxx.cn/
-       # avatar: https://img.antmoe.com/avatar.png
-       # descr: test
+      name: Joyer的博客
+      link: https://blog.joyer.top
+      avatar: https://blog.joyer.top/img/favicon.png
+      descr: 一只会唱Lahee~的龙

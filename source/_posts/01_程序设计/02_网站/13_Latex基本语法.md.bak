@@ -1,32 +1,32 @@
 ---
 title: Latex基本语法
+categories:
+  - 程序设计
+  - 网站
+tags:
+  - Latex
+description: 由于在博客撰写中用到了许多公式的输入，每次遇到不会的Latex语法都要现查，很费劲，因此在这里总结一下。
+cover: 'https://www.latex-project.org/img/latex-project-logo.svg'
+katex: true
+abbrlink: 15b7fde1
 date: 2022-04-26 15:27:12
 updated: 2022-04-26 15:27:12
-categories:
-- 程序设计
-- 网站
-tags:
-- Latex
-description: 由于在博客撰写中用到了许多公式的输入，每次遇到不会的Latex语法都要现查，很费劲，因此在这里总结一下。
-cover: https://www.latex-project.org/img/latex-project-logo.svg
-top_img: 
-keywords: 
-comments: 
-toc: 
-toc_number: 
-toc_style_simple: 
-copyright: 
-copyright_author: 
-copyright_author_href: 
-copyright_url: 
-copyright_info: 
-mathjax: 
-katex: 
-aplayer: 
-highlight_shrink: 
-aside: 
+top_img:
+keywords:
+comments:
+toc:
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+mathjax:
+aplayer:
+highlight_shrink:
+aside:
 stick:
-katex: true
 ---
 
 # 1. 公式插入

@@ -4,11 +4,16 @@
 
 menu:
   首页: / || fas fa-home
+  文章||fa fa-book-open:
+    时间轴: /archives/ || fa fa-history
+    分类: /categories/ || fas fa-folder-open
+    标签: /tags/ || fa fa-tags
   资源||fas fa-list:
     自学教程: /course/ || fa fa-desktop
-    常用网站: /websites/ || fa fa-bookmark
-  随笔: /categories/随笔/ || fa fa-pencil
-  # 说说: /artitalk/index.html || fa fa-comment
+    常用网站: /websites/ || fas fa-link
+  随心||fa-solid fa-blog:
+    随笔: /categories/随笔/ || fa-solid fa-feather-pointed
+    说说: /artitalk/index.html || fa-solid fa-comment-dots
   # 时光轴: /archives/ || fas fa-archive
   # 标签: /tags/ || fas fa-tags
   # 分类: /categories/ || fas fa-folder-open
@@ -17,7 +22,7 @@ menu:
   #   Movie: /movies/ || fas fa-video
   友链: /link/ || fas fa-link
   # 关于: /about/ || fas fa-heart
-  留言区: /comments/index.html || fa-solid fa-envelope-open-text
+  关于: /comments/index.html || fa-solid fa-envelope-open-text
 
 # Code Blocks (代碼相關)
 # --------------------------------------
@@ -36,6 +41,7 @@ copy:
   copyright:
     enable: true
     limit_count: 100
+
 
 # social settings (社交圖標設置)
 # formal:
@@ -73,7 +79,7 @@ envelope_comment:
   height: #调整信笺划出高度，默认1050px
   path:  #【可选】comments 的路径名称。默认为 comments，生成的页面为 comments/index.html
   front_matter: #【可选】comments页面的 front_matter 配置
-    title: 留言板
+    title: 关于本站 | 留言板
     comments: true
 
 
@@ -889,19 +895,43 @@ css_prefix: true
 # 插入代码到头部 </head> 之前 和 底部 </body> 之前
 inject:
   head:
+    # 历史今日滚动样式
     - <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    # 主题颜色样式
     - <link rel="stylesheet" href="/css/custom/MainColor.css">
+    # 分类条样式
     - <link rel="stylesheet" href="/css/custom/categoryBar.css">
+    # 404页面样式
     - <link rel="stylesheet" href="/css/custom/404.css">
+    # 历史今日卡片样式
     - <link rel="stylesheet" href="/css/custom/cardHistory.css">
+    # twikoo气泡风格魔改样式
     - <link rel="stylesheet" href="/css/custom/twikoo.css">
+    # 引入element组件库（禁用f12）
+    - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css">
   bottom:
+    # 引入jquery
     - <script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+    # 引入vue（禁用f12）
+    - <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    # 引入element样式（禁用f12）
+    - <script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script>
+    # 历史今日滚动
     - <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    # 分类条
     - <script src="/js/custom/categoryBar.js"></script>
+    # 历史今日
     - <script src="/js/custom/cardHistory.js"></script>
+    # 白天黑夜切换动画
     - <script src="/js/custom/light_dark.js"></script>
-
+    # F12禁用
+    - <script src="/js/custom/forbidCopy.js"></script>
+    # 51LA网站统计
+    - <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+    - <script>LA.init({id:"Jfmc1FSFWs09EC8r",ck:"Jfmc1FSFWs09EC8r"})</script>
+    - <script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+    - <script>new LingQue.Monitor().init({id:"JfmcYvlVsVAZlVkS"});</script>
+    
 # CDN
 # Don't modify the following settings unless you know how they work
 # 非必要請不要修改
