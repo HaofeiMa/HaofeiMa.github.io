@@ -4,8 +4,10 @@ date: 2022-04-09 20:38:06
 type: "about"
 ---
 
-<div id="recent-posts">
-
+<div class="recent-post-item" style="width:100%;height: auto"> <!--文章容器-->
+  <div id="catalog_magnet">  <!--挂载容器-->
+    ${temple_html_item}
+  </div>
 </div>
 
 # 关于本站

@@ -170,17 +170,41 @@ hexo_seo_autopush:
     google_file: google_service_account.json # 谷歌服务账户
   # bing: 95f5ff833eb54c889a3e3842633fd6e8
   # baidu: xR6nigjGWFHyybFO
-  
-  
-categoryBar:
+
+# 分类磁铁
+magnet:
   enable: true
-  column: odd # 显示列数,odd：3列 | even：4列
-  row: 2 #显示行数，默认两行，超过行数切换为滚动显示
-  descr: 
-  cover:
-    - rgba(45,67,89,0.7)
-    - '#abcdef' # HEX格式色值需要用''包裹，不然会被识别成注释
-    - rgba(45,67,89,0.7)
-    - linear-gradient(rgba(0, 0, 0, 0.4) 25%, rgba(200,16 , 16, 0) 100%)
-    - rgba(45,67,89,0.7)
-    - rgba(45,67,89,0.7)
+  priority: 1
+  enable_page: /comments/index.html
+  type: categories
+  devide: 2
+  display:
+    - name: 教程
+      display_name: 小冰の魔改教程
+      icon: 📚
+    - name: 游戏评测
+      display_name: 小冰の游戏评测
+      icon: 🎮
+    - name: 生活趣闻
+      display_name: 小冰の生活趣闻
+      icon: 🐱‍👓
+    - name: vue
+      display_name: 小冰の编程学习
+      icon: 👩‍💻
+    - name: 学习
+      display_name: 小冰の读书笔记
+      icon: 📒
+    - name: 随想
+      display_name: 小冰の胡思乱想
+      icon: 💡
+  color_setting:
+    text_color: black
+    text_hover_color: white
+    background_color: "#f2f2f2"
+    background_hover_color: "#b30070"
+  layout:
+    type: id
+    name: recent-posts
+    index: 1
+  temple_html: '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet">${temple_html_item}</div></div>'
+  plus_style: ""

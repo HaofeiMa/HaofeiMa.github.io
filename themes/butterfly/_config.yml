@@ -69,7 +69,7 @@ local_search:
 # see https://akilar.top/posts/58900a8/
 envelope_comment:
   enable: true #开关
-  cover: https://img.mahaofei.com/img/avatar.jpg #信笺封面图
+  cover: https://img.mahaofei.com/img/202201052113753-myself.png #信笺封面图
   message: #信笺内容，支持多行
     - 有什么想问的？
     - 有什么想说的？
@@ -834,7 +834,7 @@ note:
 # It may contain bugs and unstable, give feedback when you find the bugs.
 # https://github.com/MoOx/pjax
 pjax:
-  enable: false
+  enable: true
   exclude:
     # - xxxx
     # - xxxx
@@ -909,6 +909,8 @@ inject:
     - <link rel="stylesheet" href="/css/custom/twikoo.css">
     # 引入element组件库（禁用f12）
     - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css">
+    # 自定义样式（滚动条）
+    - <link rel="stylesheet" href="/css/custom/custom.css">
   bottom:
     # 引入jquery
     - <script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
@@ -931,7 +933,8 @@ inject:
     - <script>LA.init({id:"Jfmc1FSFWs09EC8r",ck:"Jfmc1FSFWs09EC8r"})</script>
     - <script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
     - <script>new LingQue.Monitor().init({id:"JfmcYvlVsVAZlVkS"});</script>
-    
+    # 自定义JS（个性化标题）
+    - <script src="/js/custom/custom.js"></script>
 # CDN
 # Don't modify the following settings unless you know how they work
 # 非必要請不要修改
