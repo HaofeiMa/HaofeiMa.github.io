@@ -31,6 +31,7 @@ stick:
 ---
 
 
+
 # ButterFly主题配置
 
 ## 一、主页设置
@@ -41,7 +42,7 @@ stick:
 
 设置如下`_config.yml`
 
-```yaml
+```YML
 menu:
   首页: / || fas fa-home
   时光轴: /archives/ || fas fa-archive
@@ -58,7 +59,7 @@ menu:
 
 默认子目录是展开的，如果你想要隐藏，在子目录里添加hide
 
-```yaml
+```YML
 List||fas  fa-list||hide: Music: /music/ || fas fa-music Movie: /movies/ || fas fa-video
 ```
 
@@ -69,7 +70,7 @@ hexo new page tags
 # source/tags/index.md
 ```
 
-```yaml
+```YML
 --- 
 title: 标签
 date: 2018-01-05 00:00:00 
@@ -84,7 +85,7 @@ hexo new page categories
 # source/categories/index.md
 ```
 
-```yaml
+```YML
 --- 
 title: 分类
 date: 2018-01-05 00:00:00 
@@ -99,7 +100,7 @@ hexo new page link
 # source/link/index.md
 ```
 
-```yaml
+```YML
 --- 
 title: 友情链接
 date: 2018-06-07 22:17:49 
@@ -109,7 +110,7 @@ type: "link"
 
 在Hexo博客目录中的`source/_data`（如果没有_data 文件夹，请自行创建），创建一个文件`link.yml`
 
-```yaml
+```YML
 -  class_name: 网站class_desc:值得推荐的网站link_list: - name: Youtube link: https://www.youtube.com/ avatar: https://i.loli.net/2020/05/14/9ZkGg8v3azHJfM1.png descr:视频网站- name: Weibo link: https://www.weibo.com/ avatar: https://i.loli.net/2020/05/14/TLJBum386vcnI1P.png descr:中国最大社交分享平台- name: Twitter link: https://twitter.com/ avatar: https://i.loli.net/2020/05/14/5VyHPQqR6LWF39a.png descr:社交分享平台
 ```
 
@@ -127,7 +128,7 @@ class_name和 class_desc 支持html 格式书写，如不需要，也可以留�
 npm install hexo-generator-search --save
 ```
 
-```yaml
+```YML
 # Local search
 local_search:
   enable: true
@@ -137,7 +138,7 @@ local_search:
 
 ### 1.2 社交图标
 
-```yaml
+```YML
 # social settings (社交圖標設置)
 # formal:
 #   icon: link || the description
@@ -152,7 +153,7 @@ social:
 
 **网站图标与头像**
 
-```yaml
+```YML
 # Favicon（網站圖標）
 favicon: /img/favicon.png
 
@@ -164,7 +165,7 @@ avatar:
 
 **顶部图**
 
-```yaml
+```YML
 disable_top_img: false
 ```
 
@@ -182,7 +183,7 @@ disable_top_img: false
 
 并不推荐为每个tag 和每个category 都配置不同的顶部图，因为配置太多会拖慢生成速度
 
-```yaml
+```YML
 tag_per_img
   aplayer: https://xxxxxx.png
   android: ddddddd.png
@@ -191,7 +192,7 @@ category_per_img
 推荐: ddjdjdjd.png
 ```
 
-```yaml
+```YML
 # 主页设置
 # 默认top_img全屏，site_info在中间
 # 使用默认, 都无需填写（建议默认）
@@ -203,7 +204,7 @@ index_top_img_height:   #主页top_img高度例如300px/300em/300rem 不能使�
 
 **文章信息**
 
-```yaml
+```YML
 post_meta:
   page: # Home Page
     date_type: created # created or updated or both 主頁文章日期是創建日或者更新日或都顯示
@@ -232,7 +233,7 @@ post_meta:
 * auto_excerpt：只显示自动节选
 * false：不显示文章内容
 
-```yaml
+```YML
 # Display the article introduction on homepage
 # 1: description
 # 2: both (if the description exists, it will show description, or show the auto_excerpt)
@@ -247,7 +248,7 @@ index_post_content:
 
 **文章封面**
 
-```yaml
+```YML
 cover:
   # display the cover or not (是否顯示文章封面)
   index_enable: true
@@ -264,7 +265,7 @@ cover:
 
 `npm install hexo-wordcount --save`
 
-```yaml
+```YML
 wordcount:
   enable: true
   post_wordcount: true
@@ -281,7 +282,7 @@ wordcount:
 
 展示你站点起始时间的选项。它位于页面的最底部。
 
-```yaml
+```YML
 # Footer Settings
 # --------------------------------------
 footer:
@@ -296,7 +297,7 @@ footer:
 
 **百度统计**
 
-```yaml
+```YML
 # Baidu Analytics
 # https://tongji.baidu.com/web/welcome/login
 baidu_analytics: 439a0d0abeb31dd8f338efd8266c999b
@@ -307,7 +308,7 @@ baidu_analytics: 439a0d0abeb31dd8f338efd8266c999b
 
 **页脚背景**
 
-```yaml
+```YML
 # footer是否显示图片背景(与top_img一致) 
 footer_bg:  true
 # 留空/false	显示默认的颜色
@@ -318,7 +319,7 @@ footer_bg:  true
 
 
 ### 1.7 侧边栏设置
-```yaml
+```YML
 # aside (側邊欄)
 # --------------------------------------
 
@@ -383,13 +384,13 @@ Butterfly支持6种代码高亮样式：
 
 具体样式参考[官方文档](https://butterfly.js.org/posts/4aa8abbe/#%E4%BB%A3%E7%A2%BC%E9%AB%98%E4%BA%AE%E4%B8%BB%E9%A1%8C)
 
-```yaml
+```YML
 highlight_theme:  light
 ```
 
 **代码复制**
 
-```yaml
+```YML
 highlight_copy:  true
 ```
 
@@ -397,7 +398,7 @@ highlight_copy:  true
 
 在默认情况下，代码框自动展开，可设置是否所有代码框都关闭状态，点击>可展开代码
 
-```yaml
+```YML
 highlight_shrink:  true  
 # true 代码框不展开，需点击>打开; 
 # false 代码框展开，有>点击按钮
@@ -408,14 +409,14 @@ highlight_shrink:  true
 
 可配置代码高度限制，超出的部分会隐藏，并显示展开按钮。
 
-```yaml
+```YML
 highlight_height_limit:  false  # unit: px 直接添加数字，如200
 ```
 
 
 ### 2.2 文章复制设置
 
-```yaml
+```YML
 # copy settings 
 # copyright: Add the copyright information after copied content (复制的内容后面加上版权信息)
 copy:
@@ -437,7 +438,7 @@ copy:
 
 在文章页，会有一个目录，用于显示TOC。
 
-```yaml
+```YML
 toc:
   post: true # 文章页是否显示TOC
   page: false # 普通页面是否显示TOC
@@ -452,7 +453,7 @@ toc:
 
 ### 2.4 文章打赏
 
-```yaml
+```YML
 # Sponsor/reward
 reward:
   enable: true
@@ -466,7 +467,7 @@ reward:
 ```
 
 ### 2.5 下一篇文章
-```yaml
+```YML
 # post_pagination (分頁)
 # value: 1 || 2 || false
 # 1: The 'next post' will link to old post
@@ -476,7 +477,7 @@ post_pagination: 2
 ```
 ### 2.6 文章分享
 
-```yaml
+```YML
 # Share.js
 # https://github.com/overtrue/share.js
 sharejs:
@@ -486,78 +487,76 @@ sharejs:
 
 在 head 里添加一些meta资料，例如缩略图、标题、时间等。当分享网页到一些平台时，平台会读取 Open Graph 的内容，展示缩略图，标题信息等等
 
-```yaml
+```YML
 # Open graph meta tags
 # https://developers.facebook.com/docs/sharing/webmasters/
 Open_Graph_meta: true
 ```
 
-### 2.7 数学公式KaTex
+### 2.7 数学公式MathJax
 
-首先禁用MathJax（如果你配置过MathJax 的话），然后修改你的主題配置文件以便加载katex.min.css:
+mathjax 是一个开源的 web 数学公式渲染器，由 JS 编写而成，它提供的书写方式和 LaTeX 的书写方式一样。
 
-```yaml
-# Math (數學)
-# --------------------------------------
-# About the per_page
-# if you set it to true, it will load mathjax/katex script in each page (true 表示每一頁都加載js)
-# if you set it to false, it will load mathjax/katex script according to your setting (add the 'mathjax: true' in page's front-matter)
-# (false 需要時加載，須在使用的 Markdown Front-matter 加上 mathjax: true)
+**（1）更换渲染插件**
 
-# MathJax
-mathjax:
-  enable: false
-  per_page: false
-
-# KaTeX
-katex:
-  enable: true
-  per_page: false
-  hide_scrollbar: true
-
-```
-
-卸载之前 hexo 的 markdown 渲染器以及 hexo-math，然后安装新的 `hexo-renderer-markdown-it-plus`
+Hexo 默认的渲染引擎是 marked，但 marked 不支持 mathjax，所以需要更换渲染引擎为 hexo-renderer-kramed，主要步骤如下：
 
 ```shell
-# 替换 `hexo-renderer-kramed` 或者 `hexo-renderer-marked` 等hexo的markdown渲染器  
-# 可以在你的package.json里找到hexo的markdwon渲染器，并将其卸载  
-npm un hexo-renderer-marked --save  
-# or  
-npm un hexo-renderer-kramed --save  
-# 卸载 `hexo-math`  
-npm un hexo-math --save  
-  
-# 然后安装 `hexo-renderer-markdown-it-plus`  
-npm i @upupming/hexo-renderer-markdown-it-plus --save。
-
-npm install @neilsustc/markdown-it-katex --save
-
+npm uninstall hexo-renderer-marked --save # 卸载 marked  
+npm install hexo-renderer-kramed --save # 安装 kramed
 ```
 
-在站点配置文件中配置
+停用 hexo-math 并安装 mathjax
 
-```yaml
-markdown:
-  plugins:
-    - plugin:
-      name: '@neilsustc/markdown-it-katex'
-      options:
-        strict: false
+```shell
+npm uninstall hexo-math --save # 卸载 hexo-math  
+npm install hexo-renderer-mathjax --save # 安装 mathjax
 ```
 
+打开 `/node_modules/hexo-renderer-kramed/lib/renderer.js`，进行如下修改：
 
-在博客模板文件添加
-
-```markdown
-katex: false
+```DIFF
+// Change inline math rule  
+function formatText(text) {  
+    // Fit kramed's rule: $$ + \1 + $$  
+-   return text.replace(/`\$(.*?)\$`/g, '$$$$$1$$$$'); 
++   return text;
+}
 ```
+
+更新 Mathjax 配置文件，打开 `/node_modules/hexo-renderer-mathjax/mathjax.html`，将最后一行的 `<script>` 改为：
+
+```js
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+```
+
+更改默认转义规则，因为 LaTeX 与 markdown 语法有语义冲突，所以 hexo 默认的转义规则会将一些字符进行转义，我们需要对默认的规则进行修改。打开 `\node_modules\kramed\lib\rules\inline.js` ，将`var inline = {}` 中的属性 `escape` 和 `em` 参数更改如下：
+
+```js
+escape: /^\\([`*\[\]()#$+\-.!_>])/,
+```
+
+```js
+em: /^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,
+```
+
+开启 mathjax，打开主题的 `_config.butterfly.yml` ，检索 `MathJax`，将 `enable` 参数设置为 `true`
+
+```YML
+# MathJax  
+mathjax:  
+  enable: true  
+  per_page: false
+```
+
+配置成功后，需要渲染的文章开头，添加参数 `mathjax: true` 即可。
+
 
 ## 三、博客美化
 
 ### 3.1 背景canvas_nest
 
-```yaml
+```YML
 canvas_nest:
   enable: true
   color: '0,0,255' #color of lines, default: '0,0,0'; RGB values: (R,G,B).( note: use ',' to separate.)
@@ -573,7 +572,7 @@ canvas_nest:
 
 ### 3.2 打字烟花特效
 
-```yaml
+```YML
 # Typewriter Effect (打字效果) 
 # https://github.com/disjukr/activate-power-mode 
 activate_power_mode:
@@ -587,7 +586,7 @@ activate_power_mode:
 
 ### 3.3 页面美化
 
-```yaml
+```YML
 # 美化页面显示
 beautify:
   enable: true
@@ -598,7 +597,7 @@ beautify:
 
 ### 3.4 网站副标题打字效果
 
-```yaml
+```YML
 # the subtitle on homepage (主頁subtitle)
 subtitle:
   enable: true
@@ -618,7 +617,7 @@ subtitle:
 ```
 ### 3.5 访问人数busuanzi
 
-```yaml
+```YML
 busuanzi:
   site_uv: true
   site_pv: true
@@ -630,7 +629,7 @@ busuanzi:
 
 ### 3.6 运行时间
 
-```yaml
+```YML
 # Time difference between publish date and now (網頁運行時間)
 # Formal: Month/Day/Year Time or Year/Month/Day Time
 runtimeshow:
@@ -641,7 +640,7 @@ runtimeshow:
 
 ### 3.7 夜间模式
 
-```yaml
+```YML
 # dark mode 
 darkmode:
   enable: true # dark mode和light mode切换按钮
@@ -660,7 +659,7 @@ darkmode:
 
 只会出现在文章页面，右下角会有阅读模式按钮。
 
-```yaml
+```YML
 readmode:  true
 ```
 
@@ -707,7 +706,7 @@ readmode:  true
 
 2. 到[HTML压缩网站](http://tool.ggo.net/htmlpack/)将代码压缩成一行，复制到footer属性中就完成Github-badge效果了
 
-```yaml
+```YML
 # Footer Settings
 # --------------------------------------
 footer:
@@ -725,7 +724,7 @@ footer:
 
 在主题配置文件的`comments`中填写需要用的评论
 
-```yaml
+```YML
 comments:
   # Up to two comments system, the first will be shown as default
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus
@@ -813,7 +812,7 @@ comments:
 ```
 
 **主页显示最近评论**
-```yaml
+```YML
 # Aside widget - Newest Comments 
 newest_comments : 
   enable: true
@@ -877,7 +876,7 @@ exports.main = require('twikoo-func').main
 
 首先再主题配置文件中启用twikoo评论
 
-```yaml
+```YML
 # Comments System
 # --------------------------------------
 
@@ -927,7 +926,7 @@ npm install hexo-butterfly-artitalk
 
 11. 在主题配置文件中添加如下配置
 
-```yaml
+```YML
 # Artitalk
 # see https://artitalk.js.org/
 artitalk:
@@ -1009,7 +1008,7 @@ block content
 
 将其中的`MainColor.css`, `categoryBar.css`两个文件复制到`themes/butterfly/source/css`目录下，将`categoryBar.js`复制到`themes/butterfly/source/js`目录下，然后在主题配置文件`_config.yml`中引用这三个文件。
 
-```yaml
+```YML
 inject:
   head:
     - <link rel="stylesheet" href="/css/categoryBar.css">
@@ -1165,7 +1164,7 @@ if (relatedPosts.length > 0) {
 
 打开 主题配置文件`_config.yml` 搜索到 `aside:` 处，添加开关：
 
-```yaml
+```YML
 aside:  
   enable: true  
   mobile: true # display on mobile  
@@ -1178,7 +1177,7 @@ aside:
 
 然后搜索`inject:`，进行如下修改
 
-```yaml
+```YML
 inject:  
   head:  
     - <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">  
@@ -1330,7 +1329,7 @@ function switchNightMode() {
 
 修改 `[Blogroot]\_config.butterfly.yml`, 引入一下 js
 
-```yaml
+```YML
 inject:  
   head:  
   bottome:  
@@ -1632,7 +1631,7 @@ npm install hexo-butterfly-envelope --save
 
 在站点配置文件或者主题配置文件添加配置项（对，两者任一均可。但不要都写）
 
-```yaml
+```YML
 # envelope_comment  
 # see https://akilar.top/posts/58900a8/  
 envelope_comment:  
@@ -1667,7 +1666,7 @@ npm i hexo-githubcalendar --save
 
 **（2）新增网站根目录_config 配置项 (不是主题的)**
 
-```yaml
+```YML
 # Ice Kano Plus_in
 # Hexo Github Canlendar
 # Author: Ice Kano
@@ -1705,18 +1704,445 @@ githubcalendar:
 
 修改站点配置文件中的属性
 
-```yaml
+```YML
   enable_page: /comments/index.html
 ```
 
 重新`hexo clean`,`hexo g`, `hexo s`即可看到效果
+
+### 3.21 版权声明页美化
+
+编辑`butterfly/layout/includes/post/post-copyright.pug`
+
+```pug
+if theme.post_copyright.enable && page.copyright !== false
+  - let author = page.copyright_author ? page.copyright_author : config.author
+  - let url = page.copyright_url ? page.copyright_url : page.permalink
+  - let license = page.license ? page.license : theme.post_copyright.license
+  - let license_url = page.license_url ? page.license_url : theme.post_copyright.license_url
+  .post-copyright
+    .post-copyright__title
+      span.post-copyright-info
+        h #[=page.title]
+    .post-copyright__type
+      span.post-copyright-info
+        a(href=url_for(url))= theme.post_copyright.decode ? decodeURI(url) : url
+    .post-copyright-m
+      .post-copyright-m-info
+        .post-copyright-a
+            h 作者
+            .post-copyright-cc-info
+                h=author
+        .post-copyright-c
+            h 发布于
+            .post-copyright-cc-info
+                h=date(page.date, config.date_format)
+        .post-copyright-u
+            h 更新于
+            .post-copyright-cc-info
+                h=date(page.updated, config.date_format)
+        .post-copyright-c
+            h 许可协议
+            .post-copyright-cc-info
+                a.icon(rel='noopener' target='_blank' title='Creative Commons' href='https://creativecommons.org/')
+                  i.fab.fa-creative-commons
+                a(rel='noopener' target='_blank' title=license href=url_for(license_url))=license
+
+```
+
+编辑`butterfly/source/css/_layout/post.styl`
+
+```css
+beautify()
+  headStyle(fontsize)
+    padding-left: unit(fontsize + .4, 'rem')
+
+    code
+      font-size: unit(fontsize, 'rem')
+
+    &:before
+      margin-left: unit((-(fontsize + .2)), 'rem')
+      font-size: unit(fontsize, 'rem')
+
+    &:hover
+      padding-left: unit(fontsize + .6, 'rem')
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6
+    transition: all .2s ease-out
+
+    &:before
+      position: absolute
+      top: calc(50% - .35rem)
+      color: $title-prefix-icon-color
+      content: $title-prefix-icon
+      line-height: 1
+      transition: all .2s ease-out
+      @extend .fontawesomeIcon
+
+    &:hover
+      &:before
+        color: $light-blue
+
+  h1
+    headStyle(1)
+
+  h2
+    headStyle(.9)
+
+  h3
+    headStyle(.8)
+
+  h4
+    headStyle(.7)
+
+  h5
+    headStyle(.6)
+
+  h6
+    headStyle(.6)
+
+  ol,
+  ul
+    margin-top: .4rem
+    padding: 0 0 0 .8rem
+    list-style: none
+    counter-reset: li
+
+    +maxWidth768()
+      padding: 0 0 0 .4rem
+
+    p
+      margin: 0 0 .5rem
+
+    ol,
+    ul
+      padding-left: .6rem
+
+      +maxWidth768()
+        padding-left: .2rem
+
+    li
+      &:not(.tab)
+        position: relative
+        margin: .2rem 0
+
+      &:hover
+        &:before
+          transform: rotate(360deg)
+
+      &:before
+        position: absolute
+        top: 0
+        left: 0
+        background: $light-blue
+        color: $white
+        cursor: pointer
+        transition: all .3s ease-out
+
+  ol
+    > li
+      &:not(.tab)
+        padding: .2em .2em .2em 1.8em
+
+      &:before
+        margin-top: .65em
+        width: w = 1.45em
+        height: h = w
+        border-radius: .5 * w
+        content: counter(li)
+        counter-increment: li
+        text-align: center
+        font-size: .85em
+        line-height: h
+
+  ul
+    > li:not(.tab)
+      padding: .2em .2em .2em 1.4em
+
+      &:hover
+        &:before
+          border-color: $pseudo-hover
+
+      &:before
+        $w = .42em
+        top: .78em
+        width: w = $w
+        height: h = w
+        border: .5 * w solid $light-blue
+        border-radius: w
+        background: transparent
+        content: ''
+        line-height: h
+
+no-beautify()
+  ol,
+  ul
+    margin-top: .4rem
+
+    p
+      margin: 0 0 .5rem
+
+    ol,
+    ul
+      padding-left: .5rem
+
+    li
+      position: relative
+      margin: .3rem 0
+      padding-left: .3rem
+
+#article-container
+  word-wrap: break-word
+  overflow-wrap: break-word
+
+  a
+    color: $theme-link-color
+
+    &:hover
+      text-decoration: underline
+
+  img
+    display: block
+    margin: 0 auto .8rem
+
+  p
+    margin: 0 0 .8rem
+
+  iframe
+    margin: 0 0 1rem
+
+  if hexo-config('beautify.enable') && hexo-config('beautify.field') == 'site'
+    beautify()
+  else if hexo-config('beautify.enable') && hexo-config('beautify.field') == 'post'
+    no-beautify()
+
+    &.post-content
+      beautify()
+  else
+    no-beautify()
+
+#post
+  .tag_share
+    .post-meta
+      &__tag-list
+        display: inline-block
+
+      &__tags
+        display: inline-block
+        margin: .4rem .4rem .4rem 0
+        padding: 0 .6rem
+        width: fit-content
+        border: 1px solid $light-blue
+        border-radius: .6rem
+        color: $light-blue
+        font-size: .85em
+        transition: all .2s ease-in-out
+
+        &:hover
+          background: $light-blue
+          color: var(--white)
+
+    .post_share
+      display: inline-block
+      float: right
+      margin: .4rem 0
+      width: fit-content
+
+      .social-share
+        font-size: .85em
+
+        .social-share-icon
+          margin: 0 4px
+          width: w = 1.85em
+          height: w
+          font-size: 1.2em
+          line-height: w
+
+  .post-copyright
+    position: relative
+    margin: 2rem 0 .5rem
+    padding: .5rem .8rem
+    border: 1px solid var(--light-grey)
+    transition: box-shadow .3s ease-in-out
+    overflow: hidden
+    border-radius: 12px!important
+    background-color: rgb(239 241 243)
+
+    &:before
+      background var(--heo-post-blockquote-bg)
+      position absolute
+      right -26px
+      top -120px
+      content '\f25e'
+      font-size 200px
+      font-family 'Font Awesome 5 Brands'
+      opacity .2
+
+    &:hover
+      box-shadow: 0 0 8px 0 rgba(232, 237, 250, .6), 0 2px 4px 0 rgba(232, 237, 250, .5)
+
+    .post-copyright
+      &-meta
+        color: $light-blue
+        font-weight: bold
+
+      &-info
+        padding-left: .3rem
+
+        a
+          text-decoration: none
+          word-break: break-word
+
+          &:hover
+            text-decoration: none
+
+  .post-copyright-cc-info
+    color: $theme-color;
+
+  .post-outdate-notice
+    position: relative
+    margin: 0 0 1rem
+    padding: .5em 1.2em
+    border-radius: 15px
+    background-color: $noticeOutdate-bg
+    color: $noticeOutdate-color
+
+    if hexo-config('noticeOutdate.style') == 'flat'
+      padding: .5em 1em .5em 2.6em
+      border-left: 5px solid $noticeOutdate-border
+
+      &:before
+        @extend .fontawesomeIcon
+        position: absolute
+        top: 50%
+        left: .9em
+        color: $noticeOutdate-border
+        content: '\f071'
+        transform: translateY(-50%)
+
+  .ads-wrap
+    margin: 2rem 0
+.post-copyright-m-info
+  .post-copyright-a,
+  .post-copyright-c,
+  .post-copyright-u
+    display inline-block
+    width fit-content
+    padding 2px 5px
+[data-theme="dark"]
+  #post
+    .post-copyright
+      background-color #07080a
+      text-shadow #bfbeb8 0 0 2px
+      border 1px solid rgb(19 18 18 / 35%)
+      box-shadow 0 0 5px rgb(20, 120, 210)
+      animation flashlight 1s linear infinite alternate
+  .post-copyright-info
+    color #e0e0e4
+
+#post
+  .post-copyright__title
+    font-size 22px
+  .post-copyright__notice
+    font-size 15px
+  .post-copyright
+    box-shadow 2px 2px 5px
+
+@keyframes flashlight
+  from
+    box-shadow 0 0 5px rgb(20, 120, 210)
+  to
+    box-shadow 0 0 2px rgb(20, 120, 210)
+```
+
+### 3.22 滚动条美化
+
+效果见右侧滚动条
+
+新建 `Hexo\themes\butterfly\source\css\custom.css`(css 文件名自定义)
+
+```css
+/* 滚动条 */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #49B1F5;
+    background-image: -webkit-linear-gradient( 45deg, rgba(255, 255, 255, 0.4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 75%, transparent 75%, transparent);
+    border-radius: 2em;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+::-moz-selection {
+    color: #fff;
+    background-color: #49B1F5;
+}
+```
+
+在主题配置文件中引入：
+
+```YML
+inject:
+  head:
+    # 自定义样式（滚动条）
+    - <link rel="stylesheet" href="/css/custom/custom.css">
+```
+
+### 3.23 个性化浏览器标题
+
+实现浏览器切到别的网页时显示特定文字，切回自己博客时显示特定文字2s。
+
+新建 `Hexo\themes\butterfly\source\js\custom.js`(js 文件名自定义)
+
+```js
+// 个性化Title
+var OriginTitle = document.title;
+var titleTime;
+document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+        $('[rel="icon"]').attr('href', "/img/favicon.ico");
+        document.title = 'HalfA博客';
+        clearTimeout(titleTime);
+    } else {
+        $('[rel="icon"]').attr('href', "/img/favicon.ico");
+        document.title = '欢迎回来~~' + OriginTitle;
+        titleTime = setTimeout(function() {
+            document.title = OriginTitle;
+        }, 2000);
+    }
+});
+```
+
+在主题配置文件中引入：
+
+```YML
+inject:
+  head:
+  bottom:
+    # 自定义JS（个性化标题）
+    - <script src="/js/custom/custom.js"></script>
+```
+
+
+
 ## 四、网站优化
 
 ### 4.1 链接预加载
 
 当鼠标悬停到链接上超过65毫秒时，instantpage会对该链接进行预加载，提升访问速度。
 
-```yaml
+```YML
 # https://instant.page/
 # prefetch (預加載)
 instantpage: true
@@ -1766,7 +2192,7 @@ npm install hexo-baidu-url-submit --save
 
 修改站点配置
 
-```yaml
+```YML
 deploy:
   - type: git
     repo: https://github.com//xxx.github.io.git
@@ -1776,7 +2202,7 @@ deploy:
 
 添加站点配置
 
-```yaml
+```YML
 baidu_url_submit:
   count: 100 # 提交最新的100个链接
   host: https://www.mahaofei.com # 站点管理中添加的网站域名
@@ -1801,7 +2227,7 @@ baidu_url_submit:
 
 ### 3.1 页面配置Page Front-matter
 
-```yaml
+```YML
 ---
 title:
 date:
@@ -1837,7 +2263,7 @@ highlight_shrink:
 
 ### 3.2 文章页配置
 
-```yaml
+```YML
 --- 
 title: 
 date: 

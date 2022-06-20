@@ -69,7 +69,7 @@ local_search:
 # see https://akilar.top/posts/58900a8/
 envelope_comment:
   enable: true #开关
-  cover: https://img.mahaofei.com/img/avatar.jpg #信笺封面图
+  cover: https://img.mahaofei.com/img/202201052113753-myself.png #信笺封面图
   message: #信笺内容，支持多行
     - 有什么想问的？
     - 有什么想说的？
@@ -700,7 +700,7 @@ aside:
       link: https://blog.csdn.net/weixin_44543463
   card_announcement:
     enable: true
-    content: 毕设ing！！！
+    content: 欢迎各位访客，大家一起学习进步！！欢迎站长们交换友链，博主随时在线！
   card_recent_post:
     enable: false
     limit: 3 # if set 0 will show all
@@ -744,11 +744,11 @@ runtimeshow:
 
 # Aside widget - Newest Comments
 newest_comments:
-  enable: false
+  enable: true
   sort_order: # Don't modify the setting unless you know how it works
   limit: 5
   storage: 10 # unit: mins, save data to localStorage
-  avatar: true
+  avatar: false
 
 # Bottom right button (右下角按鈕)
 # --------------------------------------

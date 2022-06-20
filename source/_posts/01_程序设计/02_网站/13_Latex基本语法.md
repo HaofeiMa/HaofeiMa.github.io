@@ -7,7 +7,7 @@ tags:
   - Latex
 description: 由于在博客撰写中用到了许多公式的输入，每次遇到不会的Latex语法都要现查，很费劲，因此在这里总结一下。
 cover: 'https://www.latex-project.org/img/latex-project-logo.svg'
-katex: 
+katex: true
 abbrlink: 15b7fde1
 date: 2022-04-26 15:27:12
 updated: 2022-04-26 15:27:12
@@ -22,7 +22,7 @@ copyright_author:
 copyright_author_href:
 copyright_url:
 copyright_info:
-mathjax: true
+mathjax:
 aplayer:
 highlight_shrink:
 aside:
@@ -102,6 +102,16 @@ $\ddot{y}$
 $\dddot{y}$
 
 $\nabla{f}$
+
+## 绝对值
+
+```latex
+$|x_n|$
+$\lvert x_n\rvert$
+```
+
+$|x_n|$
+$\lvert x_n\rvert$
 
 ## 累计求和
 
@@ -220,20 +230,22 @@ $\underline{m+n}$
 
 | 符号        | 代码          |
 | ----------- | ------------- |
-|$\neq$     | \neq or \not= |
-|$\leq$     | \leq or \le   |
-|$\geq$     | \geq or \ge   |
-|$\ll$      | \ll           |
-|$\gg$      | \gg           |
-|$\subset$  | \subset       |
-|$\supset$  | \supset       |
-|$\subseteq$| \subseteq     |
-|$\supseteq$| \supseteq     |
-|$\in$      | \in           |
-|$\ni$      | \ni           |
-|$\bigcup$  | \bigcup       |
-|$\bigcap$  | \bigcap       |
-|$\propto$  | \propto       |
+| $\neq$      | \neq or \not= |
+| $\leq$      | \leq or \le   |
+| $\geq$      | \geq or \ge   |
+| $\ll$       | \ll           |
+| $\gg$       | \gg           |
+| $\subset$   | \subset       |
+| $\supset$   | \supset       |
+| $\subseteq$ | \subseteq     |
+| $\supseteq$ | \supseteq     |
+| $\in$       | \in           |
+| $\ni$       | \ni           |
+| $\bigcup$   | \bigcup       |
+| $\bigcap$   | \bigcap       |
+| $\propto$   | \propto       |
+| $\infty$    | \infty        |
+
 
 
 ## 特殊符号
