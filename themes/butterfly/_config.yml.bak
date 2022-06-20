@@ -689,7 +689,7 @@ aside:
   mobile: true # display on mobile
   position: left # left or right
   card_history: # 添加开关名称  
-    enable: true # 打开card_history开关  
+    enable: false # 打开card_history开关  
   card_author:
     enable: true
     description: 
@@ -748,7 +748,7 @@ newest_comments:
   sort_order: # Don't modify the setting unless you know how it works
   limit: 5
   storage: 10 # unit: mins, save data to localStorage
-  avatar: false
+  avatar: true
 
 # Bottom right button (右下角按鈕)
 # --------------------------------------

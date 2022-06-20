@@ -35,20 +35,6 @@ type: "link"
 
 
 
-{% tabs link, 1 %}
-<!-- tab 网站信息 -->
-
-```
-网站名称: HalfA博客
-网站地址: https://www.mahaofei.com/
-头像地址: https://image.mahaofei.com/avatar.jpg
-网站简介: 无限进步！
-```
-
-<!-- endtab -->
-
-<!-- tab Butterfly -->
-
 ```YML
 name: HalfA博客
 link: https://www.mahaofei.com/
@@ -56,43 +42,6 @@ avatar: https://image.mahaofei.com/avatar.jpg
 descr: 无限进步！
 ```
 
-<!-- endtab -->
-
-<!-- tab fluid -->
-
-```YML
-{
-  title: 'HalfA博客',
-  intro: '无限进步！',
-  link: 'https://www.mahaofei.com/',
-  avatar: 'https://image.mahaofei.com/avatar.jpg'
-}
-```
-
-<!-- endtab -->
-
-<!-- tab volantis -->
-
-```YML
-title: HalfA博客
-avatar: https://image.mahaofei.com/avatar.jpg
-url: https://www.mahaofei.com/
-screenshot:  ！暂无
-keywords: 个人博客
-description: 无限进步！
-```
-
-<!-- endtab -->
-
-<!-- tab html -->
-
-```YML
-<a href="https://www.mahaofei.com/""><img src="https://image.mahaofei.com/avatar.jpg" alt="avatar">HalfA博客</a>
-```
-
-<!-- endtab -->
-
-{% endtabs %}
 
 
 
