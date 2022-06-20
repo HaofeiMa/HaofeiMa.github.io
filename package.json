@@ -19,7 +19,7 @@
     "hexo-baidu-url-submit": "^0.0.6",
     "hexo-browsersync": "^0.3.0",
     "hexo-butterfly-artitalk": "^1.0.4",
-    "hexo-butterfly-envelope": "^1.0.13",
+    "hexo-butterfly-envelope": "^1.0.15",
     "hexo-deployer-git": "^3.0.0",
     "hexo-generator-archive": "^1.0.0",
     "hexo-generator-baidu-sitemap": "^0.1.9",
