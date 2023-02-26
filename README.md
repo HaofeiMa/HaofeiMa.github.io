@@ -1,5 +1,4 @@
-# HuffieMa.github.io
-Welcome to my Blog: [HalfA Blog](https://www.mahaofei.com/)
+# Welcome to my Blog: [HalfA Blog](https://www.mahaofei.com/)
 
 欢迎访问我的博客：[HalfA博客](https://www.mahaofei.com/)
 
