@@ -1,6 +1,6 @@
-# Welcome to my Blog: [HalfA Blog](https://www.mahaofei.com/)
+# Welcome to my Blog: [HaofeiMa's Blog](https://www.mahaofei.com/)
 
-欢迎访问我的博客：[HalfA博客](https://www.mahaofei.com/)
+欢迎访问我的博客：[马浩飞丨个人博客](https://www.mahaofei.com/)
 
 # 关于本站
 
