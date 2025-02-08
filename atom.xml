@@ -164,9 +164,9 @@
     <category term="强化学习" scheme="https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
     
     
-    <category term="数据" scheme="https://www.mahaofei.com/tags/%E6%95%B0%E6%8D%AE/"/>
-    
     <category term="强化学习" scheme="https://www.mahaofei.com/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="数据" scheme="https://www.mahaofei.com/tags/%E6%95%B0%E6%8D%AE/"/>
     
     <category term="模仿学习" scheme="https://www.mahaofei.com/tags/%E6%A8%A1%E4%BB%BF%E5%AD%A6%E4%B9%A0/"/>
     
@@ -507,9 +507,9 @@
     
     <category term="笔记" scheme="https://www.mahaofei.com/tags/%E7%AC%94%E8%AE%B0/"/>
     
-    <category term="模仿学习" scheme="https://www.mahaofei.com/tags/%E6%A8%A1%E4%BB%BF%E5%AD%A6%E4%B9%A0/"/>
-    
     <category term="基础知识" scheme="https://www.mahaofei.com/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+    <category term="模仿学习" scheme="https://www.mahaofei.com/tags/%E6%A8%A1%E4%BB%BF%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
