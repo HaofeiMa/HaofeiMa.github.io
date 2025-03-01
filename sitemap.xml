@@ -2377,13 +2377,6 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/tags/PPO/</loc>
-    <lastmod>2025-03-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.mahaofei.com/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</loc>
     <lastmod>2025-03-01</lastmod>
     <changefreq>weekly</changefreq>
@@ -2392,6 +2385,13 @@
   
   <url>
     <loc>https://www.mahaofei.com/tags/Python/</loc>
+    <lastmod>2025-03-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.mahaofei.com/tags/PPO/</loc>
     <lastmod>2025-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2426,13 +2426,6 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/tags/MuJoCo/</loc>
-    <lastmod>2025-03-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.mahaofei.com/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA/</loc>
     <lastmod>2025-03-01</lastmod>
     <changefreq>weekly</changefreq>
@@ -2448,6 +2441,13 @@
   
   <url>
     <loc>https://www.mahaofei.com/tags/%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2025-03-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.mahaofei.com/tags/MuJoCo/</loc>
     <lastmod>2025-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2713,6 +2713,13 @@
   </url>
   
   <url>
+    <loc>https://www.mahaofei.com/tags/CVPR/</loc>
+    <lastmod>2025-03-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.mahaofei.com/tags/ECCV/</loc>
     <lastmod>2025-03-01</lastmod>
     <changefreq>weekly</changefreq>
@@ -2727,7 +2734,7 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/tags/CVPR/</loc>
+    <loc>https://www.mahaofei.com/tags/Gen6D/</loc>
     <lastmod>2025-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2735,13 +2742,6 @@
   
   <url>
     <loc>https://www.mahaofei.com/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</loc>
-    <lastmod>2025-03-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.mahaofei.com/tags/Gen6D/</loc>
     <lastmod>2025-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
