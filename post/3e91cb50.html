@@ -162,8 +162,7 @@
 <li>可定制性高。</li>
 </ul>
 <p>很重要的一点，zsh 完全兼容 bash，如果你的 bash 脚本开头是以 <code>!#/bin/bash</code> 的话，在 zsh 下还是完全兼容 bash 的。</p>
-<h2 id="安装-zsh">安装 zsh</h2>
-<p>查看系统可以使用的 shell：</p>
+<h2 id="安装-zsh"><a href="#安装-zsh" class="headerlink" title="安装 zsh"></a>安装 zsh</h2><p>查看系统可以使用的 shell：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/shells</span><br></pre></td></tr></table></figure>
 <p><strong>安装 zsh</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install zsh</span><br></pre></td></tr></table></figure>
@@ -177,12 +176,10 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chsh -s /bin/zsh</span><br><span class="line">chsh -s /bin/zsh</span><br></pre></td></tr></table></figure>
 <p>重启系统，打开终端，初次启动 zsh 会进入配置界面，输入 0 可以跳过</p>
 <p><img src="https://img.mahaofei.com/img/20241230170306614.png" alt="image.png"></p>
-<h2 id="安装-Oh-My-ZSH">安装 Oh My ZSH!</h2>
-<p>zsh 由于配置过于复杂门槛较高，大神开发了 <a href="https://cloud.tencent.com/developer/tools/blog-entry?target=https%3A%2F%2Fohmyz.sh%2F&amp;objectId=2412910&amp;objectType=1&amp;isNewArticle=undefined">oh my zsh</a> 极大降低了使用门槛。</p>
+<h2 id="安装-Oh-My-ZSH"><a href="#安装-Oh-My-ZSH" class="headerlink" title="安装 Oh My ZSH!"></a>安装 Oh My ZSH!</h2><p>zsh 由于配置过于复杂门槛较高，大神开发了 <a href="https://cloud.tencent.com/developer/tools/blog-entry?target=https%3A%2F%2Fohmyz.sh%2F&amp;objectId=2412910&amp;objectType=1&amp;isNewArticle=undefined">oh my zsh</a> 极大降低了使用门槛。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</span><br></pre></td></tr></table></figure>
 <p><img src="https://img.mahaofei.com/img/20241230170334218.png" alt="image.png"></p>
-<h2 id="配置主题：powerlevel10k">配置主题：powerlevel10k</h2>
-<blockquote>
+<h2 id="配置主题：powerlevel10k"><a href="#配置主题：powerlevel10k" class="headerlink" title="配置主题：powerlevel10k"></a>配置主题：powerlevel10k</h2><blockquote>
 <p>参考：<a target="_blank" rel="noopener" href="https://github.com/romkatv/powerlevel10k">https://github.com/romkatv/powerlevel10k</a></p>
 </blockquote>
 <p><strong>(0) 安装字体</strong></p>
@@ -190,7 +187,7 @@
 <ul>
 <li><a target="_blank" rel="noopener" href="https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf">MesloLGS NF Regular.ttf</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf">MesloLGS NF Bold.ttf</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf">MesloLGS NF Italic.ttf  MesloLGS NF 斜体.ttf</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf">MesloLGS NF Italic.ttf  MesloLGS NF 斜体.ttf</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf">MesloLGS NF Bold Italic.ttf</a></li>
 </ul>
 <p>打开【Terminal-&gt;Preferences】，选择配置文件，设置自定义字体为 <code>MesloLGS NF Regular</code>。</p>
@@ -198,12 +195,11 @@
 <p>下载代码库：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $&#123;ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom&#125;/themes/powerlevel10k</span><br></pre></td></tr></table></figure>
 <p><strong>(2) 设置主题</strong></p>
-<p>打开 <code>~/.zshrc</code> ，找到 <code>ZSH_THEME</code> 所在的行，并将其值更改为 <code>&quot;powerlevel10k/powerlevel10k&quot;</code></p>
+<p>打开 <code>~/.zshrc</code> ，找到 <code>ZSH_THEME</code> 所在的行，并将其值更改为 <code>&quot;powerlevel10k/powerlevel10k&quot;</code></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.zshrc</span><br></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZSH_THEME=&quot;powerlevel10k/powerlevel10k&quot;</span><br></pre></td></tr></table></figure>
 <p>最后，执行 <code>source ~/.zshrc</code> 配置生效，这时会提示对主题进行配置，按照提示进行即可。</p>
-<h2 id="安装插件">安装插件</h2>
-<p><strong>(0) oh-my-zsh 内置命令补全</strong></p>
+<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p><strong>(0) oh-my-zsh 内置命令补全</strong></p>
 <p>默认 oh-my-zsh 命令自动补全功能如下：</p>
 <ul>
 <li><strong>自动列出目录</strong>：输入 cd 按 tab 键，目录将自动列出，在按 tab 可以切换</li>
