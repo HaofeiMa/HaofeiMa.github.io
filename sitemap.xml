@@ -1820,7 +1820,7 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/post/nodejs.html</loc>
+    <loc>https://www.mahaofei.com/post/ubuntu-vnc.html</loc>
     
     <lastmod>2021-02-18</lastmod>
     
@@ -1829,7 +1829,7 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/post/ubuntu-vnc.html</loc>
+    <loc>https://www.mahaofei.com/post/nodejs.html</loc>
     
     <lastmod>2021-02-18</lastmod>
     
@@ -2297,7 +2297,7 @@
 
   
   <url>
-    <loc>https://www.mahaofei.com/tags/bugs/</loc>
+    <loc>https://www.mahaofei.com/tags/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2305,34 +2305,6 @@
   
   <url>
     <loc>https://www.mahaofei.com/tags/Ubuntu/</loc>
-    <lastmod>2025-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.mahaofei.com/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/</loc>
-    <lastmod>2025-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.mahaofei.com/tags/%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2025-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.mahaofei.com/tags/Qt/</loc>
-    <lastmod>2025-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.mahaofei.com/tags/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2367,6 +2339,34 @@
   </url>
   
   <url>
+    <loc>https://www.mahaofei.com/tags/%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.mahaofei.com/tags/bugs/</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.mahaofei.com/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.mahaofei.com/tags/Qt/</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.mahaofei.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -2395,6 +2395,13 @@
   </url>
   
   <url>
+    <loc>https://www.mahaofei.com/tags/PPO/</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.mahaofei.com/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -2409,14 +2416,7 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/tags/PPO/</loc>
-    <lastmod>2025-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.mahaofei.com/tags/ROS/</loc>
+    <loc>https://www.mahaofei.com/tags/slam/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2430,14 +2430,14 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/tags/ROS2/</loc>
+    <loc>https://www.mahaofei.com/tags/ROS/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/tags/slam/</loc>
+    <loc>https://www.mahaofei.com/tags/ROS2/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2472,6 +2472,13 @@
   </url>
   
   <url>
+    <loc>https://www.mahaofei.com/tags/%E6%8A%93%E5%8F%96%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1/</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.mahaofei.com/tags/%E8%A7%86%E8%A7%89/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -2480,13 +2487,6 @@
   
   <url>
     <loc>https://www.mahaofei.com/tags/%E6%8A%93%E5%8F%96/</loc>
-    <lastmod>2025-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.mahaofei.com/tags/%E6%8A%93%E5%8F%96%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2528,13 +2528,6 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/tags/Latex/</loc>
-    <lastmod>2025-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.mahaofei.com/tags/NVIDIA/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -2543,6 +2536,13 @@
   
   <url>
     <loc>https://www.mahaofei.com/tags/%E4%BB%BF%E7%9C%9F/</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.mahaofei.com/tags/Latex/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2619,20 +2619,6 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/</loc>
-    <lastmod>2025-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.mahaofei.com/tags/Staple/</loc>
-    <lastmod>2025-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.mahaofei.com/tags/%E7%9B%AE%E6%A0%87%E8%AF%86%E5%88%AB/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -2641,6 +2627,20 @@
   
   <url>
     <loc>https://www.mahaofei.com/tags/SIFT/</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.mahaofei.com/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.mahaofei.com/tags/Staple/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2738,6 +2738,13 @@
   </url>
   
   <url>
+    <loc>https://www.mahaofei.com/tags/CVPR/</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.mahaofei.com/tags/ECCV/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -2746,13 +2753,6 @@
   
   <url>
     <loc>https://www.mahaofei.com/tags/GDRNPP/</loc>
-    <lastmod>2025-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.mahaofei.com/tags/CVPR/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2808,14 +2808,14 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/tags/LabVIEW/</loc>
+    <loc>https://www.mahaofei.com/tags/PLC/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/tags/PLC/</loc>
+    <loc>https://www.mahaofei.com/tags/LabVIEW/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2838,27 +2838,6 @@
 
   
   <url>
-    <loc>https://www.mahaofei.com/categories/%E7%A8%8B%E5%BA%8F%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2025-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.mahaofei.com/categories/%E7%A8%8B%E5%BA%8F%E5%9F%BA%E7%A1%80/Linux/</loc>
-    <lastmod>2025-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.mahaofei.com/categories/%E7%A8%8B%E5%BA%8F%E5%9F%BA%E7%A1%80/Qt/</loc>
-    <lastmod>2025-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.mahaofei.com/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -2866,21 +2845,7 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2025-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.mahaofei.com/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/%E7%A0%B4%E8%A7%A3%E8%B5%84%E6%BA%90/</loc>
-    <lastmod>2025-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2901,14 +2866,49 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://www.mahaofei.com/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/</loc>
+    <loc>https://www.mahaofei.com/categories/%E7%A8%8B%E5%BA%8F%E5%9F%BA%E7%A1%80/</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.mahaofei.com/categories/%E7%A8%8B%E5%BA%8F%E5%9F%BA%E7%A1%80/Linux/</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.mahaofei.com/categories/%E7%A8%8B%E5%BA%8F%E5%9F%BA%E7%A1%80/Qt/</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2929,6 +2929,34 @@
   </url>
   
   <url>
+    <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/SLAM/</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/%E4%BA%BA%E6%9C%BA%E5%8D%8F%E4%BD%9C/</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/%E4%BB%BF%E7%9C%9F/</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.mahaofei.com/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -2937,13 +2965,6 @@
   
   <url>
     <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/ROS/</loc>
-    <lastmod>2025-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/%E4%BB%BF%E7%9C%9F/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2971,13 +2992,6 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/SLAM/</loc>
-    <lastmod>2025-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E5%A4%87/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -2999,14 +3013,7 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2025-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/%E4%BA%BA%E6%9C%BA%E5%8D%8F%E4%BD%9C/</loc>
+    <loc>https://www.mahaofei.com/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E7%A7%91%E7%A0%94%E5%9F%BA%E7%A1%80/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -3014,13 +3021,6 @@
   
   <url>
     <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/RobotStudio/</loc>
-    <lastmod>2025-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.mahaofei.com/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E7%A7%91%E7%A0%94%E5%9F%BA%E7%A1%80/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
