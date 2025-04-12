@@ -929,7 +929,7 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/post/latex-formula.html</loc>
+    <loc>https://www.mahaofei.com/post/latex-basic.html</loc>
     
     <lastmod>2022-04-26</lastmod>
     
@@ -938,7 +938,7 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/post/latex-basic.html</loc>
+    <loc>https://www.mahaofei.com/post/latex-formula.html</loc>
     
     <lastmod>2022-04-26</lastmod>
     
@@ -2395,13 +2395,6 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/tags/PPO/</loc>
-    <lastmod>2025-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.mahaofei.com/tags/%E6%95%B0%E6%8D%AE/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -2410,6 +2403,13 @@
   
   <url>
     <loc>https://www.mahaofei.com/tags/%E6%A8%A1%E4%BB%BF%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.mahaofei.com/tags/PPO/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2472,6 +2472,13 @@
   </url>
   
   <url>
+    <loc>https://www.mahaofei.com/tags/%E6%8A%93%E5%8F%96%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1/</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.mahaofei.com/tags/%E8%A7%86%E8%A7%89/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -2480,13 +2487,6 @@
   
   <url>
     <loc>https://www.mahaofei.com/tags/%E6%8A%93%E5%8F%96/</loc>
-    <lastmod>2025-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.mahaofei.com/tags/%E6%8A%93%E5%8F%96%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2738,6 +2738,13 @@
   </url>
   
   <url>
+    <loc>https://www.mahaofei.com/tags/CVPR/</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.mahaofei.com/tags/ECCV/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -2746,13 +2753,6 @@
   
   <url>
     <loc>https://www.mahaofei.com/tags/GDRNPP/</loc>
-    <lastmod>2025-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.mahaofei.com/tags/CVPR/</loc>
     <lastmod>2025-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
