@@ -93,8 +93,8 @@ https://www.mahaofei.com/post/deeplearning-note1.html
 https://www.mahaofei.com/post/deeplearning-basic.html
 https://www.mahaofei.com/post/channel.html
 https://www.mahaofei.com/post/convolution.html
-https://www.mahaofei.com/post/cuda.html
 https://www.mahaofei.com/post/pytorch.html
+https://www.mahaofei.com/post/cuda.html
 https://www.mahaofei.com/post/latex-basic.html
 https://www.mahaofei.com/post/latex-formula.html
 https://www.mahaofei.com/post/ieee-format.html
