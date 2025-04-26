@@ -96,8 +96,8 @@ https://www.mahaofei.com/post/convolution.html
 https://www.mahaofei.com/post/cuda.html
 https://www.mahaofei.com/post/pytorch.html
 https://www.mahaofei.com/post/latex-basic.html
-https://www.mahaofei.com/post/ieee-format.html
 https://www.mahaofei.com/post/latex-formula.html
+https://www.mahaofei.com/post/ieee-format.html
 https://www.mahaofei.com/post/butterfly.html
 https://www.mahaofei.com/post/numpy.html
 https://www.mahaofei.com/post/anaconda.html
