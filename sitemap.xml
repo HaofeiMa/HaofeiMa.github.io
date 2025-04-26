@@ -1820,7 +1820,7 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/post/ubuntu-vnc.html</loc>
+    <loc>https://www.mahaofei.com/post/nodejs.html</loc>
     
     <lastmod>2021-02-18</lastmod>
     
@@ -1829,7 +1829,7 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/post/nodejs.html</loc>
+    <loc>https://www.mahaofei.com/post/ubuntu-vnc.html</loc>
     
     <lastmod>2021-02-18</lastmod>
     
@@ -2311,7 +2311,7 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/tags/%E5%8F%8C%E7%B3%BB%E7%BB%9F/</loc>
+    <loc>https://www.mahaofei.com/tags/%E5%A4%9A%E4%B8%BB%E6%9C%BA/</loc>
     <lastmod>2025-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2325,7 +2325,7 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/tags/%E5%A4%9A%E4%B8%BB%E6%9C%BA/</loc>
+    <loc>https://www.mahaofei.com/tags/%E5%8F%8C%E7%B3%BB%E7%BB%9F/</loc>
     <lastmod>2025-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2682,13 +2682,6 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/tags/OpenCV/</loc>
-    <lastmod>2025-04-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.mahaofei.com/tags/%E4%B8%89%E7%BB%B4%E9%87%8D%E5%BB%BA/</loc>
     <lastmod>2025-04-26</lastmod>
     <changefreq>weekly</changefreq>
@@ -2711,6 +2704,13 @@
   
   <url>
     <loc>https://www.mahaofei.com/tags/%E7%82%B9%E4%BA%91/</loc>
+    <lastmod>2025-04-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.mahaofei.com/tags/OpenCV/</loc>
     <lastmod>2025-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2759,14 +2759,14 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/tags/Gen6D/</loc>
+    <loc>https://www.mahaofei.com/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</loc>
     <lastmod>2025-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</loc>
+    <loc>https://www.mahaofei.com/tags/Gen6D/</loc>
     <lastmod>2025-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2808,14 +2808,14 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/tags/LabVIEW/</loc>
+    <loc>https://www.mahaofei.com/tags/PLC/</loc>
     <lastmod>2025-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/tags/PLC/</loc>
+    <loc>https://www.mahaofei.com/tags/LabVIEW/</loc>
     <lastmod>2025-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2908,14 +2908,14 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2025-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2025-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -3104,14 +3104,14 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/OpenCV/</loc>
+    <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/3D%E7%82%B9%E4%BA%91/</loc>
     <lastmod>2025-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/3D%E7%82%B9%E4%BA%91/</loc>
+    <loc>https://www.mahaofei.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/OpenCV/</loc>
     <lastmod>2025-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
