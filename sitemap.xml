@@ -929,7 +929,7 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/post/latex-formula.html</loc>
+    <loc>https://www.mahaofei.com/post/latex-basic.html</loc>
     
     <lastmod>2022-04-26</lastmod>
     
@@ -938,7 +938,7 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/post/latex-basic.html</loc>
+    <loc>https://www.mahaofei.com/post/latex-formula.html</loc>
     
     <lastmod>2022-04-26</lastmod>
     
@@ -2444,13 +2444,6 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/tags/MuJoCo/</loc>
-    <lastmod>2025-05-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.mahaofei.com/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA/</loc>
     <lastmod>2025-05-10</lastmod>
     <changefreq>weekly</changefreq>
@@ -2472,7 +2465,7 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/tags/%E6%8A%93%E5%8F%96%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1/</loc>
+    <loc>https://www.mahaofei.com/tags/MuJoCo/</loc>
     <lastmod>2025-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2487,6 +2480,13 @@
   
   <url>
     <loc>https://www.mahaofei.com/tags/%E6%8A%93%E5%8F%96/</loc>
+    <lastmod>2025-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.mahaofei.com/tags/%E6%8A%93%E5%8F%96%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1/</loc>
     <lastmod>2025-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2738,7 +2738,7 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/tags/CVPR/</loc>
+    <loc>https://www.mahaofei.com/tags/ECCV/</loc>
     <lastmod>2025-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2752,7 +2752,7 @@
   </url>
   
   <url>
-    <loc>https://www.mahaofei.com/tags/ECCV/</loc>
+    <loc>https://www.mahaofei.com/tags/CVPR/</loc>
     <lastmod>2025-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
