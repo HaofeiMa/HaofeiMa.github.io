@@ -472,9 +472,9 @@
     
     <category term="强化学习" scheme="https://www.mahaofei.com/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
     
-    <category term="MuJoCo" scheme="https://www.mahaofei.com/tags/MuJoCo/"/>
-    
     <category term="实验" scheme="https://www.mahaofei.com/tags/%E5%AE%9E%E9%AA%8C/"/>
+    
+    <category term="MuJoCo" scheme="https://www.mahaofei.com/tags/MuJoCo/"/>
     
   </entry>
   
