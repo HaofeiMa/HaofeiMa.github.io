@@ -1,0 +1,368 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>【SLAM笔记】三维刚体运动 | 马浩飞丨博客</title><meta name="keywords" content="笔记,slam"><meta name="author" content="马浩飞"><meta name="copyright" content="马浩飞"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="两个坐标系之间的旋转、平移关系，统称为坐标系之间的变换关系。机器人运动过程中，往往会设定一个惯性坐标系（即世界坐标系），可以认为它是固定不动的。机器人则是一个移动坐标系。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【SLAM笔记】三维刚体运动">
+<meta property="og:url" content="https://www.mahaofei.com/post/slam-rotation.html">
+<meta property="og:site_name" content="马浩飞丨博客">
+<meta property="og:description" content="两个坐标系之间的旋转、平移关系，统称为坐标系之间的变换关系。机器人运动过程中，往往会设定一个惯性坐标系（即世界坐标系），可以认为它是固定不动的。机器人则是一个移动坐标系。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.mahaofei.com/img/202112231727349-slam-notes2-3.png">
+<meta property="article:published_time" content="2021-04-10T04:03:11.000Z">
+<meta property="article:modified_time" content="2021-04-10T04:03:11.000Z">
+<meta property="article:author" content="马浩飞">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="slam">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.mahaofei.com/img/202112231727349-slam-notes2-3.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.mahaofei.com/post/slam-rotation"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-bB89NudWgv"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?439a0d0abeb31dd8f338efd8266c999b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"ABY1KMOQQM","apiKey":"d3f3a4fbb355106e6bf265cf8da1863b","indexName":"hexo","hits":{"per_page":4},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【SLAM笔记】三维刚体运动',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-04-10 12:03:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="/css/custom/MainColor.css"><link rel="stylesheet" href="/css/custom/categoryBar.css"><link rel="stylesheet" href="/css/custom/404.css"><link rel="stylesheet" href="/css/custom/cardHistory.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><link rel="stylesheet" href="/css/custom/custom.css"><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="马浩飞丨博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.mahaofei.com/img/202112231727349-slam-notes2-3.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">马浩飞丨博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div><center id="name-container"><a id="page-name" href="javascript:scrollToTop()">PAGE_NAME</a></center></div><div id="nav-right"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【SLAM笔记】三维刚体运动</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-04-10T04:03:11.000Z" title="发表于 2021-04-10 12:03:11">2021-04-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-04-10T04:03:11.000Z" title="更新于 2021-04-10 12:03:11">2021-04-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/">机器人</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/SLAM/">SLAM</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【SLAM笔记】三维刚体运动"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/post/slam-rotation.html#post-comment"><span id="twikoo-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><strong>SLAM笔记专栏：</strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44543463/category_10925276.html">https://blog.csdn.net/weixin_44543463/category_10925276.html</a></p>
+<hr>
+<h2 id="一、旋转矩阵"><a href="#一、旋转矩阵" class="headerlink" title="一、旋转矩阵"></a>一、旋转矩阵</h2><h3 id="1-1-向量"><a href="#1-1-向量" class="headerlink" title="1.1 向量"></a>1.1 向量</h3><p>&emsp;&emsp;向量与坐标是两个不同的概念。向量只是有大小和方向的量。只有当指定了三维空间中某个坐标系的时候，才能谈论向量在此坐标系下的坐标。<strong>因此向量的坐标，既和向量本身有关，也和坐标系的选取有关。</strong><br>&emsp;&emsp;向量的内积描述了向量之间的投影关系。</p>
+<p><img src="https://img.mahaofei.com/img/202112231726158-slam-notes2-1.png" alt=""></p>
+<p>&emsp;&emsp;向量的外积，方向垂直于这两个向量，大小为|a||b|sin<a,b>。</p>
+<p><img src="https://img.mahaofei.com/img/202112231727876-slam-notes2-2.png" alt=""></p>
+<h3 id="1-2-欧氏变换"><a href="#1-2-欧氏变换" class="headerlink" title="1.2 欧氏变换"></a>1.2 欧氏变换</h3><p>&emsp;&emsp;两个坐标系之间的旋转、平移关系，统称为坐标系之间的变换关系。机器人运动过程中，往往会设定一个惯性坐标系（即世界坐标系），可以认为它是固定不动的。机器人则是一个移动坐标系。<br>&emsp;&emsp;如果需要知道某个向量在机器人坐标系中与世界坐标系中如何转换的，就需要先得到该向量对机器人坐标系的坐标值，再根据机器人位姿转换到世界坐标系中，这个转换关系用矩阵T来描述。<br>&emsp;&emsp;机器人移动是一个刚体运动，即同一个向量在各个坐标系下的长度和夹角都不会发生变化，这种变化就是<strong>欧式变换</strong>。</p>
+<p><img src="https://img.mahaofei.com/img/202112231727349-slam-notes2-3.png" alt=""></p>
+<p><strong>（1）旋转矩阵</strong><br>&emsp;&emsp;假设某个单位正交基($\boldsymbol{e_1}$,$\boldsymbol {e_2}$,$\boldsymbol{e_3}$)经过了一次旋转，变成了($\boldsymbol {e_1}’$,$\boldsymbol{e_2}’$,$\boldsymbol {e_3}’$)，则对于同一个向量$\boldsymbol{a}$（该向量没有随坐标系旋转而运动），则可知</p>
+<p>用矩阵表示如下</p>
+<p><img src="https://img.mahaofei.com/img/202112231727592-slam-notes2-4.png" alt=""></p>
+<p>&emsp;<img src="https://img.mahaofei.com/img/202112231727422-slam-notes2-5.png" alt=""></p>
+<p>&emsp;为了表示两个坐标之间的变换关系，等式两边同乘[$\boldsymbol{e_1}^T$ $\boldsymbol{e_2}^T$ $\boldsymbol{e_3}^T$]T，则左侧矩阵变成了单位矩阵：</p>
+<p><img src="https://img.mahaofei.com/img/202112231728395-slam-notes2-6.png" alt=""></p>
+<p>&emsp;&emsp;中间这个行列式为1的正交矩阵，就是所谓的旋转矩阵。<br>&emsp;&emsp;同时，此旋转矩阵的逆描述了一个相反的旋转。</p>
+<p><img src="https://img.mahaofei.com/img/202112231729153-slam-notes2-7.png" alt=""></p>
+<p><strong>（2)平移矩阵</strong><br>&emsp;&emsp;平移矩阵十分简单，只需要将平移量加到旋转之后的坐标上就可以了。</p>
+<p><img src="https://img.mahaofei.com/img/202112231729229-slam-notes2-8.png" alt=""></p>
+<h3 id="1-3-变换矩阵"><a href="#1-3-变换矩阵" class="headerlink" title="1.3 变换矩阵"></a>1.3 变换矩阵</h3><p>&emsp;&emsp;使用下面这种形式进行变换时，变化多次之后往往会变得过于复杂且不满足线性关系。</p>
+<p><img src="https://img.mahaofei.com/img/202112231729425-slam-notes2-9.png" alt=""></p>
+<p>&emsp;&emsp;因此通常我们会使用如下的齐次坐标和变换矩阵进行变换。即把三维向量末尾加一，变成四维向量，称为齐次坐标$\tilde{a}$。将旋转矩阵和平移矩阵写在同一个矩阵里面，这个矩阵T称为变换矩阵。</p>
+<p><img src="https://img.mahaofei.com/img/202112231730503-slam-notes2-10.png" alt=""></p>
+<p>&emsp;&emsp;引入齐次坐标就可以实现多个变换矩阵的连乘，得到一个总的变换矩阵，实现多次变换的累加。</p>
+<p><img src="https://img.mahaofei.com/img/202112231731355-slam-notes2-11.png" alt=""></p>
+<h2 id="二、角轴和欧拉角"><a href="#二、角轴和欧拉角" class="headerlink" title="二、角轴和欧拉角"></a>二、角轴和欧拉角</h2><h3 id="2-1-问题提出"><a href="#2-1-问题提出" class="headerlink" title="2.1 问题提出"></a>2.1 问题提出</h3><p>&emsp;&emsp;旋转矩阵有九个量，但一次旋转只有三个自由度，变换矩阵用十六个量表达六自由度变换，表达方式可能冗余。同时旋转矩阵本身要求必须是正交矩阵，变换矩阵一样都需要约束条件，有些情况下这些约束会使求解变得困难。</p>
+<h3 id="2-2-角轴"><a href="#2-2-角轴" class="headerlink" title="2.2 角轴"></a>2.2 角轴</h3><p><strong>（1）定义</strong><br>&emsp;&emsp;<strong>任意旋转都可以用一个旋转轴和一个旋转角来刻画</strong>。我们可以使用一个向量，其方向与旋转轴一致，长度等于旋转角，这种向量就称为旋转向量或角轴。<br>&emsp;&emsp;使用角轴表示方法只需要一个三维向量即可描述旋转。同样对于变换矩阵，我们使用一个角轴和一个平移向量即可表达。<br><strong>（2）角轴与旋转矩阵的转换</strong><br>&emsp;&emsp;假设有一个旋转轴为$\boldsymbol {n}$，角度为θ的旋转，显然旋转向量为θ$\boldsymbol {n}$。由角轴转化为旋转矩阵，可以使用罗德里格斯公式：</p>
+<p><img src="https://img.mahaofei.com/img/202112231731480-slam-notes2-12.png" alt=""></p>
+<p>&emsp;&emsp;同样也可以计算从旋转矩阵到角轴的转换。（由于旋转轴上的向量旋转后不发生变化，因此旋转轴就是旋转矩阵$\boldsymbol {R}$的特征值1对应的特征向量）。</p>
+<p><img src="https://img.mahaofei.com/img/202112231732000-slam-notes2-13.png" alt=""></p>
+<h3 id="2-3-欧拉角"><a href="#2-3-欧拉角" class="headerlink" title="2.3 欧拉角"></a>2.3 欧拉角</h3><p>&emsp;&emsp;旋转矩阵和角轴都不太直观，而欧拉角的表达方式比较利于人的理解。（但是在程序中不常用）<br>&emsp;&emsp;欧拉将将旋转分解为三次不同轴上的转动，例如按Z-Y-X顺序转动，可以得到yaw-pitch-roll角。</p>
+<blockquote>
+<ol>
+<li>绕物体的 Z 轴旋转，得到偏航角 yaw；</li>
+<li>绕旋转之后的 Y 轴旋转，得到俯仰角 pitch；</li>
+<li>绕旋转之后的 X 轴旋转，得到滚转角 roll。</li>
+</ol>
+</blockquote>
+<p><img src="https://img.mahaofei.com/img/202112231732937-slam-notes2-14.png" alt=""></p>
+<p>&emsp;&emsp;欧拉角存在万向锁的问题，例如在ZYX顺序中，第一次绕Z轴旋转，第二次绕Y轴旋转90°，这时候x轴和系统初始时的Z轴重合了，导致第三次旋转和第一次是绕同一个轴旋转，丢失了一个自由度。所以程序中很少用欧拉角表示机器人的位姿。</p>
+<p><img src="https://img.mahaofei.com/img/202112231732880-slam-notes2-15.png" alt=""></p>
+<h2 id="三、四元数"><a href="#三、四元数" class="headerlink" title="三、四元数"></a>三、四元数</h2><h3 id="3-1-简介"><a href="#3-1-简介" class="headerlink" title="3.1 简介"></a>3.1 简介</h3><p>&emsp;&emsp;四元数是一种扩展的复数。我们知道复数可以表示复平面内的旋转，乘i表示复平面内逆时针转90度，单位圆上的复数可以表达二维平面的旋转。<br>&emsp;&emsp;四元数有三个虚部，可以表达三维空间中的旋转。</p>
+<p><img src="https://img.mahaofei.com/img/202112231733226-slam-notes2-16.png" alt=""></p>
+<p><img src="https://img.mahaofei.com/img/202112231733270-slam-notes2-17.png" alt=""></p>
+<p>&emsp;&emsp;四元数的虚部相乘，类似于虚数i的相乘，也有对应的关系，且其关系很想三维空间中的叉积。</p>
+<p><img src="https://img.mahaofei.com/img/202112231734265-slam-notes2-18.png" alt=""></p>
+<h3 id="3-2-四元数的运算"><a href="#3-2-四元数的运算" class="headerlink" title="3.2 四元数的运算"></a>3.2 四元数的运算</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>运算</th>
+<th>公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>加减法</td>
+<td><img src="https://img.mahaofei.com/img/202112231734688-slam-notes2-19.png" alt=""></td>
+</tr>
+<tr>
+<td>乘法</td>
+<td><img src="https://img.mahaofei.com/img/202112231734564-slam-notes2-20.png" alt=""></td>
+</tr>
+<tr>
+<td>共轭</td>
+<td><img src="https://img.mahaofei.com/img/202112231735700-slam-notes2-21.png" alt=""></td>
+</tr>
+<tr>
+<td>模长</td>
+<td><img src="https://img.mahaofei.com/img/202112231735117-slam-notes2-22.png" alt=""></td>
+</tr>
+<tr>
+<td>逆</td>
+<td><img src="https://img.mahaofei.com/img/202112231736441-slam-notes2-23.png" alt=""></td>
+</tr>
+<tr>
+<td>数乘</td>
+<td><img src="https://img.mahaofei.com/img/202112231736563-slam-notes2-24.png" alt=""></td>
+</tr>
+<tr>
+<td>点乘</td>
+<td><img src="https://img.mahaofei.com/img/202112231736291-slam-notes2-25.png" alt=""></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="3-3-用四元数表示旋转"><a href="#3-3-用四元数表示旋转" class="headerlink" title="3.3 用四元数表示旋转"></a>3.3 用四元数表示旋转</h4><p><strong>（1）四元数与角轴、旋转矩阵的转换</strong>  </p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>转换</th>
+<th>公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>角轴到四元数：</td>
+<td><img src="https://img.mahaofei.com/img/202112231740376-slam-notes2-26.png" alt=""></td>
+</tr>
+<tr>
+<td>四元数到角轴</td>
+<td><img src="https://img.mahaofei.com/img/202112231740724-slam-notes2-27.png" alt=""></td>
+</tr>
+<tr>
+<td>四元数到旋转矩阵</td>
+<td><img src="https://img.mahaofei.com/img/202112231740443-slam-notes2-28.png" alt=""></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>（2）使用四元数表示旋转</strong></p>
+<p>&emsp;&emsp;四元数有三个虚部i, j, k，将三个坐标值作为三个虚部的系数，另实部为零，这样就将一个三维空间坐标转换为纯虚四元数表示的坐标。</p>
+<p>&emsp;&emsp;用一个四元数$\boldsymbol{q}$表示旋转。</p>
+<p><img src="https://img.mahaofei.com/img/202112231740466-slam-notes2-29.png" alt=""></p>
+<p>&emsp;&emsp;空间点的旋转可以用四元数的乘法表示，旋转后的点$\boldsymbol{p’}$如下</p>
+<p><img src="https://img.mahaofei.com/img/202112231741907-slam-notes2-30.png" alt=""></p>
+<blockquote>
+<p>参考：<strong>高翔-视觉SLAM十四讲</strong><br>相关Github：<a target="_blank" rel="noopener" href="https://github.com/gaoxiang12/slambook">https://github.com/gaoxiang12/slambook</a></p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>【SLAM笔记】三维刚体运动</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://www.mahaofei.com/post/slam-rotation.html">https://www.mahaofei.com/post/slam-rotation.html</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>马浩飞</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2021-04-10</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2021-04-10</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="post-meta__tags" href="/tags/slam/">slam</a></div><div class="post_share"><div class="social-share" data-image="https://img.mahaofei.com/img/202112231727349-slam-notes2-3.png" data-sites="qq,wechat,weibo,facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/img/wechatpay.png" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/labview-3dsurface.html"><img class="prev-cover" src="https://img.mahaofei.com/img/202112231725803-labview-vise-10.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Labview生成三维曲面 | 花瓶</div></div></a></div><div class="next-post pull-right"><a href="/post/eigen.html"><img class="next-cover" src="https://img.mahaofei.com/img/202112231730503-slam-notes2-10.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【SLAM笔记】如何使用Eigen进行矩阵运算</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><a href="https://www.mahaofei.com"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></a></div><div class="author-info__name">马浩飞</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-solid fa-graduation-cap"></i><span>学术主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/HaofeiMa" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:mail@mahaofei.com" target="_blank" title="E-Mail"><i class="fa fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">新增了<a target="_blank" rel="noopener" href="https://academic.mahaofei.com/">学术主页</a>！<br>有任何问题欢迎留言评论或邮件联系。<br>E-mail：<a href="mailto:blog@mahaofei.com" style="text-decoration:underline;">blog@mahaofei.com</a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5"><span class="toc-text">一、旋转矩阵</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%90%91%E9%87%8F"><span class="toc-text">1.1 向量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E6%AC%A7%E6%B0%8F%E5%8F%98%E6%8D%A2"><span class="toc-text">1.2 欧氏变换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5"><span class="toc-text">1.3 变换矩阵</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%A7%92%E8%BD%B4%E5%92%8C%E6%AC%A7%E6%8B%89%E8%A7%92"><span class="toc-text">二、角轴和欧拉角</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E9%97%AE%E9%A2%98%E6%8F%90%E5%87%BA"><span class="toc-text">2.1 问题提出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E8%A7%92%E8%BD%B4"><span class="toc-text">2.2 角轴</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E6%AC%A7%E6%8B%89%E8%A7%92"><span class="toc-text">2.3 欧拉角</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%9B%9B%E5%85%83%E6%95%B0"><span class="toc-text">三、四元数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E7%AE%80%E4%BB%8B"><span class="toc-text">3.1 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%9B%9B%E5%85%83%E6%95%B0%E7%9A%84%E8%BF%90%E7%AE%97"><span class="toc-text">3.2 四元数的运算</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-%E7%94%A8%E5%9B%9B%E5%85%83%E6%95%B0%E8%A1%A8%E7%A4%BA%E6%97%8B%E8%BD%AC"><span class="toc-text">3.3 用四元数表示旋转</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recommend-post"><div class="item-headline"><i class="fas fa-dharmachakra"></i><span>相关推荐</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/slam-intro.html" title="【SLAM笔记】SLAM概述"><img src="https://img.mahaofei.com/img/202112231715582-slam-notes1-1.png" alt="【SLAM笔记】SLAM概述"></a><div class="content"><a class="title" href="/post/slam-intro.html" title="【SLAM笔记】SLAM概述">【SLAM笔记】SLAM概述</a><time datetime="2021-03-28" title="发表于 2021-03-28">2021-03-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/camera-distortion.html" title="相机模型与去畸变方法详解"><img src="https://img.mahaofei.com/img/202112231950996-camera-models-12.png" alt="相机模型与去畸变方法详解"></a><div class="content"><a class="title" href="/post/camera-distortion.html" title="相机模型与去畸变方法详解">相机模型与去畸变方法详解</a><time datetime="2021-10-09" title="发表于 2021-10-09">2021-10-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/eigen.html" title="【SLAM笔记】如何使用Eigen进行矩阵运算"><img src="https://img.mahaofei.com/img/202112231730503-slam-notes2-10.png" alt="【SLAM笔记】如何使用Eigen进行矩阵运算"></a><div class="content"><a class="title" href="/post/eigen.html" title="【SLAM笔记】如何使用Eigen进行矩阵运算">【SLAM笔记】如何使用Eigen进行矩阵运算</a><time datetime="2021-04-12" title="发表于 2021-04-12">2021-04-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ceres.html" title="【Ceres基本使用方法】使用Ceres拟合曲线求解最小二乘问题"><img src="https://img.mahaofei.com/img/202112232017359-ceres-introduction-2.png" alt="【Ceres基本使用方法】使用Ceres拟合曲线求解最小二乘问题"></a><div class="content"><a class="title" href="/post/ceres.html" title="【Ceres基本使用方法】使用Ceres拟合曲线求解最小二乘问题">【Ceres基本使用方法】使用Ceres拟合曲线求解最小二乘问题</a><time datetime="2021-10-23" title="发表于 2021-10-23">2021-10-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/g2o.html" title="g2o图优化简介与基本使用方法"><img src="https://img.mahaofei.com/img/20220410103756.png" alt="g2o图优化简介与基本使用方法"></a><div class="content"><a class="title" href="/post/g2o.html" title="g2o图优化简介与基本使用方法">g2o图优化简介与基本使用方法</a><time datetime="2021-10-24" title="发表于 2021-10-24">2021-10-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/obsidian.html" title="【笔记工具】Markdown语法与Obsidian编辑器"><img src="https://img.mahaofei.com/img/202311292058718.png" alt="【笔记工具】Markdown语法与Obsidian编辑器"></a><div class="content"><a class="title" href="/post/obsidian.html" title="【笔记工具】Markdown语法与Obsidian编辑器">【笔记工具】Markdown语法与Obsidian编辑器</a><time datetime="2023-11-29" title="发表于 2023-11-29">2023-11-29</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.mahaofei.com/img/GoodnightCopenhagen.png')"><div id="footer-wrap"><div class="footer_custom_text"><p><a style="margin-inline:5px"target="_blank"href="https://github.com/"><img src="https://img.shields.io/badge/Hosted-Github-brightgreen?style=flat&logo=GitHub"title="本站项目由Gtihub托管"></a><a style="margin-inline:5px"target="_blank"href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo"title="博客框架为Hexo"></a><a style="margin-inline:5px"target="_blank"href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?logoColor=white&style=flat&logo=buefy"title="主题采用butterfly"></a><a style="margin-inline:5px"target="_blank"href="https://aliyun.com/product/cdn"><img src="https://img.shields.io/badge/DNS-Cloudflare-orange?style=flat&logo=Cloudflare"title="本站使用Cloudflare网络服务"></a><a style="margin-inline:5px"target="_blank"href="https://beian.miit.gov.cn/"><img src="https://img.shields.io/badge/%E6%B4%A5ICP%E5%A4%87-2021000769%E5%8F%B7--3-red?logo=data:image/png;base64,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"title="备案号:津ICP备2021000769号-3"></a><a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris"title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><i class="fas fa-adjust"><use id="modeicon" xlink:href="#icon-moon"></use></i></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Algolia</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, "https://cdn.jsdelivr.net/gh/zhheo/twikoo@dev/dist/twikoo.all.min.js"))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script><script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script><script src="/js/custom/categoryBar.js"></script><script src="/js/custom/cardHistory.js"></script><script src="/js/custom/light_dark.js"></script><script src="/js/custom/forbidCopy.js"></script><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"Jfmc1FSFWs09EC8r",ck:"Jfmc1FSFWs09EC8r"})</script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script>new LingQue.Monitor().init({id:"JfmcYvlVsVAZlVkS"});</script><script defer src="https://cloud.umami.is/script.js" data-website-id="86b466f8-e8bc-415b-954e-289b3d0110fb"></script><script src="/js/custom/custom.js"></script><script src="/js/custom/nav.js"></script><script id="canvas_nest" defer="defer" color="66,66,66" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

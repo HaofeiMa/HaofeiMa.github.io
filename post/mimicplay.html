@@ -1,0 +1,376 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>【论文复现】MimicPlay从人类演示中学习机器人技能 | 马浩飞丨博客</title><meta name="keywords" content="视觉,模仿,机器人动作"><meta name="author" content="马浩飞"><meta name="copyright" content="马浩飞"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="斯坦福大学李飞飞团队的通过观看人类动作进行长期模仿学习方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【论文复现】MimicPlay从人类演示中学习机器人技能">
+<meta property="og:url" content="https://www.mahaofei.com/post/mimicplay.html">
+<meta property="og:site_name" content="马浩飞丨博客">
+<meta property="og:description" content="斯坦福大学李飞飞团队的通过观看人类动作进行长期模仿学习方法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.mahaofei.com/img/202310231710757.png">
+<meta property="article:published_time" content="2023-10-21T07:00:02.000Z">
+<meta property="article:modified_time" content="2023-10-21T07:00:02.000Z">
+<meta property="article:author" content="马浩飞">
+<meta property="article:tag" content="视觉">
+<meta property="article:tag" content="模仿">
+<meta property="article:tag" content="机器人动作">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.mahaofei.com/img/202310231710757.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.mahaofei.com/post/mimicplay"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-bB89NudWgv"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?439a0d0abeb31dd8f338efd8266c999b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"ABY1KMOQQM","apiKey":"d3f3a4fbb355106e6bf265cf8da1863b","indexName":"hexo","hits":{"per_page":4},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【论文复现】MimicPlay从人类演示中学习机器人技能',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-21 15:00:02'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="/css/custom/MainColor.css"><link rel="stylesheet" href="/css/custom/categoryBar.css"><link rel="stylesheet" href="/css/custom/404.css"><link rel="stylesheet" href="/css/custom/cardHistory.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><link rel="stylesheet" href="/css/custom/custom.css"><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="马浩飞丨博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.mahaofei.com/img/202310231710757.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">马浩飞丨博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div><center id="name-container"><a id="page-name" href="javascript:scrollToTop()">PAGE_NAME</a></center></div><div id="nav-right"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【论文复现】MimicPlay从人类演示中学习机器人技能</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-21T07:00:02.000Z" title="发表于 2023-10-21 15:00:02">2023-10-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-21T07:00:02.000Z" title="更新于 2023-10-21 15:00:02">2023-10-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/">机器人</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AD%A6%E4%B9%A0/">机器人学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【论文复现】MimicPlay从人类演示中学习机器人技能"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/post/mimicplay.html#post-comment"><span id="twikoo-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="论文笔记"><a href="#论文笔记" class="headerlink" title="论文笔记"></a>论文笔记</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Key</th>
+<th style="text-align:left">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">标题</td>
+<td style="text-align:left">MimicPlay Long-horizon imitation learning by watching human play</td>
+</tr>
+<tr>
+<td style="text-align:right">期刊名称</td>
+<td style="text-align:left">Conference on Robot Learning (CoRL)</td>
+</tr>
+<tr>
+<td style="text-align:right">作者团队</td>
+<td style="text-align:left">Stanford University</td>
+</tr>
+<tr>
+<td style="text-align:right">时间</td>
+<td style="text-align:left">2023</td>
+</tr>
+<tr>
+<td style="text-align:right">DOI</td>
+<td style="text-align:left"><a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2302.12422">10.48550/arXiv.2302.12422</a></td>
+</tr>
+<tr>
+<td style="text-align:right">Code</td>
+<td style="text-align:left"><a target="_blank" rel="noopener" href="https://github.com/j96w/MimicPlay">https://github.com/j96w/MimicPlay</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="1-目标问题"><a href="#1-目标问题" class="headerlink" title="1 目标问题"></a>1 目标问题</h2><p>从人类演示中学习，是教授机器人操作技能的一种很有前途的方法。</p>
+<p>目前大多数模仿学习算法仍然局限于学习短期的操作，例如开门或抓取特定物品。</p>
+<p>而关于长期任务的研究，目前有两个方向：分层模仿学习和从演示数据中学习。分层学习旨在通过端到端实现高级规划到低级运动控制的学习。从演示数据中学习是指人类通过遥控机器人于环境互动来收集数据。</p>
+<p>本文提出了一个分层学习框架，从大量人类演示数据中学习潜在的计划，来指导机器人在少量演示中实现视觉运动控制。</p>
+<h2 id="2-主要方法"><a href="#2-主要方法" class="headerlink" title="2 主要方法"></a>2 主要方法</h2><p><img src="https://img.mahaofei.com/img/202310231710757.png" alt="image.png"></p>
+<h3 id="2-1-收集人类数据"><a href="#2-1-收集人类数据" class="headerlink" title="2.1 收集人类数据"></a>2.1 收集人类数据</h3><p>人类在用手与环境互动的过程中，创造了一个手的轨迹。本文使用两台经过校准的相机来跟踪人类演示数据中的3D手轨迹，手部位置检测使用现有的库。</p>
+<h3 id="2-2-从人类数据中学习3D潜在规划"><a href="#2-2-从人类数据中学习3D潜在规划" class="headerlink" title="2.2 从人类数据中学习3D潜在规划"></a>2.2 从人类数据中学习3D潜在规划</h3><p>问题：给定一个由目标图像表示的长期任务，策略产生以目标为条件的行动。</p>
+<p>将该问题转化为分层学习策略，其中高级规划器从目标图像中提取关键特征，并转化成低维的规划，利用这些规划引导运动控制器动作。为了训练高级规划器，本文使用廉价的数据源（人类演示数据）</p>
+<p><strong>（1）多模式潜在计划学习</strong></p>
+<p>利用收集的人类演示数据和对应的3D手部轨迹，将学习规程转化为目标条件的3D轨迹生成任务。即将人类演示图像，目标图像处理为低维特征，利用MLP编码为潜在计划向量，利用潜在计划向量和手的位置，利用MLP解码为3D手部轨迹的预测。</p>
+<p>为了解决不同人演示同一任务的差异，使用基于MLP的高斯混合模型来对潜在计划的轨迹分布进行建模。</p>
+<p><strong>（2）处理人类演示数据和机器人之间的视觉差异</strong></p>
+<p>本文考虑人与机器人在同一环境中，需要解决机器人与人类外观不同导致的视觉差异。通过计算人类和机器人的视觉编码器的特征嵌入的分布，最小化两者距离（此步骤机器人与人类视频不需要是对应的）</p>
+<h3 id="2-3-多任务模仿学习"><a href="#2-3-多任务模仿学习" class="headerlink" title="2.3 多任务模仿学习"></a>2.3 多任务模仿学习</h3><p><strong>（1）用于潜在计划生成的视频提示</strong></p>
+<p>使用单镜头视频作为目标指定提示，发送给训练好的潜在规划器，生成机器人可执行的潜在计划。</p>
+<p>规划器将视频分成多个帧，每个时间步长，规划器从序列中取一个图像帧作为目标图像，生成潜在规划引导机器人动作。</p>
+<p><strong>（2）基于Transformer的计划引导与模仿</strong></p>
+<p>在执行复杂任务时，仅使用高层规划是不够的，还需要考虑底层的细节。因此考虑将机器人腕部相机和本体感觉都转换成低维特征向量，与潜在计划进行结合，利用Trasformer架构（因为其擅长管理长期运动生成）进行处理。</p>
+<p><strong>（3）多任务</strong></p>
+<p>在同一环境中的所有任务中共享相同的规划器和策略模型。</p>
+<h1 id="算法复现"><a href="#算法复现" class="headerlink" title="算法复现"></a>算法复现</h1><h2 id="1-环境搭建"><a href="#1-环境搭建" class="headerlink" title="1 环境搭建"></a>1 环境搭建</h2><p><strong>（1）进入所下载代码环境</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd MimicPlay</span><br></pre></td></tr></table></figure>
+<p><strong>（2）创建 conda 环境</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda create -n mimicplay python=3.8 -y</span><br><span class="line">conda activate mimicplay</span><br></pre></td></tr></table></figure>
+<p><strong>（3）安装 MuJoCo</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install mujoco==2.3.0</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>如果出现问题</strong>：<code>imgaug 0.4.0 requires XXXXXX, which is not installed.</code><br><strong>解决方法如下</strong>：</p>
+<ol>
+<li>安装报错提示的imgaug所需的依赖项：<code>pip install imageio matplotlib Pillow scikit-image six opencv-python</code></li>
+<li>重新安装mujoco：<code>pip install mujoco</code></li>
+</ol>
+</blockquote>
+<p><strong>（4）安装robosuite</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/ARISE-Initiative/robosuite.git</span><br><span class="line">cd robosuite</span><br><span class="line">git checkout v1.4.1_libero</span><br><span class="line">pip install -r requirements.txt</span><br><span class="line">pip install -r requirements-extra.txt</span><br><span class="line">pip install -e .</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>第一次安装失败，然后<code>git checkout v1.4.1_libero</code>之后才安装成功</p>
+</blockquote>
+<p><strong>（5）安装BDDL</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ..</span><br><span class="line">git clone https://github.com/StanfordVL/bddl.git</span><br><span class="line">cd bddl</span><br><span class="line">pip install -e .</span><br></pre></td></tr></table></figure>
+<p><strong>（6）安装LIBERO</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd ..</span><br><span class="line">git clone https://github.com/Lifelong-Robot-Learning/LIBERO.git</span><br><span class="line">cd LIBERO</span><br><span class="line">pip install -r requirements.txt</span><br><span class="line">pip install -e .</span><br></pre></td></tr></table></figure>
+<p><strong>（7）安装robomimic</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd ..</span><br><span class="line">git clone https://github.com/ARISE-Initiative/robomimic</span><br><span class="line">cd robomimic</span><br><span class="line">git checkout mimicplay-libero</span><br><span class="line">pip install -e .</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>第一次安装失败，然后<code>git checkout mimicplay-libero</code>之后才安装成功</p>
+</blockquote>
+<p><strong>（8）安装MimicPlay</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ..</span><br><span class="line">git clone https://github.com/j96w/MimicPlay.git</span><br><span class="line">cd MimicPlay</span><br><span class="line">pip install -e .</span><br></pre></td></tr></table></figure>
+<h2 id="2-数据准备（从虚拟机器人动作数据中学习机器人动作）"><a href="#2-数据准备（从虚拟机器人动作数据中学习机器人动作）" class="headerlink" title="2 数据准备（从虚拟机器人动作数据中学习机器人动作）"></a>2 数据准备（从虚拟机器人动作数据中学习机器人动作）</h2><h3 id="2-1-官方数据集"><a href="#2-1-官方数据集" class="headerlink" title="2.1 官方数据集"></a>2.1 官方数据集</h3><p>训练集和测试视频在<a target="_blank" rel="noopener" href="https://drive.google.com/drive/folders/1FUKd3vr-KBiYRnKIymNmGClmVx9U45XG">此处</a>下载。训练集是一系列没有指定特定任务（没有标签）的人类演示视频。</p>
+<p>作者推荐下载原始数据<code>demo.hdf5</code>，然后在本地电脑上将其处理为具有图像观察的训练数据集<code>demo_image.hdf5</code>，因为这样可以很好的检查环境库是否安装正确，具体步骤如下：</p>
+<p><strong>（1）将下载的数据集移动到<code>mimicplay/datasets</code></strong></p>
+<p><strong>例如：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd MimicPlay/mimicplay</span><br><span class="line">mkdir -p datasets/playdata</span><br><span class="line">mv ~/Downloads/demo.hdf5 ./datasets/playdata/</span><br></pre></td></tr></table></figure>
+<p><strong>（2）将原始数据转换为图像数据集</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">示例</span></span><br><span class="line">cd MimicPlay/mimicplay</span><br><span class="line">python scripts/preprocess_hdf5.py -i ./datasets/playdata/demo.hdf5 -o ./datasets/playdata/demo_modified.hdf5</span><br><span class="line">python scripts/dataset_states_to_obs.py --dataset &#x27;datasets/playdata/demo_modified.hdf5&#x27; --done_mode 0 --camera_names agentview robot0_eye_in_hand --camera_height 84 --camera_width 84 --output_name image_demo_local.hdf5 --exclude-next-obs</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>如果出现问题</strong>：<code>ileNotFoundError: [Errno 2] No such file or directory: &#39;patchelf&#39;</code><br><strong>解决方法如下</strong>：<code>sudo apt-get install patchelf</code></p>
+</blockquote>
+<p><strong>（3）提取末端轨迹用于上层规划器的训练</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python scripts/dataset_extract_traj_plans.py --dataset &#x27;datasets/playdata/image_demo_local.hdf5&#x27;</span><br></pre></td></tr></table></figure>
+<p><strong>（4）检查数据：重新播放数据集中的图像，保存成视频</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python scripts/playback_robomimic_dataset.py --dataset &#x27;datasets/playdata/image_demo_local.hdf5&#x27; --use-obs --render_image_names agentview_image --video_path image_demo_local_replay.mp4</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-自制数据集"><a href="#2-2-自制数据集" class="headerlink" title="2.2 自制数据集"></a>2.2 自制数据集</h3><p><strong>（1）使用BDDL文件收集数据</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python scripts/collect_playdata.py --bddl-file &#x27;scripts/bddl_files/KITCHEN_SCENE9_playdata.bddl&#x27; --device &#x27;keyboard&#x27;</span><br></pre></td></tr></table></figure>
+<p>收集的原始数据可以在<code>robosuite/robosuite/models/assets/demonstrations/</code>路径下找到。</p>
+<p><strong>（2）将原始数据转换成robomimic格式</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python scripts/convert_playdata_to_robomimic_dataset.py --dataset &#x27;path_to_your_data&#x27;</span><br></pre></td></tr></table></figure>
+<p><strong>（3）现在有了robomimic格式的数据，按照#1.3 公共数据集中的步骤生成特定任务的视频提示</strong></p>
+<h2 id="3-数据准备（从人类演示中学习机器人动作）"><a href="#3-数据准备（从人类演示中学习机器人动作）" class="headerlink" title="3 数据准备（从人类演示中学习机器人动作）"></a>3 数据准备（从人类演示中学习机器人动作）</h2><h3 id="3-1-配置人手检测模型"><a href="#3-1-配置人手检测模型" class="headerlink" title="3.1 配置人手检测模型"></a>3.1 配置人手检测模型</h3><p><strong>（1）配置开源的 hand_object_detector</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">conda create --name handobj python=3.6</span><br><span class="line">conda activate handobj</span><br><span class="line">conda install pytorch=1.0.1 torchvision cudatoolkit=10.0 -c pytorch</span><br><span class="line">cd mimicplay/scripts/human_playdata_process</span><br><span class="line">git clone https://github.com/ddshan/hand_object_detector &amp;&amp; cd hand_object_detector</span><br><span class="line">pip install -r requirements.txt</span><br><span class="line">cd lib</span><br><span class="line">python setup.py build develop</span><br></pre></td></tr></table></figure>
+<p><strong>（2）下载fast_rcnn模型，并放置在指定位置</strong></p>
+<p>从Google Drive中下载<a target="_blank" rel="noopener" href="https://drive.google.com/file/d/1H2tWsZkS7tDF8q1-jdjx6V9XrK25EDbE/view">faster_rcnn_1_8_132028.pth (361M)</a>，移动到下面的路径</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd hand_object_detector</span><br><span class="line">mkdir -p models/res101_handobj_100K/pascal_voc</span><br><span class="line">mv faster_rcnn_1_8_132028.pth models/res101_handobj_100K/pascal_voc/.</span><br></pre></td></tr></table></figure>
+<p><strong>（3）将mimicplay的python脚本放入人手检测器的目录下</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd mimicplay/scripts/human_playdata_process/</span><br><span class="line">cp demo_mp4.py hand_object_detector/</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-从人类演示生成数据集"><a href="#3-2-从人类演示生成数据集" class="headerlink" title="3.2 从人类演示生成数据集"></a>3.2 从人类演示生成数据集</h3><p><strong>（1）复制两个示例视频</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp vis_1.mp4 hand_object_detector/</span><br><span class="line">cp vis_2.mp4 hand_object_detector/</span><br></pre></td></tr></table></figure>
+<p><strong>（2）生成hdf5数据文件</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd hand_object_detector/</span><br><span class="line">python demo_mp4.py</span><br></pre></td></tr></table></figure>
+<p><strong>（3）可视化数据集</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd scripts/human_playdata_process/</span><br><span class="line">python vis_processed_human_play_data.py</span><br></pre></td></tr></table></figure>
+<h2 id="4-训练"><a href="#4-训练" class="headerlink" title="4 训练"></a>4 训练</h2><h3 id="4-1-训练高级规划器"><a href="#4-1-训练高级规划器" class="headerlink" title="4.1 训练高级规划器"></a>4.1 训练高级规划器</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd MimicPlay/mimicplay</span><br><span class="line">python scripts/train.py --config configs/highlevel.json --dataset &#x27;datasets/playdata/image_demo_local.hdf5&#x27;</span><br></pre></td></tr></table></figure>
+<p>训练结束后，选择评估分数最高的checkpoint，将其路径作为</p>
+<h3 id="4-2-训练低级机器人控制器"><a href="#4-2-训练低级机器人控制器" class="headerlink" title="4.2 训练低级机器人控制器"></a>4.2 训练低级机器人控制器</h3><blockquote>
+<p>参考：</p>
+<ol>
+<li>Mimicplay: Long-horizon imitation learning by watching human play. <a href="[MimicPlay | Long-Horizon Imitation Learning by Watching Human Play (mimic-play.github.io">Project</a>](<a target="_blank" rel="noopener" href="https://mimic-play.github.io/">https://mimic-play.github.io/</a>)) <a target="_blank" rel="noopener" href="https://github.com/j96w/MimicPlay">Code</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2302.12422">arXiv</a></li>
+</ol>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>【论文复现】MimicPlay从人类演示中学习机器人技能</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://www.mahaofei.com/post/mimicplay.html">https://www.mahaofei.com/post/mimicplay.html</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>马浩飞</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2023-10-21</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2023-10-21</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%A7%86%E8%A7%89/">视觉</a><a class="post-meta__tags" href="/tags/%E6%A8%A1%E4%BB%BF/">模仿</a><a class="post-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%8A%A8%E4%BD%9C/">机器人动作</a></div><div class="post_share"><div class="social-share" data-image="https://img.mahaofei.com/img/202310231710757.png" data-sites="qq,wechat,weibo,facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/img/wechatpay.png" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/pcl.html"><img class="prev-cover" src="https://img.mahaofei.com/img/202312210957565.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">PCL库的安装与基本使用</div></div></a></div><div class="next-post pull-right"><a href="/post/rl-basic.html"><img class="next-cover" src="https://img.mahaofei.com/img/202311030917032.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【强化学习笔记】强化学习基础</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><a href="https://www.mahaofei.com"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></a></div><div class="author-info__name">马浩飞</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-solid fa-graduation-cap"></i><span>学术主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/HaofeiMa" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:mail@mahaofei.com" target="_blank" title="E-Mail"><i class="fa fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">新增了<a target="_blank" rel="noopener" href="https://academic.mahaofei.com/">学术主页</a>！<br>有任何问题欢迎留言评论或邮件联系。<br>E-mail：<a href="mailto:blog@mahaofei.com" style="text-decoration:underline;">blog@mahaofei.com</a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0"><span class="toc-text">论文笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%9B%AE%E6%A0%87%E9%97%AE%E9%A2%98"><span class="toc-text">1 目标问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%B8%BB%E8%A6%81%E6%96%B9%E6%B3%95"><span class="toc-text">2 主要方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%94%B6%E9%9B%86%E4%BA%BA%E7%B1%BB%E6%95%B0%E6%8D%AE"><span class="toc-text">2.1 收集人类数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E4%BB%8E%E4%BA%BA%E7%B1%BB%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%AD%A6%E4%B9%A03D%E6%BD%9C%E5%9C%A8%E8%A7%84%E5%88%92"><span class="toc-text">2.2 从人类数据中学习3D潜在规划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%A8%A1%E4%BB%BF%E5%AD%A6%E4%B9%A0"><span class="toc-text">2.3 多任务模仿学习</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E5%A4%8D%E7%8E%B0"><span class="toc-text">算法复现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">1 环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87%EF%BC%88%E4%BB%8E%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%8A%A8%E4%BD%9C%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%AD%A6%E4%B9%A0%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%8A%A8%E4%BD%9C%EF%BC%89"><span class="toc-text">2 数据准备（从虚拟机器人动作数据中学习机器人动作）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%AE%98%E6%96%B9%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">2.1 官方数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E8%87%AA%E5%88%B6%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">2.2 自制数据集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87%EF%BC%88%E4%BB%8E%E4%BA%BA%E7%B1%BB%E6%BC%94%E7%A4%BA%E4%B8%AD%E5%AD%A6%E4%B9%A0%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%8A%A8%E4%BD%9C%EF%BC%89"><span class="toc-text">3 数据准备（从人类演示中学习机器人动作）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E9%85%8D%E7%BD%AE%E4%BA%BA%E6%89%8B%E6%A3%80%E6%B5%8B%E6%A8%A1%E5%9E%8B"><span class="toc-text">3.1 配置人手检测模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E4%BB%8E%E4%BA%BA%E7%B1%BB%E6%BC%94%E7%A4%BA%E7%94%9F%E6%88%90%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">3.2 从人类演示生成数据集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%AE%AD%E7%BB%83"><span class="toc-text">4 训练</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E8%AE%AD%E7%BB%83%E9%AB%98%E7%BA%A7%E8%A7%84%E5%88%92%E5%99%A8"><span class="toc-text">4.1 训练高级规划器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E8%AE%AD%E7%BB%83%E4%BD%8E%E7%BA%A7%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="toc-text">4.2 训练低级机器人控制器</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recommend-post"><div class="item-headline"><i class="fas fa-dharmachakra"></i><span>相关推荐</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/lfd-motion-papers.html" title="【模仿动作】从人类演示中学习机器人动作规划方法"><img src="https://img.mahaofei.com/img/202309071622980.png" alt="【模仿动作】从人类演示中学习机器人动作规划方法"></a><div class="content"><a class="title" href="/post/lfd-motion-papers.html" title="【模仿动作】从人类演示中学习机器人动作规划方法">【模仿动作】从人类演示中学习机器人动作规划方法</a><time datetime="2023-09-07" title="发表于 2023-09-07">2023-09-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/lfd-grasp-papers.html" title="【模仿抓取】从人类演示中学习机械臂抓取"><img src="https://img.mahaofei.com/img/202308131124867.png" alt="【模仿抓取】从人类演示中学习机械臂抓取"></a><div class="content"><a class="title" href="/post/lfd-grasp-papers.html" title="【模仿抓取】从人类演示中学习机械臂抓取">【模仿抓取】从人类演示中学习机械臂抓取</a><time datetime="2023-08-13" title="发表于 2023-08-13">2023-08-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/mediapipe.html" title="Google_Mediapipe关节检测框架"><img src="https://img.mahaofei.com/img/202312050848155.png" alt="Google_Mediapipe关节检测框架"></a><div class="content"><a class="title" href="/post/mediapipe.html" title="Google_Mediapipe关节检测框架">Google_Mediapipe关节检测框架</a><time datetime="2023-09-18" title="发表于 2023-09-18">2023-09-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/lfd-rl-papers.html" title="【论文笔记】基于强化学习的机器人动作模仿"><img src="https://img.mahaofei.com/img/202311091616113.png" alt="【论文笔记】基于强化学习的机器人动作模仿"></a><div class="content"><a class="title" href="/post/lfd-rl-papers.html" title="【论文笔记】基于强化学习的机器人动作模仿">【论文笔记】基于强化学习的机器人动作模仿</a><time datetime="2023-11-09" title="发表于 2023-11-09">2023-11-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/6dgrasp-papers.html" title="抓取姿态估计算法调研"><img src="https://img.mahaofei.com/img/202304231603042.png" alt="抓取姿态估计算法调研"></a><div class="content"><a class="title" href="/post/6dgrasp-papers.html" title="抓取姿态估计算法调研">抓取姿态估计算法调研</a><time datetime="2023-04-23" title="发表于 2023-04-23">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/contact-graspnet.html" title="【抓取算法】Contact GraspNet"><img src="https://img.mahaofei.com/img/20230404152359.png" alt="【抓取算法】Contact GraspNet"></a><div class="content"><a class="title" href="/post/contact-graspnet.html" title="【抓取算法】Contact GraspNet">【抓取算法】Contact GraspNet</a><time datetime="2023-04-07" title="发表于 2023-04-07">2023-04-07</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.mahaofei.com/img/GoodnightCopenhagen.png')"><div id="footer-wrap"><div class="footer_custom_text"><p><a style="margin-inline:5px"target="_blank"href="https://github.com/"><img src="https://img.shields.io/badge/Hosted-Github-brightgreen?style=flat&logo=GitHub"title="本站项目由Gtihub托管"></a><a style="margin-inline:5px"target="_blank"href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo"title="博客框架为Hexo"></a><a style="margin-inline:5px"target="_blank"href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?logoColor=white&style=flat&logo=buefy"title="主题采用butterfly"></a><a style="margin-inline:5px"target="_blank"href="https://aliyun.com/product/cdn"><img src="https://img.shields.io/badge/DNS-Cloudflare-orange?style=flat&logo=Cloudflare"title="本站使用Cloudflare网络服务"></a><a style="margin-inline:5px"target="_blank"href="https://beian.miit.gov.cn/"><img src="https://img.shields.io/badge/%E6%B4%A5ICP%E5%A4%87-2021000769%E5%8F%B7--3-red?logo=data:image/png;base64,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"title="备案号:津ICP备2021000769号-3"></a><a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris"title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><i class="fas fa-adjust"><use id="modeicon" xlink:href="#icon-moon"></use></i></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Algolia</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, "https://cdn.jsdelivr.net/gh/zhheo/twikoo@dev/dist/twikoo.all.min.js"))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script><script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script><script src="/js/custom/categoryBar.js"></script><script src="/js/custom/cardHistory.js"></script><script src="/js/custom/light_dark.js"></script><script src="/js/custom/forbidCopy.js"></script><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"Jfmc1FSFWs09EC8r",ck:"Jfmc1FSFWs09EC8r"})</script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script>new LingQue.Monitor().init({id:"JfmcYvlVsVAZlVkS"});</script><script defer src="https://cloud.umami.is/script.js" data-website-id="86b466f8-e8bc-415b-954e-289b3d0110fb"></script><script src="/js/custom/custom.js"></script><script src="/js/custom/nav.js"></script><script id="canvas_nest" defer="defer" color="66,66,66" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

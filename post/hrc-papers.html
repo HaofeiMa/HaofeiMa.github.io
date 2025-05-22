@@ -1,0 +1,359 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>【论文笔记】人机协作 | 马浩飞丨博客</title><meta name="keywords" content="笔记,机器人,人机协作,HRC"><meta name="author" content="马浩飞"><meta name="copyright" content="马浩飞"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="阅读人机协作相关论文的笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【论文笔记】人机协作">
+<meta property="og:url" content="https://www.mahaofei.com/post/hrc-papers.html">
+<meta property="og:site_name" content="马浩飞丨博客">
+<meta property="og:description" content="阅读人机协作相关论文的笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.mahaofei.com/img/202312050854381.png">
+<meta property="article:published_time" content="2023-11-27T10:56:59.000Z">
+<meta property="article:modified_time" content="2023-11-27T10:56:59.000Z">
+<meta property="article:author" content="马浩飞">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="机器人">
+<meta property="article:tag" content="人机协作">
+<meta property="article:tag" content="HRC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.mahaofei.com/img/202312050854381.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.mahaofei.com/post/hrc-papers"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-bB89NudWgv"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?439a0d0abeb31dd8f338efd8266c999b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"ABY1KMOQQM","apiKey":"d3f3a4fbb355106e6bf265cf8da1863b","indexName":"hexo","hits":{"per_page":4},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【论文笔记】人机协作',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-27 18:56:59'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="/css/custom/MainColor.css"><link rel="stylesheet" href="/css/custom/categoryBar.css"><link rel="stylesheet" href="/css/custom/404.css"><link rel="stylesheet" href="/css/custom/cardHistory.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><link rel="stylesheet" href="/css/custom/custom.css"><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="马浩飞丨博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.mahaofei.com/img/202312050854381.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">马浩飞丨博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div><center id="name-container"><a id="page-name" href="javascript:scrollToTop()">PAGE_NAME</a></center></div><div id="nav-right"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【论文笔记】人机协作</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-27T10:56:59.000Z" title="发表于 2023-11-27 18:56:59">2023-11-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-27T10:56:59.000Z" title="更新于 2023-11-27 18:56:59">2023-11-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/">机器人</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/%E4%BA%BA%E6%9C%BA%E5%8D%8F%E4%BD%9C/">人机协作</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【论文笔记】人机协作"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/post/hrc-papers.html#post-comment"><span id="twikoo-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="1-Transfer-Learning-enabled-Action-Recognition-for-Human-robot-Collaborative-Assembly"><a href="#1-Transfer-Learning-enabled-Action-Recognition-for-Human-robot-Collaborative-Assembly" class="headerlink" title="1 Transfer Learning-enabled Action Recognition for Human-robot Collaborative Assembly"></a>1 Transfer Learning-enabled Action Recognition for Human-robot Collaborative Assembly</h1><blockquote>
+<p><strong>标题</strong>：用于人机协作装配的迁移学习动作识别<br><strong>作者团队</strong>：香港理工大学（郑湃）<br><strong>期刊会议</strong>：CIRP<br><strong>时间</strong>：2021<br><strong>代码</strong>：</p>
+</blockquote>
+<h2 id="1-1-背景"><a href="#1-1-背景" class="headerlink" title="1.1 背景"></a>1.1 背景</h2><p>随着现代制造业从大规模生产转向大量的个性化应用，工业机器人对自适应控制以及在共享工作空间中与人类无缝协作的需求不断增加。在柔性自动化的背景下，人机协作旨在将机器人的准确性和强度在人类的认知能力和灵活性相结合。</p>
+<blockquote>
+<p>With modern manufacturing shifting from mass production to mass personalization, industrial robots have been of rising demands for adaptive control and seamless cooperation with human operators in a shared workspace. In the context of flexible automation, human-robot collaboration (HRC) aims to integrate the accuracy and strength of robots with cognitive ability and flexibility of humans in the execution loop.</p>
+</blockquote>
+<p>实现这一目标的一个重要基础，就是机器人动态规划对人类活动和意图的安全的响应。因此人类的动作识别作为先决条件，在高效HRC中起着至关重要的作用。</p>
+<blockquote>
+<p>One major pillar to achieve this is that robots dynamically plan safe reactions responded to human activities and intentions.</p>
+</blockquote>
+<p>这可以在面向个性化定制的制造中带来更高的效率。</p>
+<blockquote>
+<p>which can result in higher overall productivity in customization-oriented manufacturing.</p>
+</blockquote>
+<h2 id="1-2-目标问题"><a href="#1-2-目标问题" class="headerlink" title="1.2 目标问题"></a>1.2 目标问题</h2><p>人机协作(Human-robot collaboration, HRC)对于当今制造业的高柔性装配趋势至关重要。人类动作识别作为HRC的先决条件，使工业机器人能够理解人类意图并自适应的执行规划。</p>
+<blockquote>
+<p>Human-robot collaboration (HRC) is critical to today’s tendency towards high-flexible assembly in manufacturing. Human action recognition, as one of the core prerequisites for HRC, enables industrial robots to understand human intentions and to execute planning adaptively.</p>
+</blockquote>
+<p>目前的基于深度学习的动作识别方法严重依赖大量的注释数据，这在实际中并不有效且不现实。</p>
+<p>因此本文提出了一种基于迁移学习的动作识别方法，帮助HRC装配。并引入了机器人规划决策机制。</p>
+<h2 id="1-3-方法"><a href="#1-3-方法" class="headerlink" title="1.3 方法"></a>1.3 方法</h2><p>本文提出了一种基于迁移学习的动作预测方法，以实现高效的HRC装配。系统包括三部分：（1）数据感知和预处理；（2）从采样视频中提取知识和动作识别；（3）机器人根据学到的语义知识做出决策和反应。</p>
+<p><strong>（1）基于迁移学习的人类动作识别</strong></p>
+<p>使用Kinect获取机器人的动作，通过Openpose工具箱获得人体姿态（该工具箱可以在连续视频中预测操作者的身体关节）。</p>
+<p>本文提出的基于迁移学习的ST-GCN框架，包括三个模块：特征提取器、动作分类器和域自适应模块。</p>
+<p><strong>（2）面向任务的自适应HRC装配</strong></p>
+<p>预测的人类活动通过语义图转换为HRC装配中的机器人规划决策。通过将人体轨迹和深度相机的手眼标定，机器人可以获得真实的物理世界坐标，从而使机器人能够移动到精确的位置。因此机器人可以动态的协调人类并根据人类的子任务自适应的改变动作，最终实现面向任务的HRC装配。</p>
+<h1 id="2-Vision-based-holistic-scene-understanding-towards-proactive-human–robot-collaboration"><a href="#2-Vision-based-holistic-scene-understanding-towards-proactive-human–robot-collaboration" class="headerlink" title="2 Vision-based holistic scene understanding towards proactive human–robot collaboration"></a>2 Vision-based holistic scene understanding towards proactive human–robot collaboration</h1><blockquote>
+<p><strong>标题</strong>：基于视觉的整体场景理解，实现主动的人机协作<br><strong>作者团队</strong>：香港理工大学（郑湃）<br><strong>期刊会议</strong>：Robotics and Computer-Integrated Manufacturing<br><strong>时间</strong>：2022<br><strong>代码</strong>：</p>
+</blockquote>
+<p>近年来，人机协作因其潜在的生产效率提高和大规模自定义能力而在制造领域引起了许多关注。 HRC将机器人的力量和准确性与人类的灵活性和创造力相结合，使人类操作员和机器人能够在共享工作空间中无缝工作并执行共享任务。</p>
+<blockquote>
+<p>Human–robot collaboration (HRC) has attracted many interests in recent years in the field of manufacturing because of the potential production efficiency improvement and mass personalization capability. The strength and accuracy of robots along with the flexibility and creativity of humans are combined in an HRC team, allowing human operators and robots to work seamlessly in a shared workspace with shared tasks.</p>
+</blockquote>
+<p>近年来，由于能够充分利用人类的灵活性和机器人精度的优势，人机协作已经成为制造业大规模个性化的一个有前途的方法。</p>
+<blockquote>
+<p>Recently human–robot collaboration (HRC) has emerged as a promising paradigm for mass personalization in manufacturing owing to the potential to fully exploit the strength of human flexibility and robot precision.</p>
+</blockquote>
+<p>为了实现更好的协作，机器人应该能够实现整体感知和解析工作场景的信息，从而主动规划并采取相应行动。目前HRC的相关工作虽然关注了人类的认知，但是缺乏对工作场景的其它关键要素的整体考虑。</p>
+<p>为了解决这个问题，本文考虑物体、人类和环境的认识以及视觉推理，以收集视觉信息，并将其编译为语义，用于后续机器人的决策与协作。</p>
+<h1 id="3-Dynamic-Scene-Graph-for-Mutual-Cognition-Generation-in-Proactive-Human-Robot-Collaboration"><a href="#3-Dynamic-Scene-Graph-for-Mutual-Cognition-Generation-in-Proactive-Human-Robot-Collaboration" class="headerlink" title="3 Dynamic Scene Graph for Mutual-Cognition Generation in Proactive Human-Robot Collaboration"></a>3 Dynamic Scene Graph for Mutual-Cognition Generation in Proactive Human-Robot Collaboration</h1><blockquote>
+<p><strong>标题</strong>：主动人机协作中相互认知生成的动态场景图<br><strong>作者团队</strong>：香港理工大学（郑湃）<br><strong>期刊会议</strong>：CIRP Conference on Manufacturing Systems<br><strong>时间</strong>：<br><strong>代码</strong>：</p>
+</blockquote>
+<h2 id="3-1-背景"><a href="#3-1-背景" class="headerlink" title="3.1 背景"></a>3.1 背景</h2><p>在先进制造业向工业5.0转型和在工业化过程中，人类在生产过程中发挥着核心作用。一方面，大规模个性化生产趋势对现代工厂的柔性制造提出了越来越高的要求，而这些要求目前还无法实现，只能依靠人的手动敏捷操作。此外，为了实现工业5.0的可持续性和弹性原则，产品的再利用和回收过程需要高水平的灵活性和自适应性的自动化技术。基于这种情况，人机协作引起了人们对灵活自动化任务的兴趣，该任务结合了人类和机器人的互补能力以提高生产力。</p>
+<blockquote>
+<p>Among the advanced manufacturing transition to Industry 5.0 and reindustrialization, human operators play a central role in the production process. For one side, the mass personalized production tendency raises ever-increasing flexible manufacturing requirements for modern factories, which remain unattained and rely on human manually agile operations. Besides, to achieve sustainability and resilience principles of Industry 5.0, the re-use, re-purpose and recycle processes of products demand high-level flexible and adaptable automation technologies. Motivated by this situation, human-robot collaboration (HRC) has elicited particular interest in flexiable automation tasks, which combines human and robotic complementing competencies for improved productivity.</p>
+</blockquote>
+<p>针对HRC系统，人们进行了大量的研究，以期在工业环境中实现人类技能和机器人操作的相互作用。例如，对人类的动作识别、工件的6-DOF位姿估计等。以及基于这些感知结果的机器人控制、 人类安全机制等等。</p>
+<p>但是除了以上研究，HRC对于上下文感知的能力仍然停留在对周围环境的非语义感知。</p>
+<h2 id="3-2-目标问题"><a href="#3-2-目标问题" class="headerlink" title="3.2 目标问题"></a>3.2 目标问题</h2><p>人机协作在敏捷、灵活和以人为中心的制造向大规模个性化的转型中发挥着至关重要的作用。</p>
+<p>现存问题：</p>
+<ul>
+<li>在当今的HRC任务中，无论是人类还是机器人都需要遵循命令和指示来进行协作活动，而不是主动、相互参与。</li>
+<li>HRC的非语义感知阻碍了HRC系统中的主动规划和认知能力</li>
+</ul>
+<p>解决方法：<br>提出了一种基于动态场景图的方法，用于主动HRC应用中的相互认知生成。</p>
+<ul>
+<li>利用空间注意金字塔网络，检测工业环境中的对象（工件、机器人手臂、人手）。</li>
+<li>利用链接预测模块构建HRC场景图，利用注意力图卷积网络来捕获工业零件、人类操作员和机器人操作之间的关系，并将人机协作处理结构连接推理为图嵌入，链接到人类操作和机器人主动指令的相互规划器。</li>
+<li>在电池拆卸任务中进行了评估。</li>
+</ul>
+<h1 id="4-A-visual-reasoning-based-approach-for-mutual-cognitive-human-robot-collaboration"><a href="#4-A-visual-reasoning-based-approach-for-mutual-cognitive-human-robot-collaboration" class="headerlink" title="4 A visual reasoning-based approach for mutual-cognitive human-robot collaboration"></a>4 A visual reasoning-based approach for mutual-cognitive human-robot collaboration</h1><blockquote>
+<p><strong>标题</strong>：基于视觉推理的人机交互认知协作方法<br><strong>作者团队</strong>：香港理工大学（郑湃）<br><strong>期刊会议</strong>：CIRP Annals-Manufacturing Technology<br><strong>时间</strong>：2022<br><strong>代码</strong>：</p>
+</blockquote>
+<h2 id="4-1-背景"><a href="#4-1-背景" class="headerlink" title="4.1 背景"></a>4.1 背景</h2><p>在现代工厂中，许多复杂的机械产品的个性化生产，既依赖于机器人的精确操控，又依赖于人类的敏捷操作。在此背景下，人机协作HRC利用了人类的高灵活性和机器人的高效率和可靠性，引起了工业界和学术界的极大兴趣。人类和机器人具有互补的操作目标和能力，并在共享工作空间中协作执行制造任务，迄今为止，已经出现了大量的HRC解决方案。</p>
+<blockquote>
+<p>In modern factories, personalized production of many complicated mechanical products relies on both robots’ precision manipulation and human operators’ agile operations. In this context, human-robot collaboration (HRC) has attracted much interest from the industry and academia, which leverages humans’ high flexibility and robots’ high efficiency and reliability. Human and robotic agents have complementary operation goals and capabilities, and collaboratively conduct manufacturing tasks in a shared workspace. To date, numerous research efforts on HRC solutions have emerged.</p>
+</blockquote>
+<h2 id="4-2-目标问题"><a href="#4-2-目标问题" class="headerlink" title="4.2 目标问题"></a>4.2 目标问题</h2><p>人机协作允许人类和机器人之间的无缝通信和协作，以在共享工作空间中完成灵活的制造任务。</p>
+<p>现有的HRC系统缺乏机器人和人类认知的有效整合。</p>
+<ul>
+<li>现有的HRC系统上下文感知能力侧重于对环境的感知，而不是对任务过程的类人理解</li>
+<li>现有的HRC系统直接将结果传递到反应控制中，很少考虑知识学习来进行主动路径规划</li>
+<li>机器人执行和人类操作的规划器通常是预定义的，缺乏任务完成过程中的动态调整能力。</li>
+</ul>
+<p>本文提出了一种基于视觉推理的相互认知HRC方法：</p>
+<ul>
+<li>建立HRC知识图谱</li>
+<li>视觉传感器将整体制造场景感知为时间图，通过图嵌入推断出具有相似指令的协作模式。</li>
+<li>将相互认知决策融入到增强现实执行中。</li>
+</ul>
+<h1 id="5-Towards-Mutual-Cognitive-Human-Robot-Collaboration-A-Zero-shot-Visual-Reasoning-Method"><a href="#5-Towards-Mutual-Cognitive-Human-Robot-Collaboration-A-Zero-shot-Visual-Reasoning-Method" class="headerlink" title="5 Towards Mutual-Cognitive Human-Robot Collaboration: A Zero-shot Visual Reasoning Method"></a>5 Towards Mutual-Cognitive Human-Robot Collaboration: A Zero-shot Visual Reasoning Method</h1><blockquote>
+<p><strong>标题</strong>：迈向相互认知的人机协作：零样本视觉推理方法<br><strong>作者团队</strong>：香港理工大学（郑湃）<br><strong>期刊会议</strong>：CASE<br><strong>时间</strong>：2023<br><strong>代码</strong>：</p>
+</blockquote>
+<h2 id="5-1-背景"><a href="#5-1-背景" class="headerlink" title="5.1 背景"></a>5.1 背景</h2><p>工业5.0代表了制造业转型为以人为本、可持续和弹性的原则。迈向以人为本的智能制造，人机协作揭示了改善人类工作条件和确保一致质量的优势。HRC系统结合了人类灵活能力和机器人的自动化能力，对于制造任务，人类能够敏捷操作，而机器人同时执行重复且精确的操作，所有这些都朝着一个共同的目标努力。</p>
+<blockquote>
+<p>Industry 5.0 represents the principles of human-centricity, sustainability and resilience for manufacturing transformation. Towards human-centric smart manufacturing, Human-Robot Collaboration (HRC) sheds light on the benefits of improving human working conditions and ensuring consistent quality. HRC systems combine human’s flexible capabilities and robot automatic capabilities. For a manufacturing task, human operators take agile operations, while the robot concurrently executes repetitive and precise manipulation, all working towards a common goal.</p>
+</blockquote>
+<p>HRC的成功取决于多种因素，包括周围环境的感知、安全的机器人控制和双向通信。在此背景下，先进的计算机视觉技术促进了HRC系统在工业环境中的应用。例如，在HRC系统中跟踪人体运动以避免机器人碰撞并确保人体安全。与此同时，人们还探索了人类的行为、手势和声音，以实现无缝的人机通信。 HRC 场景中的感知信息在人类和机器人代理之间传输，以便在共享制造目标内进行有效协作。</p>
+<blockquote>
+<p>The success of HRC relies on various factors, including the perception of surrounding environments, safe robot control, and bidirectional communication. In this context, the advanced computer vision techniques facilitate applications of HRC systems in industrial settings. For example, human motions were tracked in HRC systems to avoid robot collision and ensure human safety. Meanwhile, human actions, gestures, and voices were explored to allow for seamless human-robot communication. The perceived information in HRC scenarios is transmitted among human and robotic agents for effective co-working within a shared manufacturing goal.</p>
+</blockquote>
+<p>然而，现有的HRC研究工作主要集中在感知层面，未能学习人机操作意图的语义知识并制定认知任务规划策略。在当前的 HRC 系统中，机器人可以跟随人类手势来反应性地规划运动并协助工人，而很少考虑 HRC 任务结构知识和随时间变化的团队合作目标。如果没有对任务的整体理解，HRC系统就无法减轻人类手动操作并增强机器人自适应辅助。此外，对于相似但不同的任务，HRC系统需要学习新的知识表示来规划合理的人类和机器人操作，这限制了HRC在实际情况中的应用。</p>
+<blockquote>
+<p>Nevertheless, existing research efforts on HRC focus on perception level, which fails to learn semantic knowledge of human-robot operation intentions and make cognitive task planning strategies. In current HRC systems, a robot can follow human gestures to reactively plan motions and assist the worker, while seldom considering HRC task structure knowledge and time-changing teamwork goals. Without a holistic understanding of tasks, the HRC system cannot relieve human manual operations and enhance robot adaptive assistance. Besides, for similar but different tasks, the HRC system needs to learn new knowledge representations to plan reasonable human and robotic operations, which limits the HRC applications in real cases.</p>
+</blockquote>
+<h2 id="5-2-目标问题"><a href="#5-2-目标问题" class="headerlink" title="5.2 目标问题"></a>5.2 目标问题</h2><p>人机协作HRC在当今工业5.0所规定的以人为本的智能制造中显示出了广泛的应用潜力。</p>
+<p>为了实现安全高效的协作，人们探索了多种视觉感知方法。使机器人能够感知周围环境并实现无碰撞的操作规划。</p>
+<p>现存问题：</p>
+<ul>
+<li>目前的视觉感知方法只能传达机器人和人类之间的基本信息，缺乏语义知识（机器人遇到类似但未见过的情况，则无法顺利执行）</li>
+</ul>
+<p>解决方法：</p>
+<ul>
+<li>本文提出了一种基于相互认知的HRC架构，基于现场情况和任务结构的知识表示进行学习，规划人类和机器人的操作。</li>
+<li>引入零样本视觉推理方法，从感知结果中得出机器人策略。</li>
+<li>对老化电动汽车电池协同拆卸任务进行测试。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>【论文笔记】人机协作</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://www.mahaofei.com/post/hrc-papers.html">https://www.mahaofei.com/post/hrc-papers.html</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>马浩飞</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2023-11-27</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2023-11-27</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="post-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA/">机器人</a><a class="post-meta__tags" href="/tags/%E4%BA%BA%E6%9C%BA%E5%8D%8F%E4%BD%9C/">人机协作</a><a class="post-meta__tags" href="/tags/HRC/">HRC</a></div><div class="post_share"><div class="social-share" data-image="https://img.mahaofei.com/img/202312050854381.png" data-sites="qq,wechat,weibo,facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/img/wechatpay.png" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/reskill.html"><img class="prev-cover" src="https://img.mahaofei.com/img/202311251603089.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【论文笔记】Reskill基于技能的适应性动作空间学习</div></div></a></div><div class="next-post pull-right"><a href="/post/obsidian.html"><img class="next-cover" src="https://img.mahaofei.com/img/202311292058718.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【笔记工具】Markdown语法与Obsidian编辑器</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><a href="https://www.mahaofei.com"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></a></div><div class="author-info__name">马浩飞</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-solid fa-graduation-cap"></i><span>学术主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/HaofeiMa" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:mail@mahaofei.com" target="_blank" title="E-Mail"><i class="fa fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">新增了<a target="_blank" rel="noopener" href="https://academic.mahaofei.com/">学术主页</a>！<br>有任何问题欢迎留言评论或邮件联系。<br>E-mail：<a href="mailto:blog@mahaofei.com" style="text-decoration:underline;">blog@mahaofei.com</a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Transfer-Learning-enabled-Action-Recognition-for-Human-robot-Collaborative-Assembly"><span class="toc-text">1 Transfer Learning-enabled Action Recognition for Human-robot Collaborative Assembly</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E8%83%8C%E6%99%AF"><span class="toc-text">1.1 背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E7%9B%AE%E6%A0%87%E9%97%AE%E9%A2%98"><span class="toc-text">1.2 目标问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E6%96%B9%E6%B3%95"><span class="toc-text">1.3 方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Vision-based-holistic-scene-understanding-towards-proactive-human%E2%80%93robot-collaboration"><span class="toc-text">2 Vision-based holistic scene understanding towards proactive human–robot collaboration</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Dynamic-Scene-Graph-for-Mutual-Cognition-Generation-in-Proactive-Human-Robot-Collaboration"><span class="toc-text">3 Dynamic Scene Graph for Mutual-Cognition Generation in Proactive Human-Robot Collaboration</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E8%83%8C%E6%99%AF"><span class="toc-text">3.1 背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E7%9B%AE%E6%A0%87%E9%97%AE%E9%A2%98"><span class="toc-text">3.2 目标问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-A-visual-reasoning-based-approach-for-mutual-cognitive-human-robot-collaboration"><span class="toc-text">4 A visual reasoning-based approach for mutual-cognitive human-robot collaboration</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E8%83%8C%E6%99%AF"><span class="toc-text">4.1 背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E7%9B%AE%E6%A0%87%E9%97%AE%E9%A2%98"><span class="toc-text">4.2 目标问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-Towards-Mutual-Cognitive-Human-Robot-Collaboration-A-Zero-shot-Visual-Reasoning-Method"><span class="toc-text">5 Towards Mutual-Cognitive Human-Robot Collaboration: A Zero-shot Visual Reasoning Method</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E8%83%8C%E6%99%AF"><span class="toc-text">5.1 背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E7%9B%AE%E6%A0%87%E9%97%AE%E9%A2%98"><span class="toc-text">5.2 目标问题</span></a></li></ol></li></ol></div></div><div class="card-widget card-recommend-post"><div class="item-headline"><i class="fas fa-dharmachakra"></i><span>相关推荐</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/obsidian.html" title="【笔记工具】Markdown语法与Obsidian编辑器"><img src="https://img.mahaofei.com/img/202311292058718.png" alt="【笔记工具】Markdown语法与Obsidian编辑器"></a><div class="content"><a class="title" href="/post/obsidian.html" title="【笔记工具】Markdown语法与Obsidian编辑器">【笔记工具】Markdown语法与Obsidian编辑器</a><time datetime="2023-11-29" title="发表于 2023-11-29">2023-11-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/docker-install.html" title="Docker的安装与常用命令"><img src="https://img.mahaofei.com/img/20230226193326.png" alt="Docker的安装与常用命令"></a><div class="content"><a class="title" href="/post/docker-install.html" title="Docker的安装与常用命令">Docker的安装与常用命令</a><time datetime="2023-03-03" title="发表于 2023-03-03">2023-03-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ubuntu-install.html" title="记录Ubuntu安装后的系统配置、常用软件安装过程"><img src="https://img.mahaofei.com/img/20220728093248.png" alt="记录Ubuntu安装后的系统配置、常用软件安装过程"></a><div class="content"><a class="title" href="/post/ubuntu-install.html" title="记录Ubuntu安装后的系统配置、常用软件安装过程">记录Ubuntu安装后的系统配置、常用软件安装过程</a><time datetime="2022-07-06" title="发表于 2022-07-06">2022-07-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/qt-note1.html" title="【QT学习笔记01】Qt基础、按钮、对象树以及信号和槽的基本使用"><img src="https://img.mahaofei.com/img/20220827133056.png" alt="【QT学习笔记01】Qt基础、按钮、对象树以及信号和槽的基本使用"></a><div class="content"><a class="title" href="/post/qt-note1.html" title="【QT学习笔记01】Qt基础、按钮、对象树以及信号和槽的基本使用">【QT学习笔记01】Qt基础、按钮、对象树以及信号和槽的基本使用</a><time datetime="2022-08-27" title="发表于 2022-08-27">2022-08-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/qt-note2.html" title="【Qt学习笔记02】自定义信号与槽函数"><img src="https://img.mahaofei.com/img/20220827213040.png" alt="【Qt学习笔记02】自定义信号与槽函数"></a><div class="content"><a class="title" href="/post/qt-note2.html" title="【Qt学习笔记02】自定义信号与槽函数">【Qt学习笔记02】自定义信号与槽函数</a><time datetime="2022-08-27" title="发表于 2022-08-27">2022-08-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/qt-note5.html" title="【Qt学习笔记05】Qt中调用ROS库"><img src="https://img.mahaofei.com/img/20230226140356.png" alt="【Qt学习笔记05】Qt中调用ROS库"></a><div class="content"><a class="title" href="/post/qt-note5.html" title="【Qt学习笔记05】Qt中调用ROS库">【Qt学习笔记05】Qt中调用ROS库</a><time datetime="2022-09-03" title="发表于 2022-09-03">2022-09-03</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.mahaofei.com/img/GoodnightCopenhagen.png')"><div id="footer-wrap"><div class="footer_custom_text"><p><a style="margin-inline:5px"target="_blank"href="https://github.com/"><img src="https://img.shields.io/badge/Hosted-Github-brightgreen?style=flat&logo=GitHub"title="本站项目由Gtihub托管"></a><a style="margin-inline:5px"target="_blank"href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo"title="博客框架为Hexo"></a><a style="margin-inline:5px"target="_blank"href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?logoColor=white&style=flat&logo=buefy"title="主题采用butterfly"></a><a style="margin-inline:5px"target="_blank"href="https://aliyun.com/product/cdn"><img src="https://img.shields.io/badge/DNS-Cloudflare-orange?style=flat&logo=Cloudflare"title="本站使用Cloudflare网络服务"></a><a style="margin-inline:5px"target="_blank"href="https://beian.miit.gov.cn/"><img src="https://img.shields.io/badge/%E6%B4%A5ICP%E5%A4%87-2021000769%E5%8F%B7--3-red?logo=data:image/png;base64,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"title="备案号:津ICP备2021000769号-3"></a><a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris"title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><i class="fas fa-adjust"><use id="modeicon" xlink:href="#icon-moon"></use></i></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Algolia</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, "https://cdn.jsdelivr.net/gh/zhheo/twikoo@dev/dist/twikoo.all.min.js"))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script><script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script><script src="/js/custom/categoryBar.js"></script><script src="/js/custom/cardHistory.js"></script><script src="/js/custom/light_dark.js"></script><script src="/js/custom/forbidCopy.js"></script><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"Jfmc1FSFWs09EC8r",ck:"Jfmc1FSFWs09EC8r"})</script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script>new LingQue.Monitor().init({id:"JfmcYvlVsVAZlVkS"});</script><script defer src="https://cloud.umami.is/script.js" data-website-id="86b466f8-e8bc-415b-954e-289b3d0110fb"></script><script src="/js/custom/custom.js"></script><script src="/js/custom/nav.js"></script><script id="canvas_nest" defer="defer" color="66,66,66" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

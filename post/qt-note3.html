@@ -1,0 +1,355 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>【Qt学习笔记03】UI设计 | 马浩飞丨博客</title><meta name="keywords" content="笔记,Qt"><meta name="author" content="马浩飞"><meta name="copyright" content="马浩飞"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="介绍了QMainWindow相关的实现方法，包括菜单栏、工具栏、状态栏、铆接部件、中心部件等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Qt学习笔记03】UI设计">
+<meta property="og:url" content="https://www.mahaofei.com/post/qt-note3.html">
+<meta property="og:site_name" content="马浩飞丨博客">
+<meta property="og:description" content="介绍了QMainWindow相关的实现方法，包括菜单栏、工具栏、状态栏、铆接部件、中心部件等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.mahaofei.com/img/20220902192613.png">
+<meta property="article:published_time" content="2022-09-01T07:36:06.000Z">
+<meta property="article:modified_time" content="2022-09-01T07:36:06.000Z">
+<meta property="article:author" content="马浩飞">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="Qt">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.mahaofei.com/img/20220902192613.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.mahaofei.com/post/qt-note3"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-bB89NudWgv"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?439a0d0abeb31dd8f338efd8266c999b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"ABY1KMOQQM","apiKey":"d3f3a4fbb355106e6bf265cf8da1863b","indexName":"hexo","hits":{"per_page":4},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【Qt学习笔记03】UI设计',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-09-01 15:36:06'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="/css/custom/MainColor.css"><link rel="stylesheet" href="/css/custom/categoryBar.css"><link rel="stylesheet" href="/css/custom/404.css"><link rel="stylesheet" href="/css/custom/cardHistory.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><link rel="stylesheet" href="/css/custom/custom.css"><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="马浩飞丨博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.mahaofei.com/img/20220902192613.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">马浩飞丨博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div><center id="name-container"><a id="page-name" href="javascript:scrollToTop()">PAGE_NAME</a></center></div><div id="nav-right"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【Qt学习笔记03】UI设计</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-09-01T07:36:06.000Z" title="发表于 2022-09-01 15:36:06">2022-09-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-09-01T07:36:06.000Z" title="更新于 2022-09-01 15:36:06">2022-09-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%A8%8B%E5%BA%8F%E5%9F%BA%E7%A1%80/">程序基础</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%A8%8B%E5%BA%8F%E5%9F%BA%E7%A1%80/Qt/">Qt</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【Qt学习笔记03】UI设计"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/post/qt-note3.html#post-comment"><span id="twikoo-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="一、QMainWindow"><a href="#一、QMainWindow" class="headerlink" title="一、QMainWindow"></a>一、QMainWindow</h1><h2 id="1-1-QMainWindow结构概览"><a href="#1-1-QMainWindow结构概览" class="headerlink" title="1.1 QMainWindow结构概览"></a>1.1 QMainWindow结构概览</h2><p>QMainWindow由一个菜单栏、多个工具栏、多个铆接部件、一个状态栏、一个中心部件组成。各部件的具体布局区域如图所示。</p>
+<p><img src="https://img-blog.csdn.net/20180106132722303" alt=""></p>
+<p><img src="https://img.mahaofei.com/img/20220902192613.png" alt=""></p>
+<blockquote>
+<p>上面图片所用到的代码及注释附在本文的最后</p>
+</blockquote>
+<h2 id="1-2-菜单栏QMenuBar"><a href="#1-2-菜单栏QMenuBar" class="headerlink" title="1.2 菜单栏QMenuBar"></a>1.2 菜单栏QMenuBar</h2><p>菜单栏是窗口最上方的区域，基本每个软件的标题栏下面都会有这么一行，这就是菜单栏。</p>
+<p><img src="https://img.mahaofei.com/img/20220902161029.png" alt=""></p>
+<p>注意：菜单栏只能创建一个</p>
+<p><strong>代码示例</strong></p>
+<p>引入菜单栏QMenuBar</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QMenuBar&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>菜单栏创建</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">QMenuBar * bar = <span class="built_in">menuBar</span>();</span><br></pre></td></tr></table></figure>
+<p>将菜单栏放入到窗口中</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setMenuBar</span>(bar);</span><br></pre></td></tr></table></figure>
+<p>创建菜单栏的菜单（比如文件、编辑、工具、帮助等）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">QMenu * fileMenu = bar-&gt;<span class="built_in">addMenu</span>(<span class="string">&quot;文件&quot;</span>);</span><br><span class="line">QMenu * editMenu = bar-&gt;<span class="built_in">addMenu</span>(<span class="string">&quot;编辑&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>创建菜单项（比如文件菜单下的新建、打开项）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">QAction * newAction = fileMenu-&gt;<span class="built_in">addAction</span>(<span class="string">&quot;新建&quot;</span>);</span><br><span class="line"><span class="comment">//添加分割线</span></span><br><span class="line">fileMenu-&gt;<span class="built_in">addSeparator</span>();</span><br><span class="line">QAction * openAction = fileMenu-&gt;<span class="built_in">addAction</span>(<span class="string">&quot;打开&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img.mahaofei.com/img/20220902161412.png" alt=""></p>
+<h2 id="1-3-工具栏QToolBar"><a href="#1-3-工具栏QToolBar" class="headerlink" title="1.3 工具栏QToolBar"></a>1.3 工具栏QToolBar</h2><p>工具栏一般位于菜单栏下方，或者左右两侧、或底部。</p>
+<p><img src="https://img.mahaofei.com/img/20220902161816.png" alt=""></p>
+<p>注意：工具栏可以创建多个。</p>
+<p><strong>代码示例</strong></p>
+<p>引入工具栏头文件</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QToolBar&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>创建工具栏（工具栏创建后可以随意拖动）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">QToolBar * toolBar = <span class="keyword">new</span> <span class="built_in">QToolBar</span>(<span class="keyword">this</span>);</span><br></pre></td></tr></table></figure>
+<p>将工具栏放入窗口，Qt::TopToolBarArea是默认放上侧，以此类推。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">addToolBar</span>(Qt::LeftToolBarArea,toolBar);</span><br></pre></td></tr></table></figure>
+<p>设置只允许左右停靠</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">toolBar-&gt;<span class="built_in">setAllowedAreas</span>( Qt::LeftToolBarArea | Qt::RightToolBarArea );</span><br></pre></td></tr></table></figure>
+<p>设置浮动（可以拖拽，但移动不了）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">toolBar-&gt;<span class="built_in">setFloatable</span>(<span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<p>设置移动（总开关，设为False后无法拖拽）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">toolBar-&gt;<span class="built_in">setMovable</span>(<span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<p>在工具栏中添加内容</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将刚才创建的菜单项Action添加到工具栏中</span></span><br><span class="line">toolBar-&gt;<span class="built_in">addAction</span>(newAction);</span><br><span class="line"><span class="comment">//添加分割线</span></span><br><span class="line">toolBar-&gt;<span class="built_in">addSeparator</span>();</span><br><span class="line"><span class="comment">//添加另一个菜单项</span></span><br><span class="line">toolBar-&gt;<span class="built_in">addAction</span>(openAction);</span><br><span class="line"><span class="comment">//工具栏中添加控件</span></span><br><span class="line">QPushButton * btn = <span class="keyword">new</span> <span class="built_in">QPushButton</span>(<span class="string">&quot;aa&quot;</span> , <span class="keyword">this</span>);</span><br><span class="line">toolBar-&gt;<span class="built_in">addWidget</span>(btn);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img.mahaofei.com/img/20220902162526.png" alt=""></p>
+<h2 id="1-4-状态栏QStatusBar"><a href="#1-4-状态栏QStatusBar" class="headerlink" title="1.4 状态栏QStatusBar"></a>1.4 状态栏QStatusBar</h2><p>状态栏是窗口最低不，显示软件状态的栏。（例如ppt、word最下面显示字数、幻灯片数量的那一行）</p>
+<p><img src="https://img.mahaofei.com/img/20220902162734.png" alt=""></p>
+<p>注意：状态栏最多有一个。</p>
+<p><strong>代码示例</strong></p>
+<p>引入状态栏头文件</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QStatusBar&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>创建状态栏</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">QStatusBar * stBar = <span class="built_in">statusBar</span>();</span><br></pre></td></tr></table></figure>
+<p>将状态栏设置到窗口</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setStatusBar</span>(stBar);</span><br></pre></td></tr></table></figure>
+<p>在菜单栏中放入标签控件</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//引入头文件</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QLabel&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">QLabel * label = <span class="keyword">new</span> <span class="built_in">QLabel</span>(<span class="string">&quot;提示信息&quot;</span>,<span class="keyword">this</span>);</span><br><span class="line">stBar-&gt;<span class="built_in">addWidget</span>(label);</span><br><span class="line"></span><br><span class="line">QLabel * label2 = <span class="keyword">new</span> <span class="built_in">QLabel</span>(<span class="string">&quot;右侧提示信息&quot;</span>,<span class="keyword">this</span>);</span><br><span class="line">stBar-&gt;<span class="built_in">addPermanentWidget</span>(label2);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img.mahaofei.com/img/20220902163152.png" alt=""></p>
+<h2 id="1-5-铆接部件QDockWidget"><a href="#1-5-铆接部件QDockWidget" class="headerlink" title="1.5 铆接部件QDockWidget"></a>1.5 铆接部件QDockWidget</h2><p>铆接部件又称为浮动窗口，是窗口中，在中心窗口周围的部件，通常是可以修改位置，可以拖出来成为单独的窗口，也可以双击使其回到父窗口中。</p>
+<p>常见的铆接部件包括（IDE左侧或右侧的项目栏、底部的编译输出栏等）</p>
+<p><img src="https://img.mahaofei.com/img/Screenshot%20from%202022-09-02%2016-54-35.png" alt=""></p>
+<p>铆接部件可以有多个</p>
+<p><strong>代码示例</strong></p>
+<p>引入头文件</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QDockWidget&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>创建铆接部件</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">QDockWidget * dockWidget = <span class="keyword">new</span> <span class="built_in">QDockWidget</span>(<span class="string">&quot;浮动&quot;</span>,<span class="keyword">this</span>);</span><br></pre></td></tr></table></figure>
+<p>将铆接部件添加到窗口中</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">addDockWidget</span>(Qt::BottomDockWidgetArea,dockWidget);</span><br></pre></td></tr></table></figure>
+<p>设置铆接部件的停靠区域，例如只允许上下（与工具栏设置参数一致）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dockWidget-&gt;<span class="built_in">setAllowedAreas</span>( Qt::TopDockWidgetArea | Qt::BottomDockWidgetArea );</span><br></pre></td></tr></table></figure>
+<p><img src="https://img.mahaofei.com/img/20220902172602.png" alt=""></p>
+<h2 id="1-6-中心部件QTextEdit"><a href="#1-6-中心部件QTextEdit" class="headerlink" title="1.6 中心部件QTextEdit"></a>1.6 中心部件QTextEdit</h2><p>中心部件就是一个程序中心的部分，例如IDE的程序编写区域，WPS的文字编辑区域等。</p>
+<p>中心部件只能设置一个。</p>
+<p><strong>代码示例</strong></p>
+<p>引入头文件</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QTextEdit&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>创建中心部件</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">QTextEdit * edit = <span class="keyword">new</span> <span class="built_in">QTextEdit</span>(<span class="keyword">this</span>);</span><br></pre></td></tr></table></figure>
+<p>设置中心部件到父窗口</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setCentralWidget</span>(edit);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img.mahaofei.com/img/20220902192613.png" alt=""></p>
+<p>中间白色的区域就是中心部件。</p>
+<h2 id="1-7-UI工具设计图形界面"><a href="#1-7-UI工具设计图形界面" class="headerlink" title="1.7 UI工具设计图形界面"></a>1.7 UI工具设计图形界面</h2><p>在Qt中也提供了图形化的UI设计界面。</p>
+<p>通过双击项目文件中的<code>xxx.ui</code>文件，就可以打开设计页面。</p>
+<p><img src="https://img.mahaofei.com/img/20220902192942.png" alt=""></p>
+<p>在这里，上文提到的所有项目（菜单栏、工具栏等），以及各自的属性，都可以直接拖拽放置，并在右下角修改其属性。</p>
+<p>创建的控件，在代码中通过<code>ui-&gt;abcd</code>可以找到所有控件。</p>
+<p>但是这种布局方式所产生的代码结构较差。</p>
+<p>通常是在代码中编写大概，然后在设计中进行微调。</p>
+<h1 id="二、资源文件"><a href="#二、资源文件" class="headerlink" title="二、资源文件"></a>二、资源文件</h1><p>很多时候，在窗口中我们不仅需要文字，还需要添加一些图标，图片等，让应用显得更人性化。这就需要我们在项目中导入资源文件。</p>
+<h2 id="2-1-资源文件的导入"><a href="#2-1-资源文件的导入" class="headerlink" title="2.1 资源文件的导入"></a>2.1 资源文件的导入</h2><ol>
+<li><p>首先将图片复制到项目文件夹中（注意图片必须是png格式，直接更改用户名无效，必须通过图片编辑软件转换）</p>
+</li>
+<li><p>右键项目名 -&gt; 添加新文件 -&gt; Qt -&gt; QtResourceFile</p>
+</li>
+</ol>
+<p><img src="https://img.mahaofei.com/img/20220902193453.png" alt=""></p>
+<ol>
+<li><p>得到一个<code>.qrc</code>文件，右键，<code>open in edit</code></p>
+</li>
+<li><p>添加 -&gt; 前缀，自己设置一个前缀</p>
+</li>
+<li><p>添加 -&gt; 文件 -&gt; 找到图片文件夹 -&gt; 选中所有图片 -&gt; 打开</p>
+</li>
+<li><p>可以看到<code>.qrc</code>文件下方多了一个“前缀”文件夹</p>
+</li>
+</ol>
+<h2 id="2-2-代码中使用"><a href="#2-2-代码中使用" class="headerlink" title="2.2 代码中使用"></a>2.2 代码中使用</h2><p>代码中使用示例如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`ui-&gt;actionNew-&gt;<span class="built_in">setIcon</span>(<span class="built_in">QIcon</span>(``<span class="string">&quot;:/前缀/图片文件夹名/图片文件名.png&quot;</span>``));`</span><br></pre></td></tr></table></figure>
+<h1 id="附"><a href="#附" class="headerlink" title="附"></a>附</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//mainwindow.cpp</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;mainwindow.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QMenuBar&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QToolBar&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QDebug&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QPushButton&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QStatusBar&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QLabel&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QDockWidget&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QTextEdit&gt;</span></span></span><br><span class="line"></span><br><span class="line">MainWindow::<span class="built_in">MainWindow</span>(QWidget *parent)</span><br><span class="line">    : <span class="built_in">QMainWindow</span>(parent)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//重置窗口大小</span></span><br><span class="line">    <span class="built_in">resize</span>(<span class="number">600</span>,<span class="number">400</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//菜单栏  只能最多有一个</span></span><br><span class="line">    <span class="comment">//菜单栏创建</span></span><br><span class="line">    QMenuBar * bar = <span class="built_in">menuBar</span>();</span><br><span class="line">    <span class="comment">//将菜单栏放入到窗口中</span></span><br><span class="line">    <span class="built_in">setMenuBar</span>(bar);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//创建菜单</span></span><br><span class="line">    QMenu * fileMenu = bar-&gt;<span class="built_in">addMenu</span>(<span class="string">&quot;文件&quot;</span>);</span><br><span class="line">    QMenu * editMenu = bar-&gt;<span class="built_in">addMenu</span>(<span class="string">&quot;编辑&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//创建菜单项</span></span><br><span class="line">    QAction * newAction = fileMenu-&gt;<span class="built_in">addAction</span>(<span class="string">&quot;新建&quot;</span>);</span><br><span class="line">    <span class="comment">//添加分割线</span></span><br><span class="line">    fileMenu-&gt;<span class="built_in">addSeparator</span>();</span><br><span class="line">    QAction * openAction = fileMenu-&gt;<span class="built_in">addAction</span>(<span class="string">&quot;打开&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//工具栏  可以有多个</span></span><br><span class="line">    QToolBar * toolBar = <span class="keyword">new</span> <span class="built_in">QToolBar</span>(<span class="keyword">this</span>);</span><br><span class="line">    <span class="built_in">addToolBar</span>(Qt::LeftToolBarArea,toolBar);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//后期设置 只允许 左右停靠</span></span><br><span class="line">    toolBar-&gt;<span class="built_in">setAllowedAreas</span>( Qt::LeftToolBarArea | Qt::RightToolBarArea );</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置浮动</span></span><br><span class="line">    toolBar-&gt;<span class="built_in">setFloatable</span>(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置移动 (总开关)</span></span><br><span class="line">    toolBar-&gt;<span class="built_in">setMovable</span>(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//工具栏中可以设置内容</span></span><br><span class="line">    toolBar-&gt;<span class="built_in">addAction</span>(newAction);</span><br><span class="line">    <span class="comment">//添加分割线</span></span><br><span class="line">    toolBar-&gt;<span class="built_in">addSeparator</span>();</span><br><span class="line">    toolBar-&gt;<span class="built_in">addAction</span>(openAction);</span><br><span class="line">    <span class="comment">//工具栏中添加控件</span></span><br><span class="line">    QPushButton * btn = <span class="keyword">new</span> <span class="built_in">QPushButton</span>(<span class="string">&quot;aa&quot;</span> , <span class="keyword">this</span>);</span><br><span class="line">    toolBar-&gt;<span class="built_in">addWidget</span>(btn);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//状态栏 最多有一个</span></span><br><span class="line">    QStatusBar * stBar = <span class="built_in">statusBar</span>();</span><br><span class="line">    <span class="comment">//设置到窗口中</span></span><br><span class="line">    <span class="built_in">setStatusBar</span>(stBar);</span><br><span class="line">    <span class="comment">//放标签控件</span></span><br><span class="line">    QLabel * label = <span class="keyword">new</span> <span class="built_in">QLabel</span>(<span class="string">&quot;提示信息&quot;</span>,<span class="keyword">this</span>);</span><br><span class="line">    stBar-&gt;<span class="built_in">addWidget</span>(label);</span><br><span class="line"></span><br><span class="line">    QLabel * label2 = <span class="keyword">new</span> <span class="built_in">QLabel</span>(<span class="string">&quot;右侧提示信息&quot;</span>,<span class="keyword">this</span>);</span><br><span class="line">    stBar-&gt;<span class="built_in">addPermanentWidget</span>(label2);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//铆接部件 （浮动窗口） 可以有多个</span></span><br><span class="line">    QDockWidget * dockWidget = <span class="keyword">new</span> <span class="built_in">QDockWidget</span>(<span class="string">&quot;浮动&quot;</span>,<span class="keyword">this</span>);</span><br><span class="line">    <span class="built_in">addDockWidget</span>(Qt::BottomDockWidgetArea,dockWidget);</span><br><span class="line">    <span class="comment">//设置后期停靠区域，只允许上下</span></span><br><span class="line">    dockWidget-&gt;<span class="built_in">setAllowedAreas</span>( Qt::TopDockWidgetArea | Qt::BottomDockWidgetArea );</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置中心部件 只能一个</span></span><br><span class="line">    QTextEdit * edit = <span class="keyword">new</span> <span class="built_in">QTextEdit</span>(<span class="keyword">this</span>);</span><br><span class="line">    <span class="built_in">setCentralWidget</span>(edit);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MainWindow::~<span class="built_in">MainWindow</span>()</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>【Qt学习笔记03】UI设计</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://www.mahaofei.com/post/qt-note3.html">https://www.mahaofei.com/post/qt-note3.html</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>马浩飞</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2022-09-01</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2022-09-01</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="post-meta__tags" href="/tags/Qt/">Qt</a></div><div class="post_share"><div class="social-share" data-image="https://img.mahaofei.com/img/20220902192613.png" data-sites="qq,wechat,weibo,facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/img/wechatpay.png" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/qt-note2.html"><img class="prev-cover" src="https://img.mahaofei.com/img/20220827213040.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【Qt学习笔记02】自定义信号与槽函数</div></div></a></div><div class="next-post pull-right"><a href="/post/qt-note4.html"><img class="next-cover" src="https://img.mahaofei.com/img/20220902192613.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【Qt学习笔记04】对话框</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><a href="https://www.mahaofei.com"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></a></div><div class="author-info__name">马浩飞</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-solid fa-graduation-cap"></i><span>学术主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/HaofeiMa" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:mail@mahaofei.com" target="_blank" title="E-Mail"><i class="fa fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">新增了<a target="_blank" rel="noopener" href="https://academic.mahaofei.com/">学术主页</a>！<br>有任何问题欢迎留言评论或邮件联系。<br>E-mail：<a href="mailto:blog@mahaofei.com" style="text-decoration:underline;">blog@mahaofei.com</a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81QMainWindow"><span class="toc-text">一、QMainWindow</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-QMainWindow%E7%BB%93%E6%9E%84%E6%A6%82%E8%A7%88"><span class="toc-text">1.1 QMainWindow结构概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E8%8F%9C%E5%8D%95%E6%A0%8FQMenuBar"><span class="toc-text">1.2 菜单栏QMenuBar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E5%B7%A5%E5%85%B7%E6%A0%8FQToolBar"><span class="toc-text">1.3 工具栏QToolBar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E7%8A%B6%E6%80%81%E6%A0%8FQStatusBar"><span class="toc-text">1.4 状态栏QStatusBar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-%E9%93%86%E6%8E%A5%E9%83%A8%E4%BB%B6QDockWidget"><span class="toc-text">1.5 铆接部件QDockWidget</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6-%E4%B8%AD%E5%BF%83%E9%83%A8%E4%BB%B6QTextEdit"><span class="toc-text">1.6 中心部件QTextEdit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-7-UI%E5%B7%A5%E5%85%B7%E8%AE%BE%E8%AE%A1%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2"><span class="toc-text">1.7 UI工具设计图形界面</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6"><span class="toc-text">二、资源文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%E7%9A%84%E5%AF%BC%E5%85%A5"><span class="toc-text">2.1 资源文件的导入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E4%BB%A3%E7%A0%81%E4%B8%AD%E4%BD%BF%E7%94%A8"><span class="toc-text">2.2 代码中使用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%84"><span class="toc-text">附</span></a></li></ol></div></div><div class="card-widget card-recommend-post"><div class="item-headline"><i class="fas fa-dharmachakra"></i><span>相关推荐</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/qt-note1.html" title="【QT学习笔记01】Qt基础、按钮、对象树以及信号和槽的基本使用"><img src="https://img.mahaofei.com/img/20220827133056.png" alt="【QT学习笔记01】Qt基础、按钮、对象树以及信号和槽的基本使用"></a><div class="content"><a class="title" href="/post/qt-note1.html" title="【QT学习笔记01】Qt基础、按钮、对象树以及信号和槽的基本使用">【QT学习笔记01】Qt基础、按钮、对象树以及信号和槽的基本使用</a><time datetime="2022-08-27" title="发表于 2022-08-27">2022-08-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/qt-note2.html" title="【Qt学习笔记02】自定义信号与槽函数"><img src="https://img.mahaofei.com/img/20220827213040.png" alt="【Qt学习笔记02】自定义信号与槽函数"></a><div class="content"><a class="title" href="/post/qt-note2.html" title="【Qt学习笔记02】自定义信号与槽函数">【Qt学习笔记02】自定义信号与槽函数</a><time datetime="2022-08-27" title="发表于 2022-08-27">2022-08-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/qt-note5.html" title="【Qt学习笔记05】Qt中调用ROS库"><img src="https://img.mahaofei.com/img/20230226140356.png" alt="【Qt学习笔记05】Qt中调用ROS库"></a><div class="content"><a class="title" href="/post/qt-note5.html" title="【Qt学习笔记05】Qt中调用ROS库">【Qt学习笔记05】Qt中调用ROS库</a><time datetime="2022-09-03" title="发表于 2022-09-03">2022-09-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/qt-note4.html" title="【Qt学习笔记04】对话框"><img src="https://img.mahaofei.com/img/20220902192613.png" alt="【Qt学习笔记04】对话框"></a><div class="content"><a class="title" href="/post/qt-note4.html" title="【Qt学习笔记04】对话框">【Qt学习笔记04】对话框</a><time datetime="2022-09-02" title="发表于 2022-09-02">2022-09-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/obsidian.html" title="【笔记工具】Markdown语法与Obsidian编辑器"><img src="https://img.mahaofei.com/img/202311292058718.png" alt="【笔记工具】Markdown语法与Obsidian编辑器"></a><div class="content"><a class="title" href="/post/obsidian.html" title="【笔记工具】Markdown语法与Obsidian编辑器">【笔记工具】Markdown语法与Obsidian编辑器</a><time datetime="2023-11-29" title="发表于 2023-11-29">2023-11-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/docker-install.html" title="Docker的安装与常用命令"><img src="https://img.mahaofei.com/img/20230226193326.png" alt="Docker的安装与常用命令"></a><div class="content"><a class="title" href="/post/docker-install.html" title="Docker的安装与常用命令">Docker的安装与常用命令</a><time datetime="2023-03-03" title="发表于 2023-03-03">2023-03-03</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.mahaofei.com/img/GoodnightCopenhagen.png')"><div id="footer-wrap"><div class="footer_custom_text"><p><a style="margin-inline:5px"target="_blank"href="https://github.com/"><img src="https://img.shields.io/badge/Hosted-Github-brightgreen?style=flat&logo=GitHub"title="本站项目由Gtihub托管"></a><a style="margin-inline:5px"target="_blank"href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo"title="博客框架为Hexo"></a><a style="margin-inline:5px"target="_blank"href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?logoColor=white&style=flat&logo=buefy"title="主题采用butterfly"></a><a style="margin-inline:5px"target="_blank"href="https://aliyun.com/product/cdn"><img src="https://img.shields.io/badge/DNS-Cloudflare-orange?style=flat&logo=Cloudflare"title="本站使用Cloudflare网络服务"></a><a style="margin-inline:5px"target="_blank"href="https://beian.miit.gov.cn/"><img src="https://img.shields.io/badge/%E6%B4%A5ICP%E5%A4%87-2021000769%E5%8F%B7--3-red?logo=data:image/png;base64,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"title="备案号:津ICP备2021000769号-3"></a><a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris"title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><i class="fas fa-adjust"><use id="modeicon" xlink:href="#icon-moon"></use></i></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Algolia</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, "https://cdn.jsdelivr.net/gh/zhheo/twikoo@dev/dist/twikoo.all.min.js"))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script><script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script><script src="/js/custom/categoryBar.js"></script><script src="/js/custom/cardHistory.js"></script><script src="/js/custom/light_dark.js"></script><script src="/js/custom/forbidCopy.js"></script><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"Jfmc1FSFWs09EC8r",ck:"Jfmc1FSFWs09EC8r"})</script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script>new LingQue.Monitor().init({id:"JfmcYvlVsVAZlVkS"});</script><script defer src="https://cloud.umami.is/script.js" data-website-id="86b466f8-e8bc-415b-954e-289b3d0110fb"></script><script src="/js/custom/custom.js"></script><script src="/js/custom/nav.js"></script><script id="canvas_nest" defer="defer" color="66,66,66" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

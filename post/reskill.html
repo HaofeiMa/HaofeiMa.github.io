@@ -1,0 +1,453 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>【论文笔记】Reskill基于技能的适应性动作空间学习 | 马浩飞丨博客</title><meta name="keywords" content="强化学习,机器人动作"><meta name="author" content="马浩飞"><meta name="copyright" content="马浩飞"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="基于技能单元的强化学习方法，将任务分解为技能，建立技能与状态的映射关系，学习技能选择策略">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【论文笔记】Reskill基于技能的适应性动作空间学习">
+<meta property="og:url" content="https://www.mahaofei.com/post/reskill.html">
+<meta property="og:site_name" content="马浩飞丨博客">
+<meta property="og:description" content="基于技能单元的强化学习方法，将任务分解为技能，建立技能与状态的映射关系，学习技能选择策略">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.mahaofei.com/img/202311251603089.png">
+<meta property="article:published_time" content="2023-11-25T08:00:39.000Z">
+<meta property="article:modified_time" content="2023-11-25T08:00:39.000Z">
+<meta property="article:author" content="马浩飞">
+<meta property="article:tag" content="强化学习">
+<meta property="article:tag" content="机器人动作">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.mahaofei.com/img/202311251603089.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.mahaofei.com/post/reskill"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-bB89NudWgv"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?439a0d0abeb31dd8f338efd8266c999b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"ABY1KMOQQM","apiKey":"d3f3a4fbb355106e6bf265cf8da1863b","indexName":"hexo","hits":{"per_page":4},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【论文笔记】Reskill基于技能的适应性动作空间学习',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-25 16:00:39'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="/css/custom/MainColor.css"><link rel="stylesheet" href="/css/custom/categoryBar.css"><link rel="stylesheet" href="/css/custom/404.css"><link rel="stylesheet" href="/css/custom/cardHistory.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><link rel="stylesheet" href="/css/custom/custom.css"><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="马浩飞丨博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.mahaofei.com/img/202311251603089.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">马浩飞丨博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div><center id="name-container"><a id="page-name" href="javascript:scrollToTop()">PAGE_NAME</a></center></div><div id="nav-right"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【论文笔记】Reskill基于技能的适应性动作空间学习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-25T08:00:39.000Z" title="发表于 2023-11-25 16:00:39">2023-11-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-25T08:00:39.000Z" title="更新于 2023-11-25 16:00:39">2023-11-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/">机器人</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AD%A6%E4%B9%A0/">机器人学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【论文笔记】Reskill基于技能的适应性动作空间学习"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/post/reskill.html#post-comment"><span id="twikoo-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="一、论文笔记"><a href="#一、论文笔记" class="headerlink" title="一、论文笔记"></a>一、论文笔记</h1><blockquote>
+<p><strong>标题</strong>：剩余技能策略：学习基于技能的适应性行动空间，用于机器人强化学习<br><strong>作者团队</strong>：昆士兰科技大学<br><strong>期刊会议</strong>：CoRL<br><strong>时间</strong>：2022<br><strong>代码</strong>：<a target="_blank" rel="noopener" href="https://krishanrana.github.io/reskill">https://krishanrana.github.io/reskill</a></p>
+</blockquote>
+<h2 id="1-1-目标问题"><a href="#1-1-目标问题" class="headerlink" title="1.1 目标问题"></a>1.1 目标问题</h2><p>基于技能的学习已经成为加速机器人学习的方法，技能从专家演示中提取，是短序列的单步操作（平移、抓取、抬起等动作），这些技能嵌入到潜在空间中，构成上层 RL 策略的行动空间。但是这种方式存在一些问题：</p>
+<ul>
+<li>对所有技能进行随机抽样探索，效率极低，因为其中只有一小部分技能与当前执行的任务相关，并且这些相关的技能通常不会聚集在技能空间的同一邻域内。</li>
+<li>该方法假设技能是最优的，并且下层的任务来自于技能空间的相同分布，因此学习的通用性和变化适应性有限，例如从移动方块中学习技能，则无法应对障碍物、物体变化、不同摩擦等情况。</li>
+</ul>
+<p>为解决上述问题，本文提出了以下创新方法，称为残差技能策略（Residual Skill Policies，ReSkill）：</p>
+<ul>
+<li>状态条件技能先验：对相关技能进行采样来引导探索</li>
+<li>底层残差策略：通过对技能进行细粒度的技能适应，实现任务变化的适应</li>
+</ul>
+<h2 id="1-2-方法"><a href="#1-2-方法" class="headerlink" title="1.2 方法"></a>1.2 方法</h2><p>总的来说，该方法将经典控制器产生的演示轨迹分解为与任务无关的技能，并将其嵌入到连续到技能空间中，利用技能空间实现真正的通用学习，上层智能体能够从技能空间中访问但不动作，降低了对数据集详细程度的要求。</p>
+<ul>
+<li>从现有控制器中提取技能</li>
+<li>学习技能嵌入和先验技能</li>
+<li>训练一个分层强化学习策略，在技能空间中使用底层残差适应性策略。</li>
+</ul>
+<p><img src="https://img.mahaofei.com/img/202311161019261.png" alt="image.png"></p>
+<p><strong>（1）数据收集</strong></p>
+<p>本文通过手动控制收集演示数据（基本操作任务，如推物体、抓物体），虽然任务简单，但轨迹包含复杂的技能，可以重新组合解决复杂的任务。</p>
+<p>轨迹是由 state-action 成对组成的，本文从中随机切片 $H$ 长度的片段进行无监督技能提取，利用提取的动作 a 和状态 s 学习下一小节中的 state-action。</p>
+<p>其中状态 s 包括关节角度、关节速度、夹具位置、物体位置，动作是连续的 4D 向量，包括末端位置和速度。</p>
+<p><strong>（2）学习强化学习的状态条件技能空间</strong></p>
+<ul>
+<li>将提取的技能嵌入到潜在空间中：使用变分自动编码器 VAE 将技能 $a$ 嵌入到潜在空间中，VAE 包括编码器和解码器，编码器将完整的 state-action 序列编码为 $z$，解码器根据当前状态 $s_t$ 和技能编码 $z$ 重建动作。</li>
+<li>在探索过程中采样的技能状态条件先验：学习潜在技能空间上的条件概率密度。传统的高斯密度不能处理多模态信息，本文使用 real NVP 方法，实值非体积保留变换。学习从 $Z\times S-&gt;G$ 的映射，该映射就可以从简单分布 G 变换到技能空间 Z，因此 f 就是技能先验。</li>
+</ul>
+<p><img src="https://img.mahaofei.com/img/202311251603089.png" alt=""></p>
+<blockquote>
+<p><strong>变分自编码器</strong>，是一种深度生成模型<br><strong>传统</strong>：传统的自编码器包括编码器和解码器两部分，经过反复训练，输入数据被编码成一个编码向量，编码向量的每一个维度表示学习到的数据的特征，解码器尝试从编码向量中解码原始输入<br><strong>缺陷</strong>：传统的方法，使用单个值表示输入在某个潜在特征的表现。但实际上，将潜在特征表示为可能的取值范围会更合理。<br><strong>改进</strong>：因此变分自编码器就是使用取值的概率分布，代替原来的单值表示特征。<br><strong>优势</strong>：每个潜在特征表示为概率分布，解码时从潜在状态分布中随机采样，生成一个编码向量作为解码器的输入。实现了连续且平滑的潜在空间表示（潜在空间中彼此相邻的值重构出的结果相似）<br>参考理解:<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/64485020">https://zhuanlan.zhihu.com/p/64485020</a></p>
+</blockquote>
+<p><strong>（3）状态条件技能空间中的强化学习</strong></p>
+<p>一旦训练完成，解码器和技能先验权重就会被冻结，并合并到 RL 框架中。高级强化学习策略 $\pi$ 是一个神经网络，将状态映射到技能先验变化中的向量 g，在转换为潜在技能 Z。</p>
+<p>然后解码器根据技能范围 H 的当前状态顺序重构动作。同时有一个底层残差策略，调整解码后的技能。</p>
+<h2 id="1-3-总结"><a href="#1-3-总结" class="headerlink" title="1.3 总结"></a>1.3 总结</h2><p>该方法是一种基于技能的强化学习方法。</p>
+<ol>
+<li>数据收集：使用最基本的控制器生成一些基本任务轨迹（移动、抓取），然后将这些轨迹分割成固定长度的序列，每一小段包括动作和对应的状态。</li>
+<li>学习技能空间，使用变分自编码器将技能编码到潜在空间中；使用realNVP将技能潜在空间+机器人状态空间映射到简单分布空间（高斯分布），这样可以直接根据状态采样技能，称为技能先验。</li>
+<li>强化学习：使用一个高层策略网络，根据当前的状态生成一个向量，根据技能先验（与当前状态有关的技能）中选择一个技能，利用技能解码器解码成机器人动作。</li>
+</ol>
+<h1 id="二、代码复现"><a href="#二、代码复现" class="headerlink" title="二、代码复现"></a>二、代码复现</h1><h2 id="2-1-环境搭建"><a href="#2-1-环境搭建" class="headerlink" title="2.1 环境搭建"></a>2.1 环境搭建</h2><p><strong>（1）安装<code>mujoco</code>：</strong></p>
+<p>下载<code>mujoco</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://mujoco.org/download/mujoco210-linux-x86_64.tar.gz</span><br></pre></td></tr></table></figure>
+<p>创建一个隐藏文件夹，尽量不要修改此路经</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/.mujoco</span><br></pre></td></tr></table></figure>
+<p>将<code>mujoco</code>库解压到上面的文件夹中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvzf mujoco210-linux-x86_64.tar.gz -C ~/.mujoco</span><br></pre></td></tr></table></figure>
+<p>编辑环境变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gedit ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p>在文件最后添加下面的语句，注意修改自己的用户名</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Mujoco environment</span></span><br><span class="line">export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/nvidia</span><br><span class="line">export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/用户名/.mujoco/mujoco210/bin</span><br><span class="line">export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libGLEW.so</span><br></pre></td></tr></table></figure>
+<p>刷新环境变量，重启terminal或执行下面的命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p>测试mujoco</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.mujoco/mujoco210/bin</span><br><span class="line">./simulate ../model/arm26.xml</span><br></pre></td></tr></table></figure>
+<p>能看到一个mujoco界面启动，并看到一个二自由度机械臂，说明安装成功。<code>../model/</code>下也有很多其它的模型示例，感兴趣可以看看。</p>
+<p><strong>（2）python环境构建</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/krishanrana/reskill.git</span><br><span class="line">cd reskill</span><br><span class="line">conda env create -f environment.yml</span><br><span class="line">conda activate reskill_new</span><br><span class="line">pip install -e .</span><br><span class="line">cd reskill</span><br></pre></td></tr></table></figure>
+<h2 id="2-2-数据收集"><a href="#2-2-数据收集" class="headerlink" title="2.2 数据收集"></a>2.2 数据收集</h2><p>使用下面的脚本收集数据</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python data/collect_demos.py --num_trajectories 40000 --subseq_len 10 --task block</span><br></pre></td></tr></table></figure>
+<p>其中<code>task</code>可以设置为<code>block</code>或<code>hook</code>。</p>
+<h2 id="2-3-训练"><a href="#2-3-训练" class="headerlink" title="2.3 训练"></a>2.3 训练</h2><p>训练技能模块：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python train_skill_modules.py --config_file block/config.yaml --dataset_name fetch_block_40000</span><br></pre></td></tr></table></figure>
+<p>可视化训练完成的技能模块的性能：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python utils/test_skill_modules.py --dataset_name fetch_block_40000 --task block --use_skill_prior True</span><br></pre></td></tr></table></figure>
+<p>训练reskill代理：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python train_reskill_agent.py --config_file block/config.yaml --dataset_name fetch_block_40000</span><br></pre></td></tr></table></figure>
+<p>可视化训练完成的reskill代理：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python utils/test_reskill_agent.py --dataset_name fetch_block_40000 --env_name FetchSlipperyPush-v0</span><br></pre></td></tr></table></figure>
+<h2 id="2-4-日志记录"><a href="#2-4-日志记录" class="headerlink" title="2.4 日志记录"></a>2.4 日志记录</h2><p>使用<a target="_blank" rel="noopener" href="https://wandb.ai/">W&amp;B</a>，第一次train时输入自己的api即可。</p>
+<h1 id="三、代码理解"><a href="#三、代码理解" class="headerlink" title="三、代码理解"></a>三、代码理解</h1><h2 id="3-1-基本定义"><a href="#3-1-基本定义" class="headerlink" title="3.1 基本定义"></a>3.1 基本定义</h2><p><strong>（1）机器人动作</strong></p>
+<p>算法中机器人通过下面的方法进行定义：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_set_action</span>(<span class="params">self, action</span>):</span><br><span class="line">	<span class="string">&#x27;&#x27;&#x27;设置动作，在模拟环境中执行动作&#x27;&#x27;&#x27;</span></span><br><span class="line">	<span class="comment"># 处理输入动作</span></span><br><span class="line">	<span class="keyword">assert</span> action.shape == (<span class="number">4</span>,) <span class="comment"># 确保输入的动作形状是（4，）</span></span><br><span class="line">	action = action.copy()      <span class="comment"># ensure that we don&#x27;t change the action outside of this scope</span></span><br><span class="line">	pos_ctrl, gripper_ctrl = action[:<span class="number">3</span>], action[<span class="number">3</span>]  <span class="comment"># 将动作差分成位置控制[:3]和夹爪控制[3]</span></span><br><span class="line"></span><br><span class="line">	<span class="comment"># 对输入动作值进行处理，末端位置进行缩放，旋转固定，夹爪根据条件是否设0</span></span><br><span class="line">	pos_ctrl *= <span class="number">0.05</span>  <span class="comment"># 限制位置变化的最大值</span></span><br><span class="line">	rot_ctrl = [<span class="number">1.</span>, <span class="number">0.</span>, <span class="number">1.</span>, <span class="number">0.</span>]  <span class="comment"># 固定末端执行器的旋转，使用四元数表示</span></span><br><span class="line">	<span class="comment">#rot_ctrl = [ 0.5, -0.5, 0.5, 0.5 ]  # 90 deg rotation of the original end effector, expressed as a quaternion</span></span><br><span class="line">	gripper_ctrl = np.array([gripper_ctrl, gripper_ctrl])   <span class="comment"># 夹爪复制成两个</span></span><br><span class="line">	<span class="keyword">assert</span> gripper_ctrl.shape == (<span class="number">2</span>,)</span><br><span class="line">	<span class="keyword">if</span> self.block_gripper:  <span class="comment"># 如果block_gripper，则将手指位置设置为0</span></span><br><span class="line">		gripper_ctrl = np.zeros_like(gripper_ctrl)</span><br><span class="line">	<span class="comment"># 将经过修改后的位置控制、固定的末端执行器旋转和处理后的夹爪控制连接成一个新的动作数组 action</span></span><br><span class="line">	action = np.concatenate([pos_ctrl, rot_ctrl, gripper_ctrl])</span><br><span class="line"></span><br><span class="line">	<span class="comment"># Apply action to simulation. 将动作应用到仿真环境中</span></span><br><span class="line">	utils.ctrl_set_action(self.sim, action)</span><br><span class="line">	utils.mocap_set_action(self.sim, action)</span><br></pre></td></tr></table></figure>
+<p>可以看出在本算法中，机器人的动作被定义为了长度为4的数组，四个值分别代表机器人末端的控制位置和夹爪开合大小。（这里旋转被忽略了，因为任务是抓取方块到指定位置，所以算法直接设置末端永远竖直向下）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">action = [x, y, z, gripper]</span><br></pre></td></tr></table></figure>
+<p>实际上gym中机器人的<code>action</code>使用长度为9的数组进行控制，分别代表末端的空间位置3个变量，末端的空间姿态四元数，夹爪两个平行板的动作。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">action = [x, y, z, quat1, quat2, quat3, quat4, gripper_l, gripper_r]</span><br></pre></td></tr></table></figure>
+<p><strong>（2）观测状态</strong></p>
+<p>观测状态通过如下代码获取：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_get_obs</span>(<span class="params">self</span>):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;获得环境的观察&#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="comment"># 位置</span></span><br><span class="line">    grip_pos = self.sim.data.get_site_xpos(<span class="string">&#x27;robot0:grip&#x27;</span>)   <span class="comment"># 获取机器人手爪的位置</span></span><br><span class="line">    dt = self.sim.nsubsteps * self.sim.model.opt.timestep</span><br><span class="line">    grip_velp = self.sim.data.get_site_xvelp(<span class="string">&#x27;robot0:grip&#x27;</span>) * dt    <span class="comment"># 计算手爪的线速度</span></span><br><span class="line">    robot_qpos, robot_qvel = utils.robot_get_obs(self.sim)  <span class="comment"># 使用辅助函数获取机器人的位置和速度</span></span><br><span class="line"></span><br><span class="line">    gripper_state = robot_qpos[-<span class="number">2</span>:]     <span class="comment"># 提取了夹爪的状态和速度</span></span><br><span class="line">    gripper_vel = robot_qvel[-<span class="number">2</span>:] * dt  <span class="comment"># change to a scalar if the gripper is made symmetric</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将夹爪的位置、状态、夹爪线速度、速度连接起来，形成初始观察</span></span><br><span class="line">    obs = np.concatenate([</span><br><span class="line">        grip_pos,</span><br><span class="line">        gripper_state,</span><br><span class="line">        grip_velp,</span><br><span class="line">        gripper_vel,</span><br><span class="line">    ])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 存储已经到达的目标</span></span><br><span class="line">    achieved_goal = []</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 遍历所有的方块</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(self.num_blocks):</span><br><span class="line">    <span class="comment"># for i in range(1):</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 获取方块们的位置、姿态、速度、相对位置、相对速度</span></span><br><span class="line">        object_i_pos = self.sim.data.get_site_xpos(self.object_names[i])</span><br><span class="line">        <span class="comment"># rotations</span></span><br><span class="line">        object_i_rot = rotations.mat2euler(self.sim.data.get_site_xmat(self.object_names[i]))</span><br><span class="line">        <span class="comment"># velocities</span></span><br><span class="line">        object_i_velp = self.sim.data.get_site_xvelp(self.object_names[i]) * dt</span><br><span class="line">        object_i_velr = self.sim.data.get_site_xvelr(self.object_names[i]) * dt</span><br><span class="line">        <span class="comment"># gripper state</span></span><br><span class="line">        object_i_rel_pos = object_i_pos - grip_pos</span><br><span class="line">        object_i_velp -= grip_velp</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 连接到观察值中</span></span><br><span class="line">        obs = np.concatenate([</span><br><span class="line">            obs,</span><br><span class="line">            object_i_pos.ravel(),</span><br><span class="line">            object_i_rel_pos.ravel(),</span><br><span class="line">            <span class="comment">#object_i_rot.ravel(),</span></span><br><span class="line">            object_i_velp.ravel(),</span><br><span class="line">            <span class="comment">#object_i_velr.ravel()</span></span><br><span class="line">        ])</span><br><span class="line"></span><br><span class="line">        <span class="comment"># This is current location of the blocks</span></span><br><span class="line">        <span class="comment"># 方块们的当前位置</span></span><br><span class="line">        achieved_goal = np.concatenate([</span><br><span class="line">            achieved_goal, object_i_pos.copy()</span><br><span class="line">        ])</span><br><span class="line"></span><br><span class="line">    achieved_goal = np.concatenate([achieved_goal, grip_pos.copy()])</span><br><span class="line"></span><br><span class="line">    achieved_goal = np.squeeze(achieved_goal)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> self.use_force_sensor:</span><br><span class="line">        self.sim.data.get_sensor(<span class="string">&#x27;force_sensor&#x27;</span>) </span><br><span class="line">        force_reading = self.sim.data.sensordata <span class="comment"># Read force sensor reading from tray</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        force_reading = [<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">&#x27;observation&#x27;</span>: obs.copy(),</span><br><span class="line">        <span class="string">&#x27;achieved_goal&#x27;</span>: achieved_goal.copy(),</span><br><span class="line">        <span class="string">&#x27;desired_goal&#x27;</span>: self.goal.copy(),</span><br><span class="line">        <span class="string">&#x27;force_sensor&#x27;</span>: force_reading.copy()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>可以看出观测状态是一个字典：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">键</th>
+<th style="text-align:left">值</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">observation</td>
+<td style="text-align:left">[grip_x, grip_y, grip_z,</td>
+<td style="text-align:left">grip_pos，末端位置</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">grip_q1, grip_q2, grip_q3, grip_q4,</td>
+<td style="text-align:left">grip_quat，末端姿态</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">gripper_left, gripper_right,</td>
+<td style="text-align:left">gripper_state，夹爪两侧状态</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">grip_vx, grip_vy, grip_vz,</td>
+<td style="text-align:left">grip_vel，末端速度</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">grip_wx, grip_wy, grip_wz</td>
+<td style="text-align:left">grip_w，末端角速度</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">gripper_vl, gripper_vr,</td>
+<td style="text-align:left">gripper_vel，夹爪两侧速度</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">obj1_x, obj1_y, obj1_z,</td>
+<td style="text-align:left">obj_i_pos，方块 i 位置</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">obj1_q1, obj1_q2, obj1_q3, obj1_q4</td>
+<td style="text-align:left">obj_i_quat，方块 i 姿态</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">obj1_rx, obj1_ry, obj1_rz,</td>
+<td style="text-align:left">obj_i_rel_pos，方块 i 相对末端位置</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">obj1_rq1, obj1_rq2, obj1_rq3, obj1_rq4</td>
+<td style="text-align:left">obj_i_rel_quat，方块 i 相对末端姿态</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">obj1_vx, obj1_vy, obj1_vz,</td>
+<td style="text-align:left">obj_i_velp, 方块 i 相对末端速度</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">obj1_wx, obj1_wy, obj1_wz,</td>
+<td style="text-align:left">obj_i_wp，方块 i 相对末端角速度</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">obj2…</td>
+<td style="text-align:left">方块 2 位置、相对位置、相对速度</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">obji…]</td>
+<td style="text-align:left">方块 i 位置、相对位置、相对速度</td>
+</tr>
+<tr>
+<td style="text-align:left">achieved_goal</td>
+<td style="text-align:left">[obj1_x, obj1_y, obj1_z,<br>obj1_q1, obj1_q2, obj1_q3, obj1_q4,<br>…</td>
+<td style="text-align:left">每调用一次_get_obs()方法<br>保存所有方块的位置姿态</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">grip_x, grip_y, grip_z,<br>grip_q1, grip_q2, grip_q3, grip_q4<br>…]</td>
+<td style="text-align:left">将当前末端位置<br>添加到 achieved_goal 最后</td>
+</tr>
+<tr>
+<td style="text-align:left">desired_goal</td>
+<td style="text-align:left">[[x1, y1, z1], [x2, y2, z2], … ]</td>
+<td style="text-align:left">多个目标位置</td>
+</tr>
+<tr>
+<td style="text-align:left">force_sensor</td>
+<td style="text-align:left">[f_x, f_y, f_z]</td>
+<td style="text-align:left">force_reading，末端力，默认[0,0,0]</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<!--
+
+python data/collect_demos_reskill_6d.py --num_trajectories 40000 --subseq_len 10
+
+python train_skill_modules.py --config_file pickplace/config.yaml --dataset_name fetch_pickplace_40000
+
+python utils/test_skill_modules.py --dataset_name fetch_pickplace_40000 --use_skill_prior True
+
+python train_reskill_agent.py --config_file pickplace/config.yaml --dataset_name fetch_pickplace_40000
+
+python utils/test_reskill_agent.py --dataset_name fetch_pickplace_40000 --env_name FetchPourWater-v0
+
+-->
+<p>💰</p>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>【论文笔记】Reskill基于技能的适应性动作空间学习</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://www.mahaofei.com/post/reskill.html">https://www.mahaofei.com/post/reskill.html</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>马浩飞</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2023-11-25</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2023-11-25</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">强化学习</a><a class="post-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%8A%A8%E4%BD%9C/">机器人动作</a></div><div class="post_share"><div class="social-share" data-image="https://img.mahaofei.com/img/202311251603089.png" data-sites="qq,wechat,weibo,facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/img/wechatpay.png" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/dex.html"><img class="prev-cover" src="https://img.mahaofei.com/img/202311151037433.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【论文笔记】Dex 演示引导强化学习与手术机器人任务自动化的高效探索</div></div></a></div><div class="next-post pull-right"><a href="/post/hrc-papers.html"><img class="next-cover" src="https://img.mahaofei.com/img/202312050854381.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【论文笔记】人机协作</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><a href="https://www.mahaofei.com"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></a></div><div class="author-info__name">马浩飞</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-solid fa-graduation-cap"></i><span>学术主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/HaofeiMa" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:mail@mahaofei.com" target="_blank" title="E-Mail"><i class="fa fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">新增了<a target="_blank" rel="noopener" href="https://academic.mahaofei.com/">学术主页</a>！<br>有任何问题欢迎留言评论或邮件联系。<br>E-mail：<a href="mailto:blog@mahaofei.com" style="text-decoration:underline;">blog@mahaofei.com</a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0"><span class="toc-text">一、论文笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E7%9B%AE%E6%A0%87%E9%97%AE%E9%A2%98"><span class="toc-text">1.1 目标问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E6%96%B9%E6%B3%95"><span class="toc-text">1.2 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E6%80%BB%E7%BB%93"><span class="toc-text">1.3 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BB%A3%E7%A0%81%E5%A4%8D%E7%8E%B0"><span class="toc-text">二、代码复现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">2.1 环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86"><span class="toc-text">2.2 数据收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E8%AE%AD%E7%BB%83"><span class="toc-text">2.3 训练</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95"><span class="toc-text">2.4 日志记录</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E7%90%86%E8%A7%A3"><span class="toc-text">三、代码理解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E5%9F%BA%E6%9C%AC%E5%AE%9A%E4%B9%89"><span class="toc-text">3.1 基本定义</span></a></li></ol></li></ol></div></div><div class="card-widget card-recommend-post"><div class="item-headline"><i class="fas fa-dharmachakra"></i><span>相关推荐</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/dex.html" title="【论文笔记】Dex 演示引导强化学习与手术机器人任务自动化的高效探索"><img src="https://img.mahaofei.com/img/202311151037433.png" alt="【论文笔记】Dex 演示引导强化学习与手术机器人任务自动化的高效探索"></a><div class="content"><a class="title" href="/post/dex.html" title="【论文笔记】Dex 演示引导强化学习与手术机器人任务自动化的高效探索">【论文笔记】Dex 演示引导强化学习与手术机器人任务自动化的高效探索</a><time datetime="2023-11-21" title="发表于 2023-11-21">2023-11-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/lfd-rl-papers.html" title="【论文笔记】基于强化学习的机器人动作模仿"><img src="https://img.mahaofei.com/img/202311091616113.png" alt="【论文笔记】基于强化学习的机器人动作模仿"></a><div class="content"><a class="title" href="/post/lfd-rl-papers.html" title="【论文笔记】基于强化学习的机器人动作模仿">【论文笔记】基于强化学习的机器人动作模仿</a><time datetime="2023-11-09" title="发表于 2023-11-09">2023-11-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/lfd-il-papers.html" title="【论文笔记】机器人动作、轨迹、过程模仿"><img src="https://img.mahaofei.com/img/202312131522496.png" alt="【论文笔记】机器人动作、轨迹、过程模仿"></a><div class="content"><a class="title" href="/post/lfd-il-papers.html" title="【论文笔记】机器人动作、轨迹、过程模仿">【论文笔记】机器人动作、轨迹、过程模仿</a><time datetime="2023-12-12" title="发表于 2023-12-12">2023-12-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/rl-basic.html" title="【强化学习笔记】强化学习基础"><img src="https://img.mahaofei.com/img/202311030917032.png" alt="【强化学习笔记】强化学习基础"></a><div class="content"><a class="title" href="/post/rl-basic.html" title="【强化学习笔记】强化学习基础">【强化学习笔记】强化学习基础</a><time datetime="2023-11-02" title="发表于 2023-11-02">2023-11-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ppo.html" title="【强化学习算法】近端优化策略PPO"><img src="/img/linux_debian.jpg" alt="【强化学习算法】近端优化策略PPO"></a><div class="content"><a class="title" href="/post/ppo.html" title="【强化学习算法】近端优化策略PPO">【强化学习算法】近端优化策略PPO</a><time datetime="2023-07-24" title="发表于 2023-07-24">2023-07-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/hdf5.html" title="HDF5数据文件格式"><img src="https://img.mahaofei.com/img/202401011439226.png" alt="HDF5数据文件格式"></a><div class="content"><a class="title" href="/post/hdf5.html" title="HDF5数据文件格式">HDF5数据文件格式</a><time datetime="2024-01-01" title="发表于 2024-01-01">2024-01-01</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.mahaofei.com/img/GoodnightCopenhagen.png')"><div id="footer-wrap"><div class="footer_custom_text"><p><a style="margin-inline:5px"target="_blank"href="https://github.com/"><img src="https://img.shields.io/badge/Hosted-Github-brightgreen?style=flat&logo=GitHub"title="本站项目由Gtihub托管"></a><a style="margin-inline:5px"target="_blank"href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo"title="博客框架为Hexo"></a><a style="margin-inline:5px"target="_blank"href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?logoColor=white&style=flat&logo=buefy"title="主题采用butterfly"></a><a style="margin-inline:5px"target="_blank"href="https://aliyun.com/product/cdn"><img src="https://img.shields.io/badge/DNS-Cloudflare-orange?style=flat&logo=Cloudflare"title="本站使用Cloudflare网络服务"></a><a style="margin-inline:5px"target="_blank"href="https://beian.miit.gov.cn/"><img src="https://img.shields.io/badge/%E6%B4%A5ICP%E5%A4%87-2021000769%E5%8F%B7--3-red?logo=data:image/png;base64,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"title="备案号:津ICP备2021000769号-3"></a><a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris"title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><i class="fas fa-adjust"><use id="modeicon" xlink:href="#icon-moon"></use></i></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Algolia</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, "https://cdn.jsdelivr.net/gh/zhheo/twikoo@dev/dist/twikoo.all.min.js"))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script><script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script><script src="/js/custom/categoryBar.js"></script><script src="/js/custom/cardHistory.js"></script><script src="/js/custom/light_dark.js"></script><script src="/js/custom/forbidCopy.js"></script><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"Jfmc1FSFWs09EC8r",ck:"Jfmc1FSFWs09EC8r"})</script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script>new LingQue.Monitor().init({id:"JfmcYvlVsVAZlVkS"});</script><script defer src="https://cloud.umami.is/script.js" data-website-id="86b466f8-e8bc-415b-954e-289b3d0110fb"></script><script src="/js/custom/custom.js"></script><script src="/js/custom/nav.js"></script><script id="canvas_nest" defer="defer" color="66,66,66" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

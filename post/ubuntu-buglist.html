@@ -1,0 +1,411 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Ubuntu系统Buglist（不定时更新） | 马浩飞丨博客</title><meta name="keywords" content="Ubuntu,bugs"><meta name="author" content="马浩飞"><meta name="copyright" content="马浩飞"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Ubuntu系统使用过程中遇到的问题汇总。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu系统Buglist（不定时更新）">
+<meta property="og:url" content="https://www.mahaofei.com/post/ubuntu-buglist.html">
+<meta property="og:site_name" content="马浩飞丨博客">
+<meta property="og:description" content="Ubuntu系统使用过程中遇到的问题汇总。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.mahaofei.com/img/20220410093053.png">
+<meta property="article:published_time" content="2021-02-16T07:45:50.000Z">
+<meta property="article:modified_time" content="2023-02-15T07:45:50.000Z">
+<meta property="article:author" content="马浩飞">
+<meta property="article:tag" content="Ubuntu">
+<meta property="article:tag" content="bugs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.mahaofei.com/img/20220410093053.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.mahaofei.com/post/ubuntu-buglist"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-bB89NudWgv"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?439a0d0abeb31dd8f338efd8266c999b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"ABY1KMOQQM","apiKey":"d3f3a4fbb355106e6bf265cf8da1863b","indexName":"hexo","hits":{"per_page":4},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Ubuntu系统Buglist（不定时更新）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-15 15:45:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="/css/custom/MainColor.css"><link rel="stylesheet" href="/css/custom/categoryBar.css"><link rel="stylesheet" href="/css/custom/404.css"><link rel="stylesheet" href="/css/custom/cardHistory.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><link rel="stylesheet" href="/css/custom/custom.css"><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="马浩飞丨博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.mahaofei.com/img/20220410093053.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">马浩飞丨博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div><center id="name-container"><a id="page-name" href="javascript:scrollToTop()">PAGE_NAME</a></center></div><div id="nav-right"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Ubuntu系统Buglist（不定时更新）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-16T07:45:50.000Z" title="发表于 2021-02-16 15:45:50">2021-02-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-15T07:45:50.000Z" title="更新于 2023-02-15 15:45:50">2023-02-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%A8%8B%E5%BA%8F%E5%9F%BA%E7%A1%80/">程序基础</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%A8%8B%E5%BA%8F%E5%9F%BA%E7%A1%80/Linux/">Linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Ubuntu系统Buglist（不定时更新）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/post/ubuntu-buglist.html#post-comment"><span id="twikoo-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="一、环境-库"><a href="#一、环境-库" class="headerlink" title="一、环境/库"></a>一、环境/库</h1><h2 id="1-1-curl-error-while-loading-shared-libraries"><a href="#1-1-curl-error-while-loading-shared-libraries" class="headerlink" title="1.1 curl: error while loading shared libraries"></a>1.1 curl: error while loading shared libraries</h2><ol>
+<li>在机器上查找丢失的共享库</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find ~ -name libssl.so.1.0.0</span><br></pre></td></tr></table></figure>
+<p>得到返回值<code>/home/huffie/anaconda3/pkgs/openssl-1.0.2p-h14c3975_0/lib/libssl.so.1.0.0</code></p>
+<ol>
+<li>查看软件安装路径</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span> curl</span><br></pre></td></tr></table></figure>
+<p>得到返回值<code>~/anaconda3/bin/curl</code>，说明是使用anaconda安装的</p>
+<ol>
+<li>建立软连接</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ln</span> -s /home/huffie/anaconda3/pkgs/openssl-1.0.2p-h14c3975_0/lib/libssl.so.1.0.0 ~/anaconda3/lib/libssl.so.1.0.0</span><br></pre></td></tr></table></figure>
+<ol>
+<li>同样的方法补全<code>libcrypto.so.1.0.0</code></li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ln</span> -s /home/huffie/anaconda3/pkgs/openssl-1.0.2p-h14c3975_0/lib/libcrypto.so.1.0.0 ~/anaconda3/lib/libcrypto.so.1.0.0</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-调整Docker下载速度"><a href="#1-2-调整Docker下载速度" class="headerlink" title="1.2 调整Docker下载速度"></a>1.2 调整Docker下载速度</h2><ol>
+<li>备份配置文件</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">cp</span> /etc/docker/daemon.json /etc/docker/daemon.json.backup</span><br></pre></td></tr></table></figure>
+<ol>
+<li>打开配置文件，删除所有内容，并添加以下内容</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;registry-mirrors&quot;</span> <span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;https://docker.mirrors.ustc.edu.cn&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="1-3-由于没有公钥，无法验证下列签名：NO-PUBKEY的解决方法"><a href="#1-3-由于没有公钥，无法验证下列签名：NO-PUBKEY的解决方法" class="headerlink" title="1.3 由于没有公钥，无法验证下列签名：NO_PUBKEY的解决方法"></a>1.3 由于没有公钥，无法验证下列签名：NO_PUBKEY的解决方法</h2><p><strong>（1）问题描述</strong></p>
+<p>今天运行apt-get update时突然出现了由于没有公钥，无法验证下列签名的问题，尝试了网上许多方法，最终找到了一种亲测有效的解决方法：</p>
+<p><strong>（2）解决方法</strong></p>
+<p><strong>在终端输入：</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 76F1A20FF987672F</span><br></pre></td></tr></table></figure><br>其中最后的代码为报错语句中的最后一部分：由于没有公钥，无法验证下列签名： NO_PUBKEY <strong>76F1A20FF987672F</strong></p>
+<p><strong>（3）解决结果</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Executing: /tmp/apt-key-gpghome.uBwlOPqFFF/gpg.1.sh --keyserver hkp://keyserver.ubuntu.com:80 --recv 76F1A20FF987672F</span><br><span class="line">gpg: key 76F1A20FF987672F: 1 signature not checked due to a missing key</span><br><span class="line">gpg: 密钥 76F1A20FF987672F：公钥“WineHQ packages &lt;wine-devel@winehq.org&gt;”已导入</span><br><span class="line">gpg: 合计被处理的数量：1</span><br><span class="line">gpg:               已导入：1</span><br></pre></td></tr></table></figure></p>
+<h2 id="1-4-Cmake-版本更新"><a href="#1-4-Cmake-版本更新" class="headerlink" title="1.4 Cmake 版本更新"></a>1.4 Cmake 版本更新</h2><p>更新cmake</p>
+<p><strong>（1）报错信息</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CMake Error at CMakeLists.txt:15 (cmake_minimum_required):</span><br><span class="line">  CMake 3.13 or higher is required.  You are running version 3.10.2</span><br><span class="line"></span><br><span class="line">-- Configuring incomplete, errors occurred!</span><br></pre></td></tr></table></figure>
+<p><strong>（2）解决方法</strong></p>
+<p>首先尝试一下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade</span><br></pre></td></tr></table></figure>
+<p>如果还不行，那么就到官网安装新版cmake。</p>
+<p>到<a target="_blank" rel="noopener" href="https://cmake.org/download/">cmake官网的下载页面</a>下载最新的cmake安装包，以<a target="_blank" rel="noopener" href="https://cmake.org/files/v3.25/cmake-3.25.2.tar.gz">cmake-3.25.2.tar.gz</a>为例。</p>
+<p>解压安装包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf cmake-3.25.2.tar.gz</span><br></pre></td></tr></table></figure>
+<p>进入安装包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd cmake-3.25.2</span><br></pre></td></tr></table></figure>
+<p>开始安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 ./configure</span><br><span class="line">./configure</span><br><span class="line">make -j8 </span><br><span class="line">sudo make install</span><br><span class="line">sudo update-alternatives --install /usr/bin/cmake cmake /usr/local/bin/cmake 1 --force</span><br></pre></td></tr></table></figure>
+<p><strong>（3）解决结果</strong></p>
+<p>运行下列命令检查<code>cmake</code>是否正确安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake --version</span><br></pre></td></tr></table></figure>
+<h2 id="1-5-cudnn问题，apt-upgrade出现警告-sbin-ldconfig-real"><a href="#1-5-cudnn问题，apt-upgrade出现警告-sbin-ldconfig-real" class="headerlink" title="1.5 cudnn问题，apt upgrade出现警告/sbin/ldconfig.real"></a>1.5 cudnn问题，apt upgrade出现警告/sbin/ldconfig.real</h2><p><strong>问题描述：</strong></p>
+<p>安装软件，或使用<code>sudo apt upgrade</code>时，命令行出现警告信息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/sbin/ldconfig.real: /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_cnn_train.so.8 is not a symbolic link</span><br><span class="line"></span><br><span class="line">/sbin/ldconfig.real: /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_ops_train.so.8 is not a symbolic link</span><br><span class="line"></span><br><span class="line">/sbin/ldconfig.real: /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_adv_train.so.8 is not a symbolic link</span><br><span class="line"></span><br><span class="line">/sbin/ldconfig.real: /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn.so.8 is not a symbolic link</span><br><span class="line"></span><br><span class="line">/sbin/ldconfig.real: /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_ops_infer.so.8 is not a symbolic link</span><br><span class="line"></span><br><span class="line">/sbin/ldconfig.real: /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_cnn_infer.so.8 is not a symbolic link</span><br><span class="line"></span><br><span class="line">/sbin/ldconfig.real: /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_adv_infer.so.8 is not a symbolic link</span><br></pre></td></tr></table></figure>
+<p><strong>问题原因：</strong></p>
+<p>CUDA和cuDNN库的符号链接失效，重新创建符号链接：</p>
+<p><strong>解决方法：</strong></p>
+<p>注意按照自己的报错信息修改路径</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_ops_train.so.8.9.1 /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_ops_train.so.8</span><br><span class="line">sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_cnn_train.so.8.9.1 /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_cnn_train.so.8</span><br><span class="line">sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_adv_train.so.8.9.1 /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_adv_train.so.8</span><br><span class="line">sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn.so.8.9.1 /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn.so.8</span><br><span class="line">sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_ops_infer.so.8.9.1 /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_ops_infer.so.8</span><br><span class="line">sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_cnn_infer.so.8.9.1 /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_cnn_infer.so.8</span><br><span class="line">sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_adv_infer.so.8.9.1 /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_adv_infer.so.8</span><br></pre></td></tr></table></figure>
+<h2 id="1-6-conda环境导致的源码安装包问题"><a href="#1-6-conda环境导致的源码安装包问题" class="headerlink" title="1.6 conda环境导致的源码安装包问题"></a>1.6 conda环境导致的源码安装包问题</h2><p><strong>问题描述：</strong></p>
+<p>如果在conda环境下从源码编译安装某个包，在cmake阶段，可能会出现下面的问题：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">CMake Warning at cmake/CMakeHelper.cmake:103 (add_executable):</span><br><span class="line">  Cannot generate a safe runtime search path for target colmap_main because</span><br><span class="line">  files in some directories may conflict with libraries in implicit</span><br><span class="line">  directories:</span><br><span class="line"></span><br><span class="line">    runtime library [libmpfr.so.6] in /usr/lib/x86_64-linux-gnu may be hidden by files in:</span><br><span class="line">      /home/mahaofei/anaconda3/lib</span><br><span class="line">    runtime library [libgmp.so.10] in /usr/lib/x86_64-linux-gnu may be hidden by files in:</span><br><span class="line">      /home/mahaofei/anaconda3/lib</span><br><span class="line">    runtime library [liblz4.so.1] in /usr/lib/x86_64-linux-gnu may be hidden by files in:</span><br><span class="line">      /home/mahaofei/anaconda3/lib</span><br><span class="line">    runtime library [libsqlite3.so.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:</span><br><span class="line">      /home/mahaofei/anaconda3/lib</span><br><span class="line">    runtime library [libgomp.so.1] in /usr/lib/gcc/x86_64-linux-gnu/9 may be hidden by files in:</span><br><span class="line">      /home/mahaofei/anaconda3/lib</span><br><span class="line"></span><br><span class="line">  Some of these libraries may not be found correctly.</span><br><span class="line">Call Stack (most recent call first):</span><br><span class="line">  src/colmap/exe/CMakeLists.txt:67 (COLMAP_ADD_EXECUTABLE)</span><br></pre></td></tr></table></figure>
+<p><strong>解决方法：</strong></p>
+<p>退出conda环境，然后再编译安装。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">临时退出</span></span><br><span class="line">conda deactivate</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">取消终端自动进入conda</span></span><br><span class="line">conda config --set auto_activate_base false</span><br></pre></td></tr></table></figure>
+<h2 id="1-7-the-provided-PTX-was-compiled-with-an-unsupported-toolchain"><a href="#1-7-the-provided-PTX-was-compiled-with-an-unsupported-toolchain" class="headerlink" title="1.7 the provided PTX was compiled with an unsupported toolchain"></a>1.7 the provided PTX was compiled with an unsupported toolchain</h2><p><strong>问题描述：</strong></p>
+<p>从源码编译安装某些包，完成之后无法使用，例如我的colmap一直报错如下：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CuTexImage::BindTexture:        invalid device symbol</span><br><span class="line">FilterH:        the provided PTX was compiled with an unsupported toolchain.</span><br><span class="line">E1220 10:33:57.020385 2392647 feature_extraction.cc:276] Failed to extract features.</span><br><span class="line">CuTexImage::BindTexture:        the provided PTX was compiled with an unsupported toolchain.</span><br></pre></td></tr></table></figure>
+<p><strong>解决方法：</strong></p>
+<p>更新显卡驱动，亲测有效。</p>
+<h1 id="二、ROS"><a href="#二、ROS" class="headerlink" title="二、ROS"></a>二、ROS</h1><h2 id="2-1-使用其它工作空间的包，未加载其它工作空间的source"><a href="#2-1-使用其它工作空间的包，未加载其它工作空间的source" class="headerlink" title="2.1 使用其它工作空间的包，未加载其它工作空间的source"></a>2.1 使用其它工作空间的包，未加载其它工作空间的source</h2><p><strong>（1）报错信息</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Failed to load nodelet &#x27;/camera/realsense2_camera` of type `realsense2_camera/RealSenseNodeFactory` to manager `realsense2_camera_manager&#x27;</span><br></pre></td></tr></table></figure>
+<p><strong>（2）报错原因</strong></p>
+<p>原因是找不到realsense2_camera包，在安装D435的包时，以为bashrc文件里已存在要添加的路径故没有执行</p>
+<p><strong>（3）解决方法</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/catkin_ws/devel/setup.bash</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;source ~/catkin_ws/devel/setup.bash&quot; &gt;&gt; ~/.bashrc</span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+<h2 id="2-2-有多个-so文件同时被引用"><a href="#2-2-有多个-so文件同时被引用" class="headerlink" title="2.2 有多个.so文件同时被引用"></a>2.2 有多个.so文件同时被引用</h2><p><strong>（1）报错信息</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">symbol lookup error: /home/huffie/catkin_ws/devel/lib//librealsense2_camera.so: undefined symbol: _ZN20ddynamic_reconfigure19DDynamicReconfigureC1ERKN3ros10NodeHandleE</span><br></pre></td></tr></table></figure>
+<p><strong>（2）报错原因</strong></p>
+<p>系统内librealsense2_camera.so的数量不唯一，在多个路径下都存在此库</p>
+<p><strong>（3）解决方法</strong></p>
+<p>查找一下动态库路径</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $LD_LIBRARY_PATH</span><br></pre></td></tr></table></figure>
+<p>将显示的其它工作空间的build和devel文件夹都删掉就可以了</p>
+<h2 id="2-3-PCL要求C-11及以上"><a href="#2-3-PCL要求C-11及以上" class="headerlink" title="2.3 PCL要求C++11及以上"></a>2.3 PCL要求C++11及以上</h2><p><strong>（1）报错信息</strong></p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: #error PCL requires C++14 or above</span><br></pre></td></tr></table></figure>
+<p><strong>（2）报错原因</strong></p>
+<p>CMakeLists.txt没有添加C++14的配置</p>
+<p><strong>（3）解决方法</strong></p>
+<p>在<code>CMakeLists.txt</code>中添加下面这几行代码</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">add_compile_options</span>(-std=c++<span class="number">11</span> )</span><br><span class="line"><span class="keyword">add_compile_options</span>(-std=c++<span class="number">14</span> )</span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">14</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="2-4-error-while-loading-shared-libraries"><a href="#2-4-error-while-loading-shared-libraries" class="headerlink" title="2.4 error while loading shared libraries"></a>2.4 error while loading shared libraries</h2><p><strong>（1）报错信息</strong></p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/opt/ros/noetic/lib/rosout/rosout: error while loading shared libraries: libxmlrpcpp.so: cannot open shared object file: No such file or directory</span><br><span class="line">[rosout-1] process has died [pid 82803, exit code 127, cmd /opt/ros/noetic/lib/rosout/rosout __name:=rosout __log:=/home/huffie/.ros/log/834eb474-ba51-11ed-861b-470c5d943dac/rosout-1.log].</span><br><span class="line">log file: /home/huffie/.ros/log/834eb474-ba51-11ed-861b-470c5d943dac/rosout-1*.log</span><br></pre></td></tr></table></figure>
+<p><strong>（2）问题原因</strong></p>
+<p>链接器找不到库文件，搜索<code>libxmlrpcpp.so</code>，发现其位置为<code>/opt/ros/noetic/lib</code></p>
+<p><strong>（3）解决方法</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /etc/ld.so.conf.d/libc.conf</span><br></pre></td></tr></table></figure>
+<p>在其中添加<code>libxmlrpcpp.so</code>的目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/ros/noetic/lib</span><br></pre></td></tr></table></figure>
+<p>然后执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ldconfig</span><br></pre></td></tr></table></figure>
+<p>就ok了</p>
+<h1 id="三、系统问题"><a href="#三、系统问题" class="headerlink" title="三、系统问题"></a>三、系统问题</h1><h2 id="3-1-Windows-Ubuntu双系统，Win更新后Ubuntu引导项消失"><a href="#3-1-Windows-Ubuntu双系统，Win更新后Ubuntu引导项消失" class="headerlink" title="3.1 Windows+Ubuntu双系统，Win更新后Ubuntu引导项消失"></a>3.1 Windows+Ubuntu双系统，Win更新后Ubuntu引导项消失</h2><p><strong>首先在BIOS里确定Ubuntu的启动顺序是不是在Windows之前，一定要启动ubuntu，然后才有引导</strong></p>
+<p>插入ubuntu启动盘，重启电脑，选择U盘启动，进入后选择 try ubuntu without install</p>
+<p>进入界面后连接网络</p>
+<p>输入以下命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-add-repository ppa:yannubuntu/boot-repair</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install boot-repair</span><br></pre></td></tr></table></figure>
+<p>安装成功后继续在终端输入以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boot-repair</span><br></pre></td></tr></table></figure>
+<p>期间会检索引导项，等待即可</p>
+<p>完成后点击Recommended repair</p>
+<p>等待一下，成功找回</p>
+<h2 id="3-2-Ubuntu启动后左上角光标闪烁，且出现snd-hda-intel-cannot-probe-codecs的错误信息"><a href="#3-2-Ubuntu启动后左上角光标闪烁，且出现snd-hda-intel-cannot-probe-codecs的错误信息" class="headerlink" title="3.2 Ubuntu启动后左上角光标闪烁，且出现snd_hda_intel cannot probe codecs的错误信息"></a>3.2 Ubuntu启动后左上角光标闪烁，且出现snd_hda_intel cannot probe codecs的错误信息</h2><p><strong>问题描述：</strong></p>
+<p>系统运行正常的情况下，重启了服务器，再开机就进入不了桌面了，一直左上角光标闪烁，并且等待一段时间后出现snd_hda_intel cannot probe codecs的报错。</p>
+<p><strong>解决方法：</strong></p>
+<p>清空回收站，本人遇到的问题是磁盘没有空间了，无法启动某个驱动，通过ssh连接系统后使用下面命令清空回收站即可</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -rf ~/.local/share/Trash/*</span><br></pre></td></tr></table></figure>
+<h2 id="3-3-Kernel-panic-not-syncing-Attempted-to-kill-init"><a href="#3-3-Kernel-panic-not-syncing-Attempted-to-kill-init" class="headerlink" title="3.3 Kernel panic - not syncing: Attempted to kill init!"></a>3.3 Kernel panic - not syncing: Attempted to kill init!</h2><p><strong>问题描述：</strong></p>
+<p>我在正常使用电脑时，突然所有图标全都变成空白方框（左侧 dock 栏、右上角所有系统图标），系统完全卡死，所有软件包括命令行无法打开，设置无法打开，点击重启无效。</p>
+<p>强制重启后，ubuntu 无法进入，显示许多行代码，最后一行为 <code>Kernel panic - not syncing: Attempted to kill init!</code>，此时双系统的 Win11 仍然正常。</p>
+<p><strong>解决方法：</strong></p>
+<p>经查阅资料，应该是系统自动更新内核导致的问题（也有的说是因为/boot 分区满了出现问题）。</p>
+<p>开机后在引导界面选择 <code>Advance option for ubuntu</code>，前两个为最新版本的内核，不要选择这两个，选择第三个，进入旧版本的内核。</p>
+<p>检查 <code>/boot</code> 分区是否占用为 100%</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df</span><br></pre></td></tr></table></figure>
+<p>查看所有已安装内核</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg --get-selections| grep linux</span><br></pre></td></tr></table></figure>
+<p>查看当前正在使用的内核</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -a</span><br></pre></td></tr></table></figure>
+<p>删除最新的（有错误的/如果 boot 满了则删过老的）内核，我这里新内核版本相关的只有这两个包，请根据自己情况调整。==注意一定不要误删==</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove --purge linux-modules-5.15.0-88-generic linux-image-5.15.0-88-generic</span><br></pre></td></tr></table></figure>
+<p>完成后清理</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -P linux-modules-5.15.0-88-generic</span><br><span class="line">sudo dpkg -P linux-image-5.15.0-88-generic</span><br></pre></td></tr></table></figure>
+<h2 id="3-4-惠普暗影精灵9-光影精灵9，无法拓展显示器"><a href="#3-4-惠普暗影精灵9-光影精灵9，无法拓展显示器" class="headerlink" title="3.4 惠普暗影精灵9/光影精灵9，无法拓展显示器"></a>3.4 惠普暗影精灵9/光影精灵9，无法拓展显示器</h2><p><strong>问题描述</strong></p>
+<p>惠普暗影精灵9/光影精灵9，安装ubuntu20.04，已经正常安装显卡驱动，<code>nvidia-smi</code>输出正常，但是外接显示器不识别。</p>
+<p>输入<code>xrandr</code>发现只有笔记本显示器。</p>
+<p>打开nvidia控制面板，发现nvidia识别到了外接显示器。</p>
+<p>尝试了切换显卡驱动无效，关闭<code>secure boot</code>无效。</p>
+<p><strong>解决方法</strong></p>
+<p>进入BIOS，在配置中，将独显直连（<code>NVIDIA ... Advance</code>，具体是什么记不清了），改为混合模式（<code>Discrete</code>），然后就可以了。</p>
+<h2 id="3-5-系统启动后进入-initramfs"><a href="#3-5-系统启动后进入-initramfs" class="headerlink" title="3.5 系统启动后进入(initramfs)"></a>3.5 系统启动后进入(initramfs)</h2><p><strong>问题描述：</strong></p>
+<p>我在 ubuntu+win 双系统中，使用 windows 访问了 ubuntu 的文件，再次启动 ubuntu 后发现出现错误，开机后进入了命令行界面，显示如下内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BusyBox v1.30.1 (Ubuntu 1:1.30.1-4ubuntu6.1) built-in shell (ash) </span><br><span class="line">Enter &#x27;help&#x27; for a list of built-in commands.</span><br><span class="line"></span><br><span class="line">(initramfs)</span><br></pre></td></tr></table></figure>
+<p><strong>解决方法：</strong></p>
+<p>参考 <a target="_blank" rel="noopener" href="https://ostechnix.com/how-to-fix-busybox-initramfs-error-on-ubuntu/">How To Fix Busybox Initramfs Error On Ubuntu</a></p>
+<p>使用 <code>fsck</code> 命令修复损坏分区中的文件系统：</p>
+<p>（可以使用 <code>cat /proc/partitions</code> 或 <code>blkid</code> 或 <code>lsblk</code> 命令在 Busybox 中获取您的 Linux 分区详细信息。）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 如果是机械硬盘，则为sdax，例如</span><br><span class="line">fsck /dev/sda1 -y</span><br><span class="line"># 如果是固态硬盘，则为nvmexnxpx</span><br><span class="line">fsck 则为nvme1n1p2 -y</span><br></pre></td></tr></table></figure>
+<p>几分钟后，你会看到如下输出，说明修复完成：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/dev/sda1: ***** FILE SYSTEM WAS MODIFIED *****</span><br><span class="line">/dev/sda1: 497733/30531584 files (1.5% non-contiguous), ........</span><br></pre></td></tr></table></figure>
+<p>然后重启系统（如果 reboot 无效，输入 exit 后回车重启）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
+<h2 id="3-6-A-stop-job-is-running-for-session-X-of-user-XXX"><a href="#3-6-A-stop-job-is-running-for-session-X-of-user-XXX" class="headerlink" title="3.6 A stop job is running for session X of user XXX"></a>3.6 A stop job is running for session X of user XXX</h2><p><strong>问题描述</strong>：</p>
+<p>Ubuntu 在关机或重启时，速度非常慢，在关机界面中按下任意按键会看到 <code>A stop job is running for session 2 of user mahaofei</code> 的提示。</p>
+<p><strong>解决方法</strong>：</p>
+<p>编辑文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/systemd/system.conf</span><br></pre></td></tr></table></figure>
+<p>将 <code>DefaultTimeoutStopSec</code> 行取消注释，并将时间修改为想要的时间，例如 5s。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DefaultTimeoutStopSec=5s</span><br></pre></td></tr></table></figure>
+<p>重新加载配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+<h1 id="四、小工具"><a href="#四、小工具" class="headerlink" title="四、小工具"></a>四、小工具</h1><h2 id="4-1-解压当前目录下所有-zip-压缩包到-zip-文件同名目录"><a href="#4-1-解压当前目录下所有-zip-压缩包到-zip-文件同名目录" class="headerlink" title="4.1 解压当前目录下所有 zip 压缩包到 zip 文件同名目录"></a>4.1 解压当前目录下所有 zip 压缩包到 zip 文件同名目录</h2><p>直接使用 <code>unzip</code> 会讲 zip 中的内容解压到当前目录下，使用以下脚本则会将当前目录下的所有 zip 压缩包解压成对应文件夹</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Loop through all .zip files <span class="keyword">in</span> the current directory</span></span><br><span class="line">for zipfile in *.zip; do</span><br><span class="line">    # Check if there are no zip files</span><br><span class="line">    if [ &quot;$zipfile&quot; == &quot;*.zip&quot; ]; then</span><br><span class="line">        echo &quot;No zip files found.&quot;</span><br><span class="line">        exit 1</span><br><span class="line">    fi</span><br><span class="line"></span><br><span class="line">    # Get the base name of the file (without extension)</span><br><span class="line">    foldername=&quot;$&#123;zipfile%.*&#125;&quot;</span><br><span class="line"></span><br><span class="line">    # Create the folder (if it doesn&#x27;t exist) and unzip into it</span><br><span class="line">    mkdir -p &quot;$foldername&quot;</span><br><span class="line">    unzip &quot;$zipfile&quot; -d &quot;$foldername&quot;</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">echo &quot;All zip files have been extracted.&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>Ubuntu系统Buglist（不定时更新）</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://www.mahaofei.com/post/ubuntu-buglist.html">https://www.mahaofei.com/post/ubuntu-buglist.html</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>马浩飞</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2021-02-16</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2023-02-15</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Ubuntu/">Ubuntu</a><a class="post-meta__tags" href="/tags/bugs/">bugs</a></div><div class="post_share"><div class="social-share" data-image="https://img.mahaofei.com/img/20220410093053.png" data-sites="qq,wechat,weibo,facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/img/wechatpay.png" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/website-build-wordpress.html"><img class="prev-cover" src="https://img.mahaofei.com/img/202112231629303-ali-bt-wp-1.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【个人网站搭建教程】阿里云服务器+宝塔+wordpress</div></div></a></div><div class="next-post pull-right"><a href="/post/raspberrypi-ubuntu.html"><img class="next-cover" src="https://img.mahaofei.com/img/202112231639079-raspberrypi-ubuntu20-3.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">树莓派4B安装Ubuntu20.04</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><a href="https://www.mahaofei.com"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></a></div><div class="author-info__name">马浩飞</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-solid fa-graduation-cap"></i><span>学术主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/HaofeiMa" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:mail@mahaofei.com" target="_blank" title="E-Mail"><i class="fa fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">新增了<a target="_blank" rel="noopener" href="https://academic.mahaofei.com/">学术主页</a>！<br>有任何问题欢迎留言评论或邮件联系。<br>E-mail：<a href="mailto:blog@mahaofei.com" style="text-decoration:underline;">blog@mahaofei.com</a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%8E%AF%E5%A2%83-%E5%BA%93"><span class="toc-text">一、环境&#x2F;库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-curl-error-while-loading-shared-libraries"><span class="toc-text">1.1 curl: error while loading shared libraries</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E8%B0%83%E6%95%B4Docker%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6"><span class="toc-text">1.2 调整Docker下载速度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E7%94%B1%E4%BA%8E%E6%B2%A1%E6%9C%89%E5%85%AC%E9%92%A5%EF%BC%8C%E6%97%A0%E6%B3%95%E9%AA%8C%E8%AF%81%E4%B8%8B%E5%88%97%E7%AD%BE%E5%90%8D%EF%BC%9ANO-PUBKEY%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-text">1.3 由于没有公钥，无法验证下列签名：NO_PUBKEY的解决方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-Cmake-%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0"><span class="toc-text">1.4 Cmake 版本更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-cudnn%E9%97%AE%E9%A2%98%EF%BC%8Capt-upgrade%E5%87%BA%E7%8E%B0%E8%AD%A6%E5%91%8A-sbin-ldconfig-real"><span class="toc-text">1.5 cudnn问题，apt upgrade出现警告&#x2F;sbin&#x2F;ldconfig.real</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6-conda%E7%8E%AF%E5%A2%83%E5%AF%BC%E8%87%B4%E7%9A%84%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-text">1.6 conda环境导致的源码安装包问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-7-the-provided-PTX-was-compiled-with-an-unsupported-toolchain"><span class="toc-text">1.7 the provided PTX was compiled with an unsupported toolchain</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81ROS"><span class="toc-text">二、ROS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E4%BD%BF%E7%94%A8%E5%85%B6%E5%AE%83%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E7%9A%84%E5%8C%85%EF%BC%8C%E6%9C%AA%E5%8A%A0%E8%BD%BD%E5%85%B6%E5%AE%83%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E7%9A%84source"><span class="toc-text">2.1 使用其它工作空间的包，未加载其它工作空间的source</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%9C%89%E5%A4%9A%E4%B8%AA-so%E6%96%87%E4%BB%B6%E5%90%8C%E6%97%B6%E8%A2%AB%E5%BC%95%E7%94%A8"><span class="toc-text">2.2 有多个.so文件同时被引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-PCL%E8%A6%81%E6%B1%82C-11%E5%8F%8A%E4%BB%A5%E4%B8%8A"><span class="toc-text">2.3 PCL要求C++11及以上</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-error-while-loading-shared-libraries"><span class="toc-text">2.4 error while loading shared libraries</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%B3%BB%E7%BB%9F%E9%97%AE%E9%A2%98"><span class="toc-text">三、系统问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-Windows-Ubuntu%E5%8F%8C%E7%B3%BB%E7%BB%9F%EF%BC%8CWin%E6%9B%B4%E6%96%B0%E5%90%8EUbuntu%E5%BC%95%E5%AF%BC%E9%A1%B9%E6%B6%88%E5%A4%B1"><span class="toc-text">3.1 Windows+Ubuntu双系统，Win更新后Ubuntu引导项消失</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-Ubuntu%E5%90%AF%E5%8A%A8%E5%90%8E%E5%B7%A6%E4%B8%8A%E8%A7%92%E5%85%89%E6%A0%87%E9%97%AA%E7%83%81%EF%BC%8C%E4%B8%94%E5%87%BA%E7%8E%B0snd-hda-intel-cannot-probe-codecs%E7%9A%84%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF"><span class="toc-text">3.2 Ubuntu启动后左上角光标闪烁，且出现snd_hda_intel cannot probe codecs的错误信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-Kernel-panic-not-syncing-Attempted-to-kill-init"><span class="toc-text">3.3 Kernel panic - not syncing: Attempted to kill init!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E6%83%A0%E6%99%AE%E6%9A%97%E5%BD%B1%E7%B2%BE%E7%81%B59-%E5%85%89%E5%BD%B1%E7%B2%BE%E7%81%B59%EF%BC%8C%E6%97%A0%E6%B3%95%E6%8B%93%E5%B1%95%E6%98%BE%E7%A4%BA%E5%99%A8"><span class="toc-text">3.4 惠普暗影精灵9&#x2F;光影精灵9，无法拓展显示器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%90%8E%E8%BF%9B%E5%85%A5-initramfs"><span class="toc-text">3.5 系统启动后进入(initramfs)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-A-stop-job-is-running-for-session-X-of-user-XXX"><span class="toc-text">3.6 A stop job is running for session X of user XXX</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%B0%8F%E5%B7%A5%E5%85%B7"><span class="toc-text">四、小工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E8%A7%A3%E5%8E%8B%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E4%B8%8B%E6%89%80%E6%9C%89-zip-%E5%8E%8B%E7%BC%A9%E5%8C%85%E5%88%B0-zip-%E6%96%87%E4%BB%B6%E5%90%8C%E5%90%8D%E7%9B%AE%E5%BD%95"><span class="toc-text">4.1 解压当前目录下所有 zip 压缩包到 zip 文件同名目录</span></a></li></ol></li></ol></div></div><div class="card-widget card-recommend-post"><div class="item-headline"><i class="fas fa-dharmachakra"></i><span>相关推荐</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/sakurafrp.html" title="使用内网穿透SakuraFrp远程连接服务器"><img src="https://img.mahaofei.com/img/20230405140317.png" alt="使用内网穿透SakuraFrp远程连接服务器"></a><div class="content"><a class="title" href="/post/sakurafrp.html" title="使用内网穿透SakuraFrp远程连接服务器">使用内网穿透SakuraFrp远程连接服务器</a><time datetime="2023-02-05" title="发表于 2023-02-05">2023-02-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/terminator.html" title="Terminator终端终结者常用快捷键"><img src="https://img.mahaofei.com/img/20230304085853.png" alt="Terminator终端终结者常用快捷键"></a><div class="content"><a class="title" href="/post/terminator.html" title="Terminator终端终结者常用快捷键">Terminator终端终结者常用快捷键</a><time datetime="2023-03-04" title="发表于 2023-03-04">2023-03-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ubuntu-onedrive.html" title="Ubuntu使用OneDrive"><img src="https://img.mahaofei.com/img/20230410155340.png" alt="Ubuntu使用OneDrive"></a><div class="content"><a class="title" href="/post/ubuntu-onedrive.html" title="Ubuntu使用OneDrive">Ubuntu使用OneDrive</a><time datetime="2023-03-10" title="发表于 2023-03-10">2023-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ubuntu-screen-record.html" title="Ubuntu截图与录屏工具"><img src="https://img.mahaofei.com/img/202311261602791.png" alt="Ubuntu截图与录屏工具"></a><div class="content"><a class="title" href="/post/ubuntu-screen-record.html" title="Ubuntu截图与录屏工具">Ubuntu截图与录屏工具</a><time datetime="2023-05-26" title="发表于 2023-05-26">2023-05-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/doublesystem-onebluetooth.html" title="Windows与Ubuntu双系统绑定同一个蓝牙设备（无需重新配对）"><img src="https://img.mahaofei.com/img/202312132218479.png" alt="Windows与Ubuntu双系统绑定同一个蓝牙设备（无需重新配对）"></a><div class="content"><a class="title" href="/post/doublesystem-onebluetooth.html" title="Windows与Ubuntu双系统绑定同一个蓝牙设备（无需重新配对）">Windows与Ubuntu双系统绑定同一个蓝牙设备（无需重新配对）</a><time datetime="2023-12-13" title="发表于 2023-12-13">2023-12-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/doublecomputer-onekeyboard.html" title="Ubuntu与Window双主机共用一套键鼠"><img src="https://img.mahaofei.com/img/202405052044212.png" alt="Ubuntu与Window双主机共用一套键鼠"></a><div class="content"><a class="title" href="/post/doublecomputer-onekeyboard.html" title="Ubuntu与Window双主机共用一套键鼠">Ubuntu与Window双主机共用一套键鼠</a><time datetime="2023-12-14" title="发表于 2023-12-14">2023-12-14</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.mahaofei.com/img/GoodnightCopenhagen.png')"><div id="footer-wrap"><div class="footer_custom_text"><p><a style="margin-inline:5px"target="_blank"href="https://github.com/"><img src="https://img.shields.io/badge/Hosted-Github-brightgreen?style=flat&logo=GitHub"title="本站项目由Gtihub托管"></a><a style="margin-inline:5px"target="_blank"href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo"title="博客框架为Hexo"></a><a style="margin-inline:5px"target="_blank"href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?logoColor=white&style=flat&logo=buefy"title="主题采用butterfly"></a><a style="margin-inline:5px"target="_blank"href="https://aliyun.com/product/cdn"><img src="https://img.shields.io/badge/DNS-Cloudflare-orange?style=flat&logo=Cloudflare"title="本站使用Cloudflare网络服务"></a><a style="margin-inline:5px"target="_blank"href="https://beian.miit.gov.cn/"><img src="https://img.shields.io/badge/%E6%B4%A5ICP%E5%A4%87-2021000769%E5%8F%B7--3-red?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAdCAYAAAC9pNwMAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDIgNzkuMTYwOTI0LCAyMDE3LzA3LzEzLTAxOjA2OjM5ICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+nhxg7wAACNlJREFUSInF1mmMVeUdx/Hv2e+5+519mJWBYQZkGxZZxLKJqBXGoLS1iXWrmihotFXaJiTWWlsbl6q1aetWd5u0VkKjNG4YEJSlOCibDLMwM8x679z9nnPP1jcVJUxf+7z6J8+LT37/Z4VvaQhfFS8+sBXbctCDGrVTKlBUH4mxAbI9Hfj0IJLsp6paJ5/tmn20N/D0wKDRMq9F/c3M2U1/V0vDfWMFh+tv/Ig1zYPMabDImPJ52OaXO87W580KggCiiOsJOJ6I3wcNFaaeNKxrt72f2fLGu4FpJ/sDQABRzD22fH7/Yze069vGc6mrDLNIJCDik10sxz2by3VdPM87xzkP9jwPTZFRVI1YUJKH+oy7n3tbvv/P2wW/UQxRWe6w4ZJRptYLHDoCuz8v5cP92XbI762O+h6UVWHnUFbPpU0fEb2A60mMJ7MUi9b/b7UgKhiZMaIxm8YLplLMDPz8hl/EH+rs8TNlUpFf32uyZJGLPDwCiTGUyTWodTN49eUCdz2YwXb9NNcObp1X98WDoufynzMVCEKGn27ayPTWBi5ad8P5iQUkJEnFLjqM9Z+hrVX0vfDe6K2dPRWsW2bwyp9EUifSJB84gdxrkR0eRgv1o/3I4fbbprJ6scqamzVO9pffec1S5ZWY2Nfz5qEy/FqOC2Y3s3j53HMSi18VRjFPwSwg+1RfVbl115vvJrsfej7UGIsYPPGgQ7JXoO+Xx5B3dHEomyJ9x1qiQozkr95h5937aFnVyouPlgJK+Ss7Fxz64OTSxSX+LHYxT2IsRW5kbGI4oHcR0jqoqTjV9se3I7/f8rS/ClS23GxSXhph6L5d9Akm7qqZhHWBQGUJ+CWGFzcg7e7m6D3/ZuW1Ea5YKdA3EojuONi813TqNi+YPYOKUhXDtCeGL26/hakLLiEcdsaHRkRAoLRc4fJrmhnekyF0apgZowWSwwkaa+rw3f8WA1GZZsPP5JEChX8dhZTN6iU6kAcs5s+dHd183SJ0VVKL57pfw6YdRQw23aeWTns47DPTALWlRTR7kMLew6hGgYqUhWXYFFUdPZ6lUBahLA8hVcOftckfi7No7VRAAQqsX1dybfvG1qwriM9mM5mJ4e4jO5Cc01dPqixbr8tWGBQUL4vjGigEEShi+xUmZ2RiR/sJ1pbS8NkgZrKAGw0TsgQsQyFaF/nfYTGprAlMFysbA1pI3mhkR6snhGsaymYGvPyFEb9IdbUE2AzFFTwpRqCtBY0wmdER+hZW4j63gcJj38V+/ErSUZXsYBfjIZHIRW0c2Z8BskCAqN+CbBJBFnyyKjR+Ez57nBxLqpfMUeSISElMBFz6x2Q6OxzWrYjyxWVzEewioU3LCS5vQY6nMUrLwNaxXvoQ59IloFSx54PPAZtQLExVZZDxsVE8J4dn6v4JYatgbSjk0owPw7RGH2ADMo88Z7L20ip8f7gC7fAo0q4+0rt7kEQDvaghVZbiPHUHcyeXcfLjT3jmpR7AYsnSScya3UR8bARVMck7Y/cB75/X6rDf3Fg2dw2jKZm5dXGm1LuAzO5DCo9v6aT0ibco5kzOvLOP+NGTFJtDpPYeZKijk/Rn3QxsfZV7txwhX7ABiZUXBsGvIvguQApNQQva9RMmTvZ2dpVUls+tX/UD7GN/Y8Ws05w6rQF+9vyzg1vZjbvMRJhXiRSU8DpTFFe0QE8S6SfPkOkZoktrB2oAhZWrwljxOPmchiSMYOWNoxNuruFU5vWeXdsojiUon345113dBBQBmTYlTimgdB8nfPo4WjaNFgN9OMEkJ02dnadVt5ki54Esqy+bzKJltVhSPbI3iN2zCyMTeXNCuG7Omm2Zok7PR2+R7jvD8ouruHhmCrB5jVZeYxLdrTP4sr4Vtd9g4MA4qc4c+6cu5NPamfw4P59t2WrA4YdXKkASf7SFivo6PDdEPmf1fRM++zp1bH/0r4I1dD1ODtOWaW4IsvPjL7nqXhloQiSPwjjgMYkMASyGEBkjhISCQwkwzve/18AbT+pk8pVY4UacQi9y+gyZ0eRAw4qHa89LXEx1LXMSPfhDJYRb59BtlLKg2WPT2l6qYl1svtGkrLYckyA1S+t5+2ATm37WCui0LSynsckDNH5zTxAchbQtkx08hDHYiW6NgC0enHBzEZ102UDH8QORdEckjEzZrNWkRydzyx17uGnDXqbUnGZ6dRPjSY91q2TqwjFuvTxLo5Zn5Qo/pumRSFcTLQtybEhGE0fQrDhhJ0VvH2lTnnHPhGtsmWan469apERjI2MH3qN7+7MEfH6ql29CbV7PvsMG32k6yU2XDhEKyZw66eJaRdrXR7CzCcqUNC3zwgymPJRCH4KRRLINimpL14A5Y4GDeOqbsPRVcfuN7Xj44pav/hFfrNT2kr2rsqf2Ibp5pEA14ZIImUyW3t5REkkTXRGQ/DGGhtLginhqCWknQDE5hKf5UFSF9Lj020Q2ul5V1AR2hr+8vuP8Vlc2zMPRxoSjnx7XBC14sDoydahSGq7KdO/HFyrBchxCVfX4fDKp4T7SCQejYODZLrYgIqgKFsNIgQqEYob8mW6yiUyb7Z64LVK/+B85xznnJ3AWzqTzuIX46mr5wLs+UUTyIriBCjRNxguHMJIFDLEEvXEOVRWnSJ0+jCd4CJoGjoedM1CLcXQziW3nMV2TSMBeOx7vWZvPt1r+cMPzE8KunaUkFn0vNrvtqXj34c1W6gzxlEQ6naIoBahtnkMwoFMwIVzSRNguMt53Aj2s4nkSlgPoGqLkICsRNF0gl8rYWuP8+11/w/OOJDEhHPKLCIpOXmi+M9AgP+maiesLifF2T1Rn5ZNj5Lo/Qc/GcPMmhdoqlEgIGzCK4PiCmJKK68p4KfF3qYGuF0qCRUkJTzleUbvQyWRTuE5xYthxQbBs7EISAbkzUFG3VfXXbK2YFi3X/eryfKKnqVBItNjJxDzH8erddC4SqWwcN5WyTtlyO1RP/Lh3eHD76MB40swmiDVJyDLYRhpc5+ub6tse/wWKbvSQEAw1awAAAABJRU5ErkJggg=="title="备案号:津ICP备2021000769号-3"></a><a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris"title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><i class="fas fa-adjust"><use id="modeicon" xlink:href="#icon-moon"></use></i></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Algolia</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, "https://cdn.jsdelivr.net/gh/zhheo/twikoo@dev/dist/twikoo.all.min.js"))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script><script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script><script src="/js/custom/categoryBar.js"></script><script src="/js/custom/cardHistory.js"></script><script src="/js/custom/light_dark.js"></script><script src="/js/custom/forbidCopy.js"></script><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"Jfmc1FSFWs09EC8r",ck:"Jfmc1FSFWs09EC8r"})</script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script>new LingQue.Monitor().init({id:"JfmcYvlVsVAZlVkS"});</script><script defer src="https://cloud.umami.is/script.js" data-website-id="86b466f8-e8bc-415b-954e-289b3d0110fb"></script><script src="/js/custom/custom.js"></script><script src="/js/custom/nav.js"></script><script id="canvas_nest" defer="defer" color="66,66,66" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,513 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>【笔记工具】Markdown语法与Obsidian编辑器 | 马浩飞丨博客</title><meta name="keywords" content="笔记"><meta name="author" content="马浩飞"><meta name="copyright" content="马浩飞"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="介绍一种我自己一直在用的非常强大的笔记语法Markdown，以及基于markdown语法的编辑器Obsidian.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【笔记工具】Markdown语法与Obsidian编辑器">
+<meta property="og:url" content="https://www.mahaofei.com/post/obsidian.html">
+<meta property="og:site_name" content="马浩飞丨博客">
+<meta property="og:description" content="介绍一种我自己一直在用的非常强大的笔记语法Markdown，以及基于markdown语法的编辑器Obsidian.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.mahaofei.com/img/202311292058718.png">
+<meta property="article:published_time" content="2023-11-29T12:34:55.000Z">
+<meta property="article:modified_time" content="2023-11-29T12:34:55.000Z">
+<meta property="article:author" content="马浩飞">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.mahaofei.com/img/202311292058718.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.mahaofei.com/post/obsidian"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-bB89NudWgv"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?439a0d0abeb31dd8f338efd8266c999b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"ABY1KMOQQM","apiKey":"d3f3a4fbb355106e6bf265cf8da1863b","indexName":"hexo","hits":{"per_page":4},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【笔记工具】Markdown语法与Obsidian编辑器',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-29 20:34:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="/css/custom/MainColor.css"><link rel="stylesheet" href="/css/custom/categoryBar.css"><link rel="stylesheet" href="/css/custom/404.css"><link rel="stylesheet" href="/css/custom/cardHistory.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><link rel="stylesheet" href="/css/custom/custom.css"><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="马浩飞丨博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.mahaofei.com/img/202311292058718.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">马浩飞丨博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div><center id="name-container"><a id="page-name" href="javascript:scrollToTop()">PAGE_NAME</a></center></div><div id="nav-right"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【笔记工具】Markdown语法与Obsidian编辑器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-29T12:34:55.000Z" title="发表于 2023-11-29 20:34:55">2023-11-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-29T12:34:55.000Z" title="更新于 2023-11-29 20:34:55">2023-11-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">实用工具</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【笔记工具】Markdown语法与Obsidian编辑器"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/post/obsidian.html#post-comment"><span id="twikoo-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="1-Markdown"><a href="#1-Markdown" class="headerlink" title="1 Markdown"></a>1 Markdown</h1><h2 id="1-1-什么是-Markdown"><a href="#1-1-什么是-Markdown" class="headerlink" title="1.1 什么是 Markdown"></a>1.1 什么是 Markdown</h2><p>Markdown 是一种是目前互联网上最流行的写作语言，它使用一些简单的符号来标记文本格式，其简洁的语法、优美的格式以及强大的软件支持深受广大网友的喜爱。</p>
+<p>Markdown 使用易读易写的纯文本格式编写文档，然后转换成有效的 HTML 文档。它的学习门槛很低，你可能只需花几分钟就可以入门了。</p>
+<p>目前基本上所有的博客网站、在线文档等都支持 markdown 格式，尤其广泛应用于程序员领域，例如 Github 中的所有说明文档一般都是 <code>.md</code> 格式。</p>
+<h2 id="1-2-为什么使用-Markdown"><a href="#1-2-为什么使用-Markdown" class="headerlink" title="1.2 为什么使用 Markdown"></a>1.2 为什么使用 Markdown</h2><p>Markdown 的出现主要是为了解决以下通点：</p>
+<ul>
+<li><strong>软件不兼容</strong>：例如不同版本的word、或者不同软件如office与wps，打开同一文档，可能有的正常，有的格式错误，有的乱码。</li>
+<li><strong>排版浪费时间</strong>：功能越多，我们就容易想得越多，遇到的问题也会越多。对于专注于写作的场景，有时可能并不需要那么多选项格式，例如行高行距字体颜色等等。而是要关注内容。同时word中每次写完一段文字，都要再手动为它选择格式，多的这一步操作可能就会打断思路。而markdown可以让你仅通过键盘，在写文档的同时完成格式的设置。</li>
+<li><strong>格式不兼容</strong>：复制同一段文字到另一个文档中，很有可能格式全乱了，同理复制到网页或从其他地方复制过来，格式也都是很麻烦的问题。</li>
+</ul>
+<p>为了解决这些问题，Markdown 实现了以下功能：</p>
+<ul>
+<li><strong>语法简单</strong>：只需要一些简单地标记符号，例如<code># * &gt; - [] () =</code></li>
+<li><strong>兼容性强</strong>：所有的编辑器都可以打开 <code>.md</code> 文件，甚至记事本和vim都可以编辑</li>
+<li><strong>导出方便</strong>：可以导出PDF、也可以嵌入HTML、Latex等格式</li>
+<li><strong>专注内容</strong>：写作时双手无需脱离键盘，再也不用纠结排版问题</li>
+</ul>
+<h2 id="1-3-Markdown-怎么用"><a href="#1-3-Markdown-怎么用" class="headerlink" title="1.3 Markdown 怎么用"></a>1.3 Markdown 怎么用</h2><p>虽然所有的编辑器都可以编辑 Markdown 文件，但是为了更加直观，并且让我们有更好地写作体验，这里推荐两款所见即所得的 Markdown 编辑神器：<a target="_blank" rel="noopener" href="https://obsidian.md/">Obsidian</a>和<a target="_blank" rel="noopener" href="https://typora.io/">Typora</a>。前者是我现在一直在用的笔记软件，作为我的知识库管理工具，后者在我写作初期使用过，编辑体验也非常不错。</p>
+<p>下图为 Obsidian：</p>
+<p><img src="https://img.mahaofei.com/img/202311292058718.png" alt="image.png"></p>
+<p>下图为 Typora：</p>
+<p><img src="https://img.mahaofei.com/img/202311292059046.png" alt="image.png"></p>
+<p>打开自己的 Markdown 编辑器，新建一个文件，就可以开始自己的创作了。</p>
+<h2 id="1-4-Markdown-基本语法"><a href="#1-4-Markdown-基本语法" class="headerlink" title="1.4 Markdown 基本语法"></a>1.4 Markdown 基本语法</h2><p>以下是一些比较常用的 Markdown 语法，按照我的常用顺序排列：</p>
+<h3 id="1-标题"><a href="#1-标题" class="headerlink" title="1. 标题"></a>1. 标题</h3><p>使用方式为：<code>#</code> + <code>空格</code> + <code>标题文字</code>，注意<code>#</code>号与<code>标题文字</code>之间的<code>空格</code>：</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 一级标题</span></span><br><span class="line"><span class="section">## 二级标题</span></span><br><span class="line"><span class="section">### 三级标题</span></span><br><span class="line"><span class="section">#### 四级标题</span></span><br><span class="line"><span class="section">##### 五级标题</span></span><br><span class="line"><span class="section">###### 六级标题</span></span><br></pre></td></tr></table></figure>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><h3 id="2-倾斜"><a href="#2-倾斜" class="headerlink" title="2. 倾斜"></a>2. 倾斜</h3><p>使用方式：<code>*被倾斜的文字*</code> 或者 <code>_被倾斜的文字_</code>，快捷键 <code>Ctrl+I</code>， 例如：</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这里是正常文字，<span class="emphasis">*这里是被倾斜的文字*</span>，这里又是正常文字</span><br><span class="line"></span><br><span class="line"><span class="emphasis">_下划线在Obsidian中好像只能倾斜整行_</span></span><br></pre></td></tr></table></figure>
+<p>这里是正常文字，<em>这里是被倾斜的文字</em>，这里又是正常文字</p>
+<p>_下划线在 Obsidian 中好像只能倾斜整行_</p>
+<h3 id="3-加粗"><a href="#3-加粗" class="headerlink" title="3. 加粗"></a>3. 加粗</h3><p>使用方式：<code>**被加粗的文字**</code> 或 <code>__被加粗的文字__</code>，快捷键 <code>Ctrl+B</code>， 例如：</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这里是正常文字，<span class="strong">**这里是被加粗的文字**</span>，这里又是正常文字</span><br><span class="line"></span><br><span class="line"><span class="strong">__下划线在Obsidian中好像只能加粗整行__</span></span><br></pre></td></tr></table></figure>
+<p>这里是正常文字，<strong>这里是被加粗的文字</strong>，这里又是正常文字</p>
+<p><strong>下划线在 Obsidian 中好像只能加粗整行</strong></p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="strong">**<span class="emphasis">*当然倾斜和加粗可以一起使用，那样就是三个星号*</span>**</span></span><br><span class="line"></span><br><span class="line"><span class="strong">__<span class="emphasis">_也可以是三个下划线_</span>__</span></span><br></pre></td></tr></table></figure>
+<p><strong><em>当然倾斜和加粗可以一起使用，那样就是三个星号</em></strong></p>
+<p><strong>_也可以是三个下划线_</strong></p>
+<h3 id="4-高亮"><a href="#4-高亮" class="headerlink" title="4. 高亮"></a>4. 高亮</h3><p>使用方式如下</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这里是正常文字，==这里是被高亮的文字，但是不能换行，如果要对多段高亮，需要每一段使用高亮标记==，这里又是正常文字</span><br></pre></td></tr></table></figure>
+<p>这里是正常文字，==这里是被加粗的文字，但是不能换行，如果要对多段加粗，需要每一段使用加粗标记==，这里又是正常文字</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="strong">**<span class="emphasis">*==当然倾斜和加粗可以一起使用，就像这样==*</span>**</span></span><br><span class="line"></span><br><span class="line">==<span class="strong">**<span class="emphasis">*也可以是这样*</span>**</span>==</span><br><span class="line"></span><br><span class="line">==<span class="strong">__<span class="emphasis">_也可以是下划线_</span>__</span>==</span><br></pre></td></tr></table></figure>
+<p>==<strong><em>当然倾斜和加粗可以一起使用，那样就是三个星号</em></strong>==</p>
+<p>==<strong><em>也可以是这样</em></strong>==</p>
+<p>==<strong>_也可以是下划线_</strong>==</p>
+<h3 id="5-列表"><a href="#5-列表" class="headerlink" title="5. 列表"></a>5. 列表</h3><p><strong>无序列表</strong></p>
+<p>使用<code>+ -</code>标记无序列表，使用方式为<code>+/-</code>+<code>空格</code>+<code>文字</code>，注意<code>+/-</code>号与<code>文字</code>之间的<code>空格</code>。</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> 这是无序列表的第一项</span><br><span class="line"><span class="bullet">-</span> 这是第二项</span><br><span class="line"><span class="bullet">-</span> 这是第三项</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这是无序列表的第一项</li>
+<li>这是第二项</li>
+<li>这是第三项</li>
+</ul>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">+</span> 这是无序列表的第一项</span><br><span class="line"><span class="bullet">+</span> 这是第二项</span><br><span class="line"><span class="bullet">+</span> 这是第三项</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这是无序列表的第一项</li>
+<li>这是第二项</li>
+<li>这是第三项</li>
+</ul>
+<p><strong>有序列表</strong></p>
+<p>使用方式为<code>数字</code>+<code>.</code>+<code>空格</code>+<code>文字</code>。</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 第一项</span><br><span class="line">2. 第二项</span><br><span class="line">3. 第三项</span><br></pre></td></tr></table></figure>
+<ol>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ol>
+<h3 id="6-引用"><a href="#6-引用" class="headerlink" title="6. 引用"></a>6. 引用</h3><p>使用<code>&gt;</code>标记引用的内容，使用方式为<code>&gt;</code> + <code>空格</code> + <code>引用文字</code>，注意<code>&gt;</code>号与<code>文字</code>之间的<code>空格</code>。</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="quote">&gt; 这是被引用的内容</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这是被引用的内容</p>
+</blockquote>
+<h3 id="7-代码"><a href="#7-代码" class="headerlink" title="7. 代码"></a>7. 代码</h3><p>代码分为行内代码和代码块。</p>
+<p><strong>行内代码</strong>，使用方式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这里是正常文字`code`文字继续</span><br></pre></td></tr></table></figure>
+<p>这里是正常文字<code>code</code>文字继续</p>
+<p><strong>代码块</strong>，使用方式如下：</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">```代码格式（c, c++, python, html, java, css, yaml, shell ...)</span></span><br><span class="line"><span class="code">代码内容</span></span><br><span class="line"><span class="code">```</span>ㅤㅤ</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">```python</span></span><br><span class="line"><span class="code">import numpy as np</span></span><br><span class="line"><span class="code">np.array([1, 2, 3])</span></span><br><span class="line"><span class="code">```</span>ㅤㅤ</span><br></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+<h3 id="8-链接"><a href="#8-链接" class="headerlink" title="8. 链接"></a>8. 链接</h3><p>链接的使用格式如下：</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">链接显示文字</span>](<span class="link">链接地址</span>)</span><br><span class="line"></span><br><span class="line">[<span class="string">马浩飞丨博客</span>](<span class="link">https://www.mahaofei.com</span>)</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.mahaofei.com">马浩飞丨博客</a></p>
+<h3 id="9-图片"><a href="#9-图片" class="headerlink" title="9. 图片"></a>9. 图片</h3><p>图片的使用格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">![](图片地址)</span><br><span class="line">![](https://img.mahaofei.com/img/202311292058718.png)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img.mahaofei.com/img/202311292058718.png" alt=""></p>
+<h3 id="10-分割线"><a href="#10-分割线" class="headerlink" title="10. 分割线"></a>10. 分割线</h3><p>分割线使用三个以上的<code>*</code>或<code>-</code>或<code>_</code>组成，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">分割线之上</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">或者使用</span><br><span class="line"></span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">再或者</span><br><span class="line"></span><br><span class="line">___</span><br><span class="line"></span><br><span class="line">就这些</span><br></pre></td></tr></table></figure>
+<p>分割线之上</p>
+<hr>
+<p>或者使用</p>
+<hr>
+<p>再或者</p>
+<hr>
+<p>就这些</p>
+<h3 id="11-表格"><a href="#11-表格" class="headerlink" title="11. 表格"></a>11. 表格</h3><p>表格的使用可能稍微有些繁琐，如果是在Obsidian中，可以有些插件简化表格的创建方式。</p>
+<p>常规使用方式如下，注意中间的<code>|-|-|-|</code>是不能删的，表格有几列就写几个<code>|-|</code>：</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">|表头1|表头2|表头3|</span><br><span class="line">|-|-|-|</span><br><span class="line">|表格内容1|表格内容2|表格内容3|</span><br><span class="line">|表格内容4|表格内容5|表格内容6|</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>表头1</th>
+<th>表头2</th>
+<th>表头3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>表格内容1</td>
+<td>表格内容2</td>
+<td>表格内容3</td>
+</tr>
+<tr>
+<td>表格内容4</td>
+<td>表格内容5</td>
+<td>表格内容6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>哦对，补充一下，为了表示直观，markdown使用空行分割两个段落<br><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第一段</span><br><span class="line"></span><br><span class="line">第二段</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="12-callout"><a href="#12-callout" class="headerlink" title="12.callout"></a>12.callout</h3><p>使用<code>&gt; [!note]</code>就可以创建一个callout模块，例如：</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="quote">&gt; [!INFO]</span></span><br><span class="line"><span class="quote">&gt; 这里是callout模块</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img.mahaofei.com/img/202401031849885.png" alt="image.png"></p>
+<p>默认有12种风格。每一种有不同的颜色和图标（标题中的单词可以替换 <code>&gt; ![替换]</code> 实现下面效果）。</p>
+<p><img src="https://img.mahaofei.com/img/202401031850041.png" alt="image.png"></p>
+<p>可以使用 <code>+</code> 默认展开或者 <code>-</code> 默认折叠正文部分。例如：</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="quote">&gt; [!FAQ]- 点击就可以展开了</span></span><br><span class="line"><span class="quote">&gt; 这里是callout的内容</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>[!FAQ]- 点击就可以展开了<br>这里是callout的内容</p>
+</blockquote>
+<h1 id="2-Obsidian"><a href="#2-Obsidian" class="headerlink" title="2 Obsidian"></a>2 Obsidian</h1><h2 id="2-1-为什么使用-Obsidian"><a href="#2-1-为什么使用-Obsidian" class="headerlink" title="2.1 为什么使用 Obsidian"></a>2.1 为什么使用 Obsidian</h2><p><strong>Obsidian 很适合用来管理多层级多文件，因此很适合用来构建知识库</strong></p>
+<p>最初我使用 Obsidian 是因为我写的文章越来越多，当时使用 Typora 管理起来感觉不是很方便，而且那时正逢 Typora 更新至1.0后开始收费，而 Obsidian 开始展露头角，因此我尝试使用了 Obsidian，从此在我的所有设备的dock栏上，一定会有一个 Obsidian，只要我在使用电脑，Obsidian一定是处于打开状态的。</p>
+<p>下图是我现在的 Obsidian 图</p>
+<ul>
+<li>左边是文件列表、历史打开文件</li>
+<li>右边是任务列表和日历（也可以切换为文档目录）</li>
+</ul>
+<p><img src="https://img.mahaofei.com/img/202311292140615.png" alt="image.png"></p>
+<p>我自己的博客内容全部使用Obsidian存储，同时记录我的一些笔记和平时遇到的各种Bug，这样遇到相似问题时，直接使用全局搜索，就可以快速找到解决办法，亲测已经帮我解决了好多次问题，节约了大把时间。</p>
+<p><strong>个人不放心云笔记，Obsidian 是纯本地化文件编辑与管理</strong></p>
+<p>由于各种原因，我不想将我自己记录的一些内容全部放到云笔记上，一旦宕机或跑路，会是一件非常麻烦的问题，例如有道云笔记、印象笔记等等，OneNote等我也用过，但是迁移性太差，如果想换别的笔记软件，之前记录的东西根本不能导出。</p>
+<p>而Obsidian则是使用的本地化文件管理，左侧的文件列表就是本地中真实存在的一个个文件夹和<code>.md</code>文件。在多设备同步方面，推荐坚果云或者OneDrive实现多设备的实时同步。</p>
+<p><strong>Obsidian 的功能非常丰富，是一个笔记软件，又不止是一个笔记软件</strong></p>
+<p>对于我来说，我使用 Obsidian 完成了很多功能，当然最主要的还是记笔记，包括学习笔记、Bug 笔记、组会记录等等。</p>
+<p>同时使用<code>custom frames</code>插件能够将网页嵌入到 Obsidian 中，我将滴答清单加入了进来，这样就实现了上图右侧的任务管理功能。</p>
+<p>此外我还写了一个自动化脚本，根据我的笔记库的内容修改，每天定时更新博客内容。</p>
+<p><strong>Obsidian 颜值非常高，有各种各样主题，而且几乎所有的样式格式都可以自定义修改</strong></p>
+<p>在外观这方面，我也折腾了一段时间，最终还是使用 <code>Blue Topaz</code>主题，辅以<code>Style Settings</code> 插件中的一些个性化设置。总的来说没有修改太多。</p>
+<p>网上也有一些开源的高度修改的库模板，下载下来就可以直接用，但是我找了一圈，发现自己还是更喜欢简约直接的，各位可以根据自己的审美找找看。</p>
+<h2 id="2-2-Obsidian-的特色功能"><a href="#2-2-Obsidian-的特色功能" class="headerlink" title="2.2 Obsidian 的特色功能"></a>2.2 Obsidian 的特色功能</h2><p>这里只介绍大致功能，具体使用方法，请参考 <a target="_blank" rel="noopener" href="https://publish.obsidian.md/help-zh/%E7%94%B1%E6%AD%A4%E5%BC%80%E5%A7%8B">Obsidian 官方教程</a>，或者下载Obsidian软件后，第一次打开会有示例库，我当时就是阅读那个学习的。</p>
+<p><strong>双向链接</strong></p>
+<p>不确定 Obsidian 是不是第一个双链笔记软件，但它也是最早的一批了。</p>
+<p>双向链接，顾名思义就是双向引用的链接，例如我在A文章中使用<code>[[B文章的标题或者小标题]]</code>，就可以实现文章和文章之间的链接，有点类似于网页链接，但是它是在笔记软件内跳转的。</p>
+<p>在被引用的笔记中，你也可以看到这篇笔记被哪些其它笔记引用了。例如可能某篇<code>[[Ubuntu系统Buglist]]</code>中的内容就可能被我在写其它实验笔记的时候引用很多次。</p>
+<p>这样所有的笔记相互链接，就会形成一个庞大的关系图谱，Obsidian中也可以查看这个关系图谱。</p>
+<p>此外，双向链接还可以使用<code>![[文件名]]</code>或<code>![[文件名#小节标题]]</code>这样的格式，在引用的同时，将那篇笔记的全部或某一节插入到当前文章中，例如：</p>
+<p><img src="https://img.mahaofei.com/img/202311292210694.png" alt="image.png"></p>
+<p><strong>模板</strong></p>
+<p>Obsidian 提供了模板的功能。</p>
+<p>我创建了一个文件夹保存所有的模板。当我新建笔记后，可以直接插入现有的模板，例如我经常使用的论文笔记模板</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># X 论文名称</span></span><br><span class="line"></span><br><span class="line"><span class="quote">&gt; <span class="strong">**标题**</span>：</span></span><br><span class="line"><span class="quote">&gt; <span class="strong">**作者团队**</span>：</span></span><br><span class="line"><span class="quote">&gt; <span class="strong">**期刊会议**</span>：</span></span><br><span class="line"><span class="quote">&gt; <span class="strong">**时间**</span>：</span></span><br><span class="line"><span class="quote">&gt; <span class="strong">**代码**</span>：</span></span><br><span class="line"></span><br><span class="line"><span class="section">## X.1 目标问题</span></span><br><span class="line"></span><br><span class="line"><span class="section">## X.2 方法</span></span><br><span class="line"></span><br><span class="line"><span class="section">## X.3 思考</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="https://img.mahaofei.com/img/202311292215167.png" alt="image.png"></p>
+<p><strong>工作区保存与快速恢复</strong></p>
+<p>有的时候我可能会同时打开好几个笔记，比如实验笔记、论文笔记、Buglist等等，我会把他们分屏分开放在不同的位置，例如这样：</p>
+<p><img src="https://img.mahaofei.com/img/202311292218056.png" alt="image.png"></p>
+<p>但是此时如果我需要去做另一件事，比如开会，我就需要把当前的这些笔记都关掉，打开会议记录，但是下次想要在恢复这个布局又比较麻烦。</p>
+<p>这时候就可以点击左侧的<code>管理工作空间布局按钮</code>，保存工作空间布局，然后就可以放心关闭了，下次使用点击加载工作空间布局就可以一键恢复之前的布局。</p>
+<p><strong>丰富的插件系统</strong></p>
+<p>Obsidian 提供了丰富的插件系统，有些可以增加 Obsidian 的功能，有些则是美化外观，有些可以提高编辑体验。</p>
+<p>具体哪些插件我用过比较好用的，后续会持续在本文下面更新。</p>
+<p><strong>录音</strong></p>
+<p>写这篇文章，在查资料的时候突然发现Obsidian出了录音功能，在【设置-核心插件】里打开即可使用，打开后会在主页面最左侧添加一个图标，按下即可开始录音。</p>
+<p>录音完成后，会保存在当前笔记文件中。</p>
+<p><img src="https://img.mahaofei.com/img/202311292224701.png" alt="image.png"></p>
+<h2 id="2-3-Obsidian-插件推荐"><a href="#2-3-Obsidian-插件推荐" class="headerlink" title="2.3 Obsidian 插件推荐"></a>2.3 Obsidian 插件推荐</h2><p><strong>所有的插件都可以在插件市场中直接搜索下载</strong>，【设置-第三方插件-社区插件市场】</p>
+<p>后续有时间再更新各个插件的介绍和使用详情</p>
+<h3 id="1-提升编辑体验"><a href="#1-提升编辑体验" class="headerlink" title="1. 提升编辑体验"></a>1. 提升编辑体验</h3><p><a target="_blank" rel="noopener" href="https://obsidian.md/plugins?id=media-extended"><strong>Media Extended</strong></a></p>
+<p>Media Extended增强了媒体播放功能，包括链接到在线视频，速度控制，循环播放，字幕支持。</p>
+<p>以及创建时间戳链接笔记，从在线视频、本地视频、录音中获取时间戳等等。</p>
+<p>（目前测试似乎只能添加 Youtube 在线视频）</p>
+<p><img src="https://www.youtube.com/watch?v=yBCD-Hfpd8U" alt=""></p>
+<p><a target="_blank" rel="noopener" href="https://obsidian.md/plugins?id=obsidian-outliner"><strong>Outliner</strong></a></p>
+<p>增强列表样式</p>
+<ul>
+<li>可以上移下移缩进列表</li>
+<li>增加列表垂直缩进线</li>
+<li>增加折叠展开功能</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://obsidian.md/plugins?id=table-editor-obsidian"><strong>Advanced Tables</strong></a></p>
+<p>优化创建表格的语法：输入一个<code>|</code>，然后输入第一个标题，接着按下<code>tab</code>，继续输入标题直到创建所有标题，然后按下<code>Enter</code>转到第一行输入内容，以此类推。</p>
+<p>当光标位于表格中时：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Tab</code></td>
+<td>下一个单元格</td>
+</tr>
+<tr>
+<td><code>Shift</code> + <code>Tab</code></td>
+<td>上一个单元格</td>
+</tr>
+<tr>
+<td><code>Enter</code></td>
+<td>下一行</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>Shift</code> + <code>D</code></td>
+<td>打开表格控件侧边栏</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="https://img.mahaofei.com/img/202311301613362.gif" alt=""></p>
+<h3 id="2-增加功能"><a href="#2-增加功能" class="headerlink" title="2. 增加功能"></a>2. 增加功能</h3><p><a target="_blank" rel="noopener" href="https://obsidian.md/plugins?id=calendar"><strong>Calendar</strong></a></p>
+<p>日历插件，打开后会在右边侧栏出现日历。</p>
+<p>点击日历上的日期，可以跳转到当天的每日笔记中（每日笔记也可以设置模板）</p>
+<p><img src="https://img.mahaofei.com/img/202311301615320.png" alt="image.png"></p>
+<p><a target="_blank" rel="noopener" href="https://obsidian.md/plugins?id=obsidian-custom-frames"><strong>Custom Frames</strong></a></p>
+<p>可以将任意的网页转换为obsidian窗格，非常不错。</p>
+<p>例如我这里右侧的滴答清单：</p>
+<p><img src="https://img.mahaofei.com/img/202311292140615.png" alt="image.png"></p>
+<p><a target="_blank" rel="noopener" href="https://obsidian.md/plugins?id=obsidian-image-auto-upload-plugin"><strong>Image auto upload Plugin</strong></a></p>
+<p>image auto upload插件搭配PicGo使用，能自动将ob中插入的图片上传到图床中，优化图片插件体验。</p>
+<p>在这里我使用的是阿里云OSS存储我的图片，具体可以参考：<a href="https://www.mahaofei.com/post/d05a7f72.html">阿里云图床搭建方法</a>或者[[01_阿里云图床搭建方法]]</p>
+<p><a target="_blank" rel="noopener" href="https://obsidian.md/plugins?id=recent-files-obsidian"><strong>Recent Files</strong></a></p>
+<p>非常直观的功能，就是在左侧文件列表增加最近打开的文件列表。</p>
+<p><img src="https://img.mahaofei.com/img/202311301701536.png" alt="image.png"></p>
+<p><a target="_blank" rel="noopener" href="https://obsidian.md/plugins?id=dataview"><strong>Dataview</strong></a></p>
+<p>一个高效信息动态查询插件，当你拥有足够多的笔记后，可以用它来生成目录表格，并且支持各种查询限制条件。</p>
+<p><a target="_blank" rel="noopener" href="https://obsidian.md/plugins?id=templater-obsidian"><strong>Templater</strong></a></p>
+<p>相比较与 obsidian 自带的模板工具，他能实现更复杂的模板，设置更多的变量和函数，生成一些功能强大的模板。</p>
+<p><a target="_blank" rel="noopener" href="https://obsidian.md/plugins?id=obsidian-admonition"><strong>Admonition</strong></a></p>
+<p>能够在 Obsidian 中添加样式框的插件，能让笔记显得好看又有层次，可以配合着 Task、QuickAdd、Button 和 Dataview 等插件使用。</p>
+<p><img src="https://img.mahaofei.com/img/202401071717704.png" alt="image.png"></p>
+<p><a target="_blank" rel="noopener" href="https://obsidian.md/plugins?id=quickadd"><strong>Quickadd</strong></a></p>
+<p>可快速添加信息，捕捉想法，采用模板新建笔记和添加宏命令，快速执行多项操作的好用又强大的插件。</p>
+<p><a target="_blank" rel="noopener" href="https://obsidian.md/plugins?id=buttons"><strong>Buttons</strong></a></p>
+<p>可以添加一些自定义按钮，用来执行一些特定人物，例如一些命令或者打开链接或者结合 quickadd 实现一些自动化流程。</p>
+<p><a target="_blank" rel="noopener" href="https://obsidian.md/plugins?id=obsidian-banners"><strong>Banners</strong></a></p>
+<p>在笔记的开头添加和管理横幅图片，一般用于制作笔记主页时使用。</p>
+<p><a target="_blank" rel="noopener" href="https://obsidian.md/plugins?id=workspaces-plus"><strong>Workspaces plus</strong></a></p>
+<p>快速切换管理工作区的布局。你可以按照你不同的习惯，规划工作区。</p>
+<p><a target="_blank" rel="noopener" href="https://obsidian.md/plugins?id=obsidian-hover-editor"><strong>Hover Editor</strong></a></p>
+<p>通过将悬停弹窗变成一个功能齐全的编辑器，来增强核心的“页面预览”原有的功能。</p>
+<h3 id="3-个性化设置"><a href="#3-个性化设置" class="headerlink" title="3. 个性化设置"></a>3. 个性化设置</h3><p><a target="_blank" rel="noopener" href="https://obsidian.md/plugins?id=mysnippets-plugin"><strong>MySnippets</strong></a></p>
+<p>css片段管理插件，在右下角生成css管理菜单，点击后可方便的开关css片段。</p>
+<p><img src="https://img.mahaofei.com/img/202312010757678.gif" alt=""></p>
+<p><a target="_blank" rel="noopener" href="https://obsidian.md/plugins?id=obsidian42-brat"><strong>Obsidian42 - BRAT</strong></a></p>
+<p>obsidian的插件下载大致可分为两种，第一种是从ob软件内的官方渠道下载，第二种则是通过Github等渠道下载后再手动安装。</p>
+<p>Obsidian42 - BRAT 可以帮助你直接安装社区插件市场无法安装的插件。</p>
+<p><a target="_blank" rel="noopener" href="https://obsidian.md/plugins?id=obsidian-style-settings"><strong>Style Settings</strong></a></p>
+<p>主题自定义设置插件，可以在现有主题的基础上，根据自己的需要进行魔改。</p>
+<p><img src="https://img.mahaofei.com/img/202312010804210.png" alt="image.png"></p>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>【笔记工具】Markdown语法与Obsidian编辑器</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://www.mahaofei.com/post/obsidian.html">https://www.mahaofei.com/post/obsidian.html</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>马浩飞</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2023-11-29</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2023-11-29</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a></div><div class="post_share"><div class="social-share" data-image="https://img.mahaofei.com/img/202311292058718.png" data-sites="qq,wechat,weibo,facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/img/wechatpay.png" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/hrc-papers.html"><img class="prev-cover" src="https://img.mahaofei.com/img/202312050854381.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【论文笔记】人机协作</div></div></a></div><div class="next-post pull-right"><a href="/post/mujoco.html"><img class="next-cover" src="https://img.mahaofei.com/img/202312062141059.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【实验准备】MuJoCo导入自定义机器人</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><a href="https://www.mahaofei.com"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></a></div><div class="author-info__name">马浩飞</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-solid fa-graduation-cap"></i><span>学术主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/HaofeiMa" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:mail@mahaofei.com" target="_blank" title="E-Mail"><i class="fa fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">新增了<a target="_blank" rel="noopener" href="https://academic.mahaofei.com/">学术主页</a>！<br>有任何问题欢迎留言评论或邮件联系。<br>E-mail：<a href="mailto:blog@mahaofei.com" style="text-decoration:underline;">blog@mahaofei.com</a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Markdown"><span class="toc-text">1 Markdown</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E4%BB%80%E4%B9%88%E6%98%AF-Markdown"><span class="toc-text">1.1 什么是 Markdown</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8-Markdown"><span class="toc-text">1.2 为什么使用 Markdown</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-Markdown-%E6%80%8E%E4%B9%88%E7%94%A8"><span class="toc-text">1.3 Markdown 怎么用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-Markdown-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="toc-text">1.4 Markdown 基本语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A0%87%E9%A2%98"><span class="toc-text">1. 标题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-text">一级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-text">二级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-text">三级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-text">四级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%94%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-text">五级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%85%AD%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-text">六级标题</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%80%BE%E6%96%9C"><span class="toc-text">2. 倾斜</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8A%A0%E7%B2%97"><span class="toc-text">3. 加粗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%AB%98%E4%BA%AE"><span class="toc-text">4. 高亮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%88%97%E8%A1%A8"><span class="toc-text">5. 列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%BC%95%E7%94%A8"><span class="toc-text">6. 引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E4%BB%A3%E7%A0%81"><span class="toc-text">7. 代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E9%93%BE%E6%8E%A5"><span class="toc-text">8. 链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E5%9B%BE%E7%89%87"><span class="toc-text">9. 图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E5%88%86%E5%89%B2%E7%BA%BF"><span class="toc-text">10. 分割线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E8%A1%A8%E6%A0%BC"><span class="toc-text">11. 表格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-callout"><span class="toc-text">12.callout</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Obsidian"><span class="toc-text">2 Obsidian</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8-Obsidian"><span class="toc-text">2.1 为什么使用 Obsidian</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-Obsidian-%E7%9A%84%E7%89%B9%E8%89%B2%E5%8A%9F%E8%83%BD"><span class="toc-text">2.2 Obsidian 的特色功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-Obsidian-%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90"><span class="toc-text">2.3 Obsidian 插件推荐</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%8F%90%E5%8D%87%E7%BC%96%E8%BE%91%E4%BD%93%E9%AA%8C"><span class="toc-text">1. 提升编辑体验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%A2%9E%E5%8A%A0%E5%8A%9F%E8%83%BD"><span class="toc-text">2. 增加功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%B8%AA%E6%80%A7%E5%8C%96%E8%AE%BE%E7%BD%AE"><span class="toc-text">3. 个性化设置</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recommend-post"><div class="item-headline"><i class="fas fa-dharmachakra"></i><span>相关推荐</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/docker-install.html" title="Docker的安装与常用命令"><img src="https://img.mahaofei.com/img/20230226193326.png" alt="Docker的安装与常用命令"></a><div class="content"><a class="title" href="/post/docker-install.html" title="Docker的安装与常用命令">Docker的安装与常用命令</a><time datetime="2023-03-03" title="发表于 2023-03-03">2023-03-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ubuntu-install.html" title="记录Ubuntu安装后的系统配置、常用软件安装过程"><img src="https://img.mahaofei.com/img/20220728093248.png" alt="记录Ubuntu安装后的系统配置、常用软件安装过程"></a><div class="content"><a class="title" href="/post/ubuntu-install.html" title="记录Ubuntu安装后的系统配置、常用软件安装过程">记录Ubuntu安装后的系统配置、常用软件安装过程</a><time datetime="2022-07-06" title="发表于 2022-07-06">2022-07-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/qt-note1.html" title="【QT学习笔记01】Qt基础、按钮、对象树以及信号和槽的基本使用"><img src="https://img.mahaofei.com/img/20220827133056.png" alt="【QT学习笔记01】Qt基础、按钮、对象树以及信号和槽的基本使用"></a><div class="content"><a class="title" href="/post/qt-note1.html" title="【QT学习笔记01】Qt基础、按钮、对象树以及信号和槽的基本使用">【QT学习笔记01】Qt基础、按钮、对象树以及信号和槽的基本使用</a><time datetime="2022-08-27" title="发表于 2022-08-27">2022-08-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/qt-note2.html" title="【Qt学习笔记02】自定义信号与槽函数"><img src="https://img.mahaofei.com/img/20220827213040.png" alt="【Qt学习笔记02】自定义信号与槽函数"></a><div class="content"><a class="title" href="/post/qt-note2.html" title="【Qt学习笔记02】自定义信号与槽函数">【Qt学习笔记02】自定义信号与槽函数</a><time datetime="2022-08-27" title="发表于 2022-08-27">2022-08-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/qt-note5.html" title="【Qt学习笔记05】Qt中调用ROS库"><img src="https://img.mahaofei.com/img/20230226140356.png" alt="【Qt学习笔记05】Qt中调用ROS库"></a><div class="content"><a class="title" href="/post/qt-note5.html" title="【Qt学习笔记05】Qt中调用ROS库">【Qt学习笔记05】Qt中调用ROS库</a><time datetime="2022-09-03" title="发表于 2022-09-03">2022-09-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/qt-note4.html" title="【Qt学习笔记04】对话框"><img src="https://img.mahaofei.com/img/20220902192613.png" alt="【Qt学习笔记04】对话框"></a><div class="content"><a class="title" href="/post/qt-note4.html" title="【Qt学习笔记04】对话框">【Qt学习笔记04】对话框</a><time datetime="2022-09-02" title="发表于 2022-09-02">2022-09-02</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.mahaofei.com/img/GoodnightCopenhagen.png')"><div id="footer-wrap"><div class="footer_custom_text"><p><a style="margin-inline:5px"target="_blank"href="https://github.com/"><img src="https://img.shields.io/badge/Hosted-Github-brightgreen?style=flat&logo=GitHub"title="本站项目由Gtihub托管"></a><a style="margin-inline:5px"target="_blank"href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo"title="博客框架为Hexo"></a><a style="margin-inline:5px"target="_blank"href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?logoColor=white&style=flat&logo=buefy"title="主题采用butterfly"></a><a style="margin-inline:5px"target="_blank"href="https://aliyun.com/product/cdn"><img src="https://img.shields.io/badge/DNS-Cloudflare-orange?style=flat&logo=Cloudflare"title="本站使用Cloudflare网络服务"></a><a style="margin-inline:5px"target="_blank"href="https://beian.miit.gov.cn/"><img src="https://img.shields.io/badge/%E6%B4%A5ICP%E5%A4%87-2021000769%E5%8F%B7--3-red?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAdCAYAAAC9pNwMAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDIgNzkuMTYwOTI0LCAyMDE3LzA3LzEzLTAxOjA2OjM5ICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+nhxg7wAACNlJREFUSInF1mmMVeUdx/Hv2e+5+519mJWBYQZkGxZZxLKJqBXGoLS1iXWrmihotFXaJiTWWlsbl6q1aetWd5u0VkKjNG4YEJSlOCibDLMwM8x679z9nnPP1jcVJUxf+7z6J8+LT37/Z4VvaQhfFS8+sBXbctCDGrVTKlBUH4mxAbI9Hfj0IJLsp6paJ5/tmn20N/D0wKDRMq9F/c3M2U1/V0vDfWMFh+tv/Ig1zYPMabDImPJ52OaXO87W580KggCiiOsJOJ6I3wcNFaaeNKxrt72f2fLGu4FpJ/sDQABRzD22fH7/Yze069vGc6mrDLNIJCDik10sxz2by3VdPM87xzkP9jwPTZFRVI1YUJKH+oy7n3tbvv/P2wW/UQxRWe6w4ZJRptYLHDoCuz8v5cP92XbI762O+h6UVWHnUFbPpU0fEb2A60mMJ7MUi9b/b7UgKhiZMaIxm8YLplLMDPz8hl/EH+rs8TNlUpFf32uyZJGLPDwCiTGUyTWodTN49eUCdz2YwXb9NNcObp1X98WDoufynzMVCEKGn27ayPTWBi5ad8P5iQUkJEnFLjqM9Z+hrVX0vfDe6K2dPRWsW2bwyp9EUifSJB84gdxrkR0eRgv1o/3I4fbbprJ6scqamzVO9pffec1S5ZWY2Nfz5qEy/FqOC2Y3s3j53HMSi18VRjFPwSwg+1RfVbl115vvJrsfej7UGIsYPPGgQ7JXoO+Xx5B3dHEomyJ9x1qiQozkr95h5937aFnVyouPlgJK+Ss7Fxz64OTSxSX+LHYxT2IsRW5kbGI4oHcR0jqoqTjV9se3I7/f8rS/ClS23GxSXhph6L5d9Akm7qqZhHWBQGUJ+CWGFzcg7e7m6D3/ZuW1Ea5YKdA3EojuONi813TqNi+YPYOKUhXDtCeGL26/hakLLiEcdsaHRkRAoLRc4fJrmhnekyF0apgZowWSwwkaa+rw3f8WA1GZZsPP5JEChX8dhZTN6iU6kAcs5s+dHd183SJ0VVKL57pfw6YdRQw23aeWTns47DPTALWlRTR7kMLew6hGgYqUhWXYFFUdPZ6lUBahLA8hVcOftckfi7No7VRAAQqsX1dybfvG1qwriM9mM5mJ4e4jO5Cc01dPqixbr8tWGBQUL4vjGigEEShi+xUmZ2RiR/sJ1pbS8NkgZrKAGw0TsgQsQyFaF/nfYTGprAlMFysbA1pI3mhkR6snhGsaymYGvPyFEb9IdbUE2AzFFTwpRqCtBY0wmdER+hZW4j63gcJj38V+/ErSUZXsYBfjIZHIRW0c2Z8BskCAqN+CbBJBFnyyKjR+Ez57nBxLqpfMUeSISElMBFz6x2Q6OxzWrYjyxWVzEewioU3LCS5vQY6nMUrLwNaxXvoQ59IloFSx54PPAZtQLExVZZDxsVE8J4dn6v4JYatgbSjk0owPw7RGH2ADMo88Z7L20ip8f7gC7fAo0q4+0rt7kEQDvaghVZbiPHUHcyeXcfLjT3jmpR7AYsnSScya3UR8bARVMck7Y/cB75/X6rDf3Fg2dw2jKZm5dXGm1LuAzO5DCo9v6aT0ibco5kzOvLOP+NGTFJtDpPYeZKijk/Rn3QxsfZV7txwhX7ABiZUXBsGvIvguQApNQQva9RMmTvZ2dpVUls+tX/UD7GN/Y8Ws05w6rQF+9vyzg1vZjbvMRJhXiRSU8DpTFFe0QE8S6SfPkOkZoktrB2oAhZWrwljxOPmchiSMYOWNoxNuruFU5vWeXdsojiUon345113dBBQBmTYlTimgdB8nfPo4WjaNFgN9OMEkJ02dnadVt5ki54Esqy+bzKJltVhSPbI3iN2zCyMTeXNCuG7Omm2Zok7PR2+R7jvD8ouruHhmCrB5jVZeYxLdrTP4sr4Vtd9g4MA4qc4c+6cu5NPamfw4P59t2WrA4YdXKkASf7SFivo6PDdEPmf1fRM++zp1bH/0r4I1dD1ODtOWaW4IsvPjL7nqXhloQiSPwjjgMYkMASyGEBkjhISCQwkwzve/18AbT+pk8pVY4UacQi9y+gyZ0eRAw4qHa89LXEx1LXMSPfhDJYRb59BtlLKg2WPT2l6qYl1svtGkrLYckyA1S+t5+2ATm37WCui0LSynsckDNH5zTxAchbQtkx08hDHYiW6NgC0enHBzEZ102UDH8QORdEckjEzZrNWkRydzyx17uGnDXqbUnGZ6dRPjSY91q2TqwjFuvTxLo5Zn5Qo/pumRSFcTLQtybEhGE0fQrDhhJ0VvH2lTnnHPhGtsmWan469apERjI2MH3qN7+7MEfH6ql29CbV7PvsMG32k6yU2XDhEKyZw66eJaRdrXR7CzCcqUNC3zwgymPJRCH4KRRLINimpL14A5Y4GDeOqbsPRVcfuN7Xj44pav/hFfrNT2kr2rsqf2Ibp5pEA14ZIImUyW3t5REkkTXRGQ/DGGhtLginhqCWknQDE5hKf5UFSF9Lj020Q2ul5V1AR2hr+8vuP8Vlc2zMPRxoSjnx7XBC14sDoydahSGq7KdO/HFyrBchxCVfX4fDKp4T7SCQejYODZLrYgIqgKFsNIgQqEYob8mW6yiUyb7Z64LVK/+B85xznnJ3AWzqTzuIX46mr5wLs+UUTyIriBCjRNxguHMJIFDLEEvXEOVRWnSJ0+jCd4CJoGjoedM1CLcXQziW3nMV2TSMBeOx7vWZvPt1r+cMPzE8KunaUkFn0vNrvtqXj34c1W6gzxlEQ6naIoBahtnkMwoFMwIVzSRNguMt53Aj2s4nkSlgPoGqLkICsRNF0gl8rYWuP8+11/w/OOJDEhHPKLCIpOXmi+M9AgP+maiesLifF2T1Rn5ZNj5Lo/Qc/GcPMmhdoqlEgIGzCK4PiCmJKK68p4KfF3qYGuF0qCRUkJTzleUbvQyWRTuE5xYthxQbBs7EISAbkzUFG3VfXXbK2YFi3X/eryfKKnqVBItNjJxDzH8erddC4SqWwcN5WyTtlyO1RP/Lh3eHD76MB40swmiDVJyDLYRhpc5+ub6tse/wWKbvSQEAw1awAAAABJRU5ErkJggg=="title="备案号:津ICP备2021000769号-3"></a><a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris"title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><i class="fas fa-adjust"><use id="modeicon" xlink:href="#icon-moon"></use></i></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Algolia</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, "https://cdn.jsdelivr.net/gh/zhheo/twikoo@dev/dist/twikoo.all.min.js"))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script><script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script><script src="/js/custom/categoryBar.js"></script><script src="/js/custom/cardHistory.js"></script><script src="/js/custom/light_dark.js"></script><script src="/js/custom/forbidCopy.js"></script><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"Jfmc1FSFWs09EC8r",ck:"Jfmc1FSFWs09EC8r"})</script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script>new LingQue.Monitor().init({id:"JfmcYvlVsVAZlVkS"});</script><script defer src="https://cloud.umami.is/script.js" data-website-id="86b466f8-e8bc-415b-954e-289b3d0110fb"></script><script src="/js/custom/custom.js"></script><script src="/js/custom/nav.js"></script><script id="canvas_nest" defer="defer" color="66,66,66" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

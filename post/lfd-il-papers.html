@@ -1,0 +1,474 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>【论文笔记】机器人动作、轨迹、过程模仿 | 马浩飞丨博客</title><meta name="keywords" content="强化学习,模仿学习,机器人动作"><meta name="author" content="马浩飞"><meta name="copyright" content="马浩飞"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="基于传统的强化学习方法大多实现某项任务，而无法实现动作的模仿，调研相关论文实现机器人动作轨迹的模仿。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【论文笔记】机器人动作、轨迹、过程模仿">
+<meta property="og:url" content="https://www.mahaofei.com/post/lfd-il-papers.html">
+<meta property="og:site_name" content="马浩飞丨博客">
+<meta property="og:description" content="基于传统的强化学习方法大多实现某项任务，而无法实现动作的模仿，调研相关论文实现机器人动作轨迹的模仿。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.mahaofei.com/img/202312131522496.png">
+<meta property="article:published_time" content="2023-12-12T07:36:37.000Z">
+<meta property="article:modified_time" content="2024-01-04T08:05:37.000Z">
+<meta property="article:author" content="马浩飞">
+<meta property="article:tag" content="强化学习">
+<meta property="article:tag" content="模仿学习">
+<meta property="article:tag" content="机器人动作">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.mahaofei.com/img/202312131522496.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.mahaofei.com/post/lfd-il-papers"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-bB89NudWgv"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?439a0d0abeb31dd8f338efd8266c999b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"ABY1KMOQQM","apiKey":"d3f3a4fbb355106e6bf265cf8da1863b","indexName":"hexo","hits":{"per_page":4},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【论文笔记】机器人动作、轨迹、过程模仿',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-01-04 16:05:37'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="/css/custom/MainColor.css"><link rel="stylesheet" href="/css/custom/categoryBar.css"><link rel="stylesheet" href="/css/custom/404.css"><link rel="stylesheet" href="/css/custom/cardHistory.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><link rel="stylesheet" href="/css/custom/custom.css"><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="马浩飞丨博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.mahaofei.com/img/202312131522496.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">马浩飞丨博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div><center id="name-container"><a id="page-name" href="javascript:scrollToTop()">PAGE_NAME</a></center></div><div id="nav-right"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【论文笔记】机器人动作、轨迹、过程模仿</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-12T07:36:37.000Z" title="发表于 2023-12-12 15:36:37">2023-12-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-01-04T08:05:37.000Z" title="更新于 2024-01-04 16:05:37">2024-01-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/">机器人</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AD%A6%E4%B9%A0/">机器人学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【论文笔记】机器人动作、轨迹、过程模仿"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/post/lfd-il-papers.html#post-comment"><span id="twikoo-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="1-AW-Opt-Learning-Robotic-Skills-with-Imitation-and-Reinforcement-at-Scale"><a href="#1-AW-Opt-Learning-Robotic-Skills-with-Imitation-and-Reinforcement-at-Scale" class="headerlink" title="1 AW-Opt: Learning Robotic Skills with Imitation and Reinforcement at Scale"></a>1 AW-Opt: Learning Robotic Skills with Imitation and Reinforcement at Scale</h1><blockquote>
+<p><strong>标题</strong>：AW-Opt：通过大规模模仿和强化学习机器人技能<br><strong>作者团队</strong>：Google<br><strong>期刊会议</strong>：CoRL<br><strong>时间</strong>：2022<br><strong>代码</strong>：<a target="_blank" rel="noopener" href="https://awopt.github.io/">https://awopt.github.io/</a></p>
+</blockquote>
+<h2 id="1-1-目标问题"><a href="#1-1-目标问题" class="headerlink" title="1.1 目标问题"></a>1.1 目标问题</h2><p>强化学习可以实现目标任务，但是需要大量自主数据收集。模仿学习只能学习和演示一样程度的动作。</p>
+<p>本文探索如何最好的结合两种方法，并进行扩展。实现大规模机器人学习。</p>
+<h2 id="1-2-方法"><a href="#1-2-方法" class="headerlink" title="1.2 方法"></a>1.2 方法</h2><p><strong>（1）任务场景与基础算法</strong></p>
+<p>本文以基于视觉的垃圾分类任务为例，机器人从不同对象类型（可回收物、不可回收对象）等垃圾箱中拾取特定类型的对象。</p>
+<p>本文的算法为了研究IL+RL的扩展性，在QT-Opt和AWAC两种IL+RL算法的基础上进行研究。</p>
+<p><strong>（2）正样本过滤</strong></p>
+<p>两种基础算法性能不够好的原因可能有以下两点：</p>
+<ul>
+<li>探索过程中增加了大量的失败事件、掩盖了最初的成功演示</li>
+<li>算法在学习有效的Q函数，对actor进行更新之前，会删除预训练初始化。</li>
+</ul>
+<p>为了解决这个问题，本文进行了以下两个修改：</p>
+<ul>
+<li>为critic使用优先缓冲区，其中一半来自于成功事件奖励</li>
+<li>对actor使用正向过滤，仅对通过过滤器的样本进行更新</li>
+</ul>
+<p><strong>（3）混合 actor-critic 探索</strong></p>
+<p>QT-Opt方法没有明确的actor，由于任务使用交叉熵利用critic来优化动作，因此可以视为隐式策略。</p>
+<p>AWAC是一种actor-critic算法，通过对actor的动作采样来实现，而这种方式在训练初期，主要是critic进行学习，来确定哪些动作是好的。这种方式对于复杂的任务学习存在限制。</p>
+<p>本文为了解决以上问题，结合两种算法，并比较了四种策略：仅actor探索、隐式critic策略、episode级随机切换策略（80%critic策略、20%actor）、step级随机切换策略、</p>
+<h1 id="2-DexMV-Imitation-Learning-for-Dexterous-Manipulation-from-Human-Videos"><a href="#2-DexMV-Imitation-Learning-for-Dexterous-Manipulation-from-Human-Videos" class="headerlink" title="2 DexMV: Imitation Learning for Dexterous Manipulation from Human Videos"></a>2 DexMV: Imitation Learning for Dexterous Manipulation from Human Videos</h1><blockquote>
+<p><strong>标题</strong>：DexMV：模仿学习，从人类视频中进行灵巧操作<br><strong>作者团队</strong>：University of California San Diego<br><strong>期刊会议</strong>：ECCV<br><strong>时间</strong>：2022<br><strong>代码</strong>：<a target="_blank" rel="noopener" href="https://github.com/yzqin/dexmv-sim">https://github.com/yzqin/dexmv-sim</a></p>
+</blockquote>
+<h2 id="2-1-目标问题"><a href="#2-1-目标问题" class="headerlink" title="2.1 目标问题"></a>2.1 目标问题</h2><p>由于多指机器人拥有高自由度关节、非线性驱动，因此需要大量的强化学习训练数据，而机器人数据收集困难，且仅使用仿真数据训练机器人运动也很不自然，能否利用人类与真实世界的交互经验来引导机器人？</p>
+<h2 id="2-2-方法"><a href="#2-2-方法" class="headerlink" title="2.2 方法"></a>2.2 方法</h2><p>设计了一个基于模仿学习的平台</p>
+<ul>
+<li>多指机器人复杂灵巧操作的模拟系统</li>
+<li>记录人手执行相同任务的大规模演示（从视频中提取手部3D位置和物体姿态）</li>
+<li>演示翻译方法：将人体动作转换为机器人演示</li>
+</ul>
+<p><img src="https://img.mahaofei.com/img/202312131522496.png" alt="image.png"></p>
+<h3 id="2-2-1-姿态估计"><a href="#2-2-1-姿态估计" class="headerlink" title="2.2.1 姿态估计"></a>2.2.1 姿态估计</h3><p><strong>物体位姿估计</strong>：使用在YCB数据集上训练的PVN3D实现物体6D位姿的估计。</p>
+<p><strong>人手姿态估计</strong>：使用MANO模型表示人手关节，进行手部检测和实例分割，利用现有的模型估计手部关节。</p>
+<h3 id="2-2-2-演示数据转换"><a href="#2-2-2-演示数据转换" class="headerlink" title="2.2.2 演示数据转换"></a>2.2.2 演示数据转换</h3><p>常见的模仿学习算法使用==机器人状态和动作==作为训练数据，而不是人手姿态。并且人手和灵巧手的运动学模型也不同。</p>
+<p><strong>（1）手部运动重定向</strong></p>
+<p>给定视频中估计的人手姿态序列，将其重定向为机器人关节角度序列。改过程可视为优化问题。</p>
+<p>在大多数操作任务中，人类和机器人都是指尖接触物体，因此保留手掌根的指尖的空间向量。</p>
+<p>但是这样可能会导致手指弯曲信息丢失，导致手指穿透物体，因此考虑同时优化手掌根到中指骨的向量。</p>
+<p><strong>（2）机器人动作估计</strong></p>
+<p>手部运动重定向提供了手部姿态到机器人关节角度的转换，但是关节扭矩是位置的，因此通过逆动力学函数，将关节角度拟合到连续的关节轨迹函数中，计算扭矩。在这个过程中，需要保证q’’’(t)加加速度尽可能小。</p>
+<p><strong>（3）时间对齐</strong></p>
+<p>录制的视频帧率为30Hz，模拟运行的频率为120Hz，因此在训练之前，需要进行时间对齐，以模拟频率对机器人动作q(t)进行采样。</p>
+<h3 id="2-2-3-模仿学习"><a href="#2-2-3-模仿学习" class="headerlink" title="2.2.3 模仿学习"></a>2.2.3 模仿学习</h3><p>本文使用转换后的演示进行模仿学习，不使用行为克隆方法，而是使用模仿学习算法，并将演示合并到强化学习中。</p>
+<p>本文考虑使用 $<S, A, P, R, \gamma>$ 的马尔科夫决策链，其中：</p>
+<ul>
+<li>$S$: 状态空间</li>
+<li>$A$: 动作空间</li>
+<li>$P(s_{t+1}|s_t, a_t)$: 是状态转移函数，在$t+1$步，给定动作$a_t$时，下一个状态$s_{t+1}$的概率密度</li>
+<li>$R(S, a)$: 奖励函数</li>
+<li>$\gamma$: 折扣因子</li>
+</ul>
+<p>强化学习的目的是最大化策略$\pi(a|s)$下的预期奖励。给定演示轨迹$\{(s_i, a_i)\}^n_{i=1}$，使用该轨迹和奖励，优化策略$\pi$。</p>
+<p>本文使用<strong>生成对抗模仿学习GAIL</strong>，这是一种使用state-action动作密度匹配来学习策列的SOTA IL方法。通过最大限度的减小演示和动作的距离函数，实现动作模仿。</p>
+<p>本文使用<strong>演示增强策略梯度</strong>进行强化学习。</p>
+<h2 id="2-3-总结"><a href="#2-3-总结" class="headerlink" title="2.3 总结"></a>2.3 总结</h2><ol>
+<li>将真实世界人手姿态转换为机器人动作，加上物体位姿估计，作为演示数据用于后续模仿学习与强化学习。</li>
+<li>使用生成对抗模仿学习GAIL</li>
+<li>使用演示增强策略梯度进行强化学习</li>
+</ol>
+<h1 id="3-Learning-and-Retrieval-from-Prior-Data-for-Skill-based-Imitation-Learning"><a href="#3-Learning-and-Retrieval-from-Prior-Data-for-Skill-based-Imitation-Learning" class="headerlink" title="3 Learning and Retrieval from Prior Data for Skill-based Imitation Learning"></a>3 Learning and Retrieval from Prior Data for Skill-based Imitation Learning</h1><blockquote>
+<p><strong>标题</strong>：基于技能的模仿学习的先验数据的学习和检索<br><strong>作者团队</strong>：The University of Texas at Austin<br><strong>期刊会议</strong>：CoRL<br><strong>时间</strong>：2022<br><strong>代码</strong>：<a target="_blank" rel="noopener" href="https://ut-austin-rpl.github.io/sailor">https://ut-austin-rpl.github.io/sailor</a></p>
+</blockquote>
+<h2 id="3-1-目标问题"><a href="#3-1-目标问题" class="headerlink" title="3.1 目标问题"></a>3.1 目标问题</h2><p>模仿学习由于需要进行监督学习和较弱的泛化能力，因此可扩展性有限。</p>
+<p>本文研究如何使用其他任务的先验数据，来稳定高效地学习新任务。</p>
+<h2 id="3-2-方法"><a href="#3-2-方法" class="headerlink" title="3.2 方法"></a>3.2 方法</h2><p>本文提出了一种基于技能的模仿学习框架，从先前的数据中提取运动技能，并随后调用这些学到的技能的目标函数策略。</p>
+<p><strong>（1）学习可预测的技能表示</strong></p>
+<p>通过使用变分自动编码器VAE编码小段轨迹来学习技能表示。为了提高技能的可预测性，将小段轨迹使用LSTM编码器编码为潜在技能的高斯分布，解码器也是一个LSTM网络。</p>
+<p>对于每个时间步，将潜在特征z和给定的观察o，解码为动作a。</p>
+<p><strong>（2）基于检索的策略学习</strong></p>
+<p>为了提高任务策略的学习效果，从先前的数据集中检索与目标任务相关的数据。</p>
+<p>策略学习阶段，使用LSTM策略通过观察历史的潜在技能，预测输出接下来要执行的技能z，这种方式可以利用丰富多样的先验交互知识，将其融入到策略中，从而在新环境中更有效的执行任务。</p>
+<h2 id="3-3-总结"><a href="#3-3-总结" class="headerlink" title="3.3 总结"></a>3.3 总结</h2><p>使用变分自动编码器VAE处理子轨迹，形成一致的潜在技能表示。</p>
+<p>使用LSTM编码解码技能表示，根据状态预测需要输出的技能。</p>
+<h1 id="4-VIOLA-Imitation-Learning-for-Vision-Based-Manipulation-with-Object-Proposal-Priors"><a href="#4-VIOLA-Imitation-Learning-for-Vision-Based-Manipulation-with-Object-Proposal-Priors" class="headerlink" title="4 VIOLA: Imitation Learning for Vision-Based Manipulation with Object Proposal Priors"></a>4 VIOLA: Imitation Learning for Vision-Based Manipulation with Object Proposal Priors</h1><blockquote>
+<p><strong>标题</strong>：VIOLA：使用对象提议先验进行基于视觉的操作的模仿学习<br><strong>作者团队</strong>：The University of Texas at Austin<br><strong>期刊会议</strong>：CoRL<br><strong>时间</strong>：2022<br><strong>代码</strong>：<a target="_blank" rel="noopener" href="https://ut-austin-rpl.github.io/VIOLA">https://ut-austin-rpl.github.io/VIOLA</a></p>
+</blockquote>
+<h2 id="4-1-目标问题"><a href="#4-1-目标问题" class="headerlink" title="4.1 目标问题"></a>4.1 目标问题</h2><p>一种先进的模仿学习算法。</p>
+<h2 id="4-2-方法"><a href="#4-2-方法" class="headerlink" title="4.2 方法"></a>4.2 方法</h2><p>本文实现了一种基于视觉的机器人操作任务模仿学习算法：</p>
+<ul>
+<li>使用预训练的视觉模型生成通用的对象表示；</li>
+<li>采用基于Transformer的策略，来推理这些表示，根据视觉预测动作；</li>
+</ul>
+<p><strong>（1）构建面向对象的表示</strong></p>
+<ol>
+<li>对象识别：使用预训练的RPN区域建议网络在工作空间图像上生成对象建议，并选择执行度最高的前K个建议。</li>
+<li>对象特征表示：包含区域特征和上下文特征<ol>
+<li>区域特征：为每个建议区域设计视觉特征和位置特征，使用ROI Align从工作空间图像的ResNet18编码的特征途中提取特征；</li>
+<li>上下文特征，包括全局特征、手眼相机图像特征和机器人状态的本体感知特征组成；</li>
+</ol>
+</li>
+<li>时间组合，将过去H+1步的特征和时间编码组合，构成面向对象的表示，来获得对象状态的时间依赖性和动态变化。</li>
+</ol>
+<p><strong>（2）基于Transformer的策略</strong></p>
+<p>使用多个Transformer编码器，处理一系列特征向量。</p>
+<p>该策略网络将面向对象的区域特征和上下文特征作为输入token，并加入了一个动作token，通过动作监督学习，能够关注任务相关的区域。</p>
+<p>最后利用两层全连接层和高斯混合模型输出动作。</p>
+<h2 id="4-3-总结"><a href="#4-3-总结" class="headerlink" title="4.3 总结"></a>4.3 总结</h2><ol>
+<li>构建面向对象的特征（图像区域特征+机器人状态特征）</li>
+<li>使用Transformer进行特征编码与预测</li>
+<li>使用高斯混合模型输出动作。</li>
+</ol>
+<h1 id="5-SEIL-Simulation-augmented-Equivariant-Imitation-Learning"><a href="#5-SEIL-Simulation-augmented-Equivariant-Imitation-Learning" class="headerlink" title="5 SEIL: Simulation-augmented Equivariant Imitation Learning"></a>5 SEIL: Simulation-augmented Equivariant Imitation Learning</h1><blockquote>
+<p><strong>标题</strong>：SEIL: Simulation-augmented Equivariant Imitation Learning<br><strong>作者团队</strong>：Northeastern University<br><strong>期刊会议</strong>：ICRA<br><strong>时间</strong>：2022<br><strong>代码</strong>：<a target="_blank" rel="noopener" href="https://saulbatman.github.io/project/seil/">https://saulbatman.github.io/project/seil/</a></p>
+</blockquote>
+<h2 id="5-1-目标问题"><a href="#5-1-目标问题" class="headerlink" title="5.1 目标问题"></a>5.1 目标问题</h2><p>机器人模仿学习中，样本获取非常困难，因为需要与现实世界进行交互。为了解决这个问题，本文在图像数据增强的基础上进行模仿学习。</p>
+<h2 id="5-2-方法"><a href="#5-2-方法" class="headerlink" title="5.2 方法"></a>5.2 方法</h2><p><strong>（1）数据增强</strong></p>
+<p>本文实现了一种专家数据增强方法Transition Simulation。通过将观察到的点云投影到模拟的机械臂姿态中，生成新的观察图像，从而模拟专家的state-action来增加数据多样性。</p>
+<p><strong>（2）等变行为克隆</strong></p>
+<p>利用机器人操作过程中的O(2)对称性（所有平面旋转和反射对称性），利用Steerable CNNs将策略自动泛化到不同的O(2)状态中。</p>
+<h2 id="5-3-总结"><a href="#5-3-总结" class="headerlink" title="5.3 总结"></a>5.3 总结</h2><p>专家数据增强+等变行为克隆</p>
+<h1 id="6-Waypoint-Based-Imitation-Learning-for-Robotic-Manipulation"><a href="#6-Waypoint-Based-Imitation-Learning-for-Robotic-Manipulation" class="headerlink" title="6 Waypoint-Based Imitation Learning for Robotic Manipulation"></a>6 Waypoint-Based Imitation Learning for Robotic Manipulation</h1><blockquote>
+<p><strong>标题</strong>：基于路标点的机器人操作模仿学习<br><strong>作者团队</strong>：Stanford University<br><strong>期刊会议</strong>：arXiv<br><strong>时间</strong>：2023<br><strong>代码</strong>：<a target="_blank" rel="noopener" href="https://github.com/lucys0/awe">https://github.com/lucys0/awe</a></p>
+</blockquote>
+<h2 id="6-1-目标问题"><a href="#6-1-目标问题" class="headerlink" title="6.1 目标问题"></a>6.1 目标问题</h2><p>模仿学习容易出现错误，特别是在执行复杂操作时。</p>
+<p>使用路标点可以减少模仿学习中的错误，但是一般路标点需要认为监督，本文则是提出了一种自动生成路标点的方法。提高了模仿学习的成功率。</p>
+<h2 id="6-2-方法"><a href="#6-2-方法" class="headerlink" title="6.2 方法"></a>6.2 方法</h2><p>本文设计了一种自动路标点提取方法，这是一个预处理模块，因此很容易添加到其它行为克隆算法中。本文举例了两种先进的模仿学习算法：扩散策略和基于Transformer的动作。</p>
+<p><strong>（1）重建损失</strong></p>
+<p>定义了一种损失：给定路标点后重建轨迹的质量，通过最小化原始轨迹与根据路标点重建的轨迹之间的偏差，来使得路标点能尽可能代替真实轨迹。</p>
+<p><strong>（2）路径点选择动态规划</strong></p>
+<p>使用一种简单而动态规划算法，用于选择最小数量的路径点，并保证重建的误差满足要求。</p>
+<h2 id="6-3-总结"><a href="#6-3-总结" class="headerlink" title="6.3 总结"></a>6.3 总结</h2><p>一种自动路标点提取算法，用于对行为克隆数据进行预处理。</p>
+<h1 id="7-Mobile-ALOHA-Learning-Bimanual-Mobile-Manipulation-with-Low-Cost-Whole-Body-Teleoperation"><a href="#7-Mobile-ALOHA-Learning-Bimanual-Mobile-Manipulation-with-Low-Cost-Whole-Body-Teleoperation" class="headerlink" title="7 Mobile ALOHA: Learning Bimanual Mobile Manipulation with Low-Cost Whole-Body Teleoperation"></a>7 Mobile ALOHA: Learning Bimanual Mobile Manipulation with Low-Cost Whole-Body Teleoperation</h1><blockquote>
+<p><strong>标题</strong>：Mobile ALOHA：通过低成本全身远程操作学习双手移动操作<br><strong>作者团队</strong>：Stanford University<br><strong>期刊会议</strong>：无<br><strong>时间</strong>：2024<br><strong>代码</strong>：<a target="_blank" rel="noopener" href="https://mobile-aloha.github.io/">https://mobile-aloha.github.io/</a></p>
+</blockquote>
+<h2 id="7-1-目标问题"><a href="#7-1-目标问题" class="headerlink" title="7.1 目标问题"></a>7.1 目标问题</h2><p>目前的大多数从人类演示中模仿学习的机器人技术集中在桌面操作，缺乏一般有用的任务所需的机动性和灵活性，本文主要是开发了一个移动机器人，实现移动+双手的模仿学习。</p>
+<h2 id="7-2-论文中提到的学习方法"><a href="#7-2-论文中提到的学习方法" class="headerlink" title="7.2 论文中提到的学习方法"></a>7.2 论文中提到的学习方法</h2><p><strong>（0）基础模仿学习算法</strong></p>
+<ol>
+<li>ACT: Learning fine-grained bimanual manipulation with low-cost hardware</li>
+<li>扩散策略: Diffusion policy: Visuomotor policy learning via action diffusion</li>
+<li>VINN: The surprising effectiveness of representation learning for visual imitation</li>
+</ol>
+<p><strong>（1）BC 的改进</strong></p>
+<p>行为克隆 BC 与各种架构相结合</p>
+<ol>
+<li>Rt-1: Robotics transformer for real-world control at scale</li>
+<li>Bc-z: Zero-shot task generalization with robotic imitation learning</li>
+<li>What matters in learning from offline human demonstrations for robot manipulation</li>
+<li>Behavior transformers: Cloning k modes with one stone</li>
+</ol>
+<p>使用新的训练目标</p>
+<ol>
+<li>Roboagent: Towards sample efficient robot manipulation with semantic augmentations and action chunking</li>
+<li>Diffusion policy: Visuomotor policy learning via action diffusion</li>
+<li>Implicit behavioral cloning</li>
+<li>The surprising effectiveness of representation learning for visual imitation</li>
+<li>Learning fine-grained bimanual manipulation with low-cost hardware</li>
+</ol>
+<p>正则化</p>
+<ol>
+<li>Vision-based multi-task manipulation for inexpensive robots using end-to-end learning from demonstration</li>
+</ol>
+<p>Motor Primitives</p>
+<ol>
+<li>Hierarchical neural dynamic policies</li>
+<li>Dynamical movement primitives: learning attractor models for motor behaviors</li>
+<li>Learning motor primitives for robotics</li>
+<li>Using probabilistic movement primitives in robotics</li>
+<li>Learning and generalization of motor skills by learning from demonstration</li>
+<li>Learning periodic tasks from human demonstrations</li>
+</ol>
+<p>数据预处理</p>
+<ol>
+<li>Waypoint-based imitation learning for robotic manipulation</li>
+</ol>
+<p><strong>（2）多任务或少镜头模仿学习</strong></p>
+<ol>
+<li>Transformers for one-shot visual imitation</li>
+<li>One-shot imitation learning</li>
+<li>Learning manipulation skills from a single demonstration</li>
+<li>One-shot visual imitation learning via meta-learning</li>
+<li>Task-embedded control networks for few-shot imitation learning</li>
+<li>Coarse-to-fine imitation learning: Robot manipulation from a single demonstration</li>
+<li>Demonstrate once, imitate immediately (dome): Learning visual servoing for one-shot imitation learning</li>
+<li>One-shot imitation from observing humans via domain-adaptive metalearning</li>
+</ol>
+<p><strong>（3）语言条件的模仿学习</strong></p>
+<ol>
+<li>Rt-1: Robotics transformer for real-world control at scale</li>
+<li>Bc-z: Zero-shot task generalization with robotic imitation learning</li>
+<li>Cliport: What and where pathways for robotic manipulation</li>
+<li>Perceiver-actor: A multi-task transformer for robotic manipulation</li>
+</ol>
+<p><strong>（4）从演示数据模仿</strong></p>
+<ol>
+<li>From play to policy: Conditional behavior generation from uncurated robot data</li>
+<li>Learning latent plans from play</li>
+<li>Latent plans for task-agnostic offline reinforcement learning</li>
+<li>Mimicplay: Longhorizon imitation learning by watching human play</li>
+</ol>
+<p><strong>（5）使用人类视频模仿</strong></p>
+<ol>
+<li>Learning generalizable robotic reward functions from” in-the-wild” human videos</li>
+<li>Model-based inverse reinforcement learning from visual demonstrations</li>
+<li>Perceptual values from observation</li>
+<li>R3m: A universal visual representation for robot manipulation</li>
+<li>Real-world robot learning with masked visual pre-training</li>
+<li>Concept2robot: Learning manipulation concepts from instructions and human demonstrations</li>
+<li>Avid: Learning multi-stage tasks via pixel-level translation of human videos</li>
+<li>Learning by watching: Physical imitation of manipulation skills from human videos</li>
+</ol>
+<p><strong>（6）针对特定任务的模仿学习</strong></p>
+<ol>
+<li>Coarse-to-fine imitation learning: Robot manipulation from a single demonstration</li>
+<li>Perceiver-actor: A multi-task transformer for robotic manipulation</li>
+<li>Transporter networks: Rearranging the visual world for robotic manipulation</li>
+</ol>
+<p><strong>（7）针对模仿学习的通用化用于新的场景或对象</strong></p>
+<ol>
+<li>Rt-1: Robotics transformer for real-world control at scale</li>
+<li>Rt-2: Vision-language-action models transfer web knowledge to robotic control</li>
+<li>Bridge data: Boosting generalization of robotic skills with cross-domain datasets</li>
+<li>Bc-z: Zero-shot task generalization with robotic imitation learning</li>
+<li>Robot peels banana with goalconditioned dual-action deep imitation learning</li>
+</ol>
+<p><strong>（8）从不同但类似的机器人上收集数据模仿</strong></p>
+<ol>
+<li>Robocat: A self-improving foundation agent for robotic manipulation</li>
+<li>Open X-Embodiment: Robotic learning datasets and RT-X models</li>
+<li>In Towards Generalist Robots: Learning Paradigms for Scalable Skill Acquisition</li>
+<li>Octo: An open-source generalist robot policy</li>
+</ol>
+<h2 id="7-3-总结"><a href="#7-3-总结" class="headerlink" title="7.3 总结"></a>7.3 总结</h2></article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>【论文笔记】机器人动作、轨迹、过程模仿</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://www.mahaofei.com/post/lfd-il-papers.html">https://www.mahaofei.com/post/lfd-il-papers.html</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>马浩飞</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2023-12-12</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2024-01-04</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">强化学习</a><a class="post-meta__tags" href="/tags/%E6%A8%A1%E4%BB%BF%E5%AD%A6%E4%B9%A0/">模仿学习</a><a class="post-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%8A%A8%E4%BD%9C/">机器人动作</a></div><div class="post_share"><div class="social-share" data-image="https://img.mahaofei.com/img/202312131522496.png" data-sites="qq,wechat,weibo,facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/img/wechatpay.png" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/mujoco.html"><img class="prev-cover" src="https://img.mahaofei.com/img/202312062141059.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【实验准备】MuJoCo导入自定义机器人</div></div></a></div><div class="next-post pull-right"><a href="/post/doublesystem-onebluetooth.html"><img class="next-cover" src="https://img.mahaofei.com/img/202312132218479.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Windows与Ubuntu双系统绑定同一个蓝牙设备（无需重新配对）</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><a href="https://www.mahaofei.com"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></a></div><div class="author-info__name">马浩飞</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-solid fa-graduation-cap"></i><span>学术主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/HaofeiMa" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:mail@mahaofei.com" target="_blank" title="E-Mail"><i class="fa fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">新增了<a target="_blank" rel="noopener" href="https://academic.mahaofei.com/">学术主页</a>！<br>有任何问题欢迎留言评论或邮件联系。<br>E-mail：<a href="mailto:blog@mahaofei.com" style="text-decoration:underline;">blog@mahaofei.com</a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-AW-Opt-Learning-Robotic-Skills-with-Imitation-and-Reinforcement-at-Scale"><span class="toc-text">1 AW-Opt: Learning Robotic Skills with Imitation and Reinforcement at Scale</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E7%9B%AE%E6%A0%87%E9%97%AE%E9%A2%98"><span class="toc-text">1.1 目标问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E6%96%B9%E6%B3%95"><span class="toc-text">1.2 方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-DexMV-Imitation-Learning-for-Dexterous-Manipulation-from-Human-Videos"><span class="toc-text">2 DexMV: Imitation Learning for Dexterous Manipulation from Human Videos</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E7%9B%AE%E6%A0%87%E9%97%AE%E9%A2%98"><span class="toc-text">2.1 目标问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%96%B9%E6%B3%95"><span class="toc-text">2.2 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1"><span class="toc-text">2.2.1 姿态估计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-%E6%BC%94%E7%A4%BA%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%8D%A2"><span class="toc-text">2.2.2 演示数据转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3-%E6%A8%A1%E4%BB%BF%E5%AD%A6%E4%B9%A0"><span class="toc-text">2.2.3 模仿学习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E6%80%BB%E7%BB%93"><span class="toc-text">2.3 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Learning-and-Retrieval-from-Prior-Data-for-Skill-based-Imitation-Learning"><span class="toc-text">3 Learning and Retrieval from Prior Data for Skill-based Imitation Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E7%9B%AE%E6%A0%87%E9%97%AE%E9%A2%98"><span class="toc-text">3.1 目标问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E6%96%B9%E6%B3%95"><span class="toc-text">3.2 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E6%80%BB%E7%BB%93"><span class="toc-text">3.3 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-VIOLA-Imitation-Learning-for-Vision-Based-Manipulation-with-Object-Proposal-Priors"><span class="toc-text">4 VIOLA: Imitation Learning for Vision-Based Manipulation with Object Proposal Priors</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E7%9B%AE%E6%A0%87%E9%97%AE%E9%A2%98"><span class="toc-text">4.1 目标问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E6%96%B9%E6%B3%95"><span class="toc-text">4.2 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E6%80%BB%E7%BB%93"><span class="toc-text">4.3 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-SEIL-Simulation-augmented-Equivariant-Imitation-Learning"><span class="toc-text">5 SEIL: Simulation-augmented Equivariant Imitation Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E7%9B%AE%E6%A0%87%E9%97%AE%E9%A2%98"><span class="toc-text">5.1 目标问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E6%96%B9%E6%B3%95"><span class="toc-text">5.2 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E6%80%BB%E7%BB%93"><span class="toc-text">5.3 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-Waypoint-Based-Imitation-Learning-for-Robotic-Manipulation"><span class="toc-text">6 Waypoint-Based Imitation Learning for Robotic Manipulation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E7%9B%AE%E6%A0%87%E9%97%AE%E9%A2%98"><span class="toc-text">6.1 目标问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-%E6%96%B9%E6%B3%95"><span class="toc-text">6.2 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-%E6%80%BB%E7%BB%93"><span class="toc-text">6.3 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-Mobile-ALOHA-Learning-Bimanual-Mobile-Manipulation-with-Low-Cost-Whole-Body-Teleoperation"><span class="toc-text">7 Mobile ALOHA: Learning Bimanual Mobile Manipulation with Low-Cost Whole-Body Teleoperation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-%E7%9B%AE%E6%A0%87%E9%97%AE%E9%A2%98"><span class="toc-text">7.1 目标问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-%E8%AE%BA%E6%96%87%E4%B8%AD%E6%8F%90%E5%88%B0%E7%9A%84%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95"><span class="toc-text">7.2 论文中提到的学习方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-%E6%80%BB%E7%BB%93"><span class="toc-text">7.3 总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recommend-post"><div class="item-headline"><i class="fas fa-dharmachakra"></i><span>相关推荐</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/hdf5.html" title="HDF5数据文件格式"><img src="https://img.mahaofei.com/img/202401011439226.png" alt="HDF5数据文件格式"></a><div class="content"><a class="title" href="/post/hdf5.html" title="HDF5数据文件格式">HDF5数据文件格式</a><time datetime="2024-01-01" title="发表于 2024-01-01">2024-01-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/dex.html" title="【论文笔记】Dex 演示引导强化学习与手术机器人任务自动化的高效探索"><img src="https://img.mahaofei.com/img/202311151037433.png" alt="【论文笔记】Dex 演示引导强化学习与手术机器人任务自动化的高效探索"></a><div class="content"><a class="title" href="/post/dex.html" title="【论文笔记】Dex 演示引导强化学习与手术机器人任务自动化的高效探索">【论文笔记】Dex 演示引导强化学习与手术机器人任务自动化的高效探索</a><time datetime="2023-11-21" title="发表于 2023-11-21">2023-11-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/lfd-rl-papers.html" title="【论文笔记】基于强化学习的机器人动作模仿"><img src="https://img.mahaofei.com/img/202311091616113.png" alt="【论文笔记】基于强化学习的机器人动作模仿"></a><div class="content"><a class="title" href="/post/lfd-rl-papers.html" title="【论文笔记】基于强化学习的机器人动作模仿">【论文笔记】基于强化学习的机器人动作模仿</a><time datetime="2023-11-09" title="发表于 2023-11-09">2023-11-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/reskill.html" title="【论文笔记】Reskill基于技能的适应性动作空间学习"><img src="https://img.mahaofei.com/img/202311251603089.png" alt="【论文笔记】Reskill基于技能的适应性动作空间学习"></a><div class="content"><a class="title" href="/post/reskill.html" title="【论文笔记】Reskill基于技能的适应性动作空间学习">【论文笔记】Reskill基于技能的适应性动作空间学习</a><time datetime="2023-11-25" title="发表于 2023-11-25">2023-11-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/rl-basic.html" title="【强化学习笔记】强化学习基础"><img src="https://img.mahaofei.com/img/202311030917032.png" alt="【强化学习笔记】强化学习基础"></a><div class="content"><a class="title" href="/post/rl-basic.html" title="【强化学习笔记】强化学习基础">【强化学习笔记】强化学习基础</a><time datetime="2023-11-02" title="发表于 2023-11-02">2023-11-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ppo.html" title="【强化学习算法】近端优化策略PPO"><img src="/img/linux_debian.jpg" alt="【强化学习算法】近端优化策略PPO"></a><div class="content"><a class="title" href="/post/ppo.html" title="【强化学习算法】近端优化策略PPO">【强化学习算法】近端优化策略PPO</a><time datetime="2023-07-24" title="发表于 2023-07-24">2023-07-24</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.mahaofei.com/img/GoodnightCopenhagen.png')"><div id="footer-wrap"><div class="footer_custom_text"><p><a style="margin-inline:5px"target="_blank"href="https://github.com/"><img src="https://img.shields.io/badge/Hosted-Github-brightgreen?style=flat&logo=GitHub"title="本站项目由Gtihub托管"></a><a style="margin-inline:5px"target="_blank"href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo"title="博客框架为Hexo"></a><a style="margin-inline:5px"target="_blank"href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?logoColor=white&style=flat&logo=buefy"title="主题采用butterfly"></a><a style="margin-inline:5px"target="_blank"href="https://aliyun.com/product/cdn"><img src="https://img.shields.io/badge/DNS-Cloudflare-orange?style=flat&logo=Cloudflare"title="本站使用Cloudflare网络服务"></a><a style="margin-inline:5px"target="_blank"href="https://beian.miit.gov.cn/"><img src="https://img.shields.io/badge/%E6%B4%A5ICP%E5%A4%87-2021000769%E5%8F%B7--3-red?logo=data:image/png;base64,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"title="备案号:津ICP备2021000769号-3"></a><a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris"title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><i class="fas fa-adjust"><use id="modeicon" xlink:href="#icon-moon"></use></i></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Algolia</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, "https://cdn.jsdelivr.net/gh/zhheo/twikoo@dev/dist/twikoo.all.min.js"))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script><script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script><script src="/js/custom/categoryBar.js"></script><script src="/js/custom/cardHistory.js"></script><script src="/js/custom/light_dark.js"></script><script src="/js/custom/forbidCopy.js"></script><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"Jfmc1FSFWs09EC8r",ck:"Jfmc1FSFWs09EC8r"})</script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script>new LingQue.Monitor().init({id:"JfmcYvlVsVAZlVkS"});</script><script defer src="https://cloud.umami.is/script.js" data-website-id="86b466f8-e8bc-415b-954e-289b3d0110fb"></script><script src="/js/custom/custom.js"></script><script src="/js/custom/nav.js"></script><script id="canvas_nest" defer="defer" color="66,66,66" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

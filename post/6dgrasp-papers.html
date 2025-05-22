@@ -1,0 +1,407 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>抓取姿态估计算法调研 | 马浩飞丨博客</title><meta name="keywords" content="笔记,视觉,抓取姿态估计"><meta name="author" content="马浩飞"><meta name="copyright" content="马浩飞"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="调研近三年顶会顶刊上的抓取姿态估计的论文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="抓取姿态估计算法调研">
+<meta property="og:url" content="https://www.mahaofei.com/post/6dgrasp-papers.html">
+<meta property="og:site_name" content="马浩飞丨博客">
+<meta property="og:description" content="调研近三年顶会顶刊上的抓取姿态估计的论文">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.mahaofei.com/img/202304231603042.png">
+<meta property="article:published_time" content="2023-04-23T07:16:08.000Z">
+<meta property="article:modified_time" content="2023-04-23T07:16:08.000Z">
+<meta property="article:author" content="马浩飞">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="视觉">
+<meta property="article:tag" content="抓取姿态估计">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.mahaofei.com/img/202304231603042.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.mahaofei.com/post/6dgrasp-papers"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-bB89NudWgv"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?439a0d0abeb31dd8f338efd8266c999b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"ABY1KMOQQM","apiKey":"d3f3a4fbb355106e6bf265cf8da1863b","indexName":"hexo","hits":{"per_page":4},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '抓取姿态估计算法调研',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-23 15:16:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="/css/custom/MainColor.css"><link rel="stylesheet" href="/css/custom/categoryBar.css"><link rel="stylesheet" href="/css/custom/404.css"><link rel="stylesheet" href="/css/custom/cardHistory.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><link rel="stylesheet" href="/css/custom/custom.css"><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="马浩飞丨博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.mahaofei.com/img/202304231603042.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">马浩飞丨博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div><center id="name-container"><a id="page-name" href="javascript:scrollToTop()">PAGE_NAME</a></center></div><div id="nav-right"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">抓取姿态估计算法调研</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-23T07:16:08.000Z" title="发表于 2023-04-23 15:16:08">2023-04-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-23T07:16:08.000Z" title="更新于 2023-04-23 15:16:08">2023-04-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/">机器人</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%93%E5%8F%96/">机器人抓取</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="抓取姿态估计算法调研"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/post/6dgrasp-papers.html#post-comment"><span id="twikoo-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Hybrid-Physical-Metric-For-6-DoF-Grasp-Pose-Detection"><a href="#Hybrid-Physical-Metric-For-6-DoF-Grasp-Pose-Detection" class="headerlink" title="Hybrid Physical Metric For 6-DoF Grasp Pose Detection"></a>Hybrid Physical Metric For 6-DoF Grasp Pose Detection</h1><blockquote>
+<p><strong>标题</strong>：用于6D抓取检测的混合物理度量<br><strong>作者团队</strong>：清华大学（王生进）<br><strong>期刊会议</strong>：ICRA<br><strong>时间</strong>：2022<br><strong>代码</strong>：<a target="_blank" rel="noopener" href="https://github.com/luyh20/FGC-GraspNet">https://github.com/luyh20/FGC-GraspNet</a></p>
+</blockquote>
+<h2 id="一、目标问题"><a href="#一、目标问题" class="headerlink" title="一、目标问题"></a>一、目标问题</h2><p>单个物理指标会导致离散的抓取置信度分数，在百万抓取数据训练时会导致预测结果不准确。</p>
+<p>本文定义了一种新的度量方式，基于力封闭度量、物体平面度、重力和碰撞测量。</p>
+<p>本文设计了平面重力碰撞FGC-GraspNet，适用于多任务多分辨率学习体系。</p>
+<h2 id="二、混合物理度量"><a href="#二、混合物理度量" class="headerlink" title="二、混合物理度量"></a>二、混合物理度量</h2><p><img src="https://img.mahaofei.com/img/202304231518654.png" alt="image.png"></p>
+<p><strong>（1）平面度</strong></p>
+<p>平面度越高的抓的越稳。利用点的局部法向量的相似性计算平坦度得分。</p>
+<p><strong>（2）重心度量</strong></p>
+<p>夹持力更接近物体重心的更稳定。计算物体重心到两个接触点的连线的距离作为重力得分。</p>
+<p><strong>（3）碰撞扰动度量</strong></p>
+<p>当夹爪接近物体时容易发生碰撞，因此取夹爪两个最大行程端点与物体接触点的欧氏距离最小值作为碰撞扰动得分。</p>
+<p><strong>（4）混合物理度量</strong></p>
+<p>混合物理度量是上面度量的加权组合。</p>
+<h2 id="三、-FGC-GraspNet"><a href="#三、-FGC-GraspNet" class="headerlink" title="三、 FGC-GraspNet"></a>三、 FGC-GraspNet</h2><p>通过最远点采样FPS得到20000x3对点云输入，网络由PointNet++，FA分支、RD分支组成。</p>
+<p><img src="https://img.mahaofei.com/img/202304231530817.png" alt=""></p>
+<ul>
+<li>PointNEt++用于提取点特征</li>
+<li>低分辨率的特征进入FA分支进行前景分割和逐点逼近方向得分回归</li>
+<li>高分辨率的特征用于RD旋转分支。</li>
+</ul>
+<h2 id="四、思考"><a href="#四、思考" class="headerlink" title="四、思考"></a>四、思考</h2><p>将混合物理度量纳入LOSS的计算过程确实有意义。而且具有一定的复用性，其它算法也可借鉴此设计。</p>
+<h1 id="Volumetric-Grasping-Network-Real-time-6-DOF-Grasp-Detection-in-Clutter"><a href="#Volumetric-Grasping-Network-Real-time-6-DOF-Grasp-Detection-in-Clutter" class="headerlink" title="Volumetric Grasping Network: Real-time 6 DOF Grasp Detection in Clutter"></a>Volumetric Grasping Network: Real-time 6 DOF Grasp Detection in Clutter</h1><blockquote>
+<p><strong>标题</strong>：基于体素的抓取网络：杂乱场景中实时6D抓取检测<br><strong>作者团队</strong>：ETH Zurich（苏黎世联邦理工学院）<br><strong>期刊会议</strong>：CoRL2020<br><strong>时间</strong>：2020<br><strong>代码</strong>：<a target="_blank" rel="noopener" href="https://github.com/ethz-asl/vgn">https://github.com/ethz-asl/vgn</a></p>
+</blockquote>
+<h2 id="一、目标问题-1"><a href="#一、目标问题-1" class="headerlink" title="一、目标问题"></a>一、目标问题</h2><p>本文提出了一种网络从深度相机中获得场景信息，预测6D抓取的网络。</p>
+<h2 id="二、论文方法"><a href="#二、论文方法" class="headerlink" title="二、论文方法"></a>二、论文方法</h2><p><strong>（1）网络架构</strong></p>
+<p>由滤波器、卷积层组成的感知模块将输入体素映射为特征图，然后进行卷积、上采样操作，最后是三个独立的分支用于预测抓取质量、旋转和夹爪宽度。</p>
+<p><strong>（2）抓取检测</strong></p>
+<p>使用一些方法去除不可能的抓取姿势，然后应用非极大抑制来获得候选的抓取列表。</p>
+<h2 id="三、思考"><a href="#三、思考" class="headerlink" title="三、思考"></a>三、思考</h2><p>非常基础的方法，已经有人在此基础上进行了扩展并发表了顶会。</p>
+<h1 id="Efficient-Learning-of-Goal-Oriented-Push-Grasping-Synergy-in-Clutter"><a href="#Efficient-Learning-of-Goal-Oriented-Push-Grasping-Synergy-in-Clutter" class="headerlink" title="Efficient Learning of Goal-Oriented Push-Grasping Synergy in Clutter"></a>Efficient Learning of Goal-Oriented Push-Grasping Synergy in Clutter</h1><blockquote>
+<p><strong>标题</strong>：杂乱场景中面向目标的的推/抓协同有效学习<br><strong>作者团队</strong>：浙江大学（熊蓉）<br><strong>期刊会议</strong>：RAL<br><strong>时间</strong>：2021<br><strong>代码</strong>：<a target="_blank" rel="noopener" href="https://github.com/xukechun/Efficient_goal-oriented_push-grasping_synergy">https://github.com/xukechun/Efficient_goal-oriented_push-grasping_synergy</a></p>
+</blockquote>
+<h2 id="一、目标问题-2"><a href="#一、目标问题-2" class="headerlink" title="一、目标问题"></a>一、目标问题</h2><p>在混乱场景中抓取物体时，有时需要一些预抓取动作，例如推动。使机械臂能够分离目标对象并稳定的实现抓取。</p>
+<h2 id="二、方法"><a href="#二、方法" class="headerlink" title="二、方法"></a>二、方法</h2><p><img src="https://img.mahaofei.com/img/202304231536100.png" alt=""></p>
+<p>环境准备：固定的RGBD相机拍摄工作空间，将RGBD投影到重力方向，使用颜色高度图和深度高度图表示每个状态。</p>
+<p><strong>（1）有目标的抓取训练</strong></p>
+<p>训练一个有目标条件下的抓取网络，当有足够的训练之后，成功抓取的Q值稳定。</p>
+<p><strong>（2）有目标的推动训练</strong></p>
+<p>训练一个有目标条件下的推动网络，推动的奖励函数是基于抓取网络反向训练设计的。</p>
+<p><strong>（3）交替训练</strong></p>
+<p>利用交替训练来解决物体分布不匹配的问题，进一步提高混乱环境中抓取策略性能。</p>
+<h2 id="三、思考-1"><a href="#三、思考-1" class="headerlink" title="三、思考"></a>三、思考</h2><p>推物体再抓取物体相当于一个两阶段方法，可以不用在底层进行训练，而是在高层的规划决策层来进行判断，发布任务是推物体还是抓物体。</p>
+<h1 id="TransGrasp-Grasp-Pose-Estimation-ofaCategory-ofObjects-byTransferring-Grasps-fromOnlyOne-Labeled-Instance"><a href="#TransGrasp-Grasp-Pose-Estimation-ofaCategory-ofObjects-byTransferring-Grasps-fromOnlyOne-Labeled-Instance" class="headerlink" title="TransGrasp: Grasp Pose Estimation ofaCategory ofObjects byTransferring Grasps fromOnlyOne Labeled Instance"></a>TransGrasp: Grasp Pose Estimation ofaCategory ofObjects byTransferring Grasps fromOnlyOne Labeled Instance</h1><blockquote>
+<p><strong>标题</strong>：杂乱场景中面向目标的的推/抓协同有效学习<br><strong>作者团队</strong>：大连理工大学（孙怡）<br><strong>期刊会议</strong>：ECCV<br><strong>时间</strong>：2022<br><strong>代码</strong>：<a target="_blank" rel="noopener" href="https://github.com/yanjh97/TransGrasp">https://github.com/yanjh97/TransGrasp</a></p>
+</blockquote>
+<h2 id="一、目标问题-3"><a href="#一、目标问题-3" class="headerlink" title="一、目标问题"></a>一、目标问题</h2><p>现有大多数方法需要大量的抓取数据来训练，为了解决这个问题，本文实现只标记一个对象预测一类对象的抓取姿态。</p>
+<h2 id="二、方法-1"><a href="#二、方法-1" class="headerlink" title="二、方法"></a>二、方法</h2><p><strong>（1）学习类别的对应关系</strong></p>
+<ol>
+<li>Shape Encoder和DIFDecoder组成神经网络，训练得到对象变形到模板的密集对应关系</li>
+</ol>
+<p><strong>（2）抓取姿态估计</strong></p>
+<ol>
+<li>点云首先从相机坐标系转换到对象坐标系</li>
+<li>生成对象实例的变形到模板</li>
+<li>将带有抓取注释的模型输入到DeformNet中获得模型的变形</li>
+<li>由两者的共同模板见你对应关系，通过对准物体表面上的抓握点来引导抓握姿势的变换</li>
+<li>通过refine模块进行优化</li>
+<li>将优化后的抓握知识转换为相机坐标进行抓取</li>
+</ol>
+<h2 id="三、思考-2"><a href="#三、思考-2" class="headerlink" title="三、思考"></a>三、思考</h2><p>这种算法只能实现与模板形状相似的物体进行抓取，而且每个类别要先手工标记1000个抓握姿势。</p>
+<h1 id="Contact-GraspNet-Efficient-6-DoF-Grasp-Generation-in-Cluttered-Scenes"><a href="#Contact-GraspNet-Efficient-6-DoF-Grasp-Generation-in-Cluttered-Scenes" class="headerlink" title="Contact-GraspNet: Efficient 6-DoF Grasp Generation in Cluttered Scenes"></a>Contact-GraspNet: Efficient 6-DoF Grasp Generation in Cluttered Scenes</h1><blockquote>
+<p><strong>标题</strong>：ContactGraspNet：在杂乱场景中高效生成6-DoF抓取<br><strong>作者团队</strong>：NVIDIA<br><strong>期刊会议</strong>：ICRA<br><strong>时间</strong>：2021<br><strong>代码</strong>：<a target="_blank" rel="noopener" href="https://github.com/NVlabs/contact_graspnet">https://github.com/NVlabs/contact_graspnet</a></p>
+</blockquote>
+<h2 id="1-目标问题"><a href="#1-目标问题" class="headerlink" title="1 目标问题"></a>1 目标问题</h2><p>提出了一种端到端的网络，从图像的深度数据中生成6D抓取分布。</p>
+<h2 id="2-方法"><a href="#2-方法" class="headerlink" title="2 方法"></a>2 方法</h2><p>使用原始的深度图，以及（可选使用对象掩码），生成6D抓取建议以及抓取宽度。</p>
+<p><strong>（1）抓取表示方法</strong></p>
+<p>可以发现，大多是可以预测的两手指抓取，在抓取前至少可以看到两个接触点的一个。因此可以将抓取问题简化为估计平行板抓取器的3D抓取旋转和抓取宽度。</p>
+<p><img src="https://img.mahaofei.com/img/202304231545643.png" alt=""></p>
+<p>其中a是接近向量，b是抓取基线向量，d是从抓取基线到抓取基座的距离。使用这种表示方法可以加速学习过程，提高预测精度，且没有歧义和间断区域。</p>
+<p><strong>（2）数据生成</strong></p>
+<p>使用了ACRONYM数据集。在场景中以随机稳定的姿态放置具有密集抓取注释的对象网格。其中会导致夹爪与模型碰撞的抓取姿态将被删除。</p>
+<p><strong>（3）网络</strong></p>
+<p>使用PointNet++中提出的集合概要和特征传播层来构建非对称的U形网络。</p>
+<p>网络有四个检测头，每个检测头包括两个1D卷积层，每个点输出s∈R，z1∈R3，z2∈R3、o∈R10，从中我们形成了我们的抓取表示。</p>
+<p>将抓取的宽度划分为10个等距的抓取宽度，来抵消数据不平衡问题，然后选择置信度最高的抓取宽度表示。由于接近方向和基线方向是正交的，通过进行正交归一化预测，将这一性质加入到训练过程，有助于3D旋转的回归。</p>
+<p><img src="https://img.mahaofei.com/img/202304231546650.png" alt=""></p>
+<h2 id="3-思考"><a href="#3-思考" class="headerlink" title="3 思考"></a>3 思考</h2><p>在数据集中预先定义好了抓取姿态，然后进行监督训练。使用时根据深度图首先确定物体所在区域，然后利用其点云预测抓取分布。</p>
+<p>自定义物体的数据集不易制作。</p>
+<h1 id="RGB-Matters-Learning-7-DoF-Grasp-Poses-on-Monocular-RGBD-Images"><a href="#RGB-Matters-Learning-7-DoF-Grasp-Poses-on-Monocular-RGBD-Images" class="headerlink" title="RGB Matters: Learning 7-DoF Grasp Poses on Monocular RGBD Images"></a>RGB Matters: Learning 7-DoF Grasp Poses on Monocular RGBD Images</h1><blockquote>
+<p><strong>标题</strong>：RGB Matters：单RGBD图像学习学习7D抓取姿态<br><strong>作者团队</strong>：上海交通大学（卢策吾）<br><strong>期刊会议</strong>：ICRA<br><strong>时间</strong>：2021<br><strong>代码</strong>：<a target="_blank" rel="noopener" href="https://github.com/GouMinghao/RGB_Matters">https://github.com/GouMinghao/RGB_Matters</a></p>
+</blockquote>
+<h2 id="一、目标问题-4"><a href="#一、目标问题-4" class="headerlink" title="一、目标问题"></a>一、目标问题</h2><p>现有方法要么生成自由度很少的抓取姿态，要么只将不稳定的深度点云输入。</p>
+<h2 id="二、方法-2"><a href="#二、方法-2" class="headerlink" title="二、方法"></a>二、方法</h2><p><strong>（1）Angle-View Net</strong></p>
+<p>预测像素级的夹持器旋转配置。直接回归四元数不太现实，而且不鲁棒。可以使用下面的模型，将夹持器旋转预测作为一个分类问题进行预测。</p>
+<p><img src="https://img.mahaofei.com/img/202304231549478.png" alt=""></p>
+<p>AVN最终的输出表示为角视图热图。</p>
+<p><strong>（2）快速分析搜索</strong></p>
+<p>AVN识别了7个自由度的其中五个，但是夹持器的宽度和夹持器沿轴方向的自由度还没有确定。</p>
+<p>本文提出了基于碰撞和空抓取检测的快速分析搜索来计算宽度和距离。</p>
+<p>通过对从0到Wmax采样，假设抓取器靠近由深度图重建的点云的对应点。过滤掉夹持器占用的空间中存在点、抓取空间没有点的两种情况。</p>
+<p><img src="https://img.mahaofei.com/img/202304231549054.png" alt=""></p>
+<h2 id="三、思考-3"><a href="#三、思考-3" class="headerlink" title="三、思考"></a>三、思考</h2><p>本文使用了尽可能简单的思路解决抓取预测问题</p>
+<p>将末端夹持器的旋转方向通过分类器进行回归计算。</p>
+<p>将夹持器位置和宽度通过采样测试逐一排除得到最优解。</p>
+<p>思路直观简单，可以尝试。</p>
+<h1 id="CaTGrasp-Learning-Category-Level-Task-Relevant-Grasping-in-Clutter-from-Simulation"><a href="#CaTGrasp-Learning-Category-Level-Task-Relevant-Grasping-in-Clutter-from-Simulation" class="headerlink" title="CaTGrasp: Learning Category-Level Task-Relevant Grasping in Clutter from Simulation"></a>CaTGrasp: Learning Category-Level Task-Relevant Grasping in Clutter from Simulation</h1><blockquote>
+<p><strong>标题</strong>：CaTGrasp：从仿真中学习杂乱场景的类别级抓取<br><strong>作者团队</strong>：Rutgers University（美国罗格斯大学）<br><strong>期刊会议</strong>：ICRA<br><strong>时间</strong>：2022<br><strong>代码</strong>：<a target="_blank" rel="noopener" href="https://github.com/wenbowen123/catgrasp">https://github.com/wenbowen123/catgrasp</a></p>
+</blockquote>
+<h2 id="一、目标问题-5"><a href="#一、目标问题-5" class="headerlink" title="一、目标问题"></a>一、目标问题</h2><p>提出了一个框架学习工业对象的抓取，不需要真实的数据或手动注释</p>
+<h2 id="二、方法-3"><a href="#二、方法-3" class="headerlink" title="二、方法"></a>二、方法</h2><p>给定同一类别的3D模型的数据库，该方法学习</p>
+<ul>
+<li>以对象为中心的NUNOCS表示</li>
+<li>hotmap：抓握过程中手-对象接触区域的任务实现成功的可能性</li>
+<li>抓取姿势的编码本</li>
+</ul>
+<p><strong>（1）类别级标准NUNOCS表示</strong></p>
+<p>将同一个类别的不同实例对象转换到标准空间，并缩放为标准大小。</p>
+<p><strong>（2）稳定抓取学习</strong></p>
+<p>首先给定从当前实例到规范模型的9D变换，将相同的变换应用于抓取来得到抓取建议。</p>
+<p>将生成的抓取用于训练基于PointNet构建的网络，预测抓取质量。</p>
+<p><strong>（3）实例分割</strong></p>
+<p>使用了3D U-Net，将整个场景的点云作为输入，预测每点偏移到物体中心，将偏移点聚类为实例段。</p>
+<p><strong>（4）仿真中生成训练数据</strong></p>
+<p>利用PyBullet模拟生成合成数据。</p>
+<h2 id="三、思考-4"><a href="#三、思考-4" class="headerlink" title="三、思考"></a>三、思考</h2><p>该方法提出了一种使用仿真数据进行训练，减少人工标注的方法。抓取的方法没有太多创新，仍然需要每个类别提供多个预先的实例以及抓取姿态用于训练。</p>
+<h1 id="Closed-Loop-Next-Best-View-Planning-for-Target-Driven-Grasping"><a href="#Closed-Loop-Next-Best-View-Planning-for-Target-Driven-Grasping" class="headerlink" title="Closed-Loop Next-Best-View Planning for Target-Driven Grasping"></a>Closed-Loop Next-Best-View Planning for Target-Driven Grasping</h1><blockquote>
+<p><strong>标题</strong>：闭环次优视图规划用于目标驱动的抓取<br><strong>作者团队</strong>：ETH Zurich（苏黎世联邦理工学院）<br><strong>期刊会议</strong>：IROS<br><strong>时间</strong>：2022<br><strong>代码</strong>：<a target="_blank" rel="noopener" href="https://github.com/ethz-asl/active_grasp">https://github.com/ethz-asl/active_grasp</a></p>
+</blockquote>
+<h2 id="一、目标问题-6"><a href="#一、目标问题-6" class="headerlink" title="一、目标问题"></a>一、目标问题</h2><p>从密集遮挡环境中抓取物体</p>
+<h2 id="二、方法-4"><a href="#二、方法-4" class="headerlink" title="二、方法"></a>二、方法</h2><p>该方法具有以下前提条件</p>
+<ul>
+<li>机械臂末端连接深度相机</li>
+<li>相机光学中心和手抓中心已经校准</li>
+<li>已知物体的部分视图和3D边界框</li>
+</ul>
+<p><img src="https://img.mahaofei.com/img/202304231603042.png" alt=""></p>
+<p>首先将点云观测yt和相机姿态xt继承，重建为体素图。计算体素的可抓取性，以及可能的抓取姿态。如果可抓取性不满足要求，就调整机械臂位置计算下一张图</p>
+<p><strong>（1）抓取检测</strong></p>
+<p>使用体积抓取网络VGN进行抓取。该网络将体素网格M映射到抓握质量分数Q、平行抓握方向R、开口宽度W。</p>
+<p>过滤掉指尖不在目标边界框的抓取姿态、无法找到反向运动学解的抓取姿态。</p>
+<p><strong>（2）次优视图规划器</strong></p>
+<p><strong>世界表示</strong>：使用TSDF（截断有符号距离函数）表示大小为 l 的立方体体素。</p>
+<p><strong>视图生成</strong>：将候选视图生成在目标边界上半球内。</p>
+<p><strong>信息增益</strong>：TSDF 重建的完整性对于抓取的检测和预测准确性有很大影响。因此使用了后侧体素 IG 公式的变体，对被遮挡具有负距离的体素使用光线投影来计算隐藏对象体素的数量。</p>
+<ol>
+<li>在策略更新的最大数量中加入时间预算</li>
+<li>如果抓取分数低于给定的阈值，就会停止算法，因为获取不到有用信息</li>
+<li>如果VGN在几帧内保持稳定的抓取配置，就停止</li>
+</ol>
+<h2 id="三、思考-5"><a href="#三、思考-5" class="headerlink" title="三、思考"></a>三、思考</h2><p>该方法是在位姿估计的基础上进行的抓取预测，可以将该方法与Gen6D结合起来，获得物体的6D抓取位姿。</p>
+<h1 id="Edge-Grasp-Network-A-Graph-Based-SE-3-invariant-Approach-to-Grasp-Detection"><a href="#Edge-Grasp-Network-A-Graph-Based-SE-3-invariant-Approach-to-Grasp-Detection" class="headerlink" title="Edge Grasp Network: A Graph-Based SE(3)-invariant Approach to Grasp Detection"></a>Edge Grasp Network: A Graph-Based SE(3)-invariant Approach to Grasp Detection</h1><blockquote>
+<p><strong>标题</strong>：边缘抓取网络：一种基于图的SE(3)不变的抓取检测方法<br><strong>作者团队</strong>：Northeastern University（美国东北大学）<br><strong>期刊会议</strong>：ICRA<br><strong>时间</strong>：2023<br><strong>代码</strong>：<a target="_blank" rel="noopener" href="https://github.com/HaojHuang/Edge-Grasp-Network">https://github.com/HaojHuang/Edge-Grasp-Network</a></p>
+</blockquote>
+<h2 id="一、目标问题-7"><a href="#一、目标问题-7" class="headerlink" title="一、目标问题"></a>一、目标问题</h2><p>以单个视角观察到的点云为输入，得到一组抓取姿态</p>
+<h2 id="二、方法-5"><a href="#二、方法-5" class="headerlink" title="二、方法"></a>二、方法</h2><p><strong>（1）裁剪点云</strong></p>
+<p>给定一个点云p和接近点pa，只有接近点pa的相邻点会影响抓取，因此以pa为中心裁剪一个球。</p>
+<p><strong>（2）PointNet卷积</strong></p>
+<p>使用PointNet计算接近点与最近邻点，每个点的特征。</p>
+<p><strong>（3）计算全局特征</strong></p>
+<p>将逐点特征传递给MLP，用最大池化层生成一级全局特征。这些全局特征再与点特征相连传递到第二个MLP计算全局特征。</p>
+<p>对于每个抓取，通过将全局特征与点特征连接来计算边缘特征，用分类器表示边缘抓取。</p>
+<p><strong>（4）抓取评估</strong></p>
+<p>使用sigmoid函数的四层MLP来预测抓取成功率，以边缘特征为输入计算抓取是否成功。</p>
+<h2 id="三、思考-6"><a href="#三、思考-6" class="headerlink" title="三、思考"></a>三、思考</h2><p>该方法类似于DenseFusion的思想，即提取逐点特征和全局特征，进行特征融合，本文得到的融合特征即边缘特征，利用该特征再使用分类器得到抓取位姿。</p>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>抓取姿态估计算法调研</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://www.mahaofei.com/post/6dgrasp-papers.html">https://www.mahaofei.com/post/6dgrasp-papers.html</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>马浩飞</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2023-04-23</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2023-04-23</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="post-meta__tags" href="/tags/%E8%A7%86%E8%A7%89/">视觉</a><a class="post-meta__tags" href="/tags/%E6%8A%93%E5%8F%96%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1/">抓取姿态估计</a></div><div class="post_share"><div class="social-share" data-image="https://img.mahaofei.com/img/202304231603042.png" data-sites="qq,wechat,weibo,facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/img/wechatpay.png" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/ubuntu-resource.html"><img class="prev-cover" src="https://img.mahaofei.com/img/202312161627161.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Ubuntu系统资源占用情况查看</div></div></a></div><div class="next-post pull-right"><a href="/post/rgb-matters.html"><img class="next-cover" src="https://img.mahaofei.com/img/202304231549478.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【抓取姿态估计算法】RGB Matters论文笔记与复现</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><a href="https://www.mahaofei.com"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></a></div><div class="author-info__name">马浩飞</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-solid fa-graduation-cap"></i><span>学术主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/HaofeiMa" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:mail@mahaofei.com" target="_blank" title="E-Mail"><i class="fa fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">新增了<a target="_blank" rel="noopener" href="https://academic.mahaofei.com/">学术主页</a>！<br>有任何问题欢迎留言评论或邮件联系。<br>E-mail：<a href="mailto:blog@mahaofei.com" style="text-decoration:underline;">blog@mahaofei.com</a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hybrid-Physical-Metric-For-6-DoF-Grasp-Pose-Detection"><span class="toc-text">Hybrid Physical Metric For 6-DoF Grasp Pose Detection</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%9B%AE%E6%A0%87%E9%97%AE%E9%A2%98"><span class="toc-text">一、目标问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%B7%B7%E5%90%88%E7%89%A9%E7%90%86%E5%BA%A6%E9%87%8F"><span class="toc-text">二、混合物理度量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81-FGC-GraspNet"><span class="toc-text">三、 FGC-GraspNet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%80%9D%E8%80%83"><span class="toc-text">四、思考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Volumetric-Grasping-Network-Real-time-6-DOF-Grasp-Detection-in-Clutter"><span class="toc-text">Volumetric Grasping Network: Real-time 6 DOF Grasp Detection in Clutter</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%9B%AE%E6%A0%87%E9%97%AE%E9%A2%98-1"><span class="toc-text">一、目标问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%AE%BA%E6%96%87%E6%96%B9%E6%B3%95"><span class="toc-text">二、论文方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%80%9D%E8%80%83"><span class="toc-text">三、思考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Efficient-Learning-of-Goal-Oriented-Push-Grasping-Synergy-in-Clutter"><span class="toc-text">Efficient Learning of Goal-Oriented Push-Grasping Synergy in Clutter</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%9B%AE%E6%A0%87%E9%97%AE%E9%A2%98-2"><span class="toc-text">一、目标问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%96%B9%E6%B3%95"><span class="toc-text">二、方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%80%9D%E8%80%83-1"><span class="toc-text">三、思考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TransGrasp-Grasp-Pose-Estimation-ofaCategory-ofObjects-byTransferring-Grasps-fromOnlyOne-Labeled-Instance"><span class="toc-text">TransGrasp: Grasp Pose Estimation ofaCategory ofObjects byTransferring Grasps fromOnlyOne Labeled Instance</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%9B%AE%E6%A0%87%E9%97%AE%E9%A2%98-3"><span class="toc-text">一、目标问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%96%B9%E6%B3%95-1"><span class="toc-text">二、方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%80%9D%E8%80%83-2"><span class="toc-text">三、思考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Contact-GraspNet-Efficient-6-DoF-Grasp-Generation-in-Cluttered-Scenes"><span class="toc-text">Contact-GraspNet: Efficient 6-DoF Grasp Generation in Cluttered Scenes</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%9B%AE%E6%A0%87%E9%97%AE%E9%A2%98"><span class="toc-text">1 目标问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%96%B9%E6%B3%95"><span class="toc-text">2 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%80%9D%E8%80%83"><span class="toc-text">3 思考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RGB-Matters-Learning-7-DoF-Grasp-Poses-on-Monocular-RGBD-Images"><span class="toc-text">RGB Matters: Learning 7-DoF Grasp Poses on Monocular RGBD Images</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%9B%AE%E6%A0%87%E9%97%AE%E9%A2%98-4"><span class="toc-text">一、目标问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%96%B9%E6%B3%95-2"><span class="toc-text">二、方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%80%9D%E8%80%83-3"><span class="toc-text">三、思考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CaTGrasp-Learning-Category-Level-Task-Relevant-Grasping-in-Clutter-from-Simulation"><span class="toc-text">CaTGrasp: Learning Category-Level Task-Relevant Grasping in Clutter from Simulation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%9B%AE%E6%A0%87%E9%97%AE%E9%A2%98-5"><span class="toc-text">一、目标问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%96%B9%E6%B3%95-3"><span class="toc-text">二、方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%80%9D%E8%80%83-4"><span class="toc-text">三、思考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Closed-Loop-Next-Best-View-Planning-for-Target-Driven-Grasping"><span class="toc-text">Closed-Loop Next-Best-View Planning for Target-Driven Grasping</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%9B%AE%E6%A0%87%E9%97%AE%E9%A2%98-6"><span class="toc-text">一、目标问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%96%B9%E6%B3%95-4"><span class="toc-text">二、方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%80%9D%E8%80%83-5"><span class="toc-text">三、思考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Edge-Grasp-Network-A-Graph-Based-SE-3-invariant-Approach-to-Grasp-Detection"><span class="toc-text">Edge Grasp Network: A Graph-Based SE(3)-invariant Approach to Grasp Detection</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%9B%AE%E6%A0%87%E9%97%AE%E9%A2%98-7"><span class="toc-text">一、目标问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%96%B9%E6%B3%95-5"><span class="toc-text">二、方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%80%9D%E8%80%83-6"><span class="toc-text">三、思考</span></a></li></ol></li></ol></div></div><div class="card-widget card-recommend-post"><div class="item-headline"><i class="fas fa-dharmachakra"></i><span>相关推荐</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/3d-reconstruction.html" title="三维重建方法汇总"><img src="https://pic2.zhimg.com/80/v2-bd6adb618c98e7b8c2cb09f4c1f2b805_720w.jpg" alt="三维重建方法汇总"></a><div class="content"><a class="title" href="/post/3d-reconstruction.html" title="三维重建方法汇总">三维重建方法汇总</a><time datetime="2022-06-25" title="发表于 2022-06-25">2022-06-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/thesis-6d-grasp.html" title="【论文笔记】面向非结构化环境的机器人6D抓取技术研究"><img src="https://img.mahaofei.com/img/20220820141021.png" alt="【论文笔记】面向非结构化环境的机器人6D抓取技术研究"></a><div class="content"><a class="title" href="/post/thesis-6d-grasp.html" title="【论文笔记】面向非结构化环境的机器人6D抓取技术研究">【论文笔记】面向非结构化环境的机器人6D抓取技术研究</a><time datetime="2000-01-01" title="发表于 2000-01-01">2000-01-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/linemod.html" title="【6D位姿估计算法】linemod的介绍与代码测试"><img src="https://img.mahaofei.com/img/mesh%E7%BD%91%E6%A0%BC%E6%A8%A1%E5%9E%8B.png" alt="【6D位姿估计算法】linemod的介绍与代码测试"></a><div class="content"><a class="title" href="/post/linemod.html" title="【6D位姿估计算法】linemod的介绍与代码测试">【6D位姿估计算法】linemod的介绍与代码测试</a><time datetime="2022-08-13" title="发表于 2022-08-13">2022-08-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/posecnn.html" title="【6D位姿估计算法】PoseCNN"><img src="https://img.mahaofei.com/img/20220907202451.png" alt="【6D位姿估计算法】PoseCNN"></a><div class="content"><a class="title" href="/post/posecnn.html" title="【6D位姿估计算法】PoseCNN">【6D位姿估计算法】PoseCNN</a><time datetime="2022-09-07" title="发表于 2022-09-07">2022-09-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/pvnet.html" title="【6D位姿估计算法】PVNet"><img src="https://img.mahaofei.com/img/20230225211551.png" alt="【6D位姿估计算法】PVNet"></a><div class="content"><a class="title" href="/post/pvnet.html" title="【6D位姿估计算法】PVNet">【6D位姿估计算法】PVNet</a><time datetime="2022-09-12" title="发表于 2022-09-12">2022-09-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/densefusion-paper.html" title="【论文笔记】DenseFusion"><img src="https://img.mahaofei.com/img/20220912191133.png" alt="【论文笔记】DenseFusion"></a><div class="content"><a class="title" href="/post/densefusion-paper.html" title="【论文笔记】DenseFusion">【论文笔记】DenseFusion</a><time datetime="2022-09-12" title="发表于 2022-09-12">2022-09-12</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.mahaofei.com/img/GoodnightCopenhagen.png')"><div id="footer-wrap"><div class="footer_custom_text"><p><a style="margin-inline:5px"target="_blank"href="https://github.com/"><img src="https://img.shields.io/badge/Hosted-Github-brightgreen?style=flat&logo=GitHub"title="本站项目由Gtihub托管"></a><a style="margin-inline:5px"target="_blank"href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo"title="博客框架为Hexo"></a><a style="margin-inline:5px"target="_blank"href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?logoColor=white&style=flat&logo=buefy"title="主题采用butterfly"></a><a style="margin-inline:5px"target="_blank"href="https://aliyun.com/product/cdn"><img src="https://img.shields.io/badge/DNS-Cloudflare-orange?style=flat&logo=Cloudflare"title="本站使用Cloudflare网络服务"></a><a style="margin-inline:5px"target="_blank"href="https://beian.miit.gov.cn/"><img src="https://img.shields.io/badge/%E6%B4%A5ICP%E5%A4%87-2021000769%E5%8F%B7--3-red?logo=data:image/png;base64,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"title="备案号:津ICP备2021000769号-3"></a><a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris"title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><i class="fas fa-adjust"><use id="modeicon" xlink:href="#icon-moon"></use></i></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Algolia</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, "https://cdn.jsdelivr.net/gh/zhheo/twikoo@dev/dist/twikoo.all.min.js"))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script><script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script><script src="/js/custom/categoryBar.js"></script><script src="/js/custom/cardHistory.js"></script><script src="/js/custom/light_dark.js"></script><script src="/js/custom/forbidCopy.js"></script><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"Jfmc1FSFWs09EC8r",ck:"Jfmc1FSFWs09EC8r"})</script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script>new LingQue.Monitor().init({id:"JfmcYvlVsVAZlVkS"});</script><script defer src="https://cloud.umami.is/script.js" data-website-id="86b466f8-e8bc-415b-954e-289b3d0110fb"></script><script src="/js/custom/custom.js"></script><script src="/js/custom/nav.js"></script><script id="canvas_nest" defer="defer" color="66,66,66" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

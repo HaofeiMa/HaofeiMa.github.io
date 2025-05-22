@@ -1,0 +1,443 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>【强化学习笔记】强化学习基础 | 马浩飞丨博客</title><meta name="keywords" content="强化学习,基础知识,Python"><meta name="author" content="马浩飞"><meta name="copyright" content="马浩飞"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="强化学习基础部分笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【强化学习笔记】强化学习基础">
+<meta property="og:url" content="https://www.mahaofei.com/post/rl-basic.html">
+<meta property="og:site_name" content="马浩飞丨博客">
+<meta property="og:description" content="强化学习基础部分笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.mahaofei.com/img/202311030917032.png">
+<meta property="article:published_time" content="2023-11-02T02:01:55.000Z">
+<meta property="article:modified_time" content="2023-11-02T02:01:55.000Z">
+<meta property="article:author" content="马浩飞">
+<meta property="article:tag" content="强化学习">
+<meta property="article:tag" content="基础知识">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.mahaofei.com/img/202311030917032.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.mahaofei.com/post/rl-basic"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-bB89NudWgv"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?439a0d0abeb31dd8f338efd8266c999b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"ABY1KMOQQM","apiKey":"d3f3a4fbb355106e6bf265cf8da1863b","indexName":"hexo","hits":{"per_page":4},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【强化学习笔记】强化学习基础',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-02 10:01:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="/css/custom/MainColor.css"><link rel="stylesheet" href="/css/custom/categoryBar.css"><link rel="stylesheet" href="/css/custom/404.css"><link rel="stylesheet" href="/css/custom/cardHistory.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><link rel="stylesheet" href="/css/custom/custom.css"><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="马浩飞丨博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.mahaofei.com/img/202311030917032.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">马浩飞丨博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div><center id="name-container"><a id="page-name" href="javascript:scrollToTop()">PAGE_NAME</a></center></div><div id="nav-right"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【强化学习笔记】强化学习基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-02T02:01:55.000Z" title="发表于 2023-11-02 10:01:55">2023-11-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-02T02:01:55.000Z" title="更新于 2023-11-02 10:01:55">2023-11-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">强化学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>16分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【强化学习笔记】强化学习基础"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/post/rl-basic.html#post-comment"><span id="twikoo-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h1><h2 id="1-1-专业术语"><a href="#1-1-专业术语" class="headerlink" title="1.1 专业术语"></a>1.1 专业术语</h2><p><strong>（1）状态（State）</strong>：状态可以被理解为当前环境的情况。</p>
+<p><strong>（2）动作（Action）</strong>：动作是智能体（agent）采取的行为。</p>
+<p><strong>（3）策略（Policy）</strong>：策略是用于在给定观测状态下做出决策的函数，通常表示为 $\pi(a|s)$，其中 $a$ 是动作，$s$ 是状态。强化学习的目标是学习策略函数，通常以概率密度函数的形式表示。</p>
+<p><strong>（4）奖励（Reward）</strong>：奖励定义了奖励的方式，对强化学习的结果产生重要影响。</p>
+<p><strong>（5）状态转移（State Transition）</strong>：状态转移表示在当前状态下，当智能体执行一个动作后，环境可能随机转移到的下一个状态的概率，通常表示为 $P(S’|S, A)$。</p>
+<p><strong>（6）回报（Return）</strong>：回报又被称为未来奖励的累积，通常表示为 $U_t = R_t + R_{t+1} + R_{t+2} + \ldots$。</p>
+<p><strong>（7）折扣回报（Discounted Return）</strong>：折扣回报考虑未来奖励的折扣效应，用折扣率 $\gamma$ 表示，通常表示为 $U_t = R_t + \gamma R_{t+1} + \gamma^2 R_{t+2} + \ldots$。</p>
+<p><strong>（8）动作价值函数（Action-Value Function）</strong>：动作价值函数表示在给定状态和动作下，智能体可以获得的期望回报，通常表示为 $Q_\pi(s_t, a_t) = E[U_t | S_t=s_t, A_t=a_t]$。最优策略下的动作价值函数被表示为 $Q^*(s_t, a_t) = \max_\pi Q_\pi(s_t, a_t)$，使用动作价值函数可以评估当前动作的质量。</p>
+<p><strong>（9）状态价值函数（State-Value Function）</strong>：状态价值函数表示在给定状态下，按照策略函数的预期回报，通常表示为 $V_\pi(s_t) = E_A[Q_\pi(s_t, A)]$。状态价值函数可以告诉我们当前状态的好坏程度。</p>
+<p><strong>（10）交叉熵（Cross Entropy）</strong>：交叉熵用于度量两个概率分布之间的差异，通常表示为 $H(\textbf p, \textbf q) = -\sum^m_{j=1}p_j\cdot \log(q_j)$。当两个概率分布相同时，交叉熵达到最小值。</p>
+<h2 id="1-2-强化学习的随机性"><a href="#1-2-强化学习的随机性" class="headerlink" title="1.2 强化学习的随机性"></a>1.2 强化学习的随机性</h2><p><strong>（1）Action动作的随机性</strong></p>
+<p>因为动作是根据策略函数随机抽样得到的，因此agent有可能做策略中的任何一种动作，虽然这些动作的概率有大有小，但是动作本身是随机的。</p>
+<p><strong>（2）State transitions状态转移的随机性</strong></p>
+<p>假定agent作出了一个动作，环境会用概率随机抽样，给出下一个状态。</p>
+<h2 id="1-3-强化学习如何控制agent"><a href="#1-3-强化学习如何控制agent" class="headerlink" title="1.3 强化学习如何控制agent"></a>1.3 强化学习如何控制agent</h2><p><strong>（1）如果有策略函数 $\pi(a|s)$</strong></p>
+<ol>
+<li>给定一个观测状态 $s_t$</li>
+<li>利用策略函数从所有可能的动作中随机采样 $a_t~\pi(\cdot|s_t)$</li>
+</ol>
+<p><strong>（2）如果有最优的动作价值函数 $Q^<em>(s,a)</em>$</strong></p>
+<ol>
+<li>给定一个观测状态 $s_t$</li>
+<li>最大化 $a_t=argmax_a Q^*(s_t,a)$ 来选择动作</li>
+</ol>
+<h1 id="二、价值学习-Deep-Q-Network-DQN"><a href="#二、价值学习-Deep-Q-Network-DQN" class="headerlink" title="二、价值学习 Deep Q-Network(DQN)"></a>二、价值学习 Deep Q-Network(DQN)</h1><p>$U_t$ 反映未来奖励的总和，因此我们要知道 $U_t$ 的大小，由于其是一个随机变量，我们可以对 $U_t$ 求期望，只留下 $s_t$ 和 $a_t$ 两个变量。</p>
+<script type="math/tex; mode=display">Q_\pi(s_t,a_t)=E[U_t|S_t=s_t,A_t=a_t]</script><p>要想进一步消除策略函数 $\pi$，可以对 $Q_\pi$ 关于 $\pi$ 球最大化，记为 $Q^*$</p>
+<script type="math/tex; mode=display">Q^*(s_t,a_t)=max_\pi Q_\pi(s_t,a_t)</script><p>这个参数告诉我们不管在什么情况 $s_t$ 下做动作 $a_t$，那么期望顶多就是 $Q^*(s_t,a_t)$。</p>
+<blockquote>
+<p>目标：完成任务（最大化总回报）<br>问题：如果已知 $Q^<em>(s,a)$，那么最好的动作就是 $a^</em>=argmax_a Q^<em>(s,a)$，因为 $Q^</em>$ 指示了该agent在s状态下选择a动作的好坏程度<br>挑战：我们不知道 $Q^*(s,a)$</p>
+</blockquote>
+<p><strong>（1）什么是 DQN</strong></p>
+<p>我们使用神经网络 $Q(s,a;w)$ 来近似 $Q^*(s,a)$，其中 w 是要近似的参数，s 是输入，a 是输出是对所有动作的打分。</p>
+<p><img src="https://img.mahaofei.com/img/202311030917032.png" alt="image.png"></p>
+<p>当前观测到状态 $s_t$，用DQN把 $s_t$ 作为输入，为所有动作打分，选出分数最高的动作作为 $a_t$。</p>
+<p>agent 作出动作 $a_t$ 后，环境会改变，用状态转移函数 $p$ 随机抽取一个新的状态 $s_{t+1}$，环境还会告诉我们一个回报 $r_t$，这个 $r_t$ 就是训练DQN的关键。</p>
+<p><strong>（2）如何训练 DQN</strong></p>
+<p>常规的网络训练过程如下：</p>
+<ol>
+<li>首先对任务结果做一个预测 $q=Q(w)$</li>
+<li>完成任务后获得目标 $y$</li>
+<li>计算损失 $L=\frac{1}{2}(q-y)^2$</li>
+<li>计算梯度 $\frac{\partial L}{\partial w}=\frac{\partial L}{\partial q}\cdot \frac{\partial q}{\partial w}$</li>
+<li><p>更新参数 $w_{t+1}=w_t-\alpha \cdot\frac{\partial L}{\partial w}|_{w=w_t}$</p>
+<p>但这种方式需要完整完成一次任务后才能更新参数，而能否执行一部分任务后就开始更新参数，因此有了 Temporal Difference Learning （TD算法），过程如下：</p>
+</li>
+<li><p>首先对任务结果做一个预测 $q=Q(w)$</p>
+</li>
+<li>执行一部分任务后，对任务结果再进行预测 $y$，此时的 $y$ 包括已经完成的部分和对剩下部分的预测，因此比 $q$ 更可靠</li>
+<li>计算损失 $L=\frac{1}{2}(q-y)^2$</li>
+<li>计算梯度 $\frac{\partial L}{\partial w}=\frac{\partial L}{\partial q}\cdot \frac{\partial q}{\partial w}$</li>
+<li>更新参数 $w_{t+1}=w_t-\alpha \cdot\frac{\partial L}{\partial w}|_{w=w_t}$</li>
+</ol>
+<p>在深度强化学习中，也就是下面这个公式</p>
+<script type="math/tex; mode=display">Q(s_t,a_t;w)\approx r_t+\gamma\cdot Q(s_{t+1},a_{t+1};w)</script><p>对未来奖励总和的期望，就是真实已经观测到的奖励，加在t+1时刻对未来奖励的期望。</p>
+<ol>
+<li>首先进行预测 $Q(s_t,a_t;w_t)$</li>
+<li>获得TD目标 $y_t=r_t+\gamma\cdot Q(s_{t+1},a_{t+1};w_t)=r_t+\gamma\cdot max_a Q(s_{t+1},a;w_t)$</li>
+<li>计算损失 $L_t=\frac{1}{2}[Q(s_t,a_t;w)-y_t]^2$</li>
+<li>进行剃度下降 $w_{t+q}=w_t-\alpha\cdot\frac{\partial L_t}{\partial w}|_{w=w_t}$</li>
+</ol>
+<p><img src="https://img.mahaofei.com/img/202311031636429.png" alt="image.png"></p>
+<p><strong>（3）经验回放</strong></p>
+<p>之前我们使用在线梯度下降来更新 $w$，以此来减小TD errer $\delta_t=q_t-t_t$。</p>
+<p>我们定义一个经验transition为$(s_t,a_t,r_t,s_{t+1})$，传统的方法再每使用一个transition后就会丢弃它，这回造成经验的浪费。此外传统的方法还忽略了不同经验之间的相关性。</p>
+<p>将最近的n个transition存储进一个replay buffer，当有新的经验进来后，就删除老的transition。</p>
+<ol>
+<li>每次从buffer中随机抽取一个transition</li>
+<li>计算TD error</li>
+<li>极端梯度</li>
+<li>进行随机梯度下降（实际一般使用minibatch SGD，一次取多个transition）</li>
+</ol>
+<p><strong>优先经验回放</strong>：为了解决数据的不均匀性，可以使用重要性抽样代替平均采样。可以根据TD error抽样，误差越大的，transition被抽样的概率越大。</p>
+<p><strong>学习率比例设置</strong>：如果一个transition有较大的抽样概率，那么其学习率应该设置的比较小。</p>
+<p><strong>更新TD error</strong>：如果一个transition没有被用过，那么就设置它的TD error为最大值，在训练DQN的同时，对TD error进行更新。</p>
+<h1 id="三、策略学习"><a href="#三、策略学习" class="headerlink" title="三、策略学习"></a>三、策略学习</h1><p>策略函数 $\pi(a|s)$是一个概率密度函数，对每一个给定的状态 $s$，策略函数会抽取一个最优的动作 $a$ 作为将要执行的动作。</p>
+<p>理想情况下，列出所有的状态和动作，计算所有状态和动作之间的概率即可。</p>
+<p>但是实际情况下有无数个状态，不可能记录所有的状态对应的动作，因此需要函数近似。一般使用神经网络进行近似，即policy network $\pi(a|s;\theta)$</p>
+<p>状态价值函数$V_\pi(s_t)=E_A[Q_\pi(s_t,A)]$，状态价值函数可以告诉我们当前的局势好不好。在状态已知时，还可以判断策略好不好，策略越好，$V_\pi$ 越大，任务完成成功率越高，$V_\pi$ 可以表示为：</p>
+<script type="math/tex; mode=display">V_\pi(s_t)=E_A[Q_\pi(s_t,A)]=\sum_a\pi(a|s_t)\cdot Q_\pi(s_t,a)</script><p>使用神经网络替换策略函数，因此得到：</p>
+<script type="math/tex; mode=display">V_\pi(s_t;\theta)=\sum_a\pi(a|s_t;\theta)\cdot Q_\pi(s_t,a)</script><p>给定状态 $s$，策略函数函数越好，价值函数越大。因此可以考虑通过改变神经网络参数 $\theta$，让 $V(s;\theta)$ 变大，基于这个思想，可以求期望：</p>
+<script type="math/tex; mode=display">J(\theta)=E_s[V(S;\theta)]</script><p>策略网络越好，$J(\theta)$ 就越大，为了改变 $\theta$，我们使用策略梯度算法。</p>
+<ol>
+<li>观测状态 $s$</li>
+<li>更新策略 $\theta=\theta+\beta\cdot\frac{\partial V(s;\theta)}{\partial \theta}$，做梯度上升，因为我们希望价值函数越大越好。</li>
+</ol>
+<p>对于离散的动作，使用$\frac{\partial V(s;\theta)}{\partial \theta}=\sum_a \frac{\partial \pi(a|s;\theta)}{\partial \theta}\cdot Q_\pi(s,a)$</p>
+<p>对于连续的动作，使用$\frac{\partial V(s;\theta)}{\partial \theta}=E_{A~\pi(\cdot|s;\theta)} [\frac{\partial \pi(a|s;\theta)}{\partial \theta}\cdot Q_\pi(s,a)]$</p>
+<p><img src="https://img.mahaofei.com/img/202311031636316.png" alt="image.png"></p>
+<h1 id="四、Actor-Crictic"><a href="#四、Actor-Crictic" class="headerlink" title="四、Actor-Crictic"></a>四、Actor-Crictic</h1><p>状态价值函数的定义如下：</p>
+<script type="math/tex; mode=display">V_\pi(s_t)=\sum_a\pi(a|s_t)\cdot Q_\pi(s_t,a)</script><p>策略网络（产生动作）：</p>
+<ul>
+<li>使用神经网络 $\pi(a|s;\theta)$ 来近似策略函数 $\pi(a|s)$</li>
+<li>其中 $\theta$ 是训练的参数</li>
+</ul>
+<p>价值网络（产生评判标准）：</p>
+<ul>
+<li>使用神经网络 $q(s,a;w)$ 来近似价值函数 $Q_\pi(s,a)$</li>
+<li>其中 $w$ 是训练的参数</li>
+</ul>
+<p>因此状态价值函数可以写成</p>
+<script type="math/tex; mode=display">V_\pi(s_t)=\sum_a\pi(a|s_t;\theta)\cdot Q_\pi(s_t,a;w)</script><p>同时训练策略网络和价值网络，就称为 Actor-Critic Method，大致步骤如下：</p>
+<ol>
+<li>观测当前状态 $s_t$</li>
+<li>根据策略函数 $\pi(\cdot|s_t;\theta_t)$ 随机采样获得动作 $a_t$</li>
+<li>执行动作 $a_t$，并观测新的状态 $s_{t+1}$ 和回报 $r_t$</li>
+<li>更新价值网络的参数 $w$，使用TD算法</li>
+<li>更新策略网络的参数 $\theta$，使用策略梯度算法</li>
+</ol>
+<p>训练过程中需要同时训练策略网络和价值网络，利用价值网络对策略网络进行评分。训练完成后就不需要价值网络了，只需要策略网络生成动作。</p>
+<h1 id="五、蒙特卡洛树搜索（Monte-Carlo-Tree-Search）"><a href="#五、蒙特卡洛树搜索（Monte-Carlo-Tree-Search）" class="headerlink" title="五、蒙特卡洛树搜索（Monte Carlo Tree Search）"></a>五、蒙特卡洛树搜索（Monte Carlo Tree Search）</h1><h2 id="5-1-基本思想"><a href="#5-1-基本思想" class="headerlink" title="5.1 基本思想"></a>5.1 基本思想</h2><p>蒙特卡洛树搜索的思想是人们必须要向前看很多步，看到未来时间内所有可能的情况，挑选最优的执行动作。</p>
+<ol>
+<li>如果我在此时选择执行动作 $a_t$</li>
+<li>那么未来一段时间环境的反馈是怎么变化的 $s_{t+1}$</li>
+<li>基于这种环境变化，我又会执行动作 $a_{t+1}$</li>
+<li>此时环境又会如何变化</li>
+</ol>
+<p>如果一个agent能够穷举所有的可能性直到任务完成，那么这个任务一定有很高的成功率。</p>
+<h2 id="5-2-过程"><a href="#5-2-过程" class="headerlink" title="5.2 过程"></a>5.2 过程</h2><p><strong>（1）选择</strong></p>
+<p>根据分数选择一个动作（假想的动作，实际上并不会执行）；</p>
+<p>首先对所有可能的动作 $a$，计算得分：</p>
+<script type="math/tex; mode=display">score(a)=Q(a)+\eta\cdot\frac{\pi(a|s_t;\theta)}{1+N(a)}</script><p>其中 $Q(a)$ 是蒙特卡洛树搜索计算的动作价值<br>$\pi(a|s_t;\theta)$ 是学习好的策略网络，动作越好，策略分数越高<br>$N(a)$ 是给定环境状态 $s_t$ 情况下，目前为止选择动作 $a$ 的次数，如果同一个动作被探索太多次，该项分母就会变大。</p>
+<p><strong>（2）扩展</strong></p>
+<p>假想环境更新；</p>
+<p><strong>（3）评估</strong></p>
+<p>评价状态价值得分 $v$ 和回报 $r$，将动作的分数设为 $\frac{v+r}{22}$；</p>
+<p><strong>（4）备份</strong></p>
+<p>用动作的分数 $\frac{v+r}{2}$ 更新动作价值：</p>
+<script type="math/tex; mode=display">Q(a_t)=mean(the recorded V's)</script><p>将以后所有步的状态价值进行平均。</p>
+<h1 id="六、连续控制"><a href="#六、连续控制" class="headerlink" title="六、连续控制"></a>六、连续控制</h1><p>在实际进行强化学习时，可能有离散动作空间（例如上下左右控制游戏人物），也可能是连续动作（机械臂关节控制）。</p>
+<p>在进行离散控制时，可以直接使用分类的思想，得到一个onehot向量，每个向量元素代表执行该动作的得分，以此来获得应该执行那种动作。而连续控制中动作空间是有无穷维的，因此不能直接使用这种思想实现连续控制。</p>
+<p>比较常规的一种解决思路是将动作空间离散化，但这种方式也有问题，例如机械臂的6个自由度，就算每个自由度离散为360个点，那么整个动作空间也有 $360^6$ 个点，这会造成维度灾难，在训练时非常困难。</p>
+<p>因此有两种方式实现连续控制：</p>
+<ul>
+<li>确定性策略网络</li>
+<li>随机策略网络</li>
+</ul>
+<h2 id="6-1-确定策略梯度（Deterministic-Policy-Gradient-DPG）"><a href="#6-1-确定策略梯度（Deterministic-Policy-Gradient-DPG）" class="headerlink" title="6.1 确定策略梯度（Deterministic Policy Gradient DPG）"></a>6.1 确定策略梯度（Deterministic Policy Gradient DPG）</h2><p>考虑一个只有2自由度的机械臂，基座运动范围为(0,180)，机械臂运动范围为(0,360)，因此机械臂的动作空间是 $A=[0,180]\times[0,360]$ 的连续集合，动作就是一个二维向量。</p>
+<p>DPG 是一种 Actor-Critic 方法</p>
+<ul>
+<li>有一个<strong>策略网络</strong>，控制 agent 运动，它根据状态 s 做出决策 a；<br>使用策略网络 $a=\pi(s;\theta)$ 根据输入状态 s，输出一个<strong>确定</strong>的动作 a，这里的动作 a 就是机器人的二维动作向量。</li>
+<li>有一个<strong>价值网络</strong>，不控制 agent，它根据状态 s，给动作 a 打分，从而指导策略网络做出改进。<br>使用价值网络 $q(s,a;w)$，输入状态 s 和动作 a，输出一个实数 value 是对动作的评价，动作越好，value 越大。</li>
+</ul>
+<p>因此 DPG 的原理就是训练这两个网络。</p>
+<p><img src="https://img.mahaofei.com/img/202311041607515.png" alt="image.png"></p>
+<p><strong>（1）价值网络训练</strong></p>
+<ol>
+<li>每次得到一个训练数据 transition $(s_t,a_t,r_t,s_{t+1})$</li>
+<li>用价值网络预测当前时刻 t 下的动作价值 $q_t=q(s_t,a_t;w)$</li>
+<li>用价值网络预测下一时刻 t+1 的动作价值 $q_{t+1}=q(s_{t+1},a_{t+1}’;w)$ ，其中 $a_{t+1}’=\pi(s_{t+1};\theta)$，这个动作并不是 agent 真正执行的动作，$a_{t+1}’$ 只用于更新价值网络。</li>
+<li>计算 TD error：$\delta_t=q_t-(r_t+\gamma\cdot q_{t+1})$，其中第二项是 TD Target，它一部分是真实观测到的奖励，另一部分是价值网络自己做出的预测。因为我们认为第二项中由于包含本步真实奖励，比单纯的 $q_t$ 更接近真实情况，因此要让 $q_t$ 与 TD Target 接近，也就是让 TD error 尽可能小。</li>
+<li>进行梯度下降更新 w：$w=w-\alpha\cdot\gamma_t\cdot\frac{\partial q(s_t,a_t;w)}{\partial w}$</li>
+</ol>
+<p>但这其中有一个问题，就是计算 TD error $\delta_t=q_t-(r_t+\gamma\cdot q_{t+1})$ 这一步时，会出现 bootstrapping 问题，也就是如果初始值高估或者低估，那么 TD target 就会有高估或低估，并传播回价值网络自身，导致高估或低估一直存在，解决方案就是用不同的神经网络计算 TD Target，也就是用 Target Networks。</p>
+<ol>
+<li>每次得到一个训练数据 transition $(s_t,a_t,r_t,s_{t+1})$</li>
+<li>用价值网络预测当前时刻 t 下的动作价值 $q_t=q(s_t,a_t;w)$</li>
+<li>用价值网络预测下一时刻 t+1 的动作价值 $q_{t+1}=q(s_{t+1},a_{t+1}’;w^-)$ ，其中 $a_{t+1}’=\pi(s_{t+1};\theta^-)$<br>$\pi(s_{t+1};\theta^-)$ 是 Target policy network 用来代替策略网络，它的网络结构和策略网络一模一样，但是参数不一样。<br>$q(s_{t+1},a_{t+1}’;w^-)$ 是 Target value network，它与价值网络结构一样，参数不同。</li>
+</ol>
+<p><strong>（2）策略网络训练</strong></p>
+<p>训练策略网络，需要靠价值网络评价动作的好坏，从而指导策略网络进行改进。</p>
+<p>也就是更新策略网络的参数 $\theta$ 让价值网络认为动作 $a=\pi(s;\theta)$ 更好，也就是改进 $\theta$ 让价值 $q(s,a;w)=q(s,\pi(s;\theta);w)$ 尽可能大。</p>
+<p>由于给定状态 s，策略网络会输出一个确定的动作 a，而如果价值网络也是确定的，那么输出的价值就是确定的。</p>
+<p>因此问题中只需要改变 $\theta$，使得价值 q 变大，也就是计算 $q(s,a;w)$ 对 $\theta$ 的梯度，然后用梯度上升更新 $\theta$，就可以让 $q$ 变大，这个梯度就叫<strong>确定策略梯度 DPG</strong>。</p>
+<script type="math/tex; mode=display">
+g=\frac{\partial q(s,\pi(s;\theta);w)}{\partial\theta}=\frac{\partial a}{\partial \theta}\cdot\frac{\partial q(s,a;w)}{\partial a}</script><p>其中 $a=\pi(s;\theta)$，然后进行梯度上升 $\theta=\theta+\beta\cdot g$</p>
+<p><strong>策略网络和价值网络联合具体步骤如下：</strong></p>
+<ol>
+<li>策略网络做一个决策：$a=\pi(s;\theta)$</li>
+<li>计算价值网络的输出：$q_t=q(s,a;w)$</li>
+<li>用 DPG 更新策略网络： $\theta=\theta+\beta\cdot \frac{\partial a}{\partial \theta}\cdot\frac{\partial q(s,a;w)}{\partial a}$</li>
+<li>利用 Target networks $\pi(s;\theta^-)$ 和 $q(s,a;w^-)$ 计算 $q_{t+1}$</li>
+<li>计算 TD error：$\delta_t=q_t-(r_t+\gamma\cdot q_{t+1})$</li>
+<li>更新价值网络：$w=w-\alpha\cdot\gamma_t\cdot\frac{\partial q(s_t,a_t;w)}{\partial w}$</li>
+<li>更新 Target networks 的参数：$w^-=\tau\cdot w+(1-\tau)\cdot w^-$，$\theta^-=\tau\cdot \theta+(1-\tau)\cdot \theta^-$，其中 $\tau$ 是超参数</li>
+</ol>
+<h2 id="6-2-随机策略用于连续控制"><a href="#6-2-随机策略用于连续控制" class="headerlink" title="6.2 随机策略用于连续控制"></a>6.2 随机策略用于连续控制</h2><p>首先考虑自由度等于 1 的随机策略连续控制，也就是动作都是实数。</p>
+<p>设 $\mu$ 代表均值，和 $\sigma$ 代表标准差，都是状态 s 的函数。</p>
+<p>用正态分布的概率密度函数作为策略函数：</p>
+<script type="math/tex; mode=display">
+\pi(a|s)=\frac{1}{\sqrt{6.28}\sigma}\cdot exp(-\frac{(a-\mu)^2}{2\sigma^2})</script><p>对于 d 维情况一样，动作是 d 维向量。</p>
+<p>设向量 $\mu$ 代表均值，和向量 $\sigma$ 代表标准差，都是状态 s 的函数。</p>
+<p>使用特殊正态分布作为策略函数：</p>
+<script type="math/tex; mode=display">
+\pi(a|s)=\prod_{i=1}^d\frac{1}{\sqrt{6.28}\sigma_i}\cdot exp(-\frac{(a_i-\mu_i)^2}{2\sigma^2_i})</script><p>但这里我们不知道 $\mu$ 和 $\sigma$，也就不知道策略函数。</p>
+<p>因此可以用神经网络来近似 $\mu(s;\theta^{\mu})$ 和 $\rho(s;\theta{\rho})$，其中 $\rho_i=ln\sigma_i^2$</p>
+<p>将策略函数进行取对数，将连乘变成连加，得到辅助神经网络 $f(s,a;\theta)=\sum^d_{i=1}[-\frac{\rho_i}{2}-\frac{(a_i-\mu_i)^2}{2\cdot exp(\rho_i)}]$，计算 f 关于其中卷积层和全连接层的参数的梯度，进而实现反向传播更新参数。</p>
+<p><img src="https://img.mahaofei.com/img/202311041725827.png" alt="image.png"></p>
+<blockquote>
+<p>参考：</p>
+<ol>
+<li>王树森.  <a target="_blank" rel="noopener" href="https://www.youtube.com/channel/UC9qKcEgXHPFP2-ywYoA-E0Q/playlists?view=50&amp;sort=dd&amp;shelf_id=2">强化学习课程(Youtube)</a></li>
+</ol>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>【强化学习笔记】强化学习基础</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://www.mahaofei.com/post/rl-basic.html">https://www.mahaofei.com/post/rl-basic.html</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>马浩飞</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2023-11-02</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2023-11-02</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">强化学习</a><a class="post-meta__tags" href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">基础知识</a><a class="post-meta__tags" href="/tags/Python/">Python</a></div><div class="post_share"><div class="social-share" data-image="https://img.mahaofei.com/img/202311030917032.png" data-sites="qq,wechat,weibo,facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/img/wechatpay.png" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/mimicplay.html"><img class="prev-cover" src="https://img.mahaofei.com/img/202310231710757.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【论文复现】MimicPlay从人类演示中学习机器人技能</div></div></a></div><div class="next-post pull-right"><a href="/post/behavior-cloning.html"><img class="next-cover" src="/img/linux_debian.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【模仿学习笔记】行为克隆 Behavior Cloning</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><a href="https://www.mahaofei.com"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></a></div><div class="author-info__name">马浩飞</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-solid fa-graduation-cap"></i><span>学术主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/HaofeiMa" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:mail@mahaofei.com" target="_blank" title="E-Mail"><i class="fa fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">新增了<a target="_blank" rel="noopener" href="https://academic.mahaofei.com/">学术主页</a>！<br>有任何问题欢迎留言评论或邮件联系。<br>E-mail：<a href="mailto:blog@mahaofei.com" style="text-decoration:underline;">blog@mahaofei.com</a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">一、基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E4%B8%93%E4%B8%9A%E6%9C%AF%E8%AF%AD"><span class="toc-text">1.1 专业术语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%80%A7"><span class="toc-text">1.2 强化学习的随机性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%A6%82%E4%BD%95%E6%8E%A7%E5%88%B6agent"><span class="toc-text">1.3 强化学习如何控制agent</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BB%B7%E5%80%BC%E5%AD%A6%E4%B9%A0-Deep-Q-Network-DQN"><span class="toc-text">二、价值学习 Deep Q-Network(DQN)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%AD%96%E7%95%A5%E5%AD%A6%E4%B9%A0"><span class="toc-text">三、策略学习</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Actor-Crictic"><span class="toc-text">四、Actor-Crictic</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%A0%91%E6%90%9C%E7%B4%A2%EF%BC%88Monte-Carlo-Tree-Search%EF%BC%89"><span class="toc-text">五、蒙特卡洛树搜索（Monte Carlo Tree Search）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3"><span class="toc-text">5.1 基本思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E8%BF%87%E7%A8%8B"><span class="toc-text">5.2 过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E8%BF%9E%E7%BB%AD%E6%8E%A7%E5%88%B6"><span class="toc-text">六、连续控制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E7%A1%AE%E5%AE%9A%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6%EF%BC%88Deterministic-Policy-Gradient-DPG%EF%BC%89"><span class="toc-text">6.1 确定策略梯度（Deterministic Policy Gradient DPG）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-%E9%9A%8F%E6%9C%BA%E7%AD%96%E7%95%A5%E7%94%A8%E4%BA%8E%E8%BF%9E%E7%BB%AD%E6%8E%A7%E5%88%B6"><span class="toc-text">6.2 随机策略用于连续控制</span></a></li></ol></li></ol></div></div><div class="card-widget card-recommend-post"><div class="item-headline"><i class="fas fa-dharmachakra"></i><span>相关推荐</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/ppo.html" title="【强化学习算法】近端优化策略PPO"><img src="/img/linux_debian.jpg" alt="【强化学习算法】近端优化策略PPO"></a><div class="content"><a class="title" href="/post/ppo.html" title="【强化学习算法】近端优化策略PPO">【强化学习算法】近端优化策略PPO</a><time datetime="2023-07-24" title="发表于 2023-07-24">2023-07-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/hdf5.html" title="HDF5数据文件格式"><img src="https://img.mahaofei.com/img/202401011439226.png" alt="HDF5数据文件格式"></a><div class="content"><a class="title" href="/post/hdf5.html" title="HDF5数据文件格式">HDF5数据文件格式</a><time datetime="2024-01-01" title="发表于 2024-01-01">2024-01-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/dex.html" title="【论文笔记】Dex 演示引导强化学习与手术机器人任务自动化的高效探索"><img src="https://img.mahaofei.com/img/202311151037433.png" alt="【论文笔记】Dex 演示引导强化学习与手术机器人任务自动化的高效探索"></a><div class="content"><a class="title" href="/post/dex.html" title="【论文笔记】Dex 演示引导强化学习与手术机器人任务自动化的高效探索">【论文笔记】Dex 演示引导强化学习与手术机器人任务自动化的高效探索</a><time datetime="2023-11-21" title="发表于 2023-11-21">2023-11-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/lfd-rl-papers.html" title="【论文笔记】基于强化学习的机器人动作模仿"><img src="https://img.mahaofei.com/img/202311091616113.png" alt="【论文笔记】基于强化学习的机器人动作模仿"></a><div class="content"><a class="title" href="/post/lfd-rl-papers.html" title="【论文笔记】基于强化学习的机器人动作模仿">【论文笔记】基于强化学习的机器人动作模仿</a><time datetime="2023-11-09" title="发表于 2023-11-09">2023-11-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/reskill.html" title="【论文笔记】Reskill基于技能的适应性动作空间学习"><img src="https://img.mahaofei.com/img/202311251603089.png" alt="【论文笔记】Reskill基于技能的适应性动作空间学习"></a><div class="content"><a class="title" href="/post/reskill.html" title="【论文笔记】Reskill基于技能的适应性动作空间学习">【论文笔记】Reskill基于技能的适应性动作空间学习</a><time datetime="2023-11-25" title="发表于 2023-11-25">2023-11-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/lfd-il-papers.html" title="【论文笔记】机器人动作、轨迹、过程模仿"><img src="https://img.mahaofei.com/img/202312131522496.png" alt="【论文笔记】机器人动作、轨迹、过程模仿"></a><div class="content"><a class="title" href="/post/lfd-il-papers.html" title="【论文笔记】机器人动作、轨迹、过程模仿">【论文笔记】机器人动作、轨迹、过程模仿</a><time datetime="2023-12-12" title="发表于 2023-12-12">2023-12-12</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.mahaofei.com/img/GoodnightCopenhagen.png')"><div id="footer-wrap"><div class="footer_custom_text"><p><a style="margin-inline:5px"target="_blank"href="https://github.com/"><img src="https://img.shields.io/badge/Hosted-Github-brightgreen?style=flat&logo=GitHub"title="本站项目由Gtihub托管"></a><a style="margin-inline:5px"target="_blank"href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo"title="博客框架为Hexo"></a><a style="margin-inline:5px"target="_blank"href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?logoColor=white&style=flat&logo=buefy"title="主题采用butterfly"></a><a style="margin-inline:5px"target="_blank"href="https://aliyun.com/product/cdn"><img src="https://img.shields.io/badge/DNS-Cloudflare-orange?style=flat&logo=Cloudflare"title="本站使用Cloudflare网络服务"></a><a style="margin-inline:5px"target="_blank"href="https://beian.miit.gov.cn/"><img src="https://img.shields.io/badge/%E6%B4%A5ICP%E5%A4%87-2021000769%E5%8F%B7--3-red?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAdCAYAAAC9pNwMAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDIgNzkuMTYwOTI0LCAyMDE3LzA3LzEzLTAxOjA2OjM5ICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+nhxg7wAACNlJREFUSInF1mmMVeUdx/Hv2e+5+519mJWBYQZkGxZZxLKJqBXGoLS1iXWrmihotFXaJiTWWlsbl6q1aetWd5u0VkKjNG4YEJSlOCibDLMwM8x679z9nnPP1jcVJUxf+7z6J8+LT37/Z4VvaQhfFS8+sBXbctCDGrVTKlBUH4mxAbI9Hfj0IJLsp6paJ5/tmn20N/D0wKDRMq9F/c3M2U1/V0vDfWMFh+tv/Ig1zYPMabDImPJ52OaXO87W580KggCiiOsJOJ6I3wcNFaaeNKxrt72f2fLGu4FpJ/sDQABRzD22fH7/Yze069vGc6mrDLNIJCDik10sxz2by3VdPM87xzkP9jwPTZFRVI1YUJKH+oy7n3tbvv/P2wW/UQxRWe6w4ZJRptYLHDoCuz8v5cP92XbI762O+h6UVWHnUFbPpU0fEb2A60mMJ7MUi9b/b7UgKhiZMaIxm8YLplLMDPz8hl/EH+rs8TNlUpFf32uyZJGLPDwCiTGUyTWodTN49eUCdz2YwXb9NNcObp1X98WDoufynzMVCEKGn27ayPTWBi5ad8P5iQUkJEnFLjqM9Z+hrVX0vfDe6K2dPRWsW2bwyp9EUifSJB84gdxrkR0eRgv1o/3I4fbbprJ6scqamzVO9pffec1S5ZWY2Nfz5qEy/FqOC2Y3s3j53HMSi18VRjFPwSwg+1RfVbl115vvJrsfej7UGIsYPPGgQ7JXoO+Xx5B3dHEomyJ9x1qiQozkr95h5937aFnVyouPlgJK+Ss7Fxz64OTSxSX+LHYxT2IsRW5kbGI4oHcR0jqoqTjV9se3I7/f8rS/ClS23GxSXhph6L5d9Akm7qqZhHWBQGUJ+CWGFzcg7e7m6D3/ZuW1Ea5YKdA3EojuONi813TqNi+YPYOKUhXDtCeGL26/hakLLiEcdsaHRkRAoLRc4fJrmhnekyF0apgZowWSwwkaa+rw3f8WA1GZZsPP5JEChX8dhZTN6iU6kAcs5s+dHd183SJ0VVKL57pfw6YdRQw23aeWTns47DPTALWlRTR7kMLew6hGgYqUhWXYFFUdPZ6lUBahLA8hVcOftckfi7No7VRAAQqsX1dybfvG1qwriM9mM5mJ4e4jO5Cc01dPqixbr8tWGBQUL4vjGigEEShi+xUmZ2RiR/sJ1pbS8NkgZrKAGw0TsgQsQyFaF/nfYTGprAlMFysbA1pI3mhkR6snhGsaymYGvPyFEb9IdbUE2AzFFTwpRqCtBY0wmdER+hZW4j63gcJj38V+/ErSUZXsYBfjIZHIRW0c2Z8BskCAqN+CbBJBFnyyKjR+Ez57nBxLqpfMUeSISElMBFz6x2Q6OxzWrYjyxWVzEewioU3LCS5vQY6nMUrLwNaxXvoQ59IloFSx54PPAZtQLExVZZDxsVE8J4dn6v4JYatgbSjk0owPw7RGH2ADMo88Z7L20ip8f7gC7fAo0q4+0rt7kEQDvaghVZbiPHUHcyeXcfLjT3jmpR7AYsnSScya3UR8bARVMck7Y/cB75/X6rDf3Fg2dw2jKZm5dXGm1LuAzO5DCo9v6aT0ibco5kzOvLOP+NGTFJtDpPYeZKijk/Rn3QxsfZV7txwhX7ABiZUXBsGvIvguQApNQQva9RMmTvZ2dpVUls+tX/UD7GN/Y8Ws05w6rQF+9vyzg1vZjbvMRJhXiRSU8DpTFFe0QE8S6SfPkOkZoktrB2oAhZWrwljxOPmchiSMYOWNoxNuruFU5vWeXdsojiUon345113dBBQBmTYlTimgdB8nfPo4WjaNFgN9OMEkJ02dnadVt5ki54Esqy+bzKJltVhSPbI3iN2zCyMTeXNCuG7Omm2Zok7PR2+R7jvD8ouruHhmCrB5jVZeYxLdrTP4sr4Vtd9g4MA4qc4c+6cu5NPamfw4P59t2WrA4YdXKkASf7SFivo6PDdEPmf1fRM++zp1bH/0r4I1dD1ODtOWaW4IsvPjL7nqXhloQiSPwjjgMYkMASyGEBkjhISCQwkwzve/18AbT+pk8pVY4UacQi9y+gyZ0eRAw4qHa89LXEx1LXMSPfhDJYRb59BtlLKg2WPT2l6qYl1svtGkrLYckyA1S+t5+2ATm37WCui0LSynsckDNH5zTxAchbQtkx08hDHYiW6NgC0enHBzEZ102UDH8QORdEckjEzZrNWkRydzyx17uGnDXqbUnGZ6dRPjSY91q2TqwjFuvTxLo5Zn5Qo/pumRSFcTLQtybEhGE0fQrDhhJ0VvH2lTnnHPhGtsmWan469apERjI2MH3qN7+7MEfH6ql29CbV7PvsMG32k6yU2XDhEKyZw66eJaRdrXR7CzCcqUNC3zwgymPJRCH4KRRLINimpL14A5Y4GDeOqbsPRVcfuN7Xj44pav/hFfrNT2kr2rsqf2Ibp5pEA14ZIImUyW3t5REkkTXRGQ/DGGhtLginhqCWknQDE5hKf5UFSF9Lj020Q2ul5V1AR2hr+8vuP8Vlc2zMPRxoSjnx7XBC14sDoydahSGq7KdO/HFyrBchxCVfX4fDKp4T7SCQejYODZLrYgIqgKFsNIgQqEYob8mW6yiUyb7Z64LVK/+B85xznnJ3AWzqTzuIX46mr5wLs+UUTyIriBCjRNxguHMJIFDLEEvXEOVRWnSJ0+jCd4CJoGjoedM1CLcXQziW3nMV2TSMBeOx7vWZvPt1r+cMPzE8KunaUkFn0vNrvtqXj34c1W6gzxlEQ6naIoBahtnkMwoFMwIVzSRNguMt53Aj2s4nkSlgPoGqLkICsRNF0gl8rYWuP8+11/w/OOJDEhHPKLCIpOXmi+M9AgP+maiesLifF2T1Rn5ZNj5Lo/Qc/GcPMmhdoqlEgIGzCK4PiCmJKK68p4KfF3qYGuF0qCRUkJTzleUbvQyWRTuE5xYthxQbBs7EISAbkzUFG3VfXXbK2YFi3X/eryfKKnqVBItNjJxDzH8erddC4SqWwcN5WyTtlyO1RP/Lh3eHD76MB40swmiDVJyDLYRhpc5+ub6tse/wWKbvSQEAw1awAAAABJRU5ErkJggg=="title="备案号:津ICP备2021000769号-3"></a><a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris"title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><i class="fas fa-adjust"><use id="modeicon" xlink:href="#icon-moon"></use></i></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Algolia</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, "https://cdn.jsdelivr.net/gh/zhheo/twikoo@dev/dist/twikoo.all.min.js"))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script><script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script><script src="/js/custom/categoryBar.js"></script><script src="/js/custom/cardHistory.js"></script><script src="/js/custom/light_dark.js"></script><script src="/js/custom/forbidCopy.js"></script><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"Jfmc1FSFWs09EC8r",ck:"Jfmc1FSFWs09EC8r"})</script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script>new LingQue.Monitor().init({id:"JfmcYvlVsVAZlVkS"});</script><script defer src="https://cloud.umami.is/script.js" data-website-id="86b466f8-e8bc-415b-954e-289b3d0110fb"></script><script src="/js/custom/custom.js"></script><script src="/js/custom/nav.js"></script><script id="canvas_nest" defer="defer" color="66,66,66" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Isaac Sim 仿真环境使用简介 | 马浩飞丨博客</title><meta name="keywords" content="实验,IsaacSim,NVIDIA,仿真"><meta name="author" content="马浩飞"><meta name="copyright" content="马浩飞"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="NVIDIA Isaac Sim仿真环境的简介、安装、GUI和Python程序的基本使用介绍。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Isaac Sim 仿真环境使用简介">
+<meta property="og:url" content="https://www.mahaofei.com/post/isaacsim-intro.html">
+<meta property="og:site_name" content="马浩飞丨博客">
+<meta property="og:description" content="NVIDIA Isaac Sim仿真环境的简介、安装、GUI和Python程序的基本使用介绍。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.mahaofei.com/img/20250307153642312.png">
+<meta property="article:published_time" content="2024-11-28T03:37:34.000Z">
+<meta property="article:modified_time" content="2024-11-28T03:37:34.000Z">
+<meta property="article:author" content="马浩飞">
+<meta property="article:tag" content="实验">
+<meta property="article:tag" content="IsaacSim">
+<meta property="article:tag" content="NVIDIA">
+<meta property="article:tag" content="仿真">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.mahaofei.com/img/20250307153642312.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.mahaofei.com/post/isaacsim-intro"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-bB89NudWgv"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?439a0d0abeb31dd8f338efd8266c999b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"ABY1KMOQQM","apiKey":"d3f3a4fbb355106e6bf265cf8da1863b","indexName":"hexo","hits":{"per_page":4},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Isaac Sim 仿真环境使用简介',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-11-28 11:37:34'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="/css/custom/MainColor.css"><link rel="stylesheet" href="/css/custom/categoryBar.css"><link rel="stylesheet" href="/css/custom/404.css"><link rel="stylesheet" href="/css/custom/cardHistory.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><link rel="stylesheet" href="/css/custom/custom.css"><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="马浩飞丨博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.mahaofei.com/img/20250307153642312.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">马浩飞丨博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div><center id="name-container"><a id="page-name" href="javascript:scrollToTop()">PAGE_NAME</a></center></div><div id="nav-right"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Isaac Sim 仿真环境使用简介</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-28T03:37:34.000Z" title="发表于 2024-11-28 11:37:34">2024-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-28T03:37:34.000Z" title="更新于 2024-11-28 11:37:34">2024-11-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/">机器人</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/%E4%BB%BF%E7%9C%9F/">仿真</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>16分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Isaac Sim 仿真环境使用简介"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/post/isaacsim-intro.html#post-comment"><span id="twikoo-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="0-介绍"><a href="#0-介绍" class="headerlink" title="0. 介绍"></a>0. 介绍</h2><blockquote>
+<p>参考：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://docs.isaacsim.omniverse.nvidia.com/latest/index.html">Isaac Sim Documents</a></li>
+</ol>
+</blockquote>
+<p>Isaac Sim 是 NVIDIA 开发的，基于 NVIDIA Omniverse 平台构建的，一个物理精确的虚拟环境，用于开发、测试和管理基于 AI 的机器人，它为构建虚拟机器人实验提供了基本功能，包括导入机器人模型以及仿真 RGB-D、激光雷达、接触、超声波和 IMU 等传感器。</p>
+<p>Isaac Sim 使用 USD 交换文件格式来表示场景。通用场景描述（USD）是一种易于扩展的开源三维场景描述和文件格式。当然也支持从 URDF、Mujoco XML 文件导入。</p>
+<blockquote>
+<p><code>*.usd/*.usdc</code>: 一般的USD文件，以二进制存储与压缩，因此读取速率会快一些 <code>*.usda</code>: 纯文本形式的USD文件，更方便阅读 <code>*.usdz</code>: 以zip压缩文件形式存储的USD文件，可以将多个USD文件打包成一个 <code>*.drc</code>: 其它自定义的文件格式</p>
+</blockquote>
+<p>Isaac 是一个“专为机器人和AI打造的加速平台”。</p>
+<p>在硬件层面它支持各种类型的硬件，比如RTX的GPU等等。在系统软件层面，依赖于RTX、CUDA、PhysX等框架。在平台层面，依赖于NVIDIA AI和NVIDIA Omniverse，最终就可以实现各类应用，比如机器人数据采集、环境仿真等等。甚至还有专门针对ROS提供的一些硬件加速的函数包，叫Isaac ROS。</p>
+<p><img src="https://img.mahaofei.com/img/202503292307819.png" alt="image.png"></p>
+<h2 id="1-Isaac-Sim-的安装-WorkStation-版"><a href="#1-Isaac-Sim-的安装-WorkStation-版" class="headerlink" title="1. Isaac Sim 的安装 - WorkStation 版"></a>1. Isaac Sim 的安装 - WorkStation 版</h2><p>WorkStation 版相当于安装了一个独立的应用程序，适合便捷打开 GUI 界面调试，适合通过 GUI 和扩展的方式进行程序开发。如果想通过这种方式运行代码，需要使用安装目录的 <code>isaac-sim.sh</code>，限制了 python 环境的可能性，例如运行 <code>test.py</code> 文件需要：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/isaacsim/isaac-sim.sh ~/path/test.py</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>本文使用有显示器的服务器安装 Isaac Sim Workstation 演示，流程参考：</strong><a target="_blank" rel="noopener" href="https://docs.isaacsim.omniverse.nvidia.com/latest/installation/install_workstation.html">https://docs.isaacsim.omniverse.nvidia.com/latest/installation/install_workstation.html</a><br>如果你使用无显示器的服务器，可以通过 Docker 安装，参考：<a target="_blank" rel="noopener" href="https://docs.isaacsim.omniverse.nvidia.com/latest/installation/install_container.html">https://docs.isaacsim.omniverse.nvidia.com/latest/installation/install_container.html</a></p>
+</blockquote>
+<p>参考 <a target="_blank" rel="noopener" href="https://docs.omniverse.nvidia.com/isaacsim/latest/installation/requirements.html">Isaac Sim Requirements</a> 查看系统是否满足要求。</p>
+<ul>
+<li>系统：Ubuntu 20.04/22.04、Windows 10/11</li>
+<li>GPU：必须有 RT Cores，如 RTX 30 系、RTX 40 系</li>
+<li>NVIDIA 驱动：535.129.03 以上（2024 年 10 月要求，参考官网更新内容）</li>
+</ul>
+<p><strong>（1）下载 IsaacSim</strong></p>
+<p>打开 Isaac Sim Latest Release 网页：<a target="_blank" rel="noopener" href="https://docs.isaacsim.omniverse.nvidia.com/latest/installation/download.html#isaac-sim-latest-release">https://docs.isaacsim.omniverse.nvidia.com/latest/installation/download.html#isaac-sim-latest-release</a></p>
+<p>下载第一行最新版的 Isaac Sim 4.5.0 压缩包。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/isaacsim</span><br><span class="line">cd ~/Downloads</span><br><span class="line">unzip &quot;isaac-sim-standalone@4.5.0-rc.36+release.19112.f59b3005.gl.linux-x86_64.release.zip&quot; -d ~/isaacsim</span><br><span class="line">cd ~/isaacsim</span><br><span class="line">./post_install.sh</span><br><span class="line">./isaac-sim.selector.sh</span><br></pre></td></tr></table></figure>
+<p><img src="https://img.mahaofei.com/img/20250228210607107.png" alt="image.png"></p>
+<p>点击 Start 即可运行 Isaac Sim 主程序。</p>
+<blockquote>
+<p> 第一次运行会 warm up shader cache 可能会比较慢比较卡。<br> 后续可以运行 <code>~/isaacsim/isaac-sim.sh</code> 启动</p>
+</blockquote>
+<h2 id="1-Isaac-Sim-的安装-Python-版"><a href="#1-Isaac-Sim-的安装-Python-版" class="headerlink" title="1. Isaac Sim 的安装 -Python 版"></a>1. Isaac Sim 的安装 -Python 版</h2><p>Python 版在创建的虚拟环境中直接安装 Isaac Sim，更容易和其他代码程序的依赖组合，个人认为更便于机器人开发。</p>
+<p>本节参考：<a target="_blank" rel="noopener" href="https://docs.isaacsim.omniverse.nvidia.com/latest/installation/install_python.html">Isaac Sim Documents - Python Environment Installation</a></p>
+<p><strong>（1）创建虚拟环境</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda create -n env_isaacsim python=3.10</span><br><span class="line">conda activate env_isaacsim</span><br></pre></td></tr></table></figure>
+<p><strong>（2）安装 Isaac Sim 包</strong></p>
+<p>首先更新 pip</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+<p>安装 Isaac Sim 完整版包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install isaacsim[all]==4.5.0 --extra-index-url https://pypi.nvidia.com</span><br></pre></td></tr></table></figure>
+<p>安装 Isaac Sim 缓存扩展</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install isaacsim[extscache]==4.5.0 --extra-index-url https://pypi.nvidia.com</span><br></pre></td></tr></table></figure>
+<p><strong>（3）示例</strong></p>
+<p>创建 python 程序如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> isaacsim</span><br><span class="line"><span class="keyword">from</span> isaacsim.simulation_app <span class="keyword">import</span> SimulationApp</span><br><span class="line"></span><br><span class="line">simulation_app = SimulationApp(&#123;<span class="string">&quot;headless&quot;</span>: <span class="literal">True</span>&#125;)</span><br><span class="line"><span class="comment">## perform any Isaac Sim / Omniverse imports after instantiating the class</span></span><br></pre></td></tr></table></figure>
+<p>运行后效果为打开 Isaac Sim 窗口。</p>
+<blockquote>
+<p> 第一次运行会 warm up shader cache 可能会比较慢比较卡。</p>
+</blockquote>
+<h2 id="2-Isaac-Sim-GUI-基本使用"><a href="#2-Isaac-Sim-GUI-基本使用" class="headerlink" title="2. Isaac Sim GUI 基本使用"></a>2. Isaac Sim GUI 基本使用</h2><blockquote>
+<p>本节参考：<a target="_blank" rel="noopener" href="https://docs.omniverse.nvidia.com/isaacsim/latest/introductory_tutorials/index.html">Isaac Sim UI and Workflow Tutorials</a></p>
+</blockquote>
+<h3 id="2-1-UI-界面"><a href="#2-1-UI-界面" class="headerlink" title="2.1 UI 界面"></a>2.1 UI 界面</h3><p><strong>（1）添加并操作一个立方体</strong></p>
+<p>点击 <code>Create-&gt;Shape-&gt;Cube</code> 添加一个立方体：</p>
+<ul>
+<li>选中立方体，拖动坐标轴移动立方体</li>
+<li>按 <code>E</code> 切换到旋转控制，调整立方体姿态，再按 <code>E</code> 切换到局部坐标系旋转控制</li>
+<li>按 <code>R</code> 切换到比例控制，调整立方体形状</li>
+<li>按 <code>W</code> 切换回位置控制，调整立方体位置，再按 <code>W</code> 切换到局部坐标系位置控制</li>
+<li></li>
+<li>按 <code>Esc</code> 取消选中立方体</li>
+</ul>
+<p>所有的操作都会在右下角的属性面板显示属性变化，也可以直接在右下角输入数值设置立方体参数。</p>
+<p><img src="https://img.mahaofei.com/img/20241029202642.png" alt="image.png"></p>
+<p><strong>（2）视角控制</strong></p>
+<ul>
+<li><code>F</code>：相机居中并缩放到合适位置</li>
+<li><code>Alt+鼠标左键拖动</code>：绕当前视角的中心旋转</li>
+<li><code>滚轮</code> 或 <code>Alt+鼠标右键拖动</code>：缩放</li>
+<li><code>鼠标中间拖动</code>：平移视角</li>
+<li><code>鼠标右键拖动</code>：旋转视角</li>
+</ul>
+<p><strong>（3）Stage</strong></p>
+<p>在窗口右侧有一个 Stage 面板。</p>
+<p>此时如果点击 <code>Create-&gt;Xform</code> 可以创建一个空坐标系。</p>
+<p>可以将方块移动到坐标系内，此时移动坐标系，方块也会跟着移动，因为此时方块是 Xform 的子级，两者之间的变换关系不会因为移动 Xform 而变化。</p>
+<p><strong>（4）Property</strong></p>
+<p>窗口右下角是属性面板（Property），不同的单元（Xform, Shape, Light）都有着不同的属性数据格式，这是因为它们在 Issac Sim 中都是不同的数据类型。</p>
+<h3 id="2-2-环境设置"><a href="#2-2-环境设置" class="headerlink" title="2.2 环境设置"></a>2.2 环境设置</h3><p><strong>（1）重力</strong></p>
+<p>点击 <code>Create-&gt;Physics-&gt;Physics Scene</code> 添加 <code>Physics Scene</code> 到右侧的 Stage Tree 中。可以通过它的属性设置重力方向为 <code>-Z</code> 方向，大小为 <code>9.8</code>（默认为国际标准单位）</p>
+<p><strong>（2）地面</strong></p>
+<p>点击 <code>Create-&gt;Physics-&gt;Ground Plane</code> 添加地面。</p>
+<p><strong>（3）照明</strong></p>
+<p>每个创建的 Stage 都会有默认的光源。可以通过点击 <code>Create-&gt;Light-&gt;Sphere Light</code> 添加一个额外的光源。 </p>
+<ul>
+<li>在属性面板中，将其 Z 轴设为 7，回复 X,Y 的默认旋转为 0</li>
+<li>在 <code>Main</code> 中点击右侧的白色方块调整颜色</li>
+<li>在 <code>Main</code> 中点击 <code>Intensity</code> 修改光照强度为 1e6</li>
+<li>在 <code>Shaping</code> 中点击 <code>cone:angle</code> 将光照范围限制为 45 度，点击 <code>cone:angle</code> 设置边缘柔滑为 0.05。</li>
+<li>为了使新的聚光灯更容易看到，打开默认光源的属性，设置其强度 <code>Main-&gt;Intensity</code> 为 300。</li>
+</ul>
+<p>效果如下：</p>
+<p><img src="https://img.mahaofei.com/img/20241030202954.png" alt="image.png"></p>
+<h3 id="2-3-添加物体"><a href="#2-3-添加物体" class="headerlink" title="2.3 添加物体"></a>2.3 添加物体</h3><p><strong>（1）向场景中添加形状</strong></p>
+<ul>
+<li>点击 <code>Create-&gt;Shapes-&gt;Cube</code> 创建立方体</li>
+<li>选中立方体并将其提到地面以上</li>
+<li>点击左侧的 <code>Scale</code> 按钮，或按 <code>R</code> 键，激活缩放小部件，调整立方体形状</li>
+<li>在右下角属性中的 <code>Transform-&gt;translate</code> 中设置物体的位置</li>
+</ul>
+<p>同样，我们可以将其中加入其它形状。</p>
+<p><strong>（2）添加物理属性</strong></p>
+<ul>
+<li>选中所有的物体，在属性选项卡中，点击 <code>+ Add</code>，选择 <code>Physics-&gt;Rigid Body with Colliders Preset</code>，设置三个形状的物理属性都是带有碰撞的刚体</li>
+<li>点击 <code>Play</code> 三个物体都会掉落到地面上</li>
+<li>查看右下角属性，往下滚能看到 <code>Rigid Body</code> 和 <code>Collider</code>，可以点击这两个 APIs 的右上角 <code>x</code> 删除属性</li>
+</ul>
+<p><img src="https://img.mahaofei.com/img/20241030205227.png" alt="image.png"></p>
+<p><strong>（3）添加接触和摩擦</strong></p>
+<ul>
+<li>点击 <code>Create-&gt;Physics-&gt;Physics Material</code> ，选择 <code>Rigid Body Materials</code> 创建新的物理材质，可以在右侧的 Stage 栏中看到</li>
+<li>选中该材质，在下方的属性选项卡中可以调整摩擦系数、密度等等。</li>
+<li>选中任意物体，在属性选项卡中找到 <code>Physics materials on selected models</code>，设置零件的材质。</li>
+</ul>
+<p><strong>（4）添加外观</strong></p>
+<p>刚才添加的是物理材质，但是实际上物体没有颜色反光属性（可以通过关闭光源查看），需要为物体创建外观</p>
+<ul>
+<li>点击 <code>Create-&gt;Materials-&gt;OmniPBR</code></li>
+<li>选中任意物体，在属性选项卡中找到 <code>Materials on selected models</code>，设置零件的外观。</li>
+<li>可以修改外观的属性中的 <code>Material and Shader-&gt;Shader-&gt;Albedo</code> 修改基础颜色，或修改反射率、粗糙度等查看变化</li>
+</ul>
+<p><img src="https://img.mahaofei.com/img/20241030210844.png" alt="image.png"></p>
+<h3 id="2-4-保存和加载场景，引用机器人"><a href="#2-4-保存和加载场景，引用机器人" class="headerlink" title="2.4 保存和加载场景，引用机器人"></a>2.4 保存和加载场景，引用机器人</h3><p>Isaac 使用 USD 格式作为所有的场景格式。</p>
+<p><strong>（1）保存场景</strong></p>
+<p>点击 <code>File-&gt;Save As...</code> 将当前场景保存为新 USD 文件。（如果点击 <code>Save Flattened As</code> 则是将所有组件保存到同一个 mesh 中）</p>
+<p>可以选择 <code>.usd</code> 格式（二进制），<code>.usda</code>（人类可阅读格式）。</p>
+<p><img src="https://img.mahaofei.com/img/20241101153457.png" alt="image.png"></p>
+<p><strong>（2）加载场景</strong></p>
+<ul>
+<li>点击 <code>Files-&gt;Open</code> 打开 USD 文件直接编辑。</li>
+<li>点击 <code>Files-&gt;Add Reference</code> 将 USD 文件作为引用添加，无法直接编辑。（直接将文件拖入到文件窗口也是以引用方式添加）</li>
+</ul>
+<p><strong>（3）引用文件添加的注意事项</strong></p>
+<p>引用的文件最好将所有刚体排列成有意义的分层结构，以前面场景中的物体为例，将其视为两轮小车：</p>
+<ol>
+<li><code>File-&gt;Open</code> 打开刚才保存的 USD 文件</li>
+<li>在 Stage 中右键创建一个 <code>Xform</code>，双击将其重命名为 <code>mock_robot</code>，并将其拖动到空白位置，使其和 <code>World</code> 以及 <code>Environment</code> 同级，右键设置为默认坐标系 <code>Set as Default Prim</code></li>
+<li>重命名 <code>Cube</code> 为 <code>body</code>，两个 <code>Cylinder</code> 分别为 <code>wheel_left, wheel_right</code>，将刚刚创建的刚体（cube, Cylinder），以及 Physics Material 和 Looks 都拖到 <code>mock_robot</code> 坐标系下</li>
+<li>保存文件</li>
+</ol>
+<p><img src="https://img.mahaofei.com/img/20241101160109.png" alt="image.png"></p>
+<p>新建一个文件，点击 <code>File-&gt;Add Reference</code>，可以看到只有机器人被添加进来</p>
+<p><img src="https://img.mahaofei.com/img/20241101160144.png" alt="image.png"></p>
+<h3 id="2-5-关节配置"><a href="#2-5-关节配置" class="headerlink" title="2.5 关节配置"></a>2.5 关节配置</h3><p>使用 <code>File-&gt;Open</code> 打开刚才的文件（最好和图中的一样，后面要添加关节）</p>
+<p><strong>（1）添加关节</strong></p>
+<ol>
+<li>点击 <code>Create-&gt;Scope</code> 创建一个 <code>Scope</code> 来存储关节，重命名为 <code>joints</code>。</li>
+<li>创建关节时：<strong>先点击父实体，再点击子实体</strong>，然后点击 <code>Create-&gt;Physics-&gt;Joint-&gt;Revolute Joint</code> 创建一个旋转关节。</li>
+<li>检查关节的属性面板中，<code>body0</code> 是父实体(如 body)，<code>body1</code> 是子实体(如 wheel_right)。</li>
+<li>在属性面板的 <code>Revolute Joint</code> 中将旋转轴更改为 <code>Y/Z</code>，根据模型的情况。</li>
+<li>将创建的 joint 重命名为 <code>joint_wheel_right</code> 并拖动到 <code>joints</code> 的 scope 中</li>
+<li>重复 2-5 步添加另一个关节</li>
+</ol>
+<p><img src="https://img.mahaofei.com/img/isaac_tutorial_rigging_robot_1.webp" alt=""></p>
+<p>点击运行，可以观察到机器人落到了地面，按住 <code>shift</code> 拖动方块，可以发现两个圆柱旋转带动机器人在地面上滚动。</p>
+<p><img src="https://img.mahaofei.com/img/20241101163333.png" alt="image.png"></p>
+<p><strong>（2）添加关节驱动器</strong></p>
+<p>为了能够更好地控制关节，必须添加关节驱动器（位置控制或速度控制）实现驱动。</p>
+<p><strong>添加方法</strong>：选中关节，点击属性选项卡的 <code>+Add</code> 按钮，选择 <code>Physics-&gt;Angular Drive</code> 向关节添加驱动，可以在属性面板下滑找到 <code>Drive</code> 以设置属性。</p>
+<ul>
+<li>位置控制：设置高刚度和零阻尼</li>
+<li>速度控制：设置高阻尼和零刚度</li>
+</ul>
+<p>对于该轮子来说，可以设置高阻尼如 <code>Damping=1e4</code>,目标速度可以设为 <code>Target Velocity=200</code>，点击播放可以看到机器人运动。</p>
+<p><strong>（3）添加 Articulation 关节</strong></p>
+<p>Articulation 是 Issac 中的另一种关节，与 joint 不同之处在于，它是由一系列 joint 组成的关节组。</p>
+<p><strong>添加方法</strong>：选择机器人的基坐标系 <code>mock_robot</code>，在属性选项卡中点击 <code>+Add</code>，添加 <code>Physics-&gt;Articulation Root</code></p>
+<p>这样就添加完成了。</p>
+<p><strong>（4）添加控制器</strong></p>
+<p>这部分主要是用来测试。</p>
+<p>点击 <code>Issac Utils-&gt;Common Omnigraphs-&gt;Articulation Velocity Control</code> 添加一个速度控制图表。</p>
+<p><code>Robot Prim</code> 选择机器人基坐标系 <code>mock_robot</code></p>
+<p><img src="https://img.mahaofei.com/img/20241101165859.png" alt="image.png"></p>
+<p>点击 Stage 中的 <code>Graphs-&gt;Velocity_Controller-&gt;JointCommandArray</code>，修改 Input0 和 Input1，例如设置成相反数让机器人差速原地转，点击播放看效果。</p>
+<h3 id="2-5-添加相机和传感器"><a href="#2-5-添加相机和传感器" class="headerlink" title="2.5 添加相机和传感器"></a>2.5 添加相机和传感器</h3><p><strong>（1）创建相机</strong></p>
+<p>点击 <code>Create-&gt;Camera</code>，会在 Stage 栏中创建一个 camera，同时界面中会出现一个灰色框，代表相机视图。</p>
+<p><img src="https://img.mahaofei.com/img/20241101182154.png" alt="image.png"></p>
+<p>可以像正常的刚体一样调整相机的位置。</p>
+<p><strong>（2）相机扩展</strong></p>
+<p>相机扩展可以实现根据相机创建不同可视化视角，查看摄像头覆盖范围，获取和设计相机姿态。</p>
+<p>可以点击 <code>Issac Utils-&gt;Workflows-&gt;Camera Inspector</code> 打开相机扩展</p>
+<p><img src="https://img.mahaofei.com/img/20241101195616.png" alt="image.png"></p>
+<p>可以看到面板中有 <code>Camera State</code> 一栏，显示了相机的位置姿态，便于编写代码时查看。</p>
+<p><strong>（3）创建相机视角</strong></p>
+<p>点击面板中的 <code>Create Viewport</code>，可以创建相机视角的窗口，如下图所示：</p>
+<p><img src="https://img.mahaofei.com/img/20241101200510.png" alt="image.png"></p>
+<p>在该窗口中，点击左上角的菜单中的 <code>Viewport</code> 选项可以调整相机分辨率。</p>
+<p>如果在仿真环境中移动相机位置，相机的状态属性等都会自动更新。</p>
+<p><strong>（4）将相机连接到机器人</strong></p>
+<p>例如现在需要添加一个车载摄像头，将其固定在 body 上，使其能够跟随 body 运动：</p>
+<ol>
+<li>将新添加的摄像头重命名为 <code>car_camera</code></li>
+<li>为了便于我们观察相机，可以点击 <code>Window-&gt;Viewport</code> 启动 <code>Viewport2</code> 视窗，并点击上方的电影机按钮将其切换为 <code>car_camera</code> 的视角（注意选中 mock_robot，在视窗内按 f 可以帮助切换到中心画面）</li>
+<li>在右侧 stage 中将 <code>car_camera</code> 拖动到 <code>body</code> 下方，将相机与机器人连接在一起</li>
+<li>调整相机属性中的位置和方向，使其看向机器人前方地面，点击 Play 观察相机是否跟随机器人运动</li>
+</ol>
+<p><img src="https://img.mahaofei.com/img/20241101202027.png" alt="image.png"></p>
+<h2 id="3-Python-程序"><a href="#3-Python-程序" class="headerlink" title="3. Python 程序"></a>3. Python 程序</h2><h3 id="3-1-独立-Python-程序的基本框架"><a href="#3-1-独立-Python-程序的基本框架" class="headerlink" title="3.1 独立 Python 程序的基本框架"></a>3.1 独立 Python 程序的基本框架</h3><p>Isaac Sim 仿真程序大概可以分成 <code>Initialization</code> 和 <code>Simulation</code> 两步骤，即首先初始化环境，创建世界和添加各种物体，然后是仿真的 <code>Step</code> 执行，示例代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##################################################</span></span><br><span class="line"><span class="comment"># Initialization</span></span><br><span class="line"><span class="comment">##################################################</span></span><br><span class="line"><span class="comment"># 导包</span></span><br><span class="line"><span class="keyword">from</span> isaacsim <span class="keyword">import</span> SimulationApp  <span class="comment"># 第一行一定是导入SimulationApp，就像 Omniverse 打开 Isaac Sim 一样</span></span><br><span class="line">simulation_app = SimulationApp(&#123;<span class="string">&quot;headless&quot;</span>: <span class="literal">False</span>&#125;)  <span class="comment"># 创建一个 SimulationApp 对象，参数是一个字典，headless: False 表示显示图形界面</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> omni.isaac.core <span class="keyword">import</span> World</span><br><span class="line"><span class="keyword">from</span> omni.isaac.core.objects <span class="keyword">import</span> DynamicCuboid</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建世界，下面相当于 setup_scene</span></span><br><span class="line">world = World()  <span class="comment"># 实例化一个 World 对象</span></span><br><span class="line">world.scene.add_default_ground_plane()  <span class="comment"># 添加一个默认的地面</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建物体</span></span><br><span class="line">first_cube = world.scene.add(</span><br><span class="line">    DynamicCuboid(</span><br><span class="line">        prim_path = <span class="string">&quot;/World/first_cube&quot;</span>,    <span class="comment"># 该物体的路径</span></span><br><span class="line">        name = <span class="string">&quot;first_cube&quot;</span>,                <span class="comment"># 该物体的名字</span></span><br><span class="line">        position = np.array([<span class="number">0</span>, <span class="number">0</span>, <span class="number">1.0</span>]),   <span class="comment"># 该物体的位置</span></span><br><span class="line">        scale = np.array([<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>]),  <span class="comment"># 该物体的缩放</span></span><br><span class="line">        color = np.array([<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>])   <span class="comment"># 该物体的颜色</span></span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重置世界</span></span><br><span class="line">world.reset()  <span class="comment"># 重置世界，创建完成之后，一定不要忘了</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##################################################</span></span><br><span class="line"><span class="comment"># Simulation</span></span><br><span class="line"><span class="comment">##################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 开始仿真</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000</span>):	<span class="comment"># 或者while True:</span></span><br><span class="line">    position, orientation = first_cube.get_world_pose()  <span class="comment"># 获取物体的位置和姿态</span></span><br><span class="line">    linear_velocity = first_cube.get_linear_velocity()  <span class="comment"># 获取物体的线速度</span></span><br><span class="line">    angular_velocity = first_cube.get_angular_velocity()  <span class="comment"># 获取物体的角速度</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Cube position: &quot;</span>, position)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Cube orientation: &quot;</span>, orientation)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Cube linear velocity: &quot;</span>, linear_velocity)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Cube angular velocity: &quot;</span>, angular_velocity)</span><br><span class="line"></span><br><span class="line">    world.step(render=<span class="literal">True</span>)  <span class="comment"># 仿真一步，render=True 表示显示图形界面</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭仿真</span></span><br><span class="line">simulation_app.close()  <span class="comment"># 关闭仿真</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-2-独立-Python-程序控制移动机器人"><a href="#3-2-独立-Python-程序控制移动机器人" class="headerlink" title="3.2 独立 Python 程序控制移动机器人"></a>3.2 独立 Python 程序控制移动机器人</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> isaacsim <span class="keyword">import</span> SimulationApp</span><br><span class="line"></span><br><span class="line">simulation_app = SimulationApp(&#123;<span class="string">&quot;headless&quot;</span>: <span class="literal">False</span>&#125;)  <span class="comment"># start the simulation app, with GUI open</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> carb</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> isaacsim.core.api <span class="keyword">import</span> World</span><br><span class="line"><span class="keyword">from</span> isaacsim.core.prims <span class="keyword">import</span> Articulation</span><br><span class="line"><span class="keyword">from</span> isaacsim.core.utils.stage <span class="keyword">import</span> add_reference_to_stage, get_stage_units</span><br><span class="line"><span class="keyword">from</span> isaacsim.core.utils.viewports <span class="keyword">import</span> set_camera_view</span><br><span class="line"><span class="keyword">from</span> isaacsim.storage.native <span class="keyword">import</span> get_assets_root_path</span><br><span class="line"></span><br><span class="line"><span class="comment"># preparing the scene</span></span><br><span class="line">assets_root_path = get_assets_root_path()</span><br><span class="line"><span class="keyword">if</span> assets_root_path <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">    carb.log_error(<span class="string">&quot;Could not find Isaac Sim assets folder&quot;</span>)</span><br><span class="line">    simulation_app.close()</span><br><span class="line">    sys.exit()</span><br><span class="line"></span><br><span class="line">my_world = World(stage_units_in_meters=<span class="number">1.0</span>)</span><br><span class="line">my_world.scene.add_default_ground_plane()  <span class="comment"># add ground plane</span></span><br><span class="line">set_camera_view(</span><br><span class="line">    eye=[<span class="number">5.0</span>, <span class="number">0.0</span>, <span class="number">1.5</span>], target=[<span class="number">0.00</span>, <span class="number">0.00</span>, <span class="number">1.00</span>], camera_prim_path=<span class="string">&quot;/OmniverseKit_Persp&quot;</span></span><br><span class="line">)  <span class="comment"># set camera view</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Add Franka</span></span><br><span class="line"><span class="comment"># asset_path = assets_root_path + &quot;/Isaac/Robots/Franka/franka.usd&quot;</span></span><br><span class="line">asset_path = <span class="string">&#x27;/home/mahaofei/Programs/01_MR+VLM+RL/Simulation/asset/isaac_sim/ur5e_hand/ur5e_hand.usd&#x27;</span></span><br><span class="line">add_reference_to_stage(usd_path=asset_path, prim_path=<span class="string">&quot;/World/Arm&quot;</span>)  <span class="comment"># add robot to stage</span></span><br><span class="line">arm = Articulation(prim_paths_expr=<span class="string">&quot;/World/Arm&quot;</span>, name=<span class="string">&quot;my_arm&quot;</span>)  <span class="comment"># create an articulation object</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># set the initial poses of the arm so they don&#x27;t collide BEFORE the simulation starts</span></span><br><span class="line">arm.set_world_poses(positions=np.array([[<span class="number">0.0</span>, <span class="number">1.0</span>, <span class="number">0.0</span>]]) / get_stage_units())</span><br><span class="line"><span class="comment"># initialize the world</span></span><br><span class="line">my_world.reset()</span><br><span class="line"></span><br><span class="line">init_joint_positions = np.array([<span class="number">0.0</span>, -np.pi/<span class="number">2</span>, np.pi/<span class="number">2</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>])</span><br><span class="line">arm.set_joint_positions([init_joint_positions])</span><br><span class="line">arm_joint_positions = init_joint_positions</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="comment"># 机器人的关节位置每次变动一点，连续变动</span></span><br><span class="line">    arm_joint_positions[:<span class="number">6</span>] += <span class="number">0.001</span></span><br><span class="line">    arm.set_joint_positions([arm_joint_positions])</span><br><span class="line">    <span class="keyword">if</span> arm_joint_positions[<span class="number">0</span>] &gt;= np.pi/<span class="number">2</span>:</span><br><span class="line">        arm_joint_positions = init_joint_positions</span><br><span class="line"></span><br><span class="line">    <span class="comment"># step the simulation, both rendering and physics</span></span><br><span class="line">    my_world.step(render=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">simulation_app.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="https://img.mahaofei.com/img/20250228224852322.png" alt="image.png"></p>
+<h3 id="3-x-常用-Python-程序及解释"><a href="#3-x-常用-Python-程序及解释" class="headerlink" title="3.x 常用 Python 程序及解释"></a>3.x 常用 Python 程序及解释</h3><p><strong>（1）常规代码逻辑</strong></p>
+<p><code>simulation_app</code> 的创建必须在所有 isaac sim 引用之前完成，启动 isaacsim 的仿真窗口。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动 Simulation APP</span></span><br><span class="line"><span class="keyword">from</span> isaacsim <span class="keyword">import</span> SimulationApp  <span class="comment"># 第一行一定是导入SimulationApp</span></span><br><span class="line"></span><br><span class="line">simulation_app = SimulationApp(&#123;<span class="string">&quot;headless&quot;</span>: <span class="literal">False</span>&#125;)  <span class="comment"># 创建一个 SimulationApp 对象，参数是一个字典，headless: False 表示显示图形界面</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> carb</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> isaacsim.core.api <span class="keyword">import</span> World</span><br><span class="line"><span class="keyword">from</span> isaacsim.storage.native <span class="keyword">import</span> get_assets_root_path</span><br><span class="line"></span><br><span class="line"><span class="comment"># 准备场景，获取NVIDIA官方asset路径</span></span><br><span class="line">assets_root_path = get_assets_root_path()</span><br><span class="line"><span class="keyword">if</span> assets_root_path <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">    carb.log_error(<span class="string">&quot;Could not find Isaac Sim assets folder&quot;</span>)</span><br><span class="line">    simulation_app.close()</span><br><span class="line">    sys.exit()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建世界，添加地面，添加相机视角</span></span><br><span class="line">my_world = World(stage_units_in_meters=<span class="number">1.0</span>)</span><br><span class="line">my_world.scene.add_default_ground_plane()  <span class="comment"># add ground plane</span></span><br><span class="line">set_camera_view(</span><br><span class="line">    eye=[<span class="number">5.0</span>, <span class="number">0.0</span>, <span class="number">1.5</span>], target=[<span class="number">0.00</span>, <span class="number">0.00</span>, <span class="number">1.00</span>], camera_prim_path=<span class="string">&quot;/OmniverseKit_Persp&quot;</span></span><br><span class="line">)  <span class="comment"># set camera view</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化world</span></span><br><span class="line">arm.set_world_poses(positions=np.array([[<span class="number">0.0</span>, <span class="number">1.0</span>, <span class="number">0.0</span>]]) / get_stage_units())</span><br><span class="line">my_world.reset()</span><br><span class="line"></span><br><span class="line"><span class="comment"># some code</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">	<span class="comment"># some code</span></span><br><span class="line">	</span><br><span class="line">	my_world.step(render=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">simulation_app.close() <span class="comment"># 关闭仿真</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-Isaac-Sim-导入URDF模型"><a href="#4-Isaac-Sim-导入URDF模型" class="headerlink" title="4. Isaac Sim 导入URDF模型"></a>4. Isaac Sim 导入URDF模型</h2><p><strong>（1）打开 urdf 导入扩展</strong></p>
+<p>点击【Windows -&gt; Entensions】，搜索【import wizard】，结果如下，打开此扩展，并且如果需要经常导入模型的话，可以勾选上Autoload，这样每次启动 IsaacSim 都可以自动启动该扩展。</p>
+<p><img src="https://img.mahaofei.com/img/20250320142552590.png" alt="image.png"></p>
+<p>然后点击【Windows】，此时可以发现已经多出了【Isaac Sim Wizard [alpha]】这个选项，这就是我们需要用到的功能，打开它。</p>
+<p><img src="https://img.mahaofei.com/img/20250320142711132.png" alt="image.png"></p>
+<p><strong>（2）导入 URDF 模型</strong></p>
+<p>第一个页面，在下方勾选 【Import URDF from File】，当然这里也可以从其它模型文件导入，例如Mujoco使用的MJCF文件等。然后点击【Next】</p>
+<p><img src="https://img.mahaofei.com/img/20250320142911978.png" alt="image.png"></p>
+<p>下一个页面，没有需要操作的，直接Next即可。</p>
+<p>然后会出来一个 URDF Importer 的窗口，在这里，我们需要填写或勾选下面图中标出的地方，其中包括</p>
+<ul>
+<li>URDF 文件位置</li>
+<li>文件创建在Stage中，设置为Default Prim，并且导入时清空当前Stage</li>
+<li>关节驱动类型选择为加速度驱动</li>
+</ul>
+<p><img src="https://img.mahaofei.com/img/20250320143313491.png" alt="image.png"></p>
+<p><strong>（3）保存USD文件</strong></p>
+<p>然后模型就已经被导入了，不过可能因为没有灯光，看不太出来模型，不过这个正常。</p>
+<p>直接按 【Ctrl+S】，将模型保存到本地。</p>
+<p> 如果想查看模型，可以新建一个Stage，将USD模型拖入进来，就可以看到有颜色的模型。</p>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>Isaac Sim 仿真环境使用简介</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://www.mahaofei.com/post/isaacsim-intro.html">https://www.mahaofei.com/post/isaacsim-intro.html</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>马浩飞</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2024-11-28</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2024-11-28</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AE%9E%E9%AA%8C/">实验</a><a class="post-meta__tags" href="/tags/IsaacSim/">IsaacSim</a><a class="post-meta__tags" href="/tags/NVIDIA/">NVIDIA</a><a class="post-meta__tags" href="/tags/%E4%BB%BF%E7%9C%9F/">仿真</a></div><div class="post_share"><div class="social-share" data-image="https://img.mahaofei.com/img/20250307153642312.png" data-sites="qq,wechat,weibo,facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/img/wechatpay.png" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/cron.html"><img class="prev-cover" src="https://img.mahaofei.com/img/202411091756737.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Ubuntu设置定时任务</div></div></a></div><div class="next-post pull-right"><a href="/post/zsh.html"><img class="next-cover" src="https://img.mahaofei.com/img/20250307153745292.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">使用zsh创建更高效的shell环境</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><a href="https://www.mahaofei.com"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></a></div><div class="author-info__name">马浩飞</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-solid fa-graduation-cap"></i><span>学术主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/HaofeiMa" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:mail@mahaofei.com" target="_blank" title="E-Mail"><i class="fa fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">新增了<a target="_blank" rel="noopener" href="https://academic.mahaofei.com/">学术主页</a>！<br>有任何问题欢迎留言评论或邮件联系。<br>E-mail：<a href="mailto:blog@mahaofei.com" style="text-decoration:underline;">blog@mahaofei.com</a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E4%BB%8B%E7%BB%8D"><span class="toc-text">0. 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Isaac-Sim-%E7%9A%84%E5%AE%89%E8%A3%85-WorkStation-%E7%89%88"><span class="toc-text">1. Isaac Sim 的安装 - WorkStation 版</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Isaac-Sim-%E7%9A%84%E5%AE%89%E8%A3%85-Python-%E7%89%88"><span class="toc-text">1. Isaac Sim 的安装 -Python 版</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Isaac-Sim-GUI-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-text">2. Isaac Sim GUI 基本使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-UI-%E7%95%8C%E9%9D%A2"><span class="toc-text">2.1 UI 界面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE"><span class="toc-text">2.2 环境设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E6%B7%BB%E5%8A%A0%E7%89%A9%E4%BD%93"><span class="toc-text">2.3 添加物体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E4%BF%9D%E5%AD%98%E5%92%8C%E5%8A%A0%E8%BD%BD%E5%9C%BA%E6%99%AF%EF%BC%8C%E5%BC%95%E7%94%A8%E6%9C%BA%E5%99%A8%E4%BA%BA"><span class="toc-text">2.4 保存和加载场景，引用机器人</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E5%85%B3%E8%8A%82%E9%85%8D%E7%BD%AE"><span class="toc-text">2.5 关节配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E6%B7%BB%E5%8A%A0%E7%9B%B8%E6%9C%BA%E5%92%8C%E4%BC%A0%E6%84%9F%E5%99%A8"><span class="toc-text">2.5 添加相机和传感器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Python-%E7%A8%8B%E5%BA%8F"><span class="toc-text">3. Python 程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E7%8B%AC%E7%AB%8B-Python-%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6"><span class="toc-text">3.1 独立 Python 程序的基本框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E7%8B%AC%E7%AB%8B-Python-%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%E7%A7%BB%E5%8A%A8%E6%9C%BA%E5%99%A8%E4%BA%BA"><span class="toc-text">3.2 独立 Python 程序控制移动机器人</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-x-%E5%B8%B8%E7%94%A8-Python-%E7%A8%8B%E5%BA%8F%E5%8F%8A%E8%A7%A3%E9%87%8A"><span class="toc-text">3.x 常用 Python 程序及解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Isaac-Sim-%E5%AF%BC%E5%85%A5URDF%E6%A8%A1%E5%9E%8B"><span class="toc-text">4. Isaac Sim 导入URDF模型</span></a></li></ol></div></div><div class="card-widget card-recommend-post"><div class="item-headline"><i class="fas fa-dharmachakra"></i><span>相关推荐</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/ros-basic.html" title="ROS系统基本功能的使用详解（基本指令/节点/服务/启动文件/动态参数）"><img src="https://img.mahaofei.com/img/202112231938582-ros-basic-9.png" alt="ROS系统基本功能的使用详解（基本指令/节点/服务/启动文件/动态参数）"></a><div class="content"><a class="title" href="/post/ros-basic.html" title="ROS系统基本功能的使用详解（基本指令/节点/服务/启动文件/动态参数）">ROS系统基本功能的使用详解（基本指令/节点/服务/启动文件/动态参数）</a><time datetime="2021-09-16" title="发表于 2021-09-16">2021-09-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/urdf.html" title="urdf与xacro的使用方法 & 机械臂模型仿真示例"><img src="https://img.mahaofei.com/img/202112231958358-urdf-xacro-6.png" alt="urdf与xacro的使用方法 & 机械臂模型仿真示例"></a><div class="content"><a class="title" href="/post/urdf.html" title="urdf与xacro的使用方法 & 机械臂模型仿真示例">urdf与xacro的使用方法 & 机械臂模型仿真示例</a><time datetime="2021-10-10" title="发表于 2021-10-10">2021-10-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/gazebo-car.html" title="ROS+Gazebo仿真差速小车并实现控制"><img src="https://img.mahaofei.com/img/202112232001178-ros-gazebo-2.png" alt="ROS+Gazebo仿真差速小车并实现控制"></a><div class="content"><a class="title" href="/post/gazebo-car.html" title="ROS+Gazebo仿真差速小车并实现控制">ROS+Gazebo仿真差速小车并实现控制</a><time datetime="2021-10-15" title="发表于 2021-10-15">2021-10-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ros-usbcamera.html" title="ROS外接usb摄像头标定方法"><img src="https://img.mahaofei.com/img/202112232016343-camera-calibrate-2.png" alt="ROS外接usb摄像头标定方法"></a><div class="content"><a class="title" href="/post/ros-usbcamera.html" title="ROS外接usb摄像头标定方法">ROS外接usb摄像头标定方法</a><time datetime="2021-10-20" title="发表于 2021-10-20">2021-10-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ros-stm32.html" title="ROS与STM32通信"><img src="https://img.mahaofei.com/img/%E9%80%9A%E4%BF%A1%E4%B8%8A%E4%BD%8D%E6%9C%BA%E7%AB%AF.jpg" alt="ROS与STM32通信"></a><div class="content"><a class="title" href="/post/ros-stm32.html" title="ROS与STM32通信">ROS与STM32通信</a><time datetime="2022-03-28" title="发表于 2022-03-28">2022-03-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ceres.html" title="【Ceres基本使用方法】使用Ceres拟合曲线求解最小二乘问题"><img src="https://img.mahaofei.com/img/202112232017359-ceres-introduction-2.png" alt="【Ceres基本使用方法】使用Ceres拟合曲线求解最小二乘问题"></a><div class="content"><a class="title" href="/post/ceres.html" title="【Ceres基本使用方法】使用Ceres拟合曲线求解最小二乘问题">【Ceres基本使用方法】使用Ceres拟合曲线求解最小二乘问题</a><time datetime="2021-10-23" title="发表于 2021-10-23">2021-10-23</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.mahaofei.com/img/GoodnightCopenhagen.png')"><div id="footer-wrap"><div class="footer_custom_text"><p><a style="margin-inline:5px"target="_blank"href="https://github.com/"><img src="https://img.shields.io/badge/Hosted-Github-brightgreen?style=flat&logo=GitHub"title="本站项目由Gtihub托管"></a><a style="margin-inline:5px"target="_blank"href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo"title="博客框架为Hexo"></a><a style="margin-inline:5px"target="_blank"href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?logoColor=white&style=flat&logo=buefy"title="主题采用butterfly"></a><a style="margin-inline:5px"target="_blank"href="https://aliyun.com/product/cdn"><img src="https://img.shields.io/badge/DNS-Cloudflare-orange?style=flat&logo=Cloudflare"title="本站使用Cloudflare网络服务"></a><a style="margin-inline:5px"target="_blank"href="https://beian.miit.gov.cn/"><img src="https://img.shields.io/badge/%E6%B4%A5ICP%E5%A4%87-2021000769%E5%8F%B7--3-red?logo=data:image/png;base64,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"title="备案号:津ICP备2021000769号-3"></a><a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris"title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><i class="fas fa-adjust"><use id="modeicon" xlink:href="#icon-moon"></use></i></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Algolia</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, "https://cdn.jsdelivr.net/gh/zhheo/twikoo@dev/dist/twikoo.all.min.js"))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script><script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script><script src="/js/custom/categoryBar.js"></script><script src="/js/custom/cardHistory.js"></script><script src="/js/custom/light_dark.js"></script><script src="/js/custom/forbidCopy.js"></script><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"Jfmc1FSFWs09EC8r",ck:"Jfmc1FSFWs09EC8r"})</script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script>new LingQue.Monitor().init({id:"JfmcYvlVsVAZlVkS"});</script><script defer src="https://cloud.umami.is/script.js" data-website-id="86b466f8-e8bc-415b-954e-289b3d0110fb"></script><script src="/js/custom/custom.js"></script><script src="/js/custom/nav.js"></script><script id="canvas_nest" defer="defer" color="66,66,66" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

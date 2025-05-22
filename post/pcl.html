@@ -1,0 +1,325 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>PCL库的安装与基本使用 | 马浩飞丨博客</title><meta name="keywords" content="PCL,点云"><meta name="author" content="马浩飞"><meta name="copyright" content="马浩飞"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="C++使用最广泛的点云库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PCL库的安装与基本使用">
+<meta property="og:url" content="https://www.mahaofei.com/post/pcl.html">
+<meta property="og:site_name" content="马浩飞丨博客">
+<meta property="og:description" content="C++使用最广泛的点云库">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.mahaofei.com/img/202312210957565.png">
+<meta property="article:published_time" content="2023-10-20T10:53:14.000Z">
+<meta property="article:modified_time" content="2023-10-20T10:53:14.000Z">
+<meta property="article:author" content="马浩飞">
+<meta property="article:tag" content="PCL">
+<meta property="article:tag" content="点云">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.mahaofei.com/img/202312210957565.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.mahaofei.com/post/pcl"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-bB89NudWgv"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?439a0d0abeb31dd8f338efd8266c999b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"ABY1KMOQQM","apiKey":"d3f3a4fbb355106e6bf265cf8da1863b","indexName":"hexo","hits":{"per_page":4},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'PCL库的安装与基本使用',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-20 18:53:14'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="/css/custom/MainColor.css"><link rel="stylesheet" href="/css/custom/categoryBar.css"><link rel="stylesheet" href="/css/custom/404.css"><link rel="stylesheet" href="/css/custom/cardHistory.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><link rel="stylesheet" href="/css/custom/custom.css"><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="马浩飞丨博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.mahaofei.com/img/202312210957565.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">马浩飞丨博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div><center id="name-container"><a id="page-name" href="javascript:scrollToTop()">PAGE_NAME</a></center></div><div id="nav-right"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">PCL库的安装与基本使用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-20T10:53:14.000Z" title="发表于 2023-10-20 18:53:14">2023-10-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-20T10:53:14.000Z" title="更新于 2023-10-20 18:53:14">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">计算机视觉</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/3D%E7%82%B9%E4%BA%91/">3D点云</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="PCL库的安装与基本使用"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/post/pcl.html#post-comment"><span id="twikoo-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Ubuntu-20-04-安装-PCL-库"><a href="#Ubuntu-20-04-安装-PCL-库" class="headerlink" title="Ubuntu 20.04 安装 PCL 库"></a>Ubuntu 20.04 安装 PCL 库</h1><p><strong>推荐安装方法</strong>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install libpcl*</span><br></pre></td></tr></table></figure>
+<p>如果不用最新的PCL功能的话，正常点云处理显示等使用还是没问题的。</p>
+<p><strong>源码安装（建议使用cmake-gui）</strong>：</p>
+<p>下载<a target="_blank" rel="noopener" href="https://github.com/PointCloudLibrary/pcl/releases/tag/pcl-1.10.0">PCL-1.10</a>，一定要下载1.10，因为ROS安装的过程中会安装pcl-1.10的库，正常使用没问题，但是缺少一些新功能例如<code>pcl/surface/on_nurbs</code>，我想要使用这个库，因此能够从源码编译，如果使用其它版本安装，会出现冲突例如<code>error: redefinition of</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd pcl-pcl-1.10</span><br><span class="line">mkdir build &amp;&amp; cd build</span><br><span class="line">cmake-gui</span><br></pre></td></tr></table></figure>
+<p>选择source code为下载解压的文件夹pcl-pcl-1.10，第二个选择刚创建的build文件夹</p>
+<p>点击<code>Configure</code>，点击<code>Finish</code>，出现一些初始化配置。</p>
+<p>注意要选<code>BUILD_surface_on_nurbs</code>，不然会报错<code>pcl/surface/on_nurbs/fitting_surface_tdm.h: 没有那个文件或目录</code>，当然最好把能选的都选了，我这里除了默认的，还额外勾选了</p>
+<ul>
+<li>BUILD_CUDA</li>
+<li>BUILD_GPU</li>
+<li>BUILD_examples</li>
+<li>BUILD_simulation</li>
+<li>BUILD_surface_on_nurbs</li>
+<li>BUILD_kinfu_tools</li>
+</ul>
+<p><img src="https://img.mahaofei.com/img/202312221852931.png" alt="image.png"></p>
+<p>直到没有红色区域之后，点击<code>configure</code>，配置完成后点击<code>generate</code>按钮，会在build文件夹下生成工程文件，然后关闭cmake-gui界面就可以了</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">make</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">或者使用make -j4，make -j8，后面的数字为同时使用的线程数，量力而行，线程过多可能会系统直接卡死</span></span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+<p><strong>源码卸载</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo updatedb</span><br><span class="line">locate pcl-1.13 #查看pcl-1.13的位置 </span><br><span class="line">sudo rm -r /usr/local/include/pcl-1.13 /usr/local/share/pcl-1.13</span><br><span class="line">sudo updatedb</span><br><span class="line">locate pcl-1.13 #检查是否全部删除</span><br></pre></td></tr></table></figure>
+<h1 id="PCL基本使用"><a href="#PCL基本使用" class="headerlink" title="PCL基本使用"></a>PCL基本使用</h1><h2 id="1-基本数据类型"><a href="#1-基本数据类型" class="headerlink" title="1. 基本数据类型"></a>1. 基本数据类型</h2><ul>
+<li>点：<code>pcl::PointXYZ</code>、<code>pcl::PointXYZRGB</code>、<code>pcl::PointXYZI</code></li>
+<li>点云：<code>pcl::PointCloud</code><ul>
+<li>宽高：<code>PointCloud::width</code>与<code>PointCloud::height</code>，都为<code>int</code>类型，如果是规律排列的，则分别代表点云的长宽，如果是无序的则高为1，宽为点数量</li>
+<li>点：<code>PointCloud::points</code>存放点的vector变量</li>
+<li>指针：<code>PointCloud::Ptr</code>：只想<code>PointCloud</code>的智能指针</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-读写点云数据"><a href="#2-读写点云数据" class="headerlink" title="2. 读写点云数据"></a>2. 读写点云数据</h2><p><strong>读取点云</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pcl::PCDReader pcd_reader;</span><br><span class="line">pcd_reader.<span class="built_in">read</span>(<span class="string">&quot;xxx.pcd&quot;</span>, *cloud);</span><br><span class="line"><span class="comment">// 或</span></span><br><span class="line">pcl::io::<span class="built_in">loadPCDFile</span>&lt;pcl::PointXYZ&gt;(<span class="string">&quot;xxx.pcd&quot;</span>, *cloud);</span><br></pre></td></tr></table></figure>
+<p><strong>保存点云</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pcd_writer.<span class="built_in">write</span>&lt;pcl::PointXYZ&gt;(<span class="string">&quot;xxx.pcd&quot;</span>, *cloud, <span class="literal">false</span>);  <span class="comment">//false表示保存为ASCII文件</span></span><br><span class="line"><span class="comment">// 或</span></span><br><span class="line">pcl::io::<span class="built_in">savePCDFileASCII</span>(<span class="string">&quot;xxx.pcd&quot;</span>, *cloud);</span><br></pre></td></tr></table></figure>
+<h2 id="3-点云滤波"><a href="#3-点云滤波" class="headerlink" title="3. 点云滤波"></a>3. 点云滤波</h2><p><strong>直通滤波</strong>：直接对x,y,z三个方向上设置要保留的点的距离范围，滤除距离范围外的点</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pcl::passThrough&lt;pcl::PointXYZ&gt; pass;</span><br><span class="line">pass.<span class="built_in">setInputCloud</span>(cloud);</span><br><span class="line">pass.<span class="built_in">setFilterFieldName</span>(<span class="string">&quot;x\y\z&quot;</span>);</span><br><span class="line">pass.<span class="built_in">setFileterLimits</span>(<span class="number">0.0</span>, <span class="number">3.0</span>);</span><br><span class="line">pass.<span class="built_in">filter</span>(*output_cloud);</span><br></pre></td></tr></table></figure>
+<p><strong>体素滤波</strong>：将空间划分为一定体积的网格，用每个网格内所有的点的质心来代替所有的点，将每个网格内的点云压缩为一个质心点。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pcl::VoxelGrid&lt;pcl::PointXYZ&gt; vg;</span><br><span class="line">vg.<span class="built_in">setInputCloud</span>(cloud);</span><br><span class="line">vg.<span class="built_in">setLeafSize</span>(<span class="number">0.01f</span>, <span class="number">0.01f</span>, <span class="number">0.01f</span>);  <span class="comment">// 网格的长宽高</span></span><br><span class="line">vg.<span class="built_in">filter</span>(*output_cloud)</span><br></pre></td></tr></table></figure>
+<p><strong>离群点滤波</strong>：统计每个点与周围最临近的若干个点的平均距离，若平均距离大于设定的阈值则判定为离群点而滤除。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pcl::StatisticalOutlierRemoval&lt;pcl::PointXYZ&gt; sor;</span><br><span class="line">sor.<span class="built_in">setInputCloud</span>(cloud);</span><br><span class="line">sor.<span class="built_in">setMeanK</span>(<span class="number">50</span>);  <span class="comment">//设置参与计算平均距离的点数</span></span><br><span class="line">sor.<span class="built_in">setStddevMulThresh</span>(<span class="number">0.1</span>);  <span class="comment">//设置平均距离的阈值（米）</span></span><br><span class="line">sor.<span class="built_in">filter</span>(*cloud_filtered);</span><br></pre></td></tr></table></figure>
+<p><strong>半径滤波</strong>：对一定半径范围内点数少于设定值的点进行滤波。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pcl::RadiusOutlierRemoval&lt;pcl::PointXYZ&gt; outrem;</span><br><span class="line">outrem.<span class="built_in">setInputCloud</span>(cloud);</span><br><span class="line">outrem.<span class="built_in">setRadiusSearch</span>(<span class="number">0.8</span>)  <span class="comment">//设置半径大小</span></span><br><span class="line">outrem.<span class="built_in">setMinNeighborsInRadius</span>(<span class="number">2</span>);  <span class="comment">//设置点数阈值</span></span><br><span class="line">outrem.<span class="built_in">filter</span>(*output_cloud)</span><br></pre></td></tr></table></figure>
+<h2 id="4-点云聚类与分割"><a href="#4-点云聚类与分割" class="headerlink" title="4. 点云聚类与分割"></a>4. 点云聚类与分割</h2><p><strong>RANSAC</strong>：随机抽样一致性算法，解决了传统最小二乘法全数据参与不能排除错误数据干扰的问题，可以拟合出更精确的模型，算法思路如下：</p>
+<ol>
+<li>在原本数据集中随机抽取最少可以拟合出模型的数据量进行拟合。最少数据量一般由模型位置的参数来确定（例如直线就是两个），假设拟合得到的模型为M。</li>
+<li>利用M，对数据集中剩余数据计算各个数据与模型M的误差值p，若p&lt;给定阈值n，则认为该数据为内点；若大于阈值，则认为是外点。计算所有内点和外点，得到内点的集合S。</li>
+<li>判断集合S的点数是否大于给定的点数阈值K，若大于K，则认为该次拟合的模型适合离得。若小于K，则认为不合理，直接丢弃。</li>
+<li>若模型合理，则在用得到的内点集合S与之前随机得到的点再拟合依次模型，得到新的模型M’</li>
+<li>重新随机采样，重复1-4过程，得到多个模型M’。</li>
+<li>若采样次数达到给定阈值，则停止采样，就在得到的M’模型中，选择最优的作为最终结果。或者当某一模型M’的误差在给定精度阈值内，则停止采样，以该模型为最终结果。</li>
+</ol>
+<p><strong>平面分割</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">pcl::PointIndices::Ptr inliers_plane;</span><br><span class="line">pcl::SACSegmentation&lt;pcl::PointXYZ&gt; seg;</span><br><span class="line">seg.<span class="built_in">setOptimizeCoefficients</span>(<span class="literal">true</span>);</span><br><span class="line">seg.<span class="built_in">setModelType</span>(pcl::SACMODEL_PLANE);  <span class="comment">//设置平面模型</span></span><br><span class="line">seg.<span class="built_in">setMethodType</span>(pcl::SAC_RANSAC);  <span class="comment">//使用RANSAC算法</span></span><br><span class="line">seg.<span class="built_in">setDistanceThreshold</span>(<span class="number">0.01</span>)  <span class="comment">//容差范围0.01m</span></span><br><span class="line">seg.<span class="built_in">setInputCloud</span>(cloud);</span><br><span class="line">seg.<span class="built_in">segment</span>(*inliers_planc, *coefficients);  <span class="comment">//得到模型中点的索引，模型参数</span></span><br></pre></td></tr></table></figure>
+<p><strong>法线估计</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">pcl::PointCloud&lt;pcl::Normal&gt;::<span class="function">Ptr <span class="title">cloud_normals</span> <span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;pcl::Normal&gt;)</span></span>;  <span class="comment">//保存法线信息的点云</span></span><br><span class="line">pcl::NormalEstimation&lt;pcl::PointXYZ, pcl::Normal&gt; ne;</span><br><span class="line">ne.<span class="built_in">setInputCloud</span>(cloud);</span><br><span class="line">pcl::search::KdTree&lt;pcl::PointXYZ&gt;::<span class="function">Ptr <span class="title">tree</span> <span class="params">(<span class="keyword">new</span> pcl::search::KdTree&lt;pcl::PointXYZ&gt; ())</span></span>;</span><br><span class="line">ne.<span class="built_in">setSearchMethod</span>(tree)  <span class="comment">//设置搜索方法</span></span><br><span class="line">ne.<span class="built_in">setRadiusSearch</span>(<span class="number">0.03</span>);  <span class="comment">//搜索半径，利用0.03米范围内的点计算法线</span></span><br><span class="line">ne.<span class="built_in">compute</span>(*cloud_normals)</span><br></pre></td></tr></table></figure>
+<p><strong>圆柱分割</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">pcl::PointIndices::Ptr inliers_cylinder;</span><br><span class="line">pcl::SACSegmentation&lt;pcl::PointXYZ&gt; seg;</span><br><span class="line">seg.<span class="built_in">setOptimizeCoefficients</span>(<span class="literal">true</span>);</span><br><span class="line">seg.<span class="built_in">setModelType</span>(pcl::SACMODEL_CYLINDER);  <span class="comment">//设置圆柱模型</span></span><br><span class="line">seg.<span class="built_in">setMethodType</span>(pcl::SAC_RANSAC);  <span class="comment">//使用RANSAC算法</span></span><br><span class="line">seg.<span class="built_in">setNormalDistanceWeight</span>(<span class="number">0.1</span>)  <span class="comment">//法线在估计的权重</span></span><br><span class="line">seg.<span class="built_in">setMaxIterations</span>(<span class="number">10000</span>);  <span class="comment">//迭代次数</span></span><br><span class="line">seg.<span class="built_in">setDistanceThreshold</span>(<span class="number">0.05</span>);  <span class="comment">//距离容差</span></span><br><span class="line">seg.<span class="built_in">setRadiusLimits</span>(<span class="number">0</span>, <span class="number">0.1</span>);  <span class="comment">//半径范围</span></span><br><span class="line">seg.<span class="built_in">setInputCloud</span>(cloud);  <span class="comment">//输入点云</span></span><br><span class="line">seg.<span class="built_in">setInputNormals</span>(cloud_normals);  <span class="comment">//输入法线点云</span></span><br><span class="line">seg.<span class="built_in">segment</span>(*inliers_cylinder, *coefficients_cylinder); <span class="comment">//得到圆柱的点，模型参数</span></span><br></pre></td></tr></table></figure>
+<p><strong>索引提取</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pcl::PointIndices::Ptr inliers;</span><br><span class="line">pcl::ExtractIndices&lt;pcl::PointXYZ&gt; extract;</span><br><span class="line">extract.<span class="built_in">setInputCloud</span>(cloud);</span><br><span class="line">extract.<span class="built_in">setIndices</span>(inliers);</span><br><span class="line">extract.<span class="built_in">setNegative</span>(<span class="literal">false</span>);</span><br><span class="line">extract.<span class="built_in">filter</span>(*cloud_p);</span><br></pre></td></tr></table></figure>
+<h2 id="5-可视化"><a href="#5-可视化" class="headerlink" title="5. 可视化"></a>5. 可视化</h2><p><strong>程序中可视化</strong></p>
+<p>第一种方式，会造成程序暂停，需要先在点云窗口中按<code>w</code>，调整到一个比较好的视角，退出时按<code>q</code>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pcl::<span class="function">visualization::CloudViewer <span class="title">viewer</span><span class="params">(<span class="string">&quot;Simple Cloud Viewer&quot;</span>)</span></span>; <span class="comment">//括号内是窗口名称</span></span><br><span class="line">viewer.<span class="built_in">showCloud</span>(cloud);</span><br><span class="line"><span class="keyword">while</span>(!viewer.<span class="built_in">wasStopped</span>())&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二种方式，将显示放在了循环内，不会造成程序中断</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pcl::<span class="function">visualization::CloudViewer <span class="title">viewer</span><span class="params">(<span class="string">&quot;Simple Cloud Viewer&quot;</span>)</span></span>;</span><br><span class="line"><span class="keyword">while</span>()</span><br></pre></td></tr></table></figure>
+<p><strong>命令行可视化</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pcl_viewer xxx.pcd</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参考链接：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1N24y1R7v8">哈工大竞技机器人队. 【视觉组竞培营】第四讲 PCL点云库. Bilibili. 2022.09.30</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.mangoeffect.net/tools/vcpkg-install-pcl-visualization-module">芒果的技术博客. vcpkg安装pcl-visualization模块. 2021.10.28</a></li>
+<li><a target="_blank" rel="noopener" href="https://pcl.readthedocs.io/projects/tutorials/en/master/#">Point Cloud Library. Tutorials</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42731705/article/details/129380907">Cc1924. Ubuntu18安装新版本PCL-1.13，并和ROS自带PCL-1.8共存. CSDN. 2023.03.07</a></li>
+</ol>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>PCL库的安装与基本使用</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://www.mahaofei.com/post/pcl.html">https://www.mahaofei.com/post/pcl.html</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>马浩飞</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2023-10-20</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2023-10-20</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/PCL/">PCL</a><a class="post-meta__tags" href="/tags/%E7%82%B9%E4%BA%91/">点云</a></div><div class="post_share"><div class="social-share" data-image="https://img.mahaofei.com/img/202312210957565.png" data-sites="qq,wechat,weibo,facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/img/wechatpay.png" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/nerf.html"><img class="prev-cover" src="https://img.mahaofei.com/img/202310102110957.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Nerf(instant-ngp)快速实现三维重建</div></div></a></div><div class="next-post pull-right"><a href="/post/mimicplay.html"><img class="next-cover" src="https://img.mahaofei.com/img/202310231710757.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【论文复现】MimicPlay从人类演示中学习机器人技能</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><a href="https://www.mahaofei.com"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></a></div><div class="author-info__name">马浩飞</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-solid fa-graduation-cap"></i><span>学术主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/HaofeiMa" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:mail@mahaofei.com" target="_blank" title="E-Mail"><i class="fa fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">新增了<a target="_blank" rel="noopener" href="https://academic.mahaofei.com/">学术主页</a>！<br>有任何问题欢迎留言评论或邮件联系。<br>E-mail：<a href="mailto:blog@mahaofei.com" style="text-decoration:underline;">blog@mahaofei.com</a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ubuntu-20-04-%E5%AE%89%E8%A3%85-PCL-%E5%BA%93"><span class="toc-text">Ubuntu 20.04 安装 PCL 库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PCL%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-text">PCL基本使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">1. 基本数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%AF%BB%E5%86%99%E7%82%B9%E4%BA%91%E6%95%B0%E6%8D%AE"><span class="toc-text">2. 读写点云数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%82%B9%E4%BA%91%E6%BB%A4%E6%B3%A2"><span class="toc-text">3. 点云滤波</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%82%B9%E4%BA%91%E8%81%9A%E7%B1%BB%E4%B8%8E%E5%88%86%E5%89%B2"><span class="toc-text">4. 点云聚类与分割</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-text">5. 可视化</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.mahaofei.com/img/GoodnightCopenhagen.png')"><div id="footer-wrap"><div class="footer_custom_text"><p><a style="margin-inline:5px"target="_blank"href="https://github.com/"><img src="https://img.shields.io/badge/Hosted-Github-brightgreen?style=flat&logo=GitHub"title="本站项目由Gtihub托管"></a><a style="margin-inline:5px"target="_blank"href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo"title="博客框架为Hexo"></a><a style="margin-inline:5px"target="_blank"href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?logoColor=white&style=flat&logo=buefy"title="主题采用butterfly"></a><a style="margin-inline:5px"target="_blank"href="https://aliyun.com/product/cdn"><img src="https://img.shields.io/badge/DNS-Cloudflare-orange?style=flat&logo=Cloudflare"title="本站使用Cloudflare网络服务"></a><a style="margin-inline:5px"target="_blank"href="https://beian.miit.gov.cn/"><img src="https://img.shields.io/badge/%E6%B4%A5ICP%E5%A4%87-2021000769%E5%8F%B7--3-red?logo=data:image/png;base64,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"title="备案号:津ICP备2021000769号-3"></a><a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris"title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><i class="fas fa-adjust"><use id="modeicon" xlink:href="#icon-moon"></use></i></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Algolia</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, "https://cdn.jsdelivr.net/gh/zhheo/twikoo@dev/dist/twikoo.all.min.js"))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script><script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script><script src="/js/custom/categoryBar.js"></script><script src="/js/custom/cardHistory.js"></script><script src="/js/custom/light_dark.js"></script><script src="/js/custom/forbidCopy.js"></script><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"Jfmc1FSFWs09EC8r",ck:"Jfmc1FSFWs09EC8r"})</script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script>new LingQue.Monitor().init({id:"JfmcYvlVsVAZlVkS"});</script><script defer src="https://cloud.umami.is/script.js" data-website-id="86b466f8-e8bc-415b-954e-289b3d0110fb"></script><script src="/js/custom/custom.js"></script><script src="/js/custom/nav.js"></script><script id="canvas_nest" defer="defer" color="66,66,66" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

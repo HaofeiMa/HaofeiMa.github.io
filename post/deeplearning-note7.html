@@ -1,0 +1,307 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>【深度学习笔记07】卷积神经网络 | 马浩飞丨博客</title><meta name="keywords" content="笔记,深度学习"><meta name="author" content="马浩飞"><meta name="copyright" content="马浩飞"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="为什么神经网络对图片进行分析时经常使用卷积，为什么会有padding和stride，池化层和全连接层的作用是什么？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【深度学习笔记07】卷积神经网络">
+<meta property="og:url" content="https://www.mahaofei.com/post/deeplearning-note7.html">
+<meta property="og:site_name" content="马浩飞丨博客">
+<meta property="og:description" content="为什么神经网络对图片进行分析时经常使用卷积，为什么会有padding和stride，池化层和全连接层的作用是什么？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.mahaofei.com/img/20220818215833.png">
+<meta property="article:published_time" content="2022-08-18T01:21:51.000Z">
+<meta property="article:modified_time" content="2022-08-18T01:21:51.000Z">
+<meta property="article:author" content="马浩飞">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.mahaofei.com/img/20220818215833.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.mahaofei.com/post/deeplearning-note7"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-bB89NudWgv"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?439a0d0abeb31dd8f338efd8266c999b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"ABY1KMOQQM","apiKey":"d3f3a4fbb355106e6bf265cf8da1863b","indexName":"hexo","hits":{"per_page":4},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【深度学习笔记07】卷积神经网络',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-18 09:21:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="/css/custom/MainColor.css"><link rel="stylesheet" href="/css/custom/categoryBar.css"><link rel="stylesheet" href="/css/custom/404.css"><link rel="stylesheet" href="/css/custom/cardHistory.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><link rel="stylesheet" href="/css/custom/custom.css"><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="马浩飞丨博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.mahaofei.com/img/20220818215833.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">马浩飞丨博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div><center id="name-container"><a id="page-name" href="javascript:scrollToTop()">PAGE_NAME</a></center></div><div id="nav-right"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【深度学习笔记07】卷积神经网络</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-18T01:21:51.000Z" title="发表于 2022-08-18 09:21:51">2022-08-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-18T01:21:51.000Z" title="更新于 2022-08-18 09:21:51">2022-08-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【深度学习笔记07】卷积神经网络"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/post/deeplearning-note7.html#post-comment"><span id="twikoo-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="一、卷积运算"><a href="#一、卷积运算" class="headerlink" title="一、卷积运算"></a>一、卷积运算</h1><p>前面已经提到，对于一个神经网络来说，例如人脸识别，前面的层主要用来提取图像的边缘，中间的层主要用来检测部分如眼睛鼻子嘴等，后面的层主要用来检测整个人脸。</p>
+<h2 id="1-1-如何检测边缘"><a href="#1-1-如何检测边缘" class="headerlink" title="1.1 如何检测边缘"></a>1.1 如何检测边缘</h2><p>通常使用不同的卷积核或者称过滤器来实现各种边缘检测。</p>
+<p><strong>（1）垂直边缘</strong></p>
+<p>使用如下的卷积核进行检测：</p>
+<p><img src="https://img.mahaofei.com/img/20220818095121.png" alt=""></p>
+<p>例如，对于一张具有垂直边缘的图像，利用此卷积核进行卷积运算，输出结果在边缘处数值较大，在图像变化缓慢的区域数值较小。</p>
+<p><img src="https://img.mahaofei.com/img/20220818095338.png" alt=""></p>
+<p>上面的卷积运算可以很好的计算出图像中边缘在什么位置，并且，如果卷积的结果是正值，说明从左到右是从亮到暗的变化，如果是负值，说明从左到右是从暗到亮的变化。</p>
+<p><strong>（2）水平边缘</strong></p>
+<p><img src="https://img.mahaofei.com/img/20220818095712.png" alt=""></p>
+<p>此卷积核可以计算图像的水平边缘，并且正值代表上方亮下方暗，数值越大边缘变化越明显。</p>
+<p><strong>（3）其他滤波器</strong></p>
+<p><img src="https://img.mahaofei.com/img/20220818100201.png" alt=""></p>
+<p>通过定义卷积核中的值的分布，可以实现检测不同方向的，不仅是水平竖直，也可以是45°75°。</p>
+<p>此外还可以改变各行的数值，例如1：2：1，来实现更有目标的检测。</p>
+<h2 id="1-2-Padding"><a href="#1-2-Padding" class="headerlink" title="1.2 Padding"></a>1.2 Padding</h2><p><strong>（1）普通卷积存在的问题</strong></p>
+<ul>
+<li>图像缩小：对于一个(n, n)的图像，使用(f, f)的卷积核做卷积，得到的图像大小是(n-f+1, n-f+1)，因此每做一次卷积，图像大小都会减小。</li>
+<li>边缘信息丢失：图像角落的像素只会被一个卷积核处理，边缘像素相比于中间的像素，也会容易丢失很多信息。</li>
+</ul>
+<p><strong>（2）解决方法</strong></p>
+<p>在进行卷积操作之前，先在图像边缘填充一层像素。</p>
+<p>例如在图像边缘添加p层像素，那么卷积后图像大小是(n+2p-f+1, n+2p-f+1)。</p>
+<p><strong>通常情况下，卷积核边长是奇数</strong></p>
+<h2 id="1-3-卷积步长"><a href="#1-3-卷积步长" class="headerlink" title="1.3 卷积步长"></a>1.3 卷积步长</h2><p>使用一个(f, f)的卷积核，卷积一个(n, n)的图像，padding为p，步长为s，输出的图像维度为$(\frac{n+2p-f}{s}+1, \frac{n+2p-f}{s}+1)$</p>
+<h1 id="二、三维卷积"><a href="#二、三维卷积" class="headerlink" title="二、三维卷积"></a>二、三维卷积</h1><h2 id="2-1-三维卷积基础"><a href="#2-1-三维卷积基础" class="headerlink" title="2.1 三维卷积基础"></a>2.1 三维卷积基础</h2><p>例如对于一个RGB图像来说，其有(w, h, 3)的维度，对其进行卷积，必须是(f, f, 3)的维度。</p>
+<p>即<strong>图像和卷积核的通道数要相同</strong>。</p>
+<p><strong>卷积完成后的输出图像是(w-f+1, h-f+1, n)的n通道图像，其中n是卷积核的个数。</strong></p>
+<p><img src="https://img.mahaofei.com/img/20220818205222.png" alt=""></p>
+<h2 id="2-2-三维卷积在神经网络的应用"><a href="#2-2-三维卷积在神经网络的应用" class="headerlink" title="2.2 三维卷积在神经网络的应用"></a>2.2 三维卷积在神经网络的应用</h2><p>三维卷积在神经网络的应用，与传统方法基本一致。</p>
+<p>在传统方法中有，$z^{[1]}=w^{[1]}a^{[0]}+b^{[1]}$，其中$a^{[0]}$就是输入x，$a^{[1]}=g(z^{[1]})$</p>
+<p>而若是卷积运算，则只需将输入图片替换x，卷积核替换w，然后同样添加偏差和非线性激活函数即可。</p>
+<p><img src="https://img.mahaofei.com/img/20220818210442.png" alt=""></p>
+<h1 id="三、池化层"><a href="#三、池化层" class="headerlink" title="三、池化层"></a>三、池化层</h1><p>池化层可以缩小模型大小，提高运算速度，提高模型的鲁棒性。</p>
+<h2 id="3-1-最大池化"><a href="#3-1-最大池化" class="headerlink" title="3.1 最大池化"></a>3.1 最大池化</h2><p>例如对一个4x4的输入，最大池化选择2x2，那么输出就是将4x4的输入分成4部分，每部分取最大值填充到2x2中。最大池化输出维度的计算方法与卷积相同。</p>
+<p><img src="https://img.mahaofei.com/img/20220818215833.png" alt=""></p>
+<p>最大池化的作用是，如果卷积过滤提取到了某个特征，那么保留其最大值，如果没有提取到特征，那么最大值也还是很小。</p>
+<h2 id="3-2-平均池化"><a href="#3-2-平均池化" class="headerlink" title="3.2 平均池化"></a>3.2 平均池化</h2><p>平均池化与最大池化类似，是在不同区域内求平均值，主要用在很深的网络。</p>
+<p>目前来说最大池化比平均池化更常用。</p>
+<h2 id="3-3-池化总结"><a href="#3-3-池化总结" class="headerlink" title="3.3 池化总结"></a>3.3 池化总结</h2><p>池化的参数主要有：</p>
+<ul>
+<li>f：池化过滤器大小</li>
+<li>s：补偿</li>
+<li>最大或平均池化</li>
+</ul>
+<p>由于池化层没有权重，只有上面一些超参数，因此一般来说会将卷积层和池化层合并称为一层。</p>
+<h1 id="四、全连接层"><a href="#四、全连接层" class="headerlink" title="四、全连接层"></a>四、全连接层</h1><p>在神经网络的最后，经过多轮的卷积和池化处理，最后的输出往往是宽高较小，通道数较多。这是我们会将其展开成为一个向量，这个向量的长度就等于上一层输出的$w\times h\times c$，将向量中的所有参数作为同样数量单元的输入，进行常规神经网络计算，这就是全连接层。</p>
+<h1 id="五、代码实现"><a href="#五、代码实现" class="headerlink" title="五、代码实现"></a>五、代码实现</h1><p><strong>（1）添加padding</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">zero_pad</span>(<span class="params">X, pad</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    对数据集X的所有图像添加pad，padding被应用再一张图片的宽和高方向上。</span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">    X -- numpy数组，shape (m, n_H, n_W, n_C) 代表批量为m的图片</span></span><br><span class="line"><span class="string">    pad -- 整数，图片边缘填充的pad大小</span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">    X_pad -- 添加了以0填充的pad图片，shape (m, n_H + 2*pad, n_W + 2*pad, n_C)</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    X_pad = np.pad(X, ((<span class="number">0</span>, <span class="number">0</span>), (pad, pad), (pad, pad), (<span class="number">0</span>, <span class="number">0</span>)))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> X_pad</span><br></pre></td></tr></table></figure>
+<p><strong>（2）单步卷积（numpy实现）</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">conv_single_step</span>(<span class="params">a_slice_prev, W, b</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    在上一层的一个切片用卷积核W进行卷积, 并添加偏差b</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">    a_slice_prev -- 输入数据的切片，shape (f, f, n_C_prev)</span></span><br><span class="line"><span class="string">    W -- 权重参数，以卷积核的形式体现，shape (f, f, n_C_prev)</span></span><br><span class="line"><span class="string">    b -- 偏置参数，shape (1, 1, 1)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回值:</span></span><br><span class="line"><span class="string">    Z -- 标量，滑动窗口(W, b)与输入切片x的卷积计算的结果</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># a_slice 和 W 按元素相乘并添加偏置.</span></span><br><span class="line">    S = np.multiply(W, a_slice_prev) + b</span><br><span class="line">    <span class="comment"># 求和</span></span><br><span class="line">    Z = np.<span class="built_in">sum</span>(S)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> Z</span><br></pre></td></tr></table></figure>
+<p><strong>（3）三维卷积（numpy实现）</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">conv_forward</span>(<span class="params">A_prev, W, b, hparameters</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    卷积前向计算</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">    A_prev -- 上一层的激活输出，shape (m, n_H_prev, n_W_prev, n_C_prev)</span></span><br><span class="line"><span class="string">    W -- 权重, shape (f, f, n_C_prev, n_C)</span></span><br><span class="line"><span class="string">    b -- 偏置, shape (1, 1, 1, n_C)</span></span><br><span class="line"><span class="string">    hparameters -- 包含 &quot;stride&quot; 和 &quot;pad&quot; 的字典</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">    返回值:</span></span><br><span class="line"><span class="string">    Z -- 卷积输出，shape (m, n_H, n_W, n_C)</span></span><br><span class="line"><span class="string">    cache -- 缓存，用于conv_backward()函数</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 获取 A_prev 的维度  </span></span><br><span class="line">    m, n_H_prev, n_W_prev, n_C_prev = A_prev.shape</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取 W 的维度</span></span><br><span class="line">    f, _, n_C_prev, n_C = W.shape</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 获取 hparameters 中的参数</span></span><br><span class="line">    stride = hparameters[<span class="string">&quot;stride&quot;</span>]</span><br><span class="line">    pad = hparameters[<span class="string">&quot;pad&quot;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 计算卷积输出的维度</span></span><br><span class="line">    n_H = (n_H_prev - f + <span class="number">2</span> * pad) // stride + <span class="number">1</span></span><br><span class="line">    n_W = (n_W_prev - f + <span class="number">2</span> * pad) // stride + <span class="number">1</span></span><br><span class="line">    n_C = W.shape[<span class="number">3</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 零初始化卷积输出变量Z</span></span><br><span class="line">    Z = np.zeros((m, n_H, n_W, n_C))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 调用函数，填充0创建 A_prev_pad </span></span><br><span class="line">    A_prev_pad = zero_pad(A_prev, pad)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 在训练样本的批量中循环</span></span><br><span class="line">    <span class="keyword">for</span> e <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">        <span class="comment"># 选择第e个填充样本</span></span><br><span class="line">        A_prev_pad_e = A_prev_pad[e]</span><br><span class="line">        <span class="comment"># 在输出Z的竖直方向遍历</span></span><br><span class="line">        <span class="keyword">for</span> h <span class="keyword">in</span> <span class="built_in">range</span>(n_H):</span><br><span class="line">            <span class="comment"># 在输出Z的水平方向遍历</span></span><br><span class="line">            <span class="keyword">for</span> w <span class="keyword">in</span> <span class="built_in">range</span>(n_W):</span><br><span class="line">                <span class="comment"># 遍历所有通道，通道数为卷积核个数</span></span><br><span class="line">                <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(n_C):</span><br><span class="line">                    <span class="comment"># Find the corners of the current &quot;slice&quot; (≈4 lines)</span></span><br><span class="line">                    vert_start = h * stride</span><br><span class="line">                    vert_end = vert_start + f</span><br><span class="line">                    horiz_start = w * stride</span><br><span class="line">                    horiz_end = horiz_start + pad</span><br><span class="line">                    </span><br><span class="line">                    <span class="comment"># 确定被卷积区域</span></span><br><span class="line">                    A_prev_pad_slice = A_prev_pad_e[vert_start:vert_end, horiz_start:horiz_end, :]</span><br><span class="line">                    </span><br><span class="line">                    <span class="comment"># 使用卷积核W和偏置b进行卷积</span></span><br><span class="line">                    Z[e, h, w, c] = np.<span class="built_in">sum</span>(np.multiply(A_prev_pad_slice, W[:, :, :, c]) + b[:, :, :, c])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 确保输出维度正确</span></span><br><span class="line">    <span class="keyword">assert</span>(Z.shape == (m, n_H, n_W, n_C))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 将信息保存在cache中，用于反向传播</span></span><br><span class="line">    cache = (A_prev, W, b, hparameters)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> Z, cache</span><br></pre></td></tr></table></figure>
+<p><strong>（4）池化</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># GRADED FUNCTION: pool_forward</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">pool_forward</span>(<span class="params">A_prev, hparameters, mode = <span class="string">&quot;max&quot;</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    前向传播的池化层</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">    A_prev -- 输入数据，shape (m, n_H_prev, n_W_prev, n_C_prev)</span></span><br><span class="line"><span class="string">    hparameters -- 包含 &quot;f&quot; 和 &quot;stride&quot; 的python字典</span></span><br><span class="line"><span class="string">    mode -- 想要使用的池化模式, 定义为字符串 (&quot;max&quot; or &quot;average&quot;)</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    返回值:</span></span><br><span class="line"><span class="string">    A -- 池化层输出，shape (m, n_H, n_W, n_C)</span></span><br><span class="line"><span class="string">    cache -- 保存池化层的数据，用于反向传播</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 获取输入数据的维度</span></span><br><span class="line">    (m, n_H_prev, n_W_prev, n_C_prev) = A_prev.shape</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 从 &quot;hparameters&quot; 中获取超参数</span></span><br><span class="line">    f = hparameters[<span class="string">&quot;f&quot;</span>]</span><br><span class="line">    stride = hparameters[<span class="string">&quot;stride&quot;</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 定义输出维度</span></span><br><span class="line">    n_H = <span class="built_in">int</span>(<span class="number">1</span> + (n_H_prev - f) / stride)</span><br><span class="line">    n_W = <span class="built_in">int</span>(<span class="number">1</span> + (n_W_prev - f) / stride)</span><br><span class="line">    n_C = n_C_prev</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 初始化输出矩阵A</span></span><br><span class="line">    A = np.zeros((m, n_H, n_W, n_C))              </span><br><span class="line">                </span><br><span class="line">    <span class="comment"># 在训练样本的批量中循环</span></span><br><span class="line">    <span class="keyword">for</span> e <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">        <span class="comment"># 在输出Z的竖直方向遍历</span></span><br><span class="line">        <span class="keyword">for</span> h <span class="keyword">in</span> <span class="built_in">range</span>(n_H):</span><br><span class="line">            <span class="comment"># 在输出Z的水平方向遍历</span></span><br><span class="line">            <span class="keyword">for</span> w <span class="keyword">in</span> <span class="built_in">range</span>(n_W):</span><br><span class="line">                <span class="comment"># 遍历所有通道</span></span><br><span class="line">                <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(n_C):</span><br><span class="line">                    <span class="comment"># 找到当前要进行池化的区域</span></span><br><span class="line">                    vert_start = h * stride</span><br><span class="line">                    vert_end = vert_start + f</span><br><span class="line">                    horiz_start = w * stride</span><br><span class="line">                    horiz_end = horiz_start + f</span><br><span class="line"></span><br><span class="line">                    <span class="comment"># 使用上面的角坐标定义slice区域</span></span><br><span class="line">                    A_prev_slice = A_prev[e, vert_start:vert_end, horiz_start:horiz_end, c]</span><br><span class="line">                    </span><br><span class="line">                    <span class="comment"># 根据池化模式在slice进行计算，求最大值或平均值</span></span><br><span class="line">                    <span class="keyword">if</span> mode == <span class="string">&quot;max&quot;</span>:</span><br><span class="line">                        A[e, h, w, c] = np.<span class="built_in">max</span>(A_prev_slice)</span><br><span class="line">                    <span class="keyword">elif</span> mode == <span class="string">&quot;average&quot;</span>:</span><br><span class="line">                        A[e, h, w, c] = np.mean(A_prev_slice)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 保存输入和超参数，用于反向传播</span></span><br><span class="line">    cache = (A_prev, hparameters)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 确保输出维度正确</span></span><br><span class="line">    <span class="keyword">assert</span>(A.shape == (m, n_H, n_W, n_C))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> A, cache</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>【深度学习笔记07】卷积神经网络</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://www.mahaofei.com/post/deeplearning-note7.html">https://www.mahaofei.com/post/deeplearning-note7.html</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>马浩飞</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2022-08-18</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2022-08-18</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="post-meta__tags" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></div><div class="post_share"><div class="social-share" data-image="https://img.mahaofei.com/img/20220818215833.png" data-sites="qq,wechat,weibo,facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/img/wechatpay.png" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/deeplearning-note6.html"><img class="prev-cover" src="https://img.mahaofei.com/img/20220814172926.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【深度学习笔记06】参数调试处理</div></div></a></div><div class="next-post pull-right"><a href="/post/deeplearning-note8.html"><img class="next-cover" src="https://img.mahaofei.com/img/20220821100948.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【深度学习笔记08】经典神经网络</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><a href="https://www.mahaofei.com"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></a></div><div class="author-info__name">马浩飞</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-solid fa-graduation-cap"></i><span>学术主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/HaofeiMa" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:mail@mahaofei.com" target="_blank" title="E-Mail"><i class="fa fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">新增了<a target="_blank" rel="noopener" href="https://academic.mahaofei.com/">学术主页</a>！<br>有任何问题欢迎留言评论或邮件联系。<br>E-mail：<a href="mailto:blog@mahaofei.com" style="text-decoration:underline;">blog@mahaofei.com</a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8D%B7%E7%A7%AF%E8%BF%90%E7%AE%97"><span class="toc-text">一、卷积运算</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E5%A6%82%E4%BD%95%E6%A3%80%E6%B5%8B%E8%BE%B9%E7%BC%98"><span class="toc-text">1.1 如何检测边缘</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-Padding"><span class="toc-text">1.2 Padding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E5%8D%B7%E7%A7%AF%E6%AD%A5%E9%95%BF"><span class="toc-text">1.3 卷积步长</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%89%E7%BB%B4%E5%8D%B7%E7%A7%AF"><span class="toc-text">二、三维卷积</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E4%B8%89%E7%BB%B4%E5%8D%B7%E7%A7%AF%E5%9F%BA%E7%A1%80"><span class="toc-text">2.1 三维卷积基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E4%B8%89%E7%BB%B4%E5%8D%B7%E7%A7%AF%E5%9C%A8%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-text">2.2 三维卷积在神经网络的应用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%B1%A0%E5%8C%96%E5%B1%82"><span class="toc-text">三、池化层</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E6%9C%80%E5%A4%A7%E6%B1%A0%E5%8C%96"><span class="toc-text">3.1 最大池化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E5%B9%B3%E5%9D%87%E6%B1%A0%E5%8C%96"><span class="toc-text">3.2 平均池化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E6%B1%A0%E5%8C%96%E6%80%BB%E7%BB%93"><span class="toc-text">3.3 池化总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82"><span class="toc-text">四、全连接层</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">五、代码实现</span></a></li></ol></div></div><div class="card-widget card-recommend-post"><div class="item-headline"><i class="fas fa-dharmachakra"></i><span>相关推荐</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/convolution.html" title="卷积是如何计算的"><img src="https://pic2.zhimg.com/v2-5efbada1d4bb599e6195ce819aa7ebd9_b.webp" alt="卷积是如何计算的"></a><div class="content"><a class="title" href="/post/convolution.html" title="卷积是如何计算的">卷积是如何计算的</a><time datetime="2022-05-16" title="发表于 2022-05-16">2022-05-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/channel.html" title="如何理解卷积神经网络中的通道channel"><img src="https://img.mahaofei.com/img/20220624185923.png" alt="如何理解卷积神经网络中的通道channel"></a><div class="content"><a class="title" href="/post/channel.html" title="如何理解卷积神经网络中的通道channel">如何理解卷积神经网络中的通道channel</a><time datetime="2022-05-16" title="发表于 2022-05-16">2022-05-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/deeplearning-basic.html" title="如何理解卷积神经网络中的通道channel"><img src="https://pytorch.org/assets/images/pytorch-logo.png" alt="如何理解卷积神经网络中的通道channel"></a><div class="content"><a class="title" href="/post/deeplearning-basic.html" title="如何理解卷积神经网络中的通道channel">如何理解卷积神经网络中的通道channel</a><time datetime="2022-05-17" title="发表于 2022-05-17">2022-05-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/deeplearning-note1.html" title="【深度学习笔记01】神经网络与深度学习"><img src="https://img.mahaofei.com/img/20220426114017.png" alt="【深度学习笔记01】神经网络与深度学习"></a><div class="content"><a class="title" href="/post/deeplearning-note1.html" title="【深度学习笔记01】神经网络与深度学习">【深度学习笔记01】神经网络与深度学习</a><time datetime="2022-05-20" title="发表于 2022-05-20">2022-05-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/tensorboard.html" title="TensorBoard的使用丨深度学习曲线生成"><img src="https://img.mahaofei.com/img/20230323221410.png" alt="TensorBoard的使用丨深度学习曲线生成"></a><div class="content"><a class="title" href="/post/tensorboard.html" title="TensorBoard的使用丨深度学习曲线生成">TensorBoard的使用丨深度学习曲线生成</a><time datetime="2023-03-23" title="发表于 2023-03-23">2023-03-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/deeplearning-note3.html" title="【深度学习笔记03】线性回归与Softmax回归及其损失函数"><img src="https://img.mahaofei.com/img/20220719115313.png" alt="【深度学习笔记03】线性回归与Softmax回归及其损失函数"></a><div class="content"><a class="title" href="/post/deeplearning-note3.html" title="【深度学习笔记03】线性回归与Softmax回归及其损失函数">【深度学习笔记03】线性回归与Softmax回归及其损失函数</a><time datetime="2022-07-20" title="发表于 2022-07-20">2022-07-20</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.mahaofei.com/img/GoodnightCopenhagen.png')"><div id="footer-wrap"><div class="footer_custom_text"><p><a style="margin-inline:5px"target="_blank"href="https://github.com/"><img src="https://img.shields.io/badge/Hosted-Github-brightgreen?style=flat&logo=GitHub"title="本站项目由Gtihub托管"></a><a style="margin-inline:5px"target="_blank"href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo"title="博客框架为Hexo"></a><a style="margin-inline:5px"target="_blank"href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?logoColor=white&style=flat&logo=buefy"title="主题采用butterfly"></a><a style="margin-inline:5px"target="_blank"href="https://aliyun.com/product/cdn"><img src="https://img.shields.io/badge/DNS-Cloudflare-orange?style=flat&logo=Cloudflare"title="本站使用Cloudflare网络服务"></a><a style="margin-inline:5px"target="_blank"href="https://beian.miit.gov.cn/"><img src="https://img.shields.io/badge/%E6%B4%A5ICP%E5%A4%87-2021000769%E5%8F%B7--3-red?logo=data:image/png;base64,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"title="备案号:津ICP备2021000769号-3"></a><a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris"title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><i class="fas fa-adjust"><use id="modeicon" xlink:href="#icon-moon"></use></i></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Algolia</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, "https://cdn.jsdelivr.net/gh/zhheo/twikoo@dev/dist/twikoo.all.min.js"))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script><script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script><script src="/js/custom/categoryBar.js"></script><script src="/js/custom/cardHistory.js"></script><script src="/js/custom/light_dark.js"></script><script src="/js/custom/forbidCopy.js"></script><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"Jfmc1FSFWs09EC8r",ck:"Jfmc1FSFWs09EC8r"})</script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script>new LingQue.Monitor().init({id:"JfmcYvlVsVAZlVkS"});</script><script defer src="https://cloud.umami.is/script.js" data-website-id="86b466f8-e8bc-415b-954e-289b3d0110fb"></script><script src="/js/custom/custom.js"></script><script src="/js/custom/nav.js"></script><script id="canvas_nest" defer="defer" color="66,66,66" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

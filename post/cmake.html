@@ -1,0 +1,290 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>《cmake practice》总结  cmake的构建过程与基本指令 | 马浩飞丨博客</title><meta name="keywords" content="CPP,opencv"><meta name="author" content="马浩飞"><meta name="copyright" content="马浩飞"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="CMake是一一个跨平台的开源元构建系统,可以构建、测试和打包软件。它可以用来支持多种本地编译环境。越来越多的项目正在使用cmake作为其构建工具，这也使得cmake正在成为一个主流的构建体系。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《cmake practice》总结  cmake的构建过程与基本指令">
+<meta property="og:url" content="https://www.mahaofei.com/post/cmake.html">
+<meta property="og:site_name" content="马浩飞丨博客">
+<meta property="og:description" content="CMake是一一个跨平台的开源元构建系统,可以构建、测试和打包软件。它可以用来支持多种本地编译环境。越来越多的项目正在使用cmake作为其构建工具，这也使得cmake正在成为一个主流的构建体系。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.mahaofei.com/img/20220410093824.png">
+<meta property="article:published_time" content="2021-09-14T11:16:16.000Z">
+<meta property="article:modified_time" content="2021-09-14T11:16:16.000Z">
+<meta property="article:author" content="马浩飞">
+<meta property="article:tag" content="CPP">
+<meta property="article:tag" content="opencv">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.mahaofei.com/img/20220410093824.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.mahaofei.com/post/cmake"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-bB89NudWgv"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?439a0d0abeb31dd8f338efd8266c999b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"ABY1KMOQQM","apiKey":"d3f3a4fbb355106e6bf265cf8da1863b","indexName":"hexo","hits":{"per_page":4},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '《cmake practice》总结  cmake的构建过程与基本指令',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-09-14 19:16:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="/css/custom/MainColor.css"><link rel="stylesheet" href="/css/custom/categoryBar.css"><link rel="stylesheet" href="/css/custom/404.css"><link rel="stylesheet" href="/css/custom/cardHistory.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><link rel="stylesheet" href="/css/custom/custom.css"><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="马浩飞丨博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.mahaofei.com/img/20220410093824.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">马浩飞丨博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div><center id="name-container"><a id="page-name" href="javascript:scrollToTop()">PAGE_NAME</a></center></div><div id="nav-right"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">《cmake practice》总结  cmake的构建过程与基本指令</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-09-14T11:16:16.000Z" title="发表于 2021-09-14 19:16:16">2021-09-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-09-14T11:16:16.000Z" title="更新于 2021-09-14 19:16:16">2021-09-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%A8%8B%E5%BA%8F%E5%9F%BA%E7%A1%80/">程序基础</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%A8%8B%E5%BA%8F%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%A8%8B%E5%BA%8F%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C/">C++</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="《cmake practice》总结  cmake的构建过程与基本指令"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/post/cmake.html#post-comment"><span id="twikoo-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="〇、基本语法规则"><a href="#〇、基本语法规则" class="headerlink" title="〇、基本语法规则"></a>〇、基本语法规则</h2><h3 id="0-1-变量"><a href="#0-1-变量" class="headerlink" title="0.1 变量"></a>0.1 变量</h3><p>&emsp;&emsp;变量使用 ${VALUENAME} 方式取值，但是在IF控制语句中直接使用变量名。</p>
+<ol>
+<li><code>CMAKE_BINARY_DIR</code> 或 <code>PROJECT_BINARY_DIR</code> 或 <code>&lt;ProjectName&gt;_BINARY_DIR</code>：均代表编译目录。如果是内部构建，就是指工程顶层目录；如果是外部构建，就是指工程编译发生的目录。</li>
+<li><code>CMAKE_SOURCE_DIR</code> 或 <code>PROJECT_SOURCE_DIR</code> 或 <code>&lt;ProjectName&gt;_SOURCE_DIR</code>：均代表工程顶层目录。</li>
+<li><code>CMAKE_CURRENT_SOURCE_DIR</code>：代表当前处理的 CMakeLists.txt 所在的路径。</li>
+<li><code>CMAKE_CURRENT_BINARY_DIR</code>：如果是内部构建，与<code>CMAKE_CURRENT_SOURCE_DIR</code>相同；如果是外部构建，则代表目标编译目录。</li>
+<li><code>CMAKE_CURRENT_LIST_FILE</code>：这个变量所在的CMakeLists.txt的完整路径。</li>
+<li><code>CMAKE_CURRENT_LIST_LINE</code>：这个变量所在的行。</li>
+<li><code>CMAKE_MODULE_PATH</code>：定义cmake模块所在的路径</li>
+<li><code>EXECUTABLE_OUTPUT_PATH</code> 和 <code>LIBRARY_OUTPUT_PATH</code>：分别重新定义最终结果的存放目录。</li>
+<li><code>PROJECT_NAME</code>：项目名称<h3 id="0-2-指令规则"><a href="#0-2-指令规则" class="headerlink" title="0.2 指令规则"></a>0.2 指令规则</h3>&emsp;&emsp;1. 基本语法为：指令(参数1 参数2 …)<br>&emsp;&emsp;2. 参数之间使用空格或分号隔开，例如<code>ADD_EXECUTABLE(hello main.c;func.c)</code><br>&emsp;&emsp;3. 指令不区分大小写，参数和变量区分大小写，但推荐全部使用大写指令<br>&emsp;&emsp;4. 当文件名中含有空格时，必须使用双引号，例如<code>SET(SRC_LIST &quot;fu nc.c&quot;)</code></li>
+</ol>
+<h3 id="0-3-基本构建过程"><a href="#0-3-基本构建过程" class="headerlink" title="0.3 基本构建过程"></a>0.3 基本构建过程</h3><p>&emsp;&emsp;1. 编写程序与CMakeLists.txt文件<br>&emsp;&emsp;2. 建立外部编译目录：<code>mkdir build</code><br>&emsp;&emsp;3. 进入外部编译目录：<code>cd build</code><br>&emsp;&emsp;4. 构建工程：<code>cmake ..</code><br>&emsp;&emsp;5. 实际构建：<code>make</code><br>&emsp;&emsp;6. 运行程序：<code>./&lt;Executable Filename&gt;</code><br>&emsp;&emsp;7. 清理工程：<code>make clean</code></p>
+<h2 id="一、基本指令"><a href="#一、基本指令" class="headerlink" title="一、基本指令"></a>一、基本指令</h2><h3 id="1-PROJECT指令"><a href="#1-PROJECT指令" class="headerlink" title="1. PROJECT指令"></a>1. PROJECT指令</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PROJECT(projectname [CXX] [C] [Java])</span><br><span class="line"># 例：PROJECT(HELLO)</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;定义工程名称，并可制订工程支持的语言，默认支持所有语言。此指令隐式的定义了两个变量 <code>PROJECT_BINARY_DIR</code> 和 <code>PROJECT_SOURCE_DIR</code>。</p>
+<h3 id="2-SET指令"><a href="#2-SET指令" class="headerlink" title="2. SET指令"></a>2. SET指令</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SET(VAR [VALUE] [CACHE TYPE DOCSTRING [FORCE]])</span><br><span class="line"># 例<span class="number">1</span>：SET(SRC_LIST main.c)</span><br><span class="line"># 例<span class="number">2</span>：SET(EXECUTABLE_OUPUT_PATH $&#123;PROJECT_BINARY_DIR&#125;/bin)</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;用来显式的定义变量。<br>&emsp;&emsp;在<code>ADD_EXECUTABL</code>所在的CMakeLists.txt文件中，添加如例2的语句，可以修改最终目标二进制文件输出的路径为<code>build/bin</code></p>
+<h3 id="3-MESSAGE指令"><a href="#3-MESSAGE指令" class="headerlink" title="3. MESSAGE指令"></a>3. MESSAGE指令</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MESSAGE([SEND_ERROR | STATUS | FATAL_ERROR] <span class="string">&quot;message to display&quot;</span>)</span><br><span class="line"># 例：MESSAGE(STATUS <span class="string">&quot;This is BINARY dir $&#123;HELLO_BINARY_DIR&#125;&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;用于向终端输出用户定义的信息，包括三种类型</p>
+<ul>
+<li>SEND_ERROR：产生错误，生成过程被跳过</li>
+<li>STATUS：输出前缀为-的信息</li>
+<li>FATAL_ERROR：立即终止所有cmake过程</li>
+</ul>
+<h3 id="4-ADD-EXECUTABLE指令"><a href="#4-ADD-EXECUTABLE指令" class="headerlink" title="4. ADD_EXECUTABLE指令"></a>4. ADD_EXECUTABLE指令</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ADD_EXECUTABLE(&lt;Executable Filename&gt; $&#123;SRC_LIST&#125;)</span><br><span class="line"># 例：ADD_EXECUTABLE(hello $&#123;SRC_LIST&#125;)</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;定义工程会生成文件名为<code>&lt;Executable Filename&gt;</code>的可执行文件，相关的源文件是SRC_LIST中定义的源文件列表。</p>
+<h3 id="5-ADD-SUBDIRECTORY指令"><a href="#5-ADD-SUBDIRECTORY指令" class="headerlink" title="5. ADD_SUBDIRECTORY指令"></a>5. ADD_SUBDIRECTORY指令</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ADD_SUBDIRECTORY(source_dir [binary_dir] [EXCLUDE_FROM_ALL])</span><br><span class="line"># 例：ADD_SUBDIRECTORY(src bin)</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;用于将子目录加入当前工程，并可以指定其二进制文件存放的位置。<code>EXCLUDE_FROM_ALL</code>含义是将此目录从编译过程中排除。（例：将src子目录加入工程，并制订编译输出路径为bin，那么编译结果都将放在<code>build/bin</code>中）</p>
+<h3 id="6-INSTALL指令"><a href="#6-INSTALL指令" class="headerlink" title="6. INSTALL指令"></a>6. INSTALL指令</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">INSTALL</span>(TARGETS targets... [EXPORT &lt;<span class="keyword">export</span>-name&gt;]</span><br><span class="line">        [[ARCHIVE|LIBRARY|RUNTIME|OBJECTS|FRAMEWORK|BUNDLE|</span><br><span class="line">          PRIVATE_HEADER|PUBLIC_HEADER|RESOURCE]</span><br><span class="line">         [DESTINATION &lt;dir&gt;]</span><br><span class="line">         [PERMISSIONS permissions...]</span><br><span class="line">         [CONFIGURATIONS [Debug|Release|...]]</span><br><span class="line">         [COMPONENT &lt;component&gt;]</span><br><span class="line">         [NAMELINK_COMPONENT &lt;component&gt;]</span><br><span class="line">         [OPTIONAL] [EXCLUDE_FROM_ALL]</span><br><span class="line">         [NAMELINK_ONLY|NAMELINK_SKIP]</span><br><span class="line">        ] [...]</span><br><span class="line">        [INCLUDES DESTINATION [&lt;dir&gt; ...]]</span><br><span class="line">        )</span><br><span class="line"># 例：<span class="built_in">INSTALL</span>(FILES COPYRIGHT README DESTINATION share/doc/cmake/test)</span><br><span class="line"># 例：<span class="built_in">INSTALL</span>(PROGRAMS runprog.sh DESTINATION bin)</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;INSTALL指令用于安装各种类型的文件，参数中的TARGETS就是要安装的文件，可以是二进制文件、动态库、静态库。在各个CMakeLists.txt中编写好INSTALL指令后就可以开始安装了。<br>&emsp;&emsp;安装的过程如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cmake -DCMAKE_INSTALL_PREFIX=&lt;Install Path&gt;</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></p>
+<h3 id="7-ADD-DEPENDENCIES指令"><a href="#7-ADD-DEPENDENCIES指令" class="headerlink" title="7. ADD_DEPENDENCIES指令"></a>7. ADD_DEPENDENCIES指令</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ADD_DEPENDENCIES(target-name depend-target1 depend-target2 ...)</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;定义target以来的其他target，确保在本项目编译前，其他target已经被构建</p>
+<h3 id="8-ADD-TEST与ENABLE-TESTING指令"><a href="#8-ADD-TEST与ENABLE-TESTING指令" class="headerlink" title="8. ADD_TEST与ENABLE_TESTING指令"></a>8. ADD_TEST与ENABLE_TESTING指令</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ADD_TEST(testname Exename arg1 arg2 ...)</span><br><span class="line">ENABLE_TEST()</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;用于创建test目标，生成makefile后就可以通过make test进行测试了。</p>
+<h3 id="9-EXEC-PROGRAM"><a href="#9-EXEC-PROGRAM" class="headerlink" title="9. EXEC_PROGRAM"></a>9. EXEC_PROGRAM</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">EXEC_PROGRAM</span>(Executable</span><br><span class="line">			[directory in which to run]</span><br><span class="line">			[ARGS &lt;arguments to executable&gt;]</span><br><span class="line">			[OUTPUT_VARIABLE &lt;var&gt;]</span><br><span class="line">			[RETURN_VALUE &lt;var&gt;])</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;用于指定在特定的目录运行某个程序。</p>
+<h2 id="三、静态库与动态库的构建与使用"><a href="#三、静态库与动态库的构建与使用" class="headerlink" title="三、静态库与动态库的构建与使用"></a>三、静态库与动态库的构建与使用</h2><h3 id="3-1-静态库和动态库的构建方法"><a href="#3-1-静态库和动态库的构建方法" class="headerlink" title="3.1 静态库和动态库的构建方法"></a>3.1 静态库和动态库的构建方法</h3><p>&emsp;&emsp;1. 在工程目录下新建一个<code>lib</code>文件夹，并将其添加进工程目录中。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 工程目录下的CMakeLists.txt</span><br><span class="line"><span class="title function_">PROJECT</span><span class="params">(HELLOLIB)</span></span><br><span class="line"><span class="title function_">ADD_SUBDIRECTORY</span><span class="params">(lib)</span></span><br></pre></td></tr></table></figure><br>&emsp;&emsp;2. 在<code>lib</code>文件夹下创建源文件。<br>&emsp;&emsp;3. 在<code>lib</code>目录下创建<code>CMakeLists.txt</code>。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">SET(LIBHELLO_SRC hello.c)</span><br><span class="line">#创建动态库</span><br><span class="line">ADD_LIBRARY(hello SHARED $&#123;LIBHELLO_SRC&#125;)</span><br><span class="line">#创建静态库</span><br><span class="line">ADD_LIBRARY(hello_static STATIC $&#123;LIBHELLO_SRC&#125;)</span><br><span class="line">SET_TARGET_PROPERTIES(hello_static PROPERTIES OUTPUT_NAME <span class="string">&quot;hello&quot;</span>)</span><br><span class="line">#实现动态库版本号</span><br><span class="line">SET_TARGET_PROPERTIES(hello PROPERTIES VERSION <span class="number">1.2</span> SOVERSION <span class="number">1</span>)</span><br><span class="line">#安装共享库和头文件</span><br><span class="line">INSTALL(TARGETS hello hello_static LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)</span><br><span class="line">INSTALL(FILES hello.h DESTINATION include/hello)</span><br></pre></td></tr></table></figure><br>&emsp;&emsp;4. 安装共享库和头文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake -DCMAKE_INSTALL_PREFIX=/usr ..</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-2-外部共享库和头文件的使用"><a href="#3-2-外部共享库和头文件的使用" class="headerlink" title="3.2 外部共享库和头文件的使用"></a>3.2 外部共享库和头文件的使用</h3><p>&emsp;&emsp;1. 在新工程目录下创建<code>src</code>目录，并在其中编写源文件main.c<br>&emsp;&emsp;2. 编写工程目录下<code>CMakeLists.txt</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PROJECT(NEWHELLO)</span><br><span class="line">ADD_SUBDIRECTORY(src)</span><br></pre></td></tr></table></figure><br>&emsp;&emsp;3. 编写<code>src</code>目录下的<code>CMakeLists.txt</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ADD_EXECUTABLE(main main.c)</span><br><span class="line"># 添加头文件搜索路径</span><br><span class="line">INCLUDE_DIRECTORIES(/usr/include/hello)</span><br><span class="line"># 将目标文件链接到共享库</span><br><span class="line">TARGET_LINK_LIBRARIES(main libhello.so)</span><br><span class="line"># 或：TARGET_LINK_LIBRARIES(main hello)</span><br><span class="line"># 或链接到静态库：TARGET_LINK_LIBRARIES(main libhello.a)</span><br></pre></td></tr></table></figure><br>&emsp;&emsp;4. 构建运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake ..</span><br><span class="line">make</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>参考自<a target="_blank" rel="noopener" href="https://huffie.lanzoui.com/i2kKdu0fu9e">《cmake practice》</a></p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>《cmake practice》总结  cmake的构建过程与基本指令</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://www.mahaofei.com/post/cmake.html">https://www.mahaofei.com/post/cmake.html</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>马浩飞</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2021-09-14</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2021-09-14</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/CPP/">CPP</a><a class="post-meta__tags" href="/tags/opencv/">opencv</a></div><div class="post_share"><div class="social-share" data-image="https://img.mahaofei.com/img/20220410093824.png" data-sites="qq,wechat,weibo,facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/img/wechatpay.png" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/opencv-knn.html"><img class="prev-cover" src="https://img.mahaofei.com/img/202112231934427-opencv-knn-2.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【OpenCV/C++】KNN算法识别数字的实现原理与代码详解</div></div></a></div><div class="next-post pull-right"><a href="/post/ros-basic.html"><img class="next-cover" src="https://img.mahaofei.com/img/202112231938582-ros-basic-9.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ROS系统基本功能的使用详解（基本指令/节点/服务/启动文件/动态参数）</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><a href="https://www.mahaofei.com"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></a></div><div class="author-info__name">马浩飞</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-solid fa-graduation-cap"></i><span>学术主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/HaofeiMa" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:mail@mahaofei.com" target="_blank" title="E-Mail"><i class="fa fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">新增了<a target="_blank" rel="noopener" href="https://academic.mahaofei.com/">学术主页</a>！<br>有任何问题欢迎留言评论或邮件联系。<br>E-mail：<a href="mailto:blog@mahaofei.com" style="text-decoration:underline;">blog@mahaofei.com</a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E3%80%87%E3%80%81%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99"><span class="toc-text">〇、基本语法规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-1-%E5%8F%98%E9%87%8F"><span class="toc-text">0.1 变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-2-%E6%8C%87%E4%BB%A4%E8%A7%84%E5%88%99"><span class="toc-text">0.2 指令规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-3-%E5%9F%BA%E6%9C%AC%E6%9E%84%E5%BB%BA%E8%BF%87%E7%A8%8B"><span class="toc-text">0.3 基本构建过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9F%BA%E6%9C%AC%E6%8C%87%E4%BB%A4"><span class="toc-text">一、基本指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-PROJECT%E6%8C%87%E4%BB%A4"><span class="toc-text">1. PROJECT指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-SET%E6%8C%87%E4%BB%A4"><span class="toc-text">2. SET指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-MESSAGE%E6%8C%87%E4%BB%A4"><span class="toc-text">3. MESSAGE指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-ADD-EXECUTABLE%E6%8C%87%E4%BB%A4"><span class="toc-text">4. ADD_EXECUTABLE指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-ADD-SUBDIRECTORY%E6%8C%87%E4%BB%A4"><span class="toc-text">5. ADD_SUBDIRECTORY指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-INSTALL%E6%8C%87%E4%BB%A4"><span class="toc-text">6. INSTALL指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-ADD-DEPENDENCIES%E6%8C%87%E4%BB%A4"><span class="toc-text">7. ADD_DEPENDENCIES指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-ADD-TEST%E4%B8%8EENABLE-TESTING%E6%8C%87%E4%BB%A4"><span class="toc-text">8. ADD_TEST与ENABLE_TESTING指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-EXEC-PROGRAM"><span class="toc-text">9. EXEC_PROGRAM</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%9D%99%E6%80%81%E5%BA%93%E4%B8%8E%E5%8A%A8%E6%80%81%E5%BA%93%E7%9A%84%E6%9E%84%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8"><span class="toc-text">三、静态库与动态库的构建与使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E9%9D%99%E6%80%81%E5%BA%93%E5%92%8C%E5%8A%A8%E6%80%81%E5%BA%93%E7%9A%84%E6%9E%84%E5%BB%BA%E6%96%B9%E6%B3%95"><span class="toc-text">3.1 静态库和动态库的构建方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%A4%96%E9%83%A8%E5%85%B1%E4%BA%AB%E5%BA%93%E5%92%8C%E5%A4%B4%E6%96%87%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">3.2 外部共享库和头文件的使用</span></a></li></ol></li></ol></div></div><div class="card-widget card-recommend-post"><div class="item-headline"><i class="fas fa-dharmachakra"></i><span>相关推荐</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/cpp-note2.html" title="【C++笔记】封装的意义，结构体和类的区别"><img src="https://img.mahaofei.com/img/20220410093451.png" alt="【C++笔记】封装的意义，结构体和类的区别"></a><div class="content"><a class="title" href="/post/cpp-note2.html" title="【C++笔记】封装的意义，结构体和类的区别">【C++笔记】封装的意义，结构体和类的区别</a><time datetime="2021-03-05" title="发表于 2021-03-05">2021-03-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/cpp-note1.html" title="【C++笔记】函数的用法：函数的默认参数、占位参数、函数重载"><img src="https://img.mahaofei.com/img/20220410093451.png" alt="【C++笔记】函数的用法：函数的默认参数、占位参数、函数重载"></a><div class="content"><a class="title" href="/post/cpp-note1.html" title="【C++笔记】函数的用法：函数的默认参数、占位参数、函数重载">【C++笔记】函数的用法：函数的默认参数、占位参数、函数重载</a><time datetime="2021-03-04" title="发表于 2021-03-04">2021-03-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/cpp-note3.html" title="【C++笔记】构造函数与析构函数相关知识"><img src="https://img.mahaofei.com/img/20220410093451.png" alt="【C++笔记】构造函数与析构函数相关知识"></a><div class="content"><a class="title" href="/post/cpp-note3.html" title="【C++笔记】构造函数与析构函数相关知识">【C++笔记】构造函数与析构函数相关知识</a><time datetime="2021-03-06" title="发表于 2021-03-06">2021-03-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/cpp-note4.html" title="【C++笔记】对象模型和this指针"><img src="https://img.mahaofei.com/img/20220410093451.png" alt="【C++笔记】对象模型和this指针"></a><div class="content"><a class="title" href="/post/cpp-note4.html" title="【C++笔记】对象模型和this指针">【C++笔记】对象模型和this指针</a><time datetime="2021-03-07" title="发表于 2021-03-07">2021-03-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/cpp-note6.html" title="【C++笔记】运算符重载"><img src="https://img.mahaofei.com/img/20220410093451.png" alt="【C++笔记】运算符重载"></a><div class="content"><a class="title" href="/post/cpp-note6.html" title="【C++笔记】运算符重载">【C++笔记】运算符重载</a><time datetime="2021-03-09" title="发表于 2021-03-09">2021-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/cpp-note7.html" title="【C++笔记】继承"><img src="https://img.mahaofei.com/img/20220410093451.png" alt="【C++笔记】继承"></a><div class="content"><a class="title" href="/post/cpp-note7.html" title="【C++笔记】继承">【C++笔记】继承</a><time datetime="2021-03-10" title="发表于 2021-03-10">2021-03-10</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.mahaofei.com/img/GoodnightCopenhagen.png')"><div id="footer-wrap"><div class="footer_custom_text"><p><a style="margin-inline:5px"target="_blank"href="https://github.com/"><img src="https://img.shields.io/badge/Hosted-Github-brightgreen?style=flat&logo=GitHub"title="本站项目由Gtihub托管"></a><a style="margin-inline:5px"target="_blank"href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo"title="博客框架为Hexo"></a><a style="margin-inline:5px"target="_blank"href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?logoColor=white&style=flat&logo=buefy"title="主题采用butterfly"></a><a style="margin-inline:5px"target="_blank"href="https://aliyun.com/product/cdn"><img src="https://img.shields.io/badge/DNS-Cloudflare-orange?style=flat&logo=Cloudflare"title="本站使用Cloudflare网络服务"></a><a style="margin-inline:5px"target="_blank"href="https://beian.miit.gov.cn/"><img src="https://img.shields.io/badge/%E6%B4%A5ICP%E5%A4%87-2021000769%E5%8F%B7--3-red?logo=data:image/png;base64,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"title="备案号:津ICP备2021000769号-3"></a><a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris"title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><i class="fas fa-adjust"><use id="modeicon" xlink:href="#icon-moon"></use></i></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Algolia</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, "https://cdn.jsdelivr.net/gh/zhheo/twikoo@dev/dist/twikoo.all.min.js"))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script><script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script><script src="/js/custom/categoryBar.js"></script><script src="/js/custom/cardHistory.js"></script><script src="/js/custom/light_dark.js"></script><script src="/js/custom/forbidCopy.js"></script><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"Jfmc1FSFWs09EC8r",ck:"Jfmc1FSFWs09EC8r"})</script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script>new LingQue.Monitor().init({id:"JfmcYvlVsVAZlVkS"});</script><script defer src="https://cloud.umami.is/script.js" data-website-id="86b466f8-e8bc-415b-954e-289b3d0110fb"></script><script src="/js/custom/custom.js"></script><script src="/js/custom/nav.js"></script><script id="canvas_nest" defer="defer" color="66,66,66" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

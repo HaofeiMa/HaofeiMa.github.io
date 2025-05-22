@@ -1,0 +1,430 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>【论文笔记】面向非结构化环境的机器人6D抓取技术研究 | 马浩飞丨博客</title><meta name="keywords" content="笔记,视觉,机器人抓取"><meta name="author" content="马浩飞"><meta name="copyright" content="马浩飞"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="面向非结构化环境的机器人6D抓取技术研究">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【论文笔记】面向非结构化环境的机器人6D抓取技术研究">
+<meta property="og:url" content="https://www.mahaofei.com/post/thesis-6d-grasp.html">
+<meta property="og:site_name" content="马浩飞丨博客">
+<meta property="og:description" content="面向非结构化环境的机器人6D抓取技术研究">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.mahaofei.com/img/20220820141021.png">
+<meta property="article:published_time" content="1999-12-31T16:00:00.000Z">
+<meta property="article:modified_time" content="1999-12-31T16:00:00.000Z">
+<meta property="article:author" content="马浩飞">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="视觉">
+<meta property="article:tag" content="机器人抓取">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.mahaofei.com/img/20220820141021.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.mahaofei.com/post/thesis-6d-grasp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-bB89NudWgv"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?439a0d0abeb31dd8f338efd8266c999b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"ABY1KMOQQM","apiKey":"d3f3a4fbb355106e6bf265cf8da1863b","indexName":"hexo","hits":{"per_page":4},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【论文笔记】面向非结构化环境的机器人6D抓取技术研究',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2000-01-01 00:00:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="/css/custom/MainColor.css"><link rel="stylesheet" href="/css/custom/categoryBar.css"><link rel="stylesheet" href="/css/custom/404.css"><link rel="stylesheet" href="/css/custom/cardHistory.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><link rel="stylesheet" href="/css/custom/custom.css"><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="马浩飞丨博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.mahaofei.com/img/20220820141021.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">马浩飞丨博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div><center id="name-container"><a id="page-name" href="javascript:scrollToTop()">PAGE_NAME</a></center></div><div id="nav-right"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【论文笔记】面向非结构化环境的机器人6D抓取技术研究</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="1999-12-31T16:00:00.000Z" title="发表于 2000-01-01 00:00:00">2000-01-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="1999-12-31T16:00:00.000Z" title="更新于 2000-01-01 00:00:00">2000-01-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">计算机视觉</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/%E7%89%A9%E4%BD%93%E4%BD%8D%E5%A7%BF%E4%BC%B0%E8%AE%A1/">物体位姿估计</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【论文笔记】面向非结构化环境的机器人6D抓取技术研究"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/post/thesis-6d-grasp.html#post-comment"><span id="twikoo-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>针对非结构化环境中抓取物体的问题，从以下四个方面展开研究，并在相关开源算法的基础上进行改进。</p>
+<ol>
+<li>实例分割（SOLOv2）</li>
+<li>位姿估计（Contact-GraspNet）</li>
+<li>地图构建（Otomap）</li>
+<li>运动规划（GRRT-Connect）</li>
+</ol>
+<h1 id="一、研究现状"><a href="#一、研究现状" class="headerlink" title="一、研究现状"></a>一、研究现状</h1><h2 id="2-1-物体识别与位姿估计"><a href="#2-1-物体识别与位姿估计" class="headerlink" title="2.1 物体识别与位姿估计"></a>2.1 物体识别与位姿估计</h2><p>物体识别：</p>
+<ul>
+<li>两阶段方法：RCNN</li>
+<li>单阶段方法：YOLO，SSD</li>
+</ul>
+<p>位姿估计：</p>
+<ul>
+<li>基于点对应</li>
+<li>基于投票</li>
+<li>基于回归</li>
+</ul>
+<p>代表性工作：</p>
+<ul>
+<li>PoseCNN：三个分支完成语义分割，位置预测（霍夫投票）、姿态预测（池化+回归）</li>
+<li>6-PACK：使用立方体包络框表示物体，引入anchor机制，无需三维模型</li>
+<li>DenseFusion：RGB和点云融合，实现端到端的训练</li>
+</ul>
+<blockquote>
+<ol>
+<li><p>什么是霍夫投票？</p>
+</li>
+<li><p>为什么anchor机制可以无需三维模型估计位姿？</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="2-2-端到端的抓取估计"><a href="#2-2-端到端的抓取估计" class="headerlink" title="2.2 端到端的抓取估计"></a>2.2 端到端的抓取估计</h2><p>代表性工作：</p>
+<ul>
+<li>GQ-CNN：抓取采样（获得多个候选抓取配置），质量评估</li>
+<li>GPD：不需要分割对象</li>
+<li>PointNetGPD：对局部结构进行特征提取和表征</li>
+<li>RegNet：抓取点置信度预测网络+抓取区域生成网络+抓取校正网络</li>
+</ul>
+<h1 id="二、基于SOLOv2的目标识别及分割"><a href="#二、基于SOLOv2的目标识别及分割" class="headerlink" title="二、基于SOLOv2的目标识别及分割"></a>二、基于SOLOv2的目标识别及分割</h1><h2 id="2-1-实例分割算法简介"><a href="#2-1-实例分割算法简介" class="headerlink" title="2.1 实例分割算法简介"></a>2.1 实例分割算法简介</h2><p>实力分割可以按以下方式分类：</p>
+<ul>
+<li>两阶段方法<ul>
+<li>自顶向下：先确定物体所在区域，再在区域内进行语义分割</li>
+<li>自底向上：先进性像素级别的语义分割，再学习区分不同实例</li>
+</ul>
+</li>
+<li>单阶段方法</li>
+</ul>
+<p>相关算法</p>
+<ul>
+<li>Mask RCNN：分成目标检测分支和mask预测分支实现</li>
+<li>Yolact：分为生成原型掩膜和生成掩膜系数两个字任务并行运行</li>
+<li>PolarMask：将实力分割和目标检测任务采用相同的建模方式</li>
+<li>BlendMask：融合实例级注意力信息和低级别语义信息改进掩码预测</li>
+</ul>
+<h2 id="2-2-SOLOv2"><a href="#2-2-SOLOv2" class="headerlink" title="2.2 SOLOv2"></a>2.2 SOLOv2</h2><p>SOLOv2是，无候选框，单阶段的实例分割算法。</p>
+<h3 id="2-2-1-网络结构"><a href="#2-2-1-网络结构" class="headerlink" title="2.2.1 网络结构"></a>2.2.1 网络结构</h3><p><strong>SOLOv1的网络结构</strong></p>
+<ul>
+<li>backbone：通过卷积、池化、残差网络、激活函数等单元对图像特征进行提取，采用ResNet50或ResNet101</li>
+<li>FPN网络：建立特征金字塔，将低层特征和高层特征进行融合</li>
+<li>SOLO head：分为两个分支，类别预测分支和掩膜预测分支。类别预测分支输出的维度是SxSxC，特征图被分为SxS网格，每个通道表示物体属于某一类别的置信度。掩膜预测分支输出HxWxS^2的特征图，H和W为特征图的高和宽，通道数S^2为可以预测的最大掩膜数量。</li>
+</ul>
+<p><img src="https://img.mahaofei.com/img/20220704211545.png" alt=""></p>
+<p><strong>SOLOv2网络结构改进</strong></p>
+<ul>
+<li>掩膜预测分支使用Decoupled SOLO结构进行改进，将通道数由S^2将为2S。</li>
+<li>提出了动态预测掩膜的方法，将掩膜预测分支划分为卷积核预测分支和掩膜特征预测分支，掩膜通过卷积核和掩膜特征图卷积得到。</li>
+</ul>
+<p><img src="https://img.mahaofei.com/img/20220704212325.png" alt=""></p>
+<h3 id="2-2-2-非极大值抑制算法"><a href="#2-2-2-非极大值抑制算法" class="headerlink" title="2.2.2 非极大值抑制算法"></a>2.2.2 非极大值抑制算法</h3><p>非极大值抑制算法NMS，主要作用是筛选出局部极大值，抑制非极大值，通过NMS算法可以筛选出得分最高的检测框。</p>
+<p>Soft NMS算法通过引入置信度防止两个目标接近情况下其中一个检测框被抑制的情况。</p>
+<p>Matrix NMS算法，使用矩阵并行运算极大提高了算法运行速度，可以在1ms内处理500个mask。</p>
+<p>一个预测的掩膜$m_j$被抑制的因素归为两方面：</p>
+<ul>
+<li>每个预测的掩膜$m_i$对$m_j$的惩罚</li>
+<li>$m_i$本身被抑制的概率</li>
+</ul>
+<p>如果$m_i$被抑制，那么它对$m_j$的惩罚将不存在。而$m_i$被抑制的概率与掩膜之间的交并比IOU最大值正相关。</p>
+<h3 id="2-2-3-正负样本分配策略和损失函数设计"><a href="#2-2-3-正负样本分配策略和损失函数设计" class="headerlink" title="2.2.3 正负样本分配策略和损失函数设计"></a>2.2.3 正负样本分配策略和损失函数设计</h3><p>目标检测算法采用的正负样本分配策略通常是当网格落入任何物体的真实中心区域，那么就将其视为正样本，反之则为负样本，通过实验验证这种设计通常是最有效的。SOLOv2算法采用类似的策略。</p>
+<p>物体的真实区域设置为S，S为以掩膜中心位置$(c_x, c_y)$为中心，宽高为$(\epsilon w, \epsilon h)$的矩形区域，其中$\epsilon=0.2$，$w, h$为真是淹没的宽高</p>
+<p>$S=(c_x, c_y, \epsilon w, \epsilon h)$</p>
+<p>若网格$(i, j)$落在任何物体的真是区域中，就可以将类别预测分支的该位置和掩膜预测分支的对应通道设置为正样本，反之为负样本。</p>
+<h3 id="2-2-4-图像增广"><a href="#2-2-4-图像增广" class="headerlink" title="2.2.4 图像增广"></a>2.2.4 图像增广</h3><p>图像增广技术可以分为在线增广和离线增广。在线增广即在模型训练过程中同时使用图像增广技术，在图像输入模型前对其进行增广。离线增广技术是在模型训练之前就对数据进行增广。</p>
+<p><strong>（1）图像增广技术</strong></p>
+<ol>
+<li>旋转和裁剪，通过翻转和裁剪可以有效降低模型对物体位置的依赖性；</li>
+<li>亮度和色彩变换，可以有效降低模型对色彩、光照的敏感程度；</li>
+<li>噪点引入，可以增强模型对图像噪声的抗干扰性；其他常见的技术还有锐化、对比度增强、仿射变换等等。</li>
+</ol>
+<p><img src="https://img.mahaofei.com/img/20220704215124.png" alt=""></p>
+<p><strong>（2）应对遮挡</strong></p>
+<p>本项目引入了两项应对遮挡的图像增广技术，分别是Cutout和GridMask。</p>
+<p>Cutout就是模拟遮挡情况，实现方法是在图像中随机选取一块方形区域，采用全0或其他纯色值填充，通过实验验证Cutout可以较好地提升模型的泛化能力。</p>
+<p>GridMask是在Cutout的基础上进行改进，因为Cutout的方形区域时随机的，因此可能会出现对重要特征全部遮盖的情况，GridMask采用排列的正方形区域进行掩码，实现对特定区域信息的dropout。</p>
+<p><img src="https://img.mahaofei.com/img/20220704215141.png" alt=""></p>
+<p><strong>（3）迁移学习</strong></p>
+<p>本项目中通过使用在coco数据集中预训练的网络参数进行迁移，迁移至实验数据集中进行训练，模型可以基于COCO数据集学习到大量特征，具备极强的泛化能力，经过较短时间的训练即在本文数据集上达到预期的精度。</p>
+<h1 id="三、抓取估计"><a href="#三、抓取估计" class="headerlink" title="三、抓取估计"></a>三、抓取估计</h1><h2 id="3-1-任务分析"><a href="#3-1-任务分析" class="headerlink" title="3.1 任务分析"></a>3.1 任务分析</h2><p>输入：<br>RGB-D 图像</p>
+<p>已有：<br>SOLOv2得到的物体语义信息和位置</p>
+<p>问题：<br>获取目标物体的6D数据，并计算抓取位姿</p>
+<p>6D抓取估计方法：</p>
+<ul>
+<li>基于已知模型的方法<ul>
+<li>过程：先进性物体位姿估计，再进行抓取匹配</li>
+<li>优点：直接从数据库中搜索对应的模型和抓取，速度快，精度高</li>
+<li>缺点：无法对未知物体进行抓取，准确性依赖于物体位姿估计的结果</li>
+</ul>
+</li>
+<li>基于无模型的方法<ul>
+<li>过程：端到端，从点云数据直接生成抓取预测，并进行抓取评估</li>
+<li>缺点：需要大量数据训练来提高鲁棒性和精度</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-2-抓取生成网络"><a href="#3-2-抓取生成网络" class="headerlink" title="3.2 抓取生成网络"></a>3.2 抓取生成网络</h2><p>使用基于PointNet改进的分层级点云处理网络，进行点云特征提取和分割。由前半部分的分层级特征提取网络和后半部分的全连接分类网络或上采样分割网络组成。</p>
+<p><strong>（1）网络基础</strong></p>
+<p>分层级特征提取网络：</p>
+<ol>
+<li>采样层：对点云使用FPS算法进行降采样，减少计算负荷</li>
+<li>组合层：以采样的C1为中心，在初始点云C中寻找K个邻域点，以覆盖点云的局部特征</li>
+<li>特征提取层：通过小型PointClond层提取点云组的特征</li>
+</ol>
+<blockquote>
+<p>FPS算法：先在初始点云C中随机选取一点p0，将其加入到集合C1中，然后计算C中所有点与P0的距离，选择距离最远的作为p1，将其添加到集合中，以此往复。</p>
+</blockquote>
+<p>将采样得到的点作为抓取接触点，抓取位姿$[R_g,t_g]$定义如下</p>
+<p>$t_g=c+\frac{w}{2}-dz$</p>
+<p>$R_g=[x, x\times z, z]$</p>
+<p>c——即夹爪闭合时和物体的接触点；<br>x——二指夹爪的平行钳口方向( 轴)， ；<br>z——夹爪接近物体的方向( 轴)， ；<br>w——夹爪抓取的宽度；<br>d——夹爪的长度；<br><img src="https://img.mahaofei.com/img/20220820141021.png" alt=""></p>
+<p><strong>（2）网络结构</strong></p>
+<p>Contact-GraspNet网络结构由PointNet++主干网络和四个分支预测网络组成。</p>
+<p>网络的输入为单视角点云、彩色图、深度图。</p>
+<p>四个分支网络分别用于预测抓取方向Grasp_x、抓取方向Grasp_z，抓取预测分数Score、抓取宽度Width。</p>
+<p>总体流程如下：</p>
+<ol>
+<li>输入：从场景点云中选取20000个点作为网络输入</li>
+<li>PointNet++：降采样得到2048个抓取接触点，提取得到特征</li>
+<li>预测分支：将特征输入，获得x、z方向预测、抓取分数和抓取宽度</li>
+<li>汇总：将所有分支输出与接触点联合计算得到抓取集合</li>
+</ol>
+<h1 id="四、运动规划"><a href="#四、运动规划" class="headerlink" title="四、运动规划"></a>四、运动规划</h1><h2 id="4-1-基于Octomap的规划地图构建"><a href="#4-1-基于Octomap的规划地图构建" class="headerlink" title="4.1 基于Octomap的规划地图构建"></a>4.1 基于Octomap的规划地图构建</h2><p>Octomap八叉树地图是机械臂运动规划、SLAM领域复杂地图构建的最佳方式之一。</p>
+<p>Octomap的底层数据结构是Octree八叉树，以Octree表示层级结构。三维空间可以分为8个象限，每个子象限又可以分为8个象限，只要未达到最大递归深度就可以一直划分。</p>
+<p><img src="https://img.mahaofei.com/img/20220821154602.png" alt=""></p>
+<p>Octomap将空间划分为三维体素网格，每一个体素有两种状态，free自由用0表示，occupied被占据用1表示。根据点云观测数据确定体素是否被占据，通过使用Ray-Casting算法，以相机光心为起点，点云中每个点为终点，形成一组射线，射线经过的体素就是非占据free状态。</p>
+<p><img src="https://img.mahaofei.com/img/20220821154609.png" alt=""></p>
+<p><strong>深度图修复</strong></p>
+<p>使用RGB-D相机采集的深度图在物体的边界存在空洞缺陷，通过双滤波核修复算法可以有效填充物体边界的空洞区域。</p>
+<p><strong>原理</strong>：遍历深度图所有像素，当出现像素值为0（空洞）时，统计以其为中心，滤波核大小范围内不为0的像素值及出现频率，选择出现最多的替代当前像素。</p>
+<p><strong>双滤波核</strong>：先对小空洞区域使用小滤波核3x3修复，例如边缘部分；对于大空洞区域使用大滤波核5x5修复，减少误差。</p>
+<h2 id="4-2-基于GRRT-Connect的机器人运动规划算法"><a href="#4-2-基于GRRT-Connect的机器人运动规划算法" class="headerlink" title="4.2 基于GRRT-Connect的机器人运动规划算法"></a>4.2 基于GRRT-Connect的机器人运动规划算法</h2><p><strong>（1）概述</strong></p>
+<p>运动规划算法主要分为两类：</p>
+<ul>
+<li>基于图搜索<ul>
+<li>原理：将空间用离散状态进行表示</li>
+<li>优点：可以寻找出最优解</li>
+<li>缺点：计算代价较大</li>
+<li>算法：Dijkstra算法、A*算法</li>
+</ul>
+</li>
+<li>基于随机采样<ul>
+<li>原理：对状态空间进行随机采样</li>
+<li>优点：可以直接在构形空间进行规划，将动力学约束考虑在内</li>
+<li>缺点：存在概率非完备或规划非最优问题</li>
+<li>算法：快速扩展随机树RRT系列算法、概率路径图PRM系列算法、ABIT*算法、BIT*算法</li>
+</ul>
+</li>
+</ul>
+<p><strong>（2）RRT算法原理</strong></p>
+<p><strong>RRT</strong></p>
+<p>快速扩展随机数算法的核心思想就是通过随机采样探索未知空间，利用树形结构维护已知状态节点。</p>
+<p><img src="https://img.mahaofei.com/img/20220821165116.png" alt=""></p>
+<p>RRT算法随机生成采样点 $q_{rand}$，然后遍历树中的节点找到离$q_{rand}$最近的节点${q_{near}}$ ，以$q_{near}$为起点向$q_{ramd}$方向生长stride的距离得到一个新的节点$q_{new}$ ，如果$q_{near}$和$q_{new}$的连线不会与状态空间中的障碍物发生碰撞，就将连线和节点$q_{new}$加入扩展树，重复这个过程。</p>
+<p><strong>RRT-Connect</strong></p>
+<p>通过双树同时对空间进行探索，一棵以起始点为根节点进行生长，另一棵以目标点为根节点进行生长。当两棵树连接到一起时，路径搜索完成。</p>
+<p><strong>GRRT-Connect</strong></p>
+<p>贪婪式快速扩展随机树算法主要通过两个方法进行优化：</p>
+<ul>
+<li>贪婪式步长递增：如果不发生碰撞，随机树一直往目标节点生长。并引入补偿增长因子$g_{rate}$，每生长一个节点就将步长stride乘以$g_{rate}$，如果与障碍物发生碰撞，则将步长stride回归到初始值，通过这种步长倍增的方式可以加快节点的连接速度并减少节点的产生。</li>
+<li>贪婪式二分剪枝策略：每次迭代尝试将当前节点与目标节点相连，如果不予障碍物发生碰撞则删除两者之间的节点，进行剪枝。否则采用二分法将目标点设置成两者中间路径上的节点，重复过程知道目标点与当前点相邻。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>【论文笔记】面向非结构化环境的机器人6D抓取技术研究</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://www.mahaofei.com/post/thesis-6d-grasp.html">https://www.mahaofei.com/post/thesis-6d-grasp.html</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>马浩飞</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2000-01-01</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2000-01-01</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="post-meta__tags" href="/tags/%E8%A7%86%E8%A7%89/">视觉</a><a class="post-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%93%E5%8F%96/">机器人抓取</a></div><div class="post_share"><div class="social-share" data-image="https://img.mahaofei.com/img/20220820141021.png" data-sites="qq,wechat,weibo,facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/img/wechatpay.png" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/densefusion-code.html"><img class="prev-cover" src="https://img.mahaofei.com/img/20230225210258.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【6D位姿估计算法】DenseFusion代码结构</div></div></a></div><div class="next-post pull-right"><a href="/post/opengl-note1.html"><img class="next-cover" src="https://img.mahaofei.com/img/202112231003356-numerical-recipe-17.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">数字化方法基础教程</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><a href="https://www.mahaofei.com"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></a></div><div class="author-info__name">马浩飞</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-solid fa-graduation-cap"></i><span>学术主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/HaofeiMa" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:mail@mahaofei.com" target="_blank" title="E-Mail"><i class="fa fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">新增了<a target="_blank" rel="noopener" href="https://academic.mahaofei.com/">学术主页</a>！<br>有任何问题欢迎留言评论或邮件联系。<br>E-mail：<a href="mailto:blog@mahaofei.com" style="text-decoration:underline;">blog@mahaofei.com</a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%A0%94%E7%A9%B6%E7%8E%B0%E7%8A%B6"><span class="toc-text">一、研究现状</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E7%89%A9%E4%BD%93%E8%AF%86%E5%88%AB%E4%B8%8E%E4%BD%8D%E5%A7%BF%E4%BC%B0%E8%AE%A1"><span class="toc-text">2.1 物体识别与位姿估计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E7%AB%AF%E5%88%B0%E7%AB%AF%E7%9A%84%E6%8A%93%E5%8F%96%E4%BC%B0%E8%AE%A1"><span class="toc-text">2.2 端到端的抓取估计</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%9F%BA%E4%BA%8ESOLOv2%E7%9A%84%E7%9B%AE%E6%A0%87%E8%AF%86%E5%88%AB%E5%8F%8A%E5%88%86%E5%89%B2"><span class="toc-text">二、基于SOLOv2的目标识别及分割</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E5%AE%9E%E4%BE%8B%E5%88%86%E5%89%B2%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B"><span class="toc-text">2.1 实例分割算法简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-SOLOv2"><span class="toc-text">2.2 SOLOv2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84"><span class="toc-text">2.2.1 网络结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-%E9%9D%9E%E6%9E%81%E5%A4%A7%E5%80%BC%E6%8A%91%E5%88%B6%E7%AE%97%E6%B3%95"><span class="toc-text">2.2.2 非极大值抑制算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3-%E6%AD%A3%E8%B4%9F%E6%A0%B7%E6%9C%AC%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5%E5%92%8C%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E8%AE%BE%E8%AE%A1"><span class="toc-text">2.2.3 正负样本分配策略和损失函数设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-4-%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%B9%BF"><span class="toc-text">2.2.4 图像增广</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%8A%93%E5%8F%96%E4%BC%B0%E8%AE%A1"><span class="toc-text">三、抓取估计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E4%BB%BB%E5%8A%A1%E5%88%86%E6%9E%90"><span class="toc-text">3.1 任务分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E6%8A%93%E5%8F%96%E7%94%9F%E6%88%90%E7%BD%91%E7%BB%9C"><span class="toc-text">3.2 抓取生成网络</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%BF%90%E5%8A%A8%E8%A7%84%E5%88%92"><span class="toc-text">四、运动规划</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E5%9F%BA%E4%BA%8EOctomap%E7%9A%84%E8%A7%84%E5%88%92%E5%9C%B0%E5%9B%BE%E6%9E%84%E5%BB%BA"><span class="toc-text">4.1 基于Octomap的规划地图构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E5%9F%BA%E4%BA%8EGRRT-Connect%E7%9A%84%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%BF%90%E5%8A%A8%E8%A7%84%E5%88%92%E7%AE%97%E6%B3%95"><span class="toc-text">4.2 基于GRRT-Connect的机器人运动规划算法</span></a></li></ol></li></ol></div></div><div class="card-widget card-recommend-post"><div class="item-headline"><i class="fas fa-dharmachakra"></i><span>相关推荐</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/6dgrasp-papers.html" title="抓取姿态估计算法调研"><img src="https://img.mahaofei.com/img/202304231603042.png" alt="抓取姿态估计算法调研"></a><div class="content"><a class="title" href="/post/6dgrasp-papers.html" title="抓取姿态估计算法调研">抓取姿态估计算法调研</a><time datetime="2023-04-23" title="发表于 2023-04-23">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/3d-reconstruction.html" title="三维重建方法汇总"><img src="https://pic2.zhimg.com/80/v2-bd6adb618c98e7b8c2cb09f4c1f2b805_720w.jpg" alt="三维重建方法汇总"></a><div class="content"><a class="title" href="/post/3d-reconstruction.html" title="三维重建方法汇总">三维重建方法汇总</a><time datetime="2022-06-25" title="发表于 2022-06-25">2022-06-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/linemod.html" title="【6D位姿估计算法】linemod的介绍与代码测试"><img src="https://img.mahaofei.com/img/mesh%E7%BD%91%E6%A0%BC%E6%A8%A1%E5%9E%8B.png" alt="【6D位姿估计算法】linemod的介绍与代码测试"></a><div class="content"><a class="title" href="/post/linemod.html" title="【6D位姿估计算法】linemod的介绍与代码测试">【6D位姿估计算法】linemod的介绍与代码测试</a><time datetime="2022-08-13" title="发表于 2022-08-13">2022-08-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/posecnn.html" title="【6D位姿估计算法】PoseCNN"><img src="https://img.mahaofei.com/img/20220907202451.png" alt="【6D位姿估计算法】PoseCNN"></a><div class="content"><a class="title" href="/post/posecnn.html" title="【6D位姿估计算法】PoseCNN">【6D位姿估计算法】PoseCNN</a><time datetime="2022-09-07" title="发表于 2022-09-07">2022-09-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/pvnet.html" title="【6D位姿估计算法】PVNet"><img src="https://img.mahaofei.com/img/20230225211551.png" alt="【6D位姿估计算法】PVNet"></a><div class="content"><a class="title" href="/post/pvnet.html" title="【6D位姿估计算法】PVNet">【6D位姿估计算法】PVNet</a><time datetime="2022-09-12" title="发表于 2022-09-12">2022-09-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/densefusion-paper.html" title="【论文笔记】DenseFusion"><img src="https://img.mahaofei.com/img/20220912191133.png" alt="【论文笔记】DenseFusion"></a><div class="content"><a class="title" href="/post/densefusion-paper.html" title="【论文笔记】DenseFusion">【论文笔记】DenseFusion</a><time datetime="2022-09-12" title="发表于 2022-09-12">2022-09-12</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.mahaofei.com/img/GoodnightCopenhagen.png')"><div id="footer-wrap"><div class="footer_custom_text"><p><a style="margin-inline:5px"target="_blank"href="https://github.com/"><img src="https://img.shields.io/badge/Hosted-Github-brightgreen?style=flat&logo=GitHub"title="本站项目由Gtihub托管"></a><a style="margin-inline:5px"target="_blank"href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo"title="博客框架为Hexo"></a><a style="margin-inline:5px"target="_blank"href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?logoColor=white&style=flat&logo=buefy"title="主题采用butterfly"></a><a style="margin-inline:5px"target="_blank"href="https://aliyun.com/product/cdn"><img src="https://img.shields.io/badge/DNS-Cloudflare-orange?style=flat&logo=Cloudflare"title="本站使用Cloudflare网络服务"></a><a style="margin-inline:5px"target="_blank"href="https://beian.miit.gov.cn/"><img src="https://img.shields.io/badge/%E6%B4%A5ICP%E5%A4%87-2021000769%E5%8F%B7--3-red?logo=data:image/png;base64,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"title="备案号:津ICP备2021000769号-3"></a><a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris"title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><i class="fas fa-adjust"><use id="modeicon" xlink:href="#icon-moon"></use></i></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Algolia</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, "https://cdn.jsdelivr.net/gh/zhheo/twikoo@dev/dist/twikoo.all.min.js"))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script><script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script><script src="/js/custom/categoryBar.js"></script><script src="/js/custom/cardHistory.js"></script><script src="/js/custom/light_dark.js"></script><script src="/js/custom/forbidCopy.js"></script><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"Jfmc1FSFWs09EC8r",ck:"Jfmc1FSFWs09EC8r"})</script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script>new LingQue.Monitor().init({id:"JfmcYvlVsVAZlVkS"});</script><script defer src="https://cloud.umami.is/script.js" data-website-id="86b466f8-e8bc-415b-954e-289b3d0110fb"></script><script src="/js/custom/custom.js"></script><script src="/js/custom/nav.js"></script><script id="canvas_nest" defer="defer" color="66,66,66" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,1154 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>【设备使用】法奥意威 FR5 机械臂 Python 控制 | 马浩飞丨博客</title><meta name="keywords" content="机器人,设备使用"><meta name="author" content="马浩飞"><meta name="copyright" content="马浩飞"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="FR5 是与 UR5 构型相似的 6 自由度机械臂，本文介绍其 Python SDK  的基本运动控制方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【设备使用】法奥意威 FR5 机械臂 Python 控制">
+<meta property="og:url" content="https://www.mahaofei.com/post/fr5-ag95.html">
+<meta property="og:site_name" content="马浩飞丨博客">
+<meta property="og:description" content="FR5 是与 UR5 构型相似的 6 自由度机械臂，本文介绍其 Python SDK  的基本运动控制方法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.mahaofei.com/img/202404102038456.png">
+<meta property="article:published_time" content="2024-04-10T02:40:07.000Z">
+<meta property="article:modified_time" content="2024-04-10T02:40:07.000Z">
+<meta property="article:author" content="马浩飞">
+<meta property="article:tag" content="机器人">
+<meta property="article:tag" content="设备使用">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.mahaofei.com/img/202404102038456.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.mahaofei.com/post/fr5-ag95"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-bB89NudWgv"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?439a0d0abeb31dd8f338efd8266c999b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"ABY1KMOQQM","apiKey":"d3f3a4fbb355106e6bf265cf8da1863b","indexName":"hexo","hits":{"per_page":4},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【设备使用】法奥意威 FR5 机械臂 Python 控制',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-04-10 10:40:07'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="/css/custom/MainColor.css"><link rel="stylesheet" href="/css/custom/categoryBar.css"><link rel="stylesheet" href="/css/custom/404.css"><link rel="stylesheet" href="/css/custom/cardHistory.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><link rel="stylesheet" href="/css/custom/custom.css"><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="马浩飞丨博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.mahaofei.com/img/202404102038456.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">马浩飞丨博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-history"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fa-solid fa-blog"></i><span> 个人博客</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> 学术主页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://nav.mahaofei.com/"><i class="fa-fw fas fa-compass"></i><span> 导航网站</span></a></li></ul></div></div><center id="name-container"><a id="page-name" href="javascript:scrollToTop()">PAGE_NAME</a></center></div><div id="nav-right"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【设备使用】法奥意威 FR5 机械臂 Python 控制</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-10T02:40:07.000Z" title="发表于 2024-04-10 10:40:07">2024-04-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-10T02:40:07.000Z" title="更新于 2024-04-10 10:40:07">2024-04-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/">机器人</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E5%A4%87/">实验设备</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">10.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>43分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【设备使用】法奥意威 FR5 机械臂 Python 控制"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/post/fr5-ag95.html#post-comment"><span id="twikoo-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>[!abstract]<br>FR5 是与 UR5 构型相似的 6 自由度机械臂，本文介绍其 Python SDK 的基本运动控制方法。本文内容参考自<a target="_blank" rel="noopener" href="https://fr-documentation.readthedocs.io/zh-cn/latest/index.html">官方文档</a>。</p>
+</blockquote>
+<h1 id="一、FR5-机器人使用方法"><a href="#一、FR5-机器人使用方法" class="headerlink" title="一、FR5 机器人使用方法"></a>一、FR5 机器人使用方法</h1><h2 id="1-1-机器人安装与连接"><a href="#1-1-机器人安装与连接" class="headerlink" title="1.1 机器人安装与连接"></a>1.1 机器人安装与连接</h2><p><strong>（1）机器人安装</strong></p>
+<p>安装好机器人，并将夹爪安装连接在机械臂末端。</p>
+<p><strong>（2）网络配置</strong></p>
+<p>机器人默认 IP 地址为 <code>192.168.58.2</code>，需要修改电脑 IP 同一频段例如 <code>192.168.58.10</code>，然后才可连接。</p>
+<p>配置好网络后，在浏览器输入 <code>192.168.58.2</code>，进入机械臂网页控制页面说明连接成功，默认用户名 admin，默认密码 123。（必须使用 Chrome 浏览器）</p>
+<p><strong>（3）Python 环境</strong></p>
+<p>该 SDK 程序基于 Python 3.10 实现，因此需要创建 3.10 的 Python 环境才能正常使用。</p>
+<p><strong>（4）设置工具坐标系</strong></p>
+<p>首先进入浏览器机器人后台，打开【初始设置-机器人设置-工具坐标】，选择坐标系名称为 toolcoord1（初始默认是 toolcoord0，尽量不修改它），此时成功设置机器人工具坐标系为 toolcoord1。</p>
+<p>如果已知参数，例如夹爪坐标系和法兰盘坐标系，方向相同，仅 Z 轴移动了一定距离。可以直接设置为：<code>[0, 0, 185, 0, 0, 0]</code></p>
+<p>或者通过六点法标定，依次选择六个点</p>
+<ul>
+<li>第 1 点：在世界中指定一个点，保持工具尖端在该位置处</li>
+<li>第 2 点：保持工具尖端在该位置处（与上一点姿态差距尽量大）</li>
+<li>第 3 点：保持工具尖端在该位置处（与前两点姿态差距尽量大）</li>
+<li>第 4 点：保持工具尖端在该位置处，末端 Z 轴与工具坐标 Z 轴平行</li>
+<li>第 5 点：移动工具末端至工具 X 轴正方向上的任一点</li>
+<li>第 6 点：移动工具末端至工具 Y 轴正方向上的任一点</li>
+</ul>
+<h2 id="1-2-示例程序"><a href="#1-2-示例程序" class="headerlink" title="1.2 示例程序"></a>1.2 示例程序</h2><p><strong>（1）机器人连接与基本运动</strong></p>
+<p>该程序的功能为，连接机器人，移动机器人至初始位置（本文中机器人安装位置绕 Z 轴有夹角，设置初始位置为夹爪向下），激活夹爪并关闭夹爪。</p>
+<figure class="highlight python"><figcaption><span>fold</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># from libfairino.utils.sdk_error import *</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> scipy.spatial.transform <span class="keyword">import</span> Rotation <span class="keyword">as</span> R</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment">###################### 机器人控制器连接测试 ######################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line"></span><br><span class="line">error = robot.SetRobotInstallAngle(<span class="number">0.0</span>,-<span class="number">20.0</span>) <span class="comment">#！！！安装角度设置应与实际一致 (错误安装角度设置会导致拖动模式下机器人失控）</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;设置机器人安装角度错误码&quot;</span>,error)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询机器人的SDK版本号</span></span><br><span class="line">ret,version  = robot.GetSDKVersion()    <span class="comment">#查询SDK版本号</span></span><br><span class="line"><span class="keyword">if</span> ret ==<span class="number">0</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;SDK版本号为&quot;</span>, version )</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;查询失败，错误码为&quot;</span>,ret)</span><br><span class="line"></span><br><span class="line"><span class="comment">###################### 机器本体运动测试 ######################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取机器人的关节位置</span></span><br><span class="line">error, joint_deg = robot.GetActualJointPosDegree()</span><br><span class="line"><span class="keyword">if</span> error == <span class="number">0</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;获取当前关节位置 (角度)&quot;</span>, joint_deg)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;获取当前关节位置(角度)失败，错误码为&quot;</span>, error)</span><br><span class="line">error, joint_rad = robot.GetActualJointPosRadian()</span><br><span class="line"><span class="keyword">if</span> error == <span class="number">0</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;获取当前关节位置 (弧度)&quot;</span>, joint_rad)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;获取当前关节位置(弧度)失败，错误码为&quot;</span>, error)</span><br><span class="line"></span><br><span class="line"><span class="comment"># # 机器人关节空间运动</span></span><br><span class="line"><span class="comment"># joint_pos1 = [20., -90., 90., -90., -90., 0.]</span></span><br><span class="line"><span class="comment"># tool = 0 #工具坐标系编号</span></span><br><span class="line"><span class="comment"># user = 0 #工件坐标系编号</span></span><br><span class="line"><span class="comment"># error = robot.MoveJ(joint_pos1, tool, user, vel=10)   #关节空间运动</span></span><br><span class="line"><span class="comment"># if error != 0:</span></span><br><span class="line"><span class="comment">#     print(&quot;关节空间运动失败，错误码为&quot;, error)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取机器人的工具坐标 [-432, -265, 477, 180, 0, 110]</span></span><br><span class="line">error, tcp_pose = robot.GetActualTCPPose()</span><br><span class="line"><span class="keyword">if</span> error == <span class="number">0</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;获取当前工具坐标&quot;</span>, tcp_pose)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;获取当前工具坐标失败，错误码为&quot;</span>, error)</span><br><span class="line"></span><br><span class="line"><span class="comment"># # 机器人直线运动</span></span><br><span class="line"><span class="comment"># pose1 = [-432, -265, 477, 180, 0, 110]</span></span><br><span class="line"><span class="comment"># tool = 0 #工具坐标系编号</span></span><br><span class="line"><span class="comment"># user = 0 #工件坐标系编号</span></span><br><span class="line"><span class="comment"># error = robot.MoveL(pose1, tool, user, vel=10)   #直线运动</span></span><br><span class="line"><span class="comment"># if error != 0:</span></span><br><span class="line"><span class="comment">#     print(&quot;直线运动失败，错误码为&quot;, error)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 机器人点到点运动</span></span><br><span class="line">pose2 = [-<span class="number">432</span>, -<span class="number">265</span>, <span class="number">477</span>, <span class="number">180</span>, <span class="number">0</span>, <span class="number">110</span>]</span><br><span class="line">tool = <span class="number">0</span> <span class="comment">#工具坐标系编号</span></span><br><span class="line">user = <span class="number">0</span> <span class="comment">#工件坐标系编号</span></span><br><span class="line">error = robot.MoveCart(pose2, tool, user, vel=<span class="number">10</span>)   <span class="comment">#点到点运动</span></span><br><span class="line"><span class="keyword">if</span> error != <span class="number">0</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;点到点运动失败，错误码为&quot;</span>, error)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询机器人运动状态</span></span><br><span class="line">error, status = robot.GetRobotMotionDone()</span><br><span class="line"><span class="keyword">if</span> error == <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">if</span> status == <span class="number">1</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;机器人运动已完成&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;机器人正在运动&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;查询机器人运动状态失败，错误码为&quot;</span>, error)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">###################### 机器人夹爪测试 ######################</span></span><br><span class="line">ret = robot.SetGripperConfig(<span class="number">4</span>,<span class="number">0</span>)  <span class="comment"># 配置夹爪，大寰夹爪</span></span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">error, config = robot.GetGripperConfig()     <span class="comment"># 获取夹爪配置</span></span><br><span class="line"></span><br><span class="line">error = robot.ActGripper(<span class="number">1</span>,<span class="number">0</span>)   <span class="comment"># 激活夹爪（复位）</span></span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># error = robot.ActGripper(1,1)   # 激活夹爪（激活）</span></span><br><span class="line"><span class="comment"># time.sleep(2)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># error = robot.MoveGripper(1,100,48,46,30000,0)  # 控制夹爪（夹爪编号，位置百分比，速度百分比，力矩百分比，最大等待时间，阻塞）</span></span><br><span class="line"><span class="comment"># time.sleep(3)</span></span><br><span class="line"></span><br><span class="line">error = robot.MoveGripper(<span class="number">1</span>,<span class="number">0</span>,<span class="number">50</span>,<span class="number">0</span>,<span class="number">30000</span>,<span class="number">0</span>)     <span class="comment"># 控制夹爪</span></span><br><span class="line">time.sleep(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">error, state = robot.GetGripperMotionDone() <span class="comment">#获取夹爪运动状态</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="二、FR5-常用-Python-接口"><a href="#二、FR5-常用-Python-接口" class="headerlink" title="二、FR5 常用 Python 接口"></a>二、FR5 常用 Python 接口</h1><h2 id="2-1-机器人基础"><a href="#2-1-机器人基础" class="headerlink" title="2.1 机器人基础"></a>2.1 机器人基础</h2><h3 id="2-1-1-实例化机器人"><a href="#2-1-1-实例化机器人" class="headerlink" title="2.1.1 实例化机器人"></a>2.1.1 实例化机器人</h3><p><code>RPC(ip)</code>：实例化一个机器人对象</p>
+<ul>
+<li>参数：<ul>
+<li><code>ip</code>：机器人的IP地址，默认出厂IP为“192.168.58.2”</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>机器人对象</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="2-1-2-查询-SDK-版本号"><a href="#2-1-2-查询-SDK-版本号" class="headerlink" title="2.1.2 查询 SDK 版本号"></a>2.1.2 查询 SDK 版本号</h3><p><code>GetSDKVersion()</code>：查询 SDK 版本号</p>
+<ul>
+<li>参数</li>
+<li>返回<ul>
+<li>[SDK_version, Controller_version]</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">ret,version  = robot.GetSDKVersion()    <span class="comment">#查询SDK版本号</span></span><br><span class="line"><span class="keyword">if</span> ret ==<span class="number">0</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;SDK版本号为&quot;</span>, version )</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;查询失败，错误码为&quot;</span>,ret)</span><br></pre></td></tr></table></figure>
+<h3 id="2-1-3-机器人手动-自动模式切换"><a href="#2-1-3-机器人手动-自动模式切换" class="headerlink" title="2.1.3 机器人手动/自动模式切换"></a>2.1.3 机器人手动/自动模式切换</h3><p><code>Mode(state)</code>：控制机器人手动/自动模式切换</p>
+<ul>
+<li>参数<ul>
+<li><code>state</code>：0-自动模式，1-手动模式</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line"><span class="comment">#机器人手自动模式切换</span></span><br><span class="line">ret = robot.Mode(<span class="number">0</span>)   <span class="comment">#机器人切入自动运行模式</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;机器人切入自动运行模式&quot;</span>, ret)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">ret = robot.Mode(<span class="number">1</span>)   <span class="comment">#机器人切入手动模式</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;机器人切入手动模式&quot;</span>, ret)</span><br></pre></td></tr></table></figure>
+<h3 id="2-1-4-控制机器人上使能或下使能"><a href="#2-1-4-控制机器人上使能或下使能" class="headerlink" title="2.1.4 控制机器人上使能或下使能"></a>2.1.4 控制机器人上使能或下使能</h3><p><code>RobotEnable(state)</code>：控制机器人上使能或下使能</p>
+<ul>
+<li>参数<ul>
+<li><code>state</code>：1-上使能，0-下使能</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line"><span class="comment">#机器人上使能或下使能</span></span><br><span class="line">ret = robot.RobotEnable(<span class="number">0</span>)   <span class="comment">#机器人下使能</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;机器人下使能&quot;</span>, ret)</span><br><span class="line">time.sleep(<span class="number">3</span>)</span><br><span class="line">ret = robot.RobotEnable(<span class="number">1</span>)   <span class="comment">#机器人上使能，机器人上电后默认自动上使能</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;机器人上使能&quot;</span>, ret)</span><br></pre></td></tr></table></figure>
+<h2 id="2-2-机器人运动控制"><a href="#2-2-机器人运动控制" class="headerlink" title="2.2 机器人运动控制"></a>2.2 机器人运动控制</h2><h3 id="2-2-1-机器人点动"><a href="#2-2-1-机器人点动" class="headerlink" title="2.2.1 机器人点动"></a>2.2.1 机器人点动</h3><p><strong>（1）Jog 点动</strong></p>
+<p><code>StartJOG(ref,nb,dir,max_dis,vel=20.0,acc=100.0)</code>：jog 点动</p>
+<ul>
+<li>参数<ul>
+<li><code>ref</code>：0-关节点动,2-基坐标系点动,4-工具坐标系点动,8-工件坐标系点动；</li>
+<li><code>nb</code>：1-1关节(x 轴),2-2关节(y 轴),3-3关节(z 轴),4-4关节(rx),5-5关节(ry),6-6关节(rz);</li>
+<li><code>dir</code>：0-负方向，1-正方向;</li>
+<li><code>max_dis</code>：单次点动最大角度/距离，单位 ° 或 mm;</li>
+<li><code>vel</code>：速度百分比，[0~100] 默认20;</li>
+<li><code>acc</code>：加速度百分比，[0~100] 默认100;</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<p><strong>（2）Jog 点动减速停止</strong></p>
+<p><code>StopJOG(ref)</code>：jog 点动减速停止</p>
+<ul>
+<li>参数<ul>
+<li><code>ref</code>：1-关节点动停止,3-基坐标系点动停止,5-工具坐标系点动停止,9-工件坐标系点动停止</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<p><strong>（3）Jog 点动立即停止</strong></p>
+<p><code>ImmStopJOG()</code>：jog 点动立即停止</p>
+<ul>
+<li>参数</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><figcaption><span>fold</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line"><span class="comment"># 机器人单轴点动</span></span><br><span class="line">robot.StartJOG(<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">20.0</span>,<span class="number">20.0</span>,<span class="number">30.0</span>)    <span class="comment"># 单关节运动,StartJOG为非阻塞指令，运动状态下接收其他运动指令（包含StartJOG）会被丢弃</span></span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line"><span class="comment">#机器人单轴点动减速停止</span></span><br><span class="line">ret = robot.StopJOG(<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(ret)</span><br><span class="line"><span class="comment">#机器人单轴点动立即停止</span></span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">0</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">20.0</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">0</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">20.0</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">0</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">20.0</span>,vel=<span class="number">40</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">0</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">20.0</span>,acc=<span class="number">50</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">0</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">20.0</span>,<span class="number">20.0</span>,<span class="number">30.0</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line"><span class="comment"># 基坐标</span></span><br><span class="line">robot.StartJOG(<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">20.0</span>)  <span class="comment">#基坐标系下点动</span></span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># #机器人单轴点动立即停止</span></span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">20.0</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">20.0</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">20.0</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">20.0</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">2</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">20.0</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">2</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">20.0</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line"><span class="comment"># 工具坐标</span></span><br><span class="line">robot.StartJOG(<span class="number">4</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">20.0</span>,<span class="number">20.0</span>,<span class="number">100.0</span>)  <span class="comment">#工具坐标系下点动</span></span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># #机器人单轴点动立即停止</span></span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">4</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">20.0</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">20.0</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">4</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">20.0</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">4</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">20.0</span>,<span class="number">20.0</span>,<span class="number">100.0</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">4</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">20.0</span>,vel=<span class="number">10.0</span>,acc=<span class="number">20.0</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">4</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">20.0</span>,acc=<span class="number">40.0</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line"><span class="comment"># 工件坐标</span></span><br><span class="line">robot.StartJOG(<span class="number">8</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">20.0</span>,<span class="number">20.0</span>,<span class="number">100.0</span>)  <span class="comment">#工件坐标系下点动</span></span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># #机器人单轴点动立即停止</span></span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">8</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">20.0</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">8</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">20.0</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">8</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">20.0</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">8</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">20.0</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">8</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">20.0</span>,vel=<span class="number">30.0</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br><span class="line">robot.StartJOG(<span class="number">8</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">20.0</span>,<span class="number">20.0</span>,acc=<span class="number">90.0</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">robot.ImmStopJOG()</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-2-关节空间运动"><a href="#2-2-2-关节空间运动" class="headerlink" title="2.2.2 关节空间运动"></a>2.2.2 关节空间运动</h3><p><code>MoveJ(joint_pos, tool, user, desc_pos = [0.0,0.0,0.0,0.0,0.0,0.0], vel = 20.0, acc = 0.0, ovl = 100.0, exaxis_pos = [0.0,0.0,0.0,0.0], blendT = -1.0, offset_flag = 0, offset_pos = [0.0,0.0,0.0,0.0,0.0,0.0])</code>：关节空间运动</p>
+<ul>
+<li>参数<ul>
+<li><code>joint_pos</code>:目标关节位置，单位[°]；</li>
+<li><code>tool</code>:工具号，[0~14]；</li>
+<li><code>user</code>:工件号，[0~14]；</li>
+<li><code>desc_pos</code>:目标笛卡尔位姿，单位 [mm][°] 默认初值为[0.0,0.0,0.0,0.0,0.0,0.0]，默认值调用正运动学求解返回值;</li>
+<li><code>vel</code>:速度百分比，[0~100] 默认20.0;</li>
+<li><code>acc</code>:加速度百分比，[0~100]，暂不开放；</li>
+<li><code>ovl</code>:速度缩放因子，[0~100] 默认100.0;</li>
+<li><code>exaxis_pos</code>:外部轴 1 位置 ~ 外部轴 4 位置 默认[0.0,0.0,0.0,0.0];</li>
+<li><code>blendT</code>:[-1.0]-运动到位 (阻塞)，[0~500.0]-平滑时间 (非阻塞)，单位 [ms] 默认-1.0;</li>
+<li><code>offset_flag</code>:[0]-不偏移，[1]-工件/基坐标系下偏移，[2]-工具坐标系下偏移 默认 0;</li>
+<li><code>offset_pos</code>:位姿偏移量，单位 [mm][°] 默认[0.0,0.0,0.0,0.0,0.0,0.0];</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">joint_pos4 = [-<span class="number">83.24</span>, -<span class="number">96.476</span>, <span class="number">93.688</span>, -<span class="number">114.079</span>, -<span class="number">62</span>, -<span class="number">100</span>]</span><br><span class="line">joint_pos5 = [-<span class="number">43.24</span>, -<span class="number">70.476</span>, <span class="number">93.688</span>, -<span class="number">114.079</span>, -<span class="number">62</span>, -<span class="number">80</span>]</span><br><span class="line">joint_pos6 = [-<span class="number">83.24</span>, -<span class="number">96.416</span>, <span class="number">43.188</span>, -<span class="number">74.079</span>, -<span class="number">80</span>, -<span class="number">10</span>]</span><br><span class="line">tool = <span class="number">0</span> <span class="comment">#工具坐标系编号</span></span><br><span class="line">user = <span class="number">0</span> <span class="comment">#工件坐标系编号</span></span><br><span class="line">ret = robot.MoveJ(joint_pos4, tool, user, vel=<span class="number">30</span>)   <span class="comment">#关节空间运动</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;关节空间运动点4:错误码&quot;</span>, ret)</span><br><span class="line">ret = robot.MoveJ(joint_pos5, tool, user)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;关节空间运动点5:错误码&quot;</span>, ret)</span><br><span class="line">robot.MoveJ(joint_pos6, tool, user, offset_flag=<span class="number">1</span>, offset_pos=[<span class="number">10</span>,<span class="number">10</span>,<span class="number">10</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;关节空间运动点6:错误码&quot;</span>, ret)</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-3-笛卡尔空间直线运动"><a href="#2-2-3-笛卡尔空间直线运动" class="headerlink" title="2.2.3 笛卡尔空间直线运动"></a>2.2.3 笛卡尔空间直线运动</h3><p><code>MoveL(desc_pos, tool, user, joint_pos = [0.0,0.0,0.0,0.0,0.0,0.0], vel = 20.0, acc = 0.0 , ovl = 100.0, blendR = -1.0, exaxis_pos = [0.0,0.0,0.0,0.0], search = 0, offset_flag = 0, offset_pos = [0.0,0.0,0.0,0.0,0.0,0.0] )</code>：笛卡尔空间直线运动</p>
+<ul>
+<li>参数<ul>
+<li><code>desc_pos</code>:目标笛卡尔位姿，单位[mm][°]；</li>
+<li><code>tool</code>:工具号，[0~14]；</li>
+<li><code>user</code>:工件号，[0~14]；</li>
+<li><code>joint_pos</code>:目标关节位置，单位 [°] 默认初值为[0.0,0.0,0.0,0.0,0.0,0.0]，默认值调用逆运动学求解返回值;</li>
+<li><code>vel</code>:速度百分比，[0~100] 默认20.0；</li>
+<li><code>acc</code>:加速度百分比，[0~100]，暂不开放 默认0.0；</li>
+<li><code>ovl</code>:速度缩放因子，[0~100] 默认100.0；</li>
+<li><code>blendR</code>:blendR:[-1.0]-运动到位 (阻塞)，[0~1000]-平滑半径 (非阻塞)，单位 [mm] 默认-1.0;</li>
+<li><code>exaxis_pos</code>:外部轴 1 位置 ~ 外部轴 4 位置 默认[0.0,0.0,0.0,0.0];</li>
+<li><code>search</code>:[0]-不焊丝寻位，[1]-焊丝寻位；</li>
+<li><code>offset_flag</code>:offset_flag:[0]-不偏移，[1]-工件/基坐标系下偏移，[2]-工具坐标系下偏移 默认 0;</li>
+<li><code>offset_pos</code>:位姿偏移量，单位 [mm][°] 默认[0.0,0.0,0.0,0.0,0.0,0.0]</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">desc_pos1 = [<span class="number">36.794</span>,-<span class="number">475.119</span>, <span class="number">65.379</span>, -<span class="number">176.938</span>, <span class="number">2.535</span>, -<span class="number">179.829</span>]</span><br><span class="line">desc_pos2 = [<span class="number">136.794</span>,-<span class="number">475.119</span>, <span class="number">65.379</span>, -<span class="number">176.938</span>, <span class="number">2.535</span>, -<span class="number">179.829</span>]</span><br><span class="line">desc_pos3 = [<span class="number">236.794</span>,-<span class="number">475.119</span>, <span class="number">65.379</span>, -<span class="number">176.938</span>, <span class="number">2.535</span>, -<span class="number">179.829</span>]</span><br><span class="line">tool = <span class="number">0</span> <span class="comment">#工具坐标系编号</span></span><br><span class="line">user = <span class="number">0</span> <span class="comment">#工件坐标系编号</span></span><br><span class="line">ret = robot.MoveL(desc_pos1, tool, user)   <span class="comment">#笛卡尔空间直线运动</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;笛卡尔空间直线运动点1:错误码&quot;</span>, ret)</span><br><span class="line">robot.MoveL(desc_pos2, tool, user, vel=<span class="number">20</span>, acc=<span class="number">100</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;笛卡尔空间直线运动点2:错误码&quot;</span>, ret)</span><br><span class="line">robot.MoveL(desc_pos3, tool, user, offset_flag=<span class="number">1</span>, offset_pos=[<span class="number">10</span>,<span class="number">10</span>,<span class="number">10</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;笛卡尔空间直线运动点3:错误码&quot;</span>, ret)</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-4-笛卡尔空间点到点运动"><a href="#2-2-4-笛卡尔空间点到点运动" class="headerlink" title="2.2.4 笛卡尔空间点到点运动"></a>2.2.4 笛卡尔空间点到点运动</h3><p><code>MoveCart(desc_pos, tool, user, vel = 20.0, acc = 0.0, ovl = 100.0, blendT = -1.0, config = -1)</code>：笛卡尔空间点到点运动</p>
+<ul>
+<li>参数<ul>
+<li><code>desc_pos</code>:目标笛卡尔位置；</li>
+<li><code>tool</code>:工具号，[0~14]；</li>
+<li><code>user</code>:工件号，[0~14]；</li>
+<li><code>vel</code>:速度，范围 [0~100]，默认为 20.0;</li>
+<li><code>acc</code>:加速度，范围 [0~100]，暂不开放,默认为 0.0;</li>
+<li><code>ovl</code>:速度缩放因子，[0~100]，默认为 100.0;</li>
+<li><code>blendT</code>:[-1.0]-运动到位 (阻塞)，[0~500]-平滑时间 (非阻塞)，单位 [ms] 默认为 -1.0;</li>
+<li><code>config</code>:关节配置，[-1]-参考当前关节位置求解，[0~7]-依据关节配置求解 默认为 -1</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">desc_pos7 = [<span class="number">236.794</span>,-<span class="number">475.119</span>, <span class="number">65.379</span>, -<span class="number">176.938</span>, <span class="number">2.535</span>, -<span class="number">179.829</span>]</span><br><span class="line">desc_pos8 = [<span class="number">236.794</span>,-<span class="number">575.119</span>, <span class="number">165.379</span>, -<span class="number">176.938</span>, <span class="number">2.535</span>, -<span class="number">179.829</span>]</span><br><span class="line">desc_pos9 = [<span class="number">236.794</span>,-<span class="number">475.119</span>, <span class="number">265.379</span>, -<span class="number">176.938</span>, <span class="number">2.535</span>, -<span class="number">179.829</span>]</span><br><span class="line">tool = <span class="number">0</span> <span class="comment">#工具坐标系编号</span></span><br><span class="line">user = <span class="number">0</span> <span class="comment">#工件坐标系编号</span></span><br><span class="line">robot.MoveCart(desc_pos7, tool, user)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;笛卡尔空间点到点运动点7:错误码&quot;</span>, ret)</span><br><span class="line">robot.MoveCart(desc_pos8, tool, user, vel=<span class="number">30</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;笛卡尔空间点到点运动点8:错误码&quot;</span>, ret)</span><br><span class="line">robot.MoveCart(desc_pos9, tool, user,)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;笛卡尔空间点到点运动点9:错误码&quot;</span>, ret)</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-5-伺服运动"><a href="#2-2-5-伺服运动" class="headerlink" title="2.2.5 伺服运动"></a>2.2.5 伺服运动</h3><p><strong>（1）伺服运动开始</strong></p>
+<p><code>ServoMoveStart()</code>：伺服运动开始，配合 ServoJ、ServoCart 指令使用</p>
+<ul>
+<li>参数</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<p><strong>（2）伺服运动结束</strong></p>
+<p><code>ServoMoveEnd()</code>：伺服运动开始，配合 ServoJ、ServoCart 指令使用</p>
+<ul>
+<li>参数</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<p><strong>（3）关节空间伺服模式运动</strong></p>
+<p><code>ServoJ(joint_pos, acc = 0.0, vel = 0.0, cmdT = 0.008, filterT = 0.0, gain = 0.0)</code>：关节空间伺服模式运动</p>
+<ul>
+<li>参数<ul>
+<li><code>joint_pos</code>:目标关节位置，单位[°]；</li>
+<li><code>acc</code>:加速度，范围 [0~100]，暂不开放，默认为 0.0;</li>
+<li><code>vel</code>:速度，范围 [0~100]，暂不开放，默认为 0.0;</li>
+<li><code>cmdT</code>:指令下发周期，单位s，建议范围[0.001~0.0016], 默认为0.008;</li>
+<li><code>filterT</code>:滤波时间，单位 [s]，暂不开放， 默认为0.0;</li>
+<li><code>gain</code>:目标位置的比例放大器，暂不开放， 默认为0.0;</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<p><strong>（4）笛卡尔空间伺服模式运动</strong></p>
+<p><code>ServoCart(mode, desc_pos, pos_gain = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] , acc = 0.0, vel = 0.0, cmdT = 0.008, filterT = 0.0, gain = 0.0)</code>：笛卡尔空间伺服模式运动</p>
+<ul>
+<li>参数<ul>
+<li><code>mode</code>:[0]-绝对运动(基坐标系)，[1]-增量运动(基坐标系)，[2]-增量运动(工具坐标系)；</li>
+<li><code>desc_pos</code>:目标笛卡尔位置/目标笛卡尔位置增量；</li>
+<li><code>pos_gain</code>:位姿增量比例系数，仅在增量运动下生效，范围 [0~1], 默认为 [1.0, 1.0, 1.0, 1.0, 1.0, 1.0];</li>
+<li><code>acc</code>:加速度，范围 [0~100]，暂不开放，默认为 0.0;</li>
+<li><code>vel</code>:速度，范围 [0~100]，暂不开放，默认为 0.0;</li>
+<li><code>cmdT</code>:指令下发周期，单位s，建议范围[0.001~0.0016], 默认为0.008;</li>
+<li><code>filterT</code>:滤波时间，单位 [s]，暂不开放， 默认为0.0;</li>
+<li><code>gain</code>:目标位置的比例放大器，暂不开放， 默认为0.0;</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><figcaption><span>fold</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">error,joint_pos = robot.GetActualJointPosDegree()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;机器人当前关节位置&quot;</span>,joint_pos)</span><br><span class="line">joint_pos = [joint_pos[<span class="number">0</span>],joint_pos[<span class="number">1</span>],joint_pos[<span class="number">2</span>],joint_pos[<span class="number">3</span>],joint_pos[<span class="number">4</span>],joint_pos[<span class="number">5</span>]]</span><br><span class="line">error_joint = <span class="number">0</span></span><br><span class="line">count =<span class="number">100</span></span><br><span class="line">error = robot.ServoMoveStart()  <span class="comment">#伺服运动开始</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;伺服运动开始错误码&quot;</span>,error)</span><br><span class="line"><span class="keyword">while</span>(count):</span><br><span class="line">    error = robot.ServoJ(joint_pos)   <span class="comment">#关节空间伺服模式运动</span></span><br><span class="line">    <span class="keyword">if</span> error!=<span class="number">0</span>:</span><br><span class="line">        error_joint =error</span><br><span class="line">    joint_pos[<span class="number">0</span>] = joint_pos[<span class="number">0</span>] + <span class="number">0.1</span>  <span class="comment">#每次1轴运动0.1度，运动100次</span></span><br><span class="line">    count = count - <span class="number">1</span></span><br><span class="line">    time.sleep(<span class="number">0.008</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;关节空间伺服模式运动错误码&quot;</span>,error_joint)</span><br><span class="line">error = robot.ServoMoveEnd()  <span class="comment">#伺服运动结束</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;伺服运动结束错误码&quot;</span>,error)</span><br><span class="line">mode = <span class="number">2</span>  <span class="comment">#[0]-绝对运动(基坐标系)，[1]-增量运动(基坐标系)，[2]-增量运动(工具坐标系)</span></span><br><span class="line">n_pos = [<span class="number">0.0</span>,<span class="number">0.0</span>,<span class="number">0.5</span>,<span class="number">0.0</span>,<span class="number">0.0</span>,<span class="number">0.0</span>]   <span class="comment">#笛卡尔空间位姿增量</span></span><br><span class="line">error,desc_pos = robot.GetActualTCPPose()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;机器人当前笛卡尔位置&quot;</span>,desc_pos)</span><br><span class="line">count = <span class="number">100</span></span><br><span class="line">error_cart =<span class="number">0</span></span><br><span class="line">error = robot.ServoMoveStart()  <span class="comment">#伺服运动开始</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;伺服运动开始错误码&quot;</span>,error)</span><br><span class="line"><span class="keyword">while</span>(count):</span><br><span class="line">    error = robot.ServoCart(mode, n_pos, vel=<span class="number">40</span>)   <span class="comment">#笛卡尔空间伺服模式运动</span></span><br><span class="line">    <span class="keyword">if</span> error!=<span class="number">0</span>:</span><br><span class="line">        error_cart =error</span><br><span class="line">    count = count - <span class="number">1</span></span><br><span class="line">    time.sleep(<span class="number">0.008</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;笛卡尔空间伺服模式运动错误码&quot;</span>, error_cart)</span><br><span class="line">error = robot.ServoMoveEnd()  <span class="comment">#伺服运动开始</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;伺服运动结束错误码&quot;</span>,error)</span><br></pre></td></tr></table></figure>
+<h2 id="2-3-机器人参数设置"><a href="#2-3-机器人参数设置" class="headerlink" title="2.3 机器人参数设置"></a>2.3 机器人参数设置</h2><h3 id="2-3-1-设置全局速度"><a href="#2-3-1-设置全局速度" class="headerlink" title="2.3.1 设置全局速度"></a>2.3.1 设置全局速度</h3><p><code>SetSpeed(vel)</code>：设置全局速度</p>
+<ul>
+<li>参数<ul>
+<li><code>vel</code>:速度百分比，范围[0~100]</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">error = robot.SetSpeed(<span class="number">20</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;设置全局速度错误码:&quot;</span>,error)</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-2-设置系统变量值"><a href="#2-3-2-设置系统变量值" class="headerlink" title="2.3.2 设置系统变量值"></a>2.3.2 设置系统变量值</h3><p><code>SetSysVarValue(id,value)</code>：设置系统变量</p>
+<ul>
+<li>参数<ul>
+<li><code>id</code>：变量编号，范围[1~20];</li>
+<li><code>value</code>：变量值</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">21</span>):</span><br><span class="line">    error = robot.SetSysVarValue(i,<span class="number">10</span>)</span><br><span class="line">robot.WaitMs(<span class="number">1000</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">21</span>):</span><br><span class="line">    sys_var = robot.GetSysVarValue(i)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;系统变量编号:&quot;</span>,i,<span class="string">&quot;值&quot;</span>,sys_var)</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-3-设置工具坐标系"><a href="#2-3-3-设置工具坐标系" class="headerlink" title="2.3.3 设置工具坐标系"></a>2.3.3 设置工具坐标系</h3><p><strong>（1）计算工具坐标系 - 六点法</strong></p>
+<p><code>SetToolPoint(point_num)</code>：设置工具参考点-六点法</p>
+<ul>
+<li>参数<ul>
+<li><code>point_num</code>：点编号,范围[1~6]</li>
+</ul>
+</li>
+<li>返回错误码</li>
+</ul>
+<p><code>ComputeTool()</code>：计算工具坐标系-六点法（设置完六个工具参考点后再进行计算）</p>
+<ul>
+<li>参数</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>tcp_pose [x,y,z,rx,ry,rz]</code>：工具坐标系</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">t_coord = [<span class="number">1.0</span>,<span class="number">2.0</span>,<span class="number">3.0</span>,<span class="number">4.0</span>,<span class="number">5.0</span>,<span class="number">6.0</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">7</span>):</span><br><span class="line">    robot.DragTeachSwitch(<span class="number">1</span>)<span class="comment">#切入拖动示教模式</span></span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br><span class="line">    error = robot.SetToolPoint(i) <span class="comment">#实际应当控制机器人按照要求移动到合适位置后再发送指令</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;六点法设置工具坐标系，记录点&quot;</span>,i,<span class="string">&quot;错误码&quot;</span>,error)</span><br><span class="line">    robot.DragTeachSwitch(<span class="number">0</span>)</span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line">error = robot.ComputeTool()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;六点法设置工具坐标系错误码&quot;</span>,error)</span><br></pre></td></tr></table></figure>
+<p><strong>（2）计算工具坐标系 - 四点法</strong></p>
+<p><code>SetTcp4RefPoint(point_num)</code>：设置工具参考点-四点法</p>
+<ul>
+<li>参数<ul>
+<li><code>point_num</code>：点编号,范围[1~4]</li>
+</ul>
+</li>
+<li>返回值<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<p><code>ComputeTcp4()</code>：计算工具坐标系-四点法（设置完四个工具参考点后再进行计算）</p>
+<ul>
+<li>参数</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>tcp_pose [x,y,z,rx,ry,rz]</code>：工具坐标系</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">t_coord = [<span class="number">1.0</span>,<span class="number">2.0</span>,<span class="number">3.0</span>,<span class="number">4.0</span>,<span class="number">5.0</span>,<span class="number">6.0</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">5</span>):</span><br><span class="line">    robot.DragTeachSwitch(<span class="number">1</span>)<span class="comment">#切入拖动示教模式</span></span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br><span class="line">    error = robot.SetTcp4RefPoint(i) <span class="comment">#应当控制机器人按照要求移动到合适位置后再发送指令</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;四点法设置工具坐标系，记录点&quot;</span>,i,<span class="string">&quot;错误码&quot;</span>,error)</span><br><span class="line">    robot.DragTeachSwitch(<span class="number">0</span>)</span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line">error,t_coord= robot.ComputeTcp4()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;四点法设置工具坐标系错误码&quot;</span>,error,<span class="string">&quot;工具TCP&quot;</span>,t_coord)</span><br></pre></td></tr></table></figure>
+<p><strong>（3）设置工具坐标系</strong></p>
+<p><code>SetToolCoord(id,t_coord,type,install)</code>：设置工具坐标系</p>
+<ul>
+<li>参数<ul>
+<li><code>id</code>:坐标系编号，范围[0~14]；</li>
+<li><code>t_coord</code>:[x,y,z,rx,ry,rz] 工具中心点相对末端法兰中心位姿，单位[mm][°]；</li>
+<li><code>type</code>:0-工具坐标系，1-传感器坐标系；</li>
+<li><code>install</code>:安装位置，0-机器人末端，1-机器人外部</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">t_coord = [<span class="number">1.0</span>,<span class="number">2.0</span>,<span class="number">3.0</span>,<span class="number">4.0</span>,<span class="number">5.0</span>,<span class="number">6.0</span>]</span><br><span class="line">error = robot.SetToolCoord(<span class="number">10</span>,t_coord,<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;设置工具坐标系错误码&quot;</span>,error)</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-4-设置外部工具坐标系"><a href="#2-3-4-设置外部工具坐标系" class="headerlink" title="2.3.4 设置外部工具坐标系"></a>2.3.4 设置外部工具坐标系</h3><p><strong>（1）设置外部工具参考点</strong></p>
+<p><code>SetExTCPPoint(point_num)</code>：设置外部工具参考点-三点法</p>
+<ul>
+<li>参数<ul>
+<li><code>point_num</code>：点编号,范围[1~3]</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<p><strong>（2）计算外部工具坐标系</strong></p>
+<p><code>ComputeExTCF(point_num)</code>：计算外部工具坐标系-三点法（设置完三个参考点后再进行计算）</p>
+<ul>
+<li>参数<ul>
+<li><code>point_num</code>：点编号,范围[1~3]</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>etcp [x,y,z,rx,ry,rz]</code>：外部工具坐标系</li>
+</ul>
+</li>
+</ul>
+<p><strong>（3）设置外部工具坐标系</strong></p>
+<p><code>SetExToolCoord(id,etcp ,etool)</code>：设置外部工具坐标系</p>
+<ul>
+<li>参数<ul>
+<li><code>id</code>:坐标系编号，范围[0~14]；</li>
+<li><code>etcp</code>:外部工具坐标系，单位[mm][°]；</li>
+<li><code>etool</code>:末端工具坐标系，单位[mm][°]；</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">etcp = [<span class="number">1.0</span>,<span class="number">2.0</span>,<span class="number">3.0</span>,<span class="number">4.0</span>,<span class="number">5.0</span>,<span class="number">6.0</span>]</span><br><span class="line">etool = [<span class="number">21.0</span>,<span class="number">22.0</span>,<span class="number">23.0</span>,<span class="number">24.0</span>,<span class="number">25.0</span>,<span class="number">26.0</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">4</span>):</span><br><span class="line">    error = robot.SetExTCPPoint(i) <span class="comment">#应当控制机器人按照要求移动到合适位置后再发送指令</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;三点法设置外部工具坐标系，记录点&quot;</span>,i,<span class="string">&quot;错误码&quot;</span>,error)</span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line">error,etcp = robot.ComputeExTCF()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;三点法设置外部工具坐标系错误码&quot;</span>,error,<span class="string">&quot;外部工具TCP&quot;</span>,etcp)</span><br><span class="line">error = robot.SetExToolCoord(<span class="number">10</span>,etcp,etool)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;设置外部工具坐标系错误码&quot;</span>,error)</span><br><span class="line">error = robot.SetExToolList(<span class="number">10</span>,etcp,etool)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;设置外部工具坐标系列表错误码&quot;</span>,error)</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-5-设置工件坐标系"><a href="#2-3-5-设置工件坐标系" class="headerlink" title="2.3.5 设置工件坐标系"></a>2.3.5 设置工件坐标系</h3><p><strong>（1）设置工件参考点</strong></p>
+<p><code>SetWObjCoordPoint(point_num)</code>：设置工件参考点-三点法</p>
+<ul>
+<li>参数<ul>
+<li><code>point_num</code>:点编号,范围[1~3]</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<p><strong>（2）计算工件坐标系</strong></p>
+<p><code>ComputeWObjCoord()</code>：计算工件坐标系-三点法（三个参考点设置完后再进行计算;</p>
+<ul>
+<li>参数<ul>
+<li><code>method</code>：计算方式：0（原点-x轴-z轴），1（原点-x轴-xy平面）</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>wobj_pose [x,y,z,rx,ry,rz]</code>：工件坐标系</li>
+</ul>
+</li>
+</ul>
+<p><strong>（3）设置工件坐标系</strong></p>
+<p><code>SetWObjCoord(id,w_coord)</code>：设置工件坐标系</p>
+<ul>
+<li>参数<ul>
+<li><code>id</code>:坐标系编号，范围[0~14]；</li>
+<li><code>w_coord</code>:坐标系相对位姿，单位[mm][°]；</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">w_coord = [<span class="number">11.0</span>,<span class="number">12.0</span>,<span class="number">13.0</span>,<span class="number">14.0</span>,<span class="number">15.0</span>,<span class="number">16.0</span>]</span><br><span class="line">robot.SetToolList(<span class="number">0</span>,[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>],<span class="number">0</span>,<span class="number">0</span>)<span class="comment">#设置参考点前应当将工具和工件号坐标系切换至0</span></span><br><span class="line">robot.SetWObjList(<span class="number">0</span>,[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>])</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">4</span>):</span><br><span class="line">    error = robot.SetWObjCoordPoint(i) <span class="comment">#实际应当控制机器人按照要求移动到合适位置后再发送指令</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;三点法设置工件坐标系，记录点&quot;</span>,i,<span class="string">&quot;错误码&quot;</span>,error)</span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line">error, w_coord = robot.ComputeWObjCoord(<span class="number">0</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;三点法计算工件坐标系错误码&quot;</span>,error,<span class="string">&quot;工件坐标系&quot;</span>, w_coord)</span><br></pre></td></tr></table></figure>
+<h2 id="2-4-机器人安全设置"><a href="#2-4-机器人安全设置" class="headerlink" title="2.4 机器人安全设置"></a>2.4 机器人安全设置</h2><h3 id="2-4-1-碰撞设置"><a href="#2-4-1-碰撞设置" class="headerlink" title="2.4.1 碰撞设置"></a>2.4.1 碰撞设置</h3><p><strong>（1）设置碰撞等级</strong></p>
+<p><code>SetAnticollision (mode,level,config)</code>：设置碰撞等级</p>
+<ul>
+<li>参数<ul>
+<li><code>mode</code>:0-等级，1-百分比；</li>
+<li><code>level=[j1,j2,j3,j4,j5,j6]</code>:碰撞阈值；</li>
+<li><code>config</code>:0-不更新配置文件，1-更新配置文件</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<p><strong>（2）设置碰撞后策略</strong></p>
+<p><code>SetCollisionStrategy (strategy)</code>：设置碰撞后策略</p>
+<ul>
+<li>参数<ul>
+<li><code>strategy</code>：0-报错暂停，1-继续运行</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">level = [<span class="number">1.0</span>,<span class="number">2.0</span>,<span class="number">3.0</span>,<span class="number">4.0</span>,<span class="number">5.0</span>,<span class="number">6.0</span>]</span><br><span class="line">error = robot.SetAnticollision(<span class="number">0</span>,level,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;设置碰撞等级错误码:&quot;</span>,error)</span><br><span class="line">level = [<span class="number">50.0</span>,<span class="number">20.0</span>,<span class="number">30.0</span>,<span class="number">40.0</span>,<span class="number">50.0</span>,<span class="number">60.0</span>]</span><br><span class="line">error = robot.SetAnticollision(<span class="number">1</span>,level,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;设置碰撞等级错误码:&quot;</span>,error)</span><br><span class="line">error = robot.SetCollisionStrategy(<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;设置碰撞后策略错误码:&quot;</span>,error)</span><br></pre></td></tr></table></figure>
+<h3 id="2-4-2-设置关节限位"><a href="#2-4-2-设置关节限位" class="headerlink" title="2.4.2 设置关节限位"></a>2.4.2 设置关节限位</h3><p><strong>（1）正限位</strong></p>
+<p><code>SetLimitPositive(p_limit)</code>：设置正限位</p>
+<ul>
+<li>参数<ul>
+<li><code>p_limit=[j1,j2,j3,j4,j5,j6]</code>：六个关节位置</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<p><strong>（2）负限位</strong></p>
+<p><code>SetLimitNegative(p_limit)</code>：设置负限位</p>
+<ul>
+<li>参数<ul>
+<li><code>n_limit=[j1,j2,j3,j4,j5,j6]</code>：六个关节位置</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">p_limit = [<span class="number">170.0</span>,<span class="number">80.0</span>,<span class="number">150.0</span>,<span class="number">80.0</span>,<span class="number">170.0</span>,<span class="number">160.0</span>]</span><br><span class="line">error = robot.SetLimitPositive(p_limit)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;设置正限位错误码:&quot;</span>,error)</span><br><span class="line">n_limit = [-<span class="number">170.0</span>,-<span class="number">260.0</span>,-<span class="number">150.0</span>,-<span class="number">260.0</span>,-<span class="number">170.0</span>,-<span class="number">160.0</span>]</span><br><span class="line">5error = robot.SetLimitNegative(n_limit)</span><br><span class="line">6<span class="built_in">print</span>(<span class="string">&quot;设置负限位错误码:&quot;</span>,error)</span><br></pre></td></tr></table></figure>
+<h3 id="2-4-3-错误状态清除"><a href="#2-4-3-错误状态清除" class="headerlink" title="2.4.3 错误状态清除"></a>2.4.3 错误状态清除</h3><p><code>ResetAllError()</code>：错误状态清除，只能清除可复位的错误</p>
+<ul>
+<li>参数</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">error = robot.ResetAllError()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;错误状态清除错误码:&quot;</span>,error)</span><br></pre></td></tr></table></figure>
+<h2 id="2-5-机器人状态查询"><a href="#2-5-机器人状态查询" class="headerlink" title="2.5 机器人状态查询"></a>2.5 机器人状态查询</h2><h3 id="2-5-1-获取关节位置"><a href="#2-5-1-获取关节位置" class="headerlink" title="2.5.1 获取关节位置"></a>2.5.1 获取关节位置</h3><p><strong>（1）获取当前关节位置(角度)</strong></p>
+<p><code>GetActualJointPosDegree(flag = 1)</code>：获取关节当前位置(角度)</p>
+<ul>
+<li>参数<ul>
+<li><code>flag</code>：0-阻塞，1-非阻塞</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>joint_pos</code>=[j1,j2,j3,j4,j5,j6]</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">error, joint_deg = robot.GetActualJointPosDegree()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;获取当前关节位置 (角度)&quot;</span>, joint_deg)</span><br></pre></td></tr></table></figure>
+<p><strong>（2）获取当前关节位置(弧度)</strong></p>
+<p><code>GetActualJointPosRadian(flag = 1)</code>：获取关节当前位置(弧度)</p>
+<ul>
+<li>参数<ul>
+<li><code>flag</code>：0-阻塞，1-非阻塞 默认1</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>joint_pos</code> =[j1,j2,j3,j4,j5,j6]</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">error, joint_rad = robot.GetActualJointPosRadian()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;获取当前关节位置 (角度)&quot;</span>, joint_rad)</span><br></pre></td></tr></table></figure>
+<h3 id="2-5-2-获取关节反馈速度"><a href="#2-5-2-获取关节反馈速度" class="headerlink" title="2.5.2 获取关节反馈速度"></a>2.5.2 获取关节反馈速度</h3><p><code>GetActualJointSpeedsDegree(flag = 1 )</code>：获取关节反馈速度（deg/s）（实际速度）</p>
+<ul>
+<li>参数<ul>
+<li><code>flag</code>：0-阻塞，1-非阻塞 默认1</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>speed</code>=[j1,j2,j3,j4,j5,j6]</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">ret = robot.GetActualJointSpeedsDegree()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;获取关节反馈速度-deg/s&quot;</span>, ret)</span><br></pre></td></tr></table></figure>
+<h3 id="2-5-3-获取工具坐标系速度"><a href="#2-5-3-获取工具坐标系速度" class="headerlink" title="2.5.3 获取工具坐标系速度"></a>2.5.3 获取工具坐标系速度</h3><p><strong>（1）TCP 指令合速度</strong></p>
+<p><code>GetTargetTCPCompositeSpeed(flag = 1)</code>：获取 TCP 指令合速度（期望速度）</p>
+<ul>
+<li>参数<ul>
+<li><code>flag</code>：0-阻塞，1-非阻塞 默认1</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>[tcp_speed,ori_speed]</code>：tcp_speed 线性合速度，ori_speed 姿态合速度</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">ret = robot.GetTargetTCPCompositeSpeed()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;获取TCP指令合速度&quot;</span>, ret)</span><br></pre></td></tr></table></figure>
+<p><strong>（2）TCP 反馈合速度</strong></p>
+<p><code>GetActualTCPCompositeSpeed(flag = 1)</code>：获取TCP反馈合速度（实际速度）</p>
+<ul>
+<li>参数<ul>
+<li><code>flag</code>：0-阻塞，1-非阻塞 默认1</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>[tcp_speed,ori_speed]</code>：tcp_speed 线性合速度，ori_speed 姿态合速度</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">ret = robot.GetActualTCPCompositeSpeed()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;获取TCP反馈合速度&quot;</span>, ret)</span><br></pre></td></tr></table></figure>
+<p><strong>（3）TCP 指令速度</strong></p>
+<p><code>GetTargetTCPSpeed(flag = 1)</code>：获取 TCP 指令速度（期望速度）</p>
+<ul>
+<li>参数<ul>
+<li><code>flag</code>：0-阻塞，1-非阻塞 默认1</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>speed</code>：[x,y,z,rx,ry,rz]</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">ret = robot.GetTargetTCPSpeed()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;获取TCP指令速度&quot;</span>, ret)</span><br></pre></td></tr></table></figure>
+<p><strong>（4）TCP 反馈速度</strong></p>
+<p><code>GetActualTCPSpeed(flag = 1)</code>：获取 TCP 反馈速度</p>
+<ul>
+<li>参数<ul>
+<li><code>flag</code>：0-阻塞，1-非阻塞 默认1</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>speed</code>：[x,y,z,rx,ry,rz]</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">ret = robot.GetActualTCPSpeed()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;获取TCP反馈速度&quot;</span>, ret)</span><br></pre></td></tr></table></figure>
+<h3 id="2-5-4-获取工具位姿"><a href="#2-5-4-获取工具位姿" class="headerlink" title="2.5.4 获取工具位姿"></a>2.5.4 获取工具位姿</h3><p><code>GetActualTCPPose(flag = 1)</code>：获取当前工具位姿</p>
+<ul>
+<li>参数<ul>
+<li><code>flag</code>：0-阻塞，1-非阻塞 默认1</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>tcp_pose</code>=[x,y,z,rx,ry,rz]</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">ret = robot.GetActualTCPPose()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;获取当前工具位姿&quot;</span>, ret)</span><br></pre></td></tr></table></figure>
+<h3 id="2-5-5-获取末端法兰位姿"><a href="#2-5-5-获取末端法兰位姿" class="headerlink" title="2.5.5 获取末端法兰位姿"></a>2.5.5 获取末端法兰位姿</h3><p><code>GetActualToolFlangePose(flag = 1)</code>：获取当前末端法兰位姿</p>
+<ul>
+<li>参数<ul>
+<li><code>flag</code>：0-阻塞，1-非阻塞 默认1</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>flange_pose</code>=[x,y,z,rx,ry,rz]</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">ret = robot.GetActualToolFlangePose()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;获取当前末端法兰位姿&quot;</span>, ret)</span><br></pre></td></tr></table></figure>
+<h3 id="2-5-6-获取关节转矩"><a href="#2-5-6-获取关节转矩" class="headerlink" title="2.5.6 获取关节转矩"></a>2.5.6 获取关节转矩</h3><p><code>GetJointTorques(flag = 1)</code>：获取当前关节转矩</p>
+<ul>
+<li>参数<ul>
+<li><code>flag</code>：0-阻塞，1-非阻塞 默认 1</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>torques</code>=[j1,j2,j3,j4,j5,j6]</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">ret = robot.GetJointTorques()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;获取当前关节转矩&quot;</span>, ret)</span><br></pre></td></tr></table></figure>
+<h3 id="2-5-7-获取关节软限位"><a href="#2-5-7-获取关节软限位" class="headerlink" title="2.5.7 获取关节软限位"></a>2.5.7 获取关节软限位</h3><p><code>GetJointSoftLimitDeg(flag = 1)</code>：获取关节软限位角度</p>
+<ul>
+<li>参数<ul>
+<li><code>flag</code>：0-阻塞，1-非阻塞 默认 1</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>[j1min,j1max,j2min,j2max,j3min,j3max, j4min,j4max,j5min, j5max, j6min,j6max]</code>: 轴 1~ 轴 6 关节负限位与正限位，单位 [mm]</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">ret = robot.GetJointSoftLimitDeg()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;获取关节软限位角度&quot;</span>, ret)</span><br></pre></td></tr></table></figure>
+<h3 id="2-5-8-查询机器人运动是否完成"><a href="#2-5-8-查询机器人运动是否完成" class="headerlink" title="2.5.8 查询机器人运动是否完成"></a>2.5.8 查询机器人运动是否完成</h3><p><code>GetRobotMotionDone()</code>：查询机器人运动是否完成</p>
+<ul>
+<li>参数</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>state</code>：0-未完成，1-完成</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">ret = robot.GetRobotMotionDone()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;查询机器人运动是否完成&quot;</span>, ret)</span><br></pre></td></tr></table></figure>
+<h3 id="2-5-9-获取-DH-参数"><a href="#2-5-9-获取-DH-参数" class="headerlink" title="2.5.9 获取 DH 参数"></a>2.5.9 获取 DH 参数</h3><p><code>GetDHCompensation()</code>：获取 DH 补偿参数</p>
+<ul>
+<li>参数</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>[cmpstD1,cmpstA2,cmpstA3,cmpstD4,cmpstD5,cmpstD6]</code>：dhCompensation 机器人 DH 参数补偿值(mm) </li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">error = robot.GetDHCompensation()</span><br><span class="line"><span class="built_in">print</span>(error)</span><br></pre></td></tr></table></figure>
+<h2 id="2-6-机器人运动学"><a href="#2-6-机器人运动学" class="headerlink" title="2.6 机器人运动学"></a>2.6 机器人运动学</h2><h3 id="2-6-1-正运动学求解"><a href="#2-6-1-正运动学求解" class="headerlink" title="2.6.1 正运动学求解"></a>2.6.1 正运动学求解</h3><p><code>GetForwardKin(joint_pos)</code>：正运动学，关节位置求解工具位姿</p>
+<ul>
+<li>参数<ul>
+<li><code>joint_pos</code>:[j1,j2,j3,j4,j5,j6]:关节位置，单位[°]</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>desc_pos</code>=[x,y,z,rx,ry,rz]</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">J1=[<span class="number">95.442</span>,-<span class="number">101.149</span>,-<span class="number">98.699</span>,-<span class="number">68.347</span>,<span class="number">90.580</span>,-<span class="number">47.174</span>]</span><br><span class="line">ret = robot.GetForwardKin(J1)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;正运动学，关节位置求解工具位姿&quot;</span>, ret)</span><br></pre></td></tr></table></figure>
+<h3 id="2-6-2-逆运动学"><a href="#2-6-2-逆运动学" class="headerlink" title="2.6.2 逆运动学"></a>2.6.2 逆运动学</h3><p><strong>（1）逆运动学求解</strong></p>
+<p><code>GetInverseKin(type,desc_pos,config)</code>：逆运动学，笛卡尔位姿求解关节位置</p>
+<ul>
+<li>参数<ul>
+<li><code>type</code>:0-绝对位姿(基坐标系)，1-相对位姿（基坐标系），2-相对位姿（工具坐标系）</li>
+<li><code>desc_pose</code>:[x,y,z,rx,ry,rz],工具位姿，单位[mm][°]</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>joint_pos</code>=[j1,j2,j3,j4,j5,j6]</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">J1=[<span class="number">95.442</span>,-<span class="number">101.149</span>,-<span class="number">98.699</span>,-<span class="number">68.347</span>,<span class="number">90.580</span>,-<span class="number">47.174</span>]</span><br><span class="line">P1=[<span class="number">75.414</span>,<span class="number">568.526</span>,<span class="number">338.135</span>,-<span class="number">178.348</span>,-<span class="number">0.930</span>,<span class="number">52.611</span>]</span><br><span class="line">ret = robot.GetInverseKin(<span class="number">0</span>,P1,config=-<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;逆运动学，笛卡尔位姿求解关节位置&quot;</span>, ret)</span><br></pre></td></tr></table></figure>
+<p><strong>（2）逆运动学求解（指定参考位置）</strong></p>
+<p><code>GetInverseKinRef(type,desc_pos,joint_pos_ref)</code>：逆运动学，工具位姿求解关节位置，参考指定关节位置求解</p>
+<ul>
+<li>参数<ul>
+<li><code>type</code>:0-绝对位姿(基坐标系)，1-相对位姿（基坐标系），2-相对位姿（工具坐标系）</li>
+<li><code>desc_pos</code>：[x,y,z,rx,ry,rz]工具位姿，单位[mm][°]</li>
+<li><code>joint_pos_ref</code>：[j1,j2,j3,j4,j5,j6]，关节参考位置，单位[°]</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>joint_pos</code> =[j1,j2,j3,j4,j5,j6]</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">J1=[<span class="number">95.442</span>,-<span class="number">101.149</span>,-<span class="number">98.699</span>,-<span class="number">68.347</span>,<span class="number">90.580</span>,-<span class="number">47.174</span>]</span><br><span class="line">P1=[<span class="number">75.414</span>,<span class="number">568.526</span>,<span class="number">338.135</span>,-<span class="number">178.348</span>,-<span class="number">0.930</span>,<span class="number">52.611</span>]</span><br><span class="line">ret = robot.GetInverseKinRef(<span class="number">0</span>,P1,J1)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;逆运动学，工具位姿求解关节位置，参考指定关节位置求解&quot;</span>, ret)</span><br></pre></td></tr></table></figure>
+<p><strong>（3）逆运动学求解（判断是否有解）</strong></p>
+<p><code>GetInverseKinHasSolution(type,desc_pos,joint_pos_ref)</code>：逆运动学，工具位姿求解关节位置 是否有解</p>
+<ul>
+<li>参数<ul>
+<li><code>type</code>:0-绝对位姿(基坐标系)，1-相对位姿（基坐标系），2-相对位姿（工具坐标系）</li>
+<li><code>desc_pos</code>：[x,y,z,rx,ry,rz]工具位姿，单位[mm][°]</li>
+<li><code>joint_pos_ref</code>：[j1,j2,j3,j4,j5,j6]，关节参考位置，单位[°]</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>result</code>：“True”-有解，“False”-无解</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">J1=[<span class="number">95.442</span>,-<span class="number">101.149</span>,-<span class="number">98.699</span>,-<span class="number">68.347</span>,<span class="number">90.580</span>,-<span class="number">47.174</span>]</span><br><span class="line">P1=[<span class="number">75.414</span>,<span class="number">568.526</span>,<span class="number">338.135</span>,-<span class="number">178.348</span>,-<span class="number">0.930</span>,<span class="number">52.611</span>]</span><br><span class="line">ret = robot.GetInverseKinHasSolution(<span class="number">0</span>,P1,J1)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;逆运动学，工具位姿求解关节位置是否有解&quot;</span>, ret)</span><br></pre></td></tr></table></figure>
+<h2 id="2-7-夹爪配置"><a href="#2-7-夹爪配置" class="headerlink" title="2.7 夹爪配置"></a>2.7 夹爪配置</h2><h3 id="2-7-1-夹爪配置"><a href="#2-7-1-夹爪配置" class="headerlink" title="2.7.1 夹爪配置"></a>2.7.1 夹爪配置</h3><p><strong>（1）获取夹爪配置</strong></p>
+<p><code>GetGripperConfig()</code>：获取夹爪配置</p>
+<ul>
+<li>参数</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>[number,company,device,softversion]</code>：number（夹爪编号，范围[1]）；company（夹爪厂商，1-Robotiq，2-慧灵，3-天机，4-大寰，5-知行）；device（设备号，Robotiq(0-2F-85系列)，慧灵(0-NK系列,1-Z-EFG-100)， 天机(0-TEG-110)，大寰(0-PGI-140)，知行(0-CTPM2F20)）; softvesion（软件版本号，暂不使用，默认为0）;</li>
+</ul>
+</li>
+</ul>
+<p><strong>（2）配置夹爪</strong></p>
+<p><code>SetGripperConfig(company,device,softversion,bus)</code>：配置夹爪</p>
+<ul>
+<li>参数<ul>
+<li><code>company</code>：夹爪厂商，1-Robotiq，2-慧灵，3-天机，4-大寰，5-知行；</li>
+<li><code>device</code>：设备号，Robotiq(0-2F-85系列)，慧灵(0-NK系列,1-Z-EFG-100)，天机(0-TEG-110)，大寰(0-PGI-140)，知行(0-CTPM2F20)</li>
+<li><code>softversion</code>：软件版本号，暂不使用，默认为0；</li>
+<li><code>bus</code>：设备挂载末端总线位置，暂不使用，默认为0；</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-7-2-夹爪控制"><a href="#2-7-2-夹爪控制" class="headerlink" title="2.7.2 夹爪控制"></a>2.7.2 夹爪控制</h3><blockquote>
+<p>测试发现若夹爪连接在机械臂上，控制盒集成的夹爪控制与机械臂本体伺服控制会存在程序阻塞，无法同时使用<br>考虑夹爪直接连接电脑，通过 RS485 控制机械臂。</p>
+</blockquote>
+<p><strong>（1）激活夹爪</strong></p>
+<p><code>ActGripper(index,action)</code>：激活夹爪</p>
+<ul>
+<li>参数<ul>
+<li><code>index</code>:夹爪编号；</li>
+<li><code>action</code>:0-复位，1-激活</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<p><strong>（2）控制夹爪</strong></p>
+<p><code>MoveGripper(index,pos,speed,force,maxtime,block)</code>：控制夹爪</p>
+<ul>
+<li>参数<ul>
+<li><code>index</code>:夹爪编号；</li>
+<li><code>pos</code>:位置百分比，范围[0~100]；</li>
+<li><code>speed</code>:速度百分比，范围[0~100];</li>
+<li><code>force</code>:力矩百分比，范围[0~100]；</li>
+<li><code>maxtime</code>:最大等待时间，范围[0~30000]，单位[ms]；</li>
+<li><code>block</code>:0-阻塞，1-非阻塞。</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>错误码</li>
+</ul>
+</li>
+</ul>
+<p><strong>（3）获取夹爪运动状态</strong></p>
+<p><code>GetGripperMotionDone()</code>：获取夹爪运动状态</p>
+<ul>
+<li>参数</li>
+<li>返回<ul>
+<li>错误码</li>
+<li><code>[fault,status]</code>：fault（0-无错误，1-有错误），status（0-运动未完成，1-运动完成）</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fairino <span class="keyword">import</span> Robot</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 与机器人控制器建立连接，连接成功返回一个机器人对象</span></span><br><span class="line">robot = Robot.RPC(<span class="string">&#x27;192.168.58.2&#x27;</span>)</span><br><span class="line">desc_pos1=[-<span class="number">333.683</span>,-<span class="number">228.968</span>,<span class="number">404.329</span>,-<span class="number">179.138</span>,-<span class="number">0.781</span>,<span class="number">91.261</span>]</span><br><span class="line">desc_pos2=[-<span class="number">333.683</span>,-<span class="number">100.8</span>,<span class="number">404.329</span>,-<span class="number">179.138</span>,-<span class="number">0.781</span>,<span class="number">91.261</span>]</span><br><span class="line">zlength1 =<span class="number">10</span></span><br><span class="line">zlength2 =<span class="number">15</span></span><br><span class="line">zangle1 =<span class="number">10</span></span><br><span class="line">zangle2 =<span class="number">15</span></span><br><span class="line"><span class="comment">#测试外设指令</span></span><br><span class="line">ret = robot.SetGripperConfig(<span class="number">4</span>,<span class="number">0</span>)  <span class="comment">#配置夹爪</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;配置夹爪错误码&quot;</span>, ret)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">config = robot.GetGripperConfig()     <span class="comment">#获取夹爪配置</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;获取夹爪配置&quot;</span>,config)</span><br><span class="line">error = robot.ActGripper(<span class="number">1</span>,<span class="number">0</span>)  <span class="comment">#激活夹爪</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;激活夹爪错误码&quot;</span>,error)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">error = robot.ActGripper(<span class="number">1</span>,<span class="number">1</span>)<span class="comment">#激活夹爪</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;激活夹爪错误码&quot;</span>,error)</span><br><span class="line">time.sleep(<span class="number">2</span>)</span><br><span class="line">error = robot.MoveGripper(<span class="number">1</span>,<span class="number">100</span>,<span class="number">48</span>,<span class="number">46</span>,<span class="number">30000</span>,<span class="number">0</span>) <span class="comment">#控制夹爪</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;控制夹爪错误码&quot;</span>,error)</span><br><span class="line">time.sleep(<span class="number">3</span>)</span><br><span class="line">error = robot.MoveGripper(<span class="number">1</span>,<span class="number">0</span>,<span class="number">50</span>,<span class="number">0</span>,<span class="number">30000</span>,<span class="number">0</span>) <span class="comment">#控制夹爪</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;控制夹爪错误码&quot;</span>,error)</span><br><span class="line">error = robot.GetGripperMotionDone() <span class="comment">#获取夹爪运动状态</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;获取夹爪运动状态错误码&quot;</span>,error)</span><br></pre></td></tr></table></figure>
+<h1 id="三、大寰-AG95-夹爪使用"><a href="#三、大寰-AG95-夹爪使用" class="headerlink" title="三、大寰 AG95 夹爪使用"></a>三、大寰 AG95 夹爪使用</h1><h2 id="3-1-RS385-控制接口"><a href="#3-1-RS385-控制接口" class="headerlink" title="3.1 RS385 控制接口"></a>3.1 RS385 控制接口</h2><h3 id="3-1-1-RS485-默认配置"><a href="#3-1-1-RS485-默认配置" class="headerlink" title="3.1.1 RS485 默认配置"></a>3.1.1 RS485 默认配置</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>夹爪ID</td>
+<td>1</td>
+</tr>
+<tr>
+<td>波特率</td>
+<td>115200</td>
+</tr>
+<tr>
+<td>数据位</td>
+<td>8</td>
+</tr>
+<tr>
+<td>停止位</td>
+<td>1</td>
+</tr>
+<tr>
+<td>校验位</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="3-1-2-命令格式"><a href="#3-1-2-命令格式" class="headerlink" title="3.1.2 命令格式"></a>3.1.2 命令格式</h3><p>以初始化指令 <code>01 06 01 00 00 01 49 F6</code> 为例：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>地址码</th>
+<th>功能码</th>
+<th>寄存器地址</th>
+<th>寄存器数据</th>
+<th>CRC 校验码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01</td>
+<td>06</td>
+<td>01 00</td>
+<td>00 01</td>
+<td>49 F6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>地址码：表示夹爪的ID 号，默认是 1；</li>
+<li>功能码：描述读写操作，03（读取寄存器），06（写入寄存器）；</li>
+<li>寄存器地址：夹爪功能对应地址；</li>
+<li>寄存器数据：写入数据到具体的寄存器地址；</li>
+<li>CRC 校验码：根据前面的数据进行转换，参考 <a target="_blank" rel="noopener" href="http://www.ip33.com/crc.html">http://www.ip33.com/crc.html</a></li>
+</ul>
+<h3 id="3-1-3-初始化夹爪"><a href="#3-1-3-初始化夹爪" class="headerlink" title="3.1.3 初始化夹爪"></a>3.1.3 初始化夹爪</h3><p><strong>初始化</strong>：</p>
+<p><code>01 06 01 00 00 01 49 F6</code>：回零位（运行到张开极限位置）<br><code>01 06 01 00 00 A5 48 4D</code>：重新标定+回零点（先关闭夹爪，再打开夹爪，记录总行程标定）</p>
+<p><strong>含义</strong>：</p>
+<ul>
+<li><code>01</code>：夹爪编号</li>
+<li><code>06</code>：写入寄存器</li>
+<li><code>01 00</code>：夹爪初始化寄存器</li>
+<li><code>00 01</code> / <code>00 A5</code>：初始化指令</li>
+<li><code>49 F6</code> / <code>48 4D</code>：校验码</li>
+</ul>
+<p><strong>初始化状态反馈</strong>：获取是否进行了初始化</p>
+<p>发送：<code>01 03 02 00 00 01 85 B2</code></p>
+<ul>
+<li><code>01</code>：夹爪编号</li>
+<li><code>03</code>：读取寄存器</li>
+<li><code>02 00</code>：初始化状态反馈寄存器</li>
+<li><code>00 01</code>：初始化状态反馈指令</li>
+<li><code>85 B2</code>：校验码</li>
+</ul>
+<p>返回：<code>01 03 02 00 00 B8 44</code></p>
+<ul>
+<li><code>00 00</code>：未初始化，如果是 1 则初始化成功，如果是 2 则初始化中。</li>
+</ul>
+<h3 id="3-1-3-夹爪位置控制"><a href="#3-1-3-夹爪位置控制" class="headerlink" title="3.1.3 夹爪位置控制"></a>3.1.3 夹爪位置控制</h3><p><strong>设置位置</strong>：设置夹爪位置，可以写入 0-1000，代表开合程度百分比，对应 16 进制为 <code>00 00 - 03 E8</code></p>
+<p><code>01 06 01 03 01 F4 78 21</code>：设置夹爪位置 500。</p>
+<ul>
+<li><code>01</code>：夹爪编号</li>
+<li><code>06</code>：写入寄存器</li>
+<li><code>01 03</code>：夹爪位置寄存器</li>
+<li><code>01 F4</code>：设置夹爪位置为 500</li>
+<li><code>78 21</code>：校验码</li>
+</ul>
+<p><strong>读取设定位置</strong>：读取设置的位置</p>
+<p>发送：<code>01 03 01 03 00 01 75 F6</code></p>
+<ul>
+<li><code>01</code>：夹爪编号</li>
+<li><code>03</code>：读取寄存器</li>
+<li><code>01 03</code>：夹爪位置寄存器</li>
+<li><code>00 01</code>：读取设定位置指令</li>
+<li><code>75 F6</code>：校验码</li>
+</ul>
+<p>返回：<code>01 03 02 xx xx crc1 crc2</code></p>
+<ul>
+<li><code>xx xx</code>：16 进制夹爪位置，对应 0-1000 夹爪开合程度百分比</li>
+</ul>
+<p><strong>读取实时位置</strong>：读取夹爪实时位置</p>
+<p>发送：<code>01 03 02 02 00 01 24 72</code></p>
+<ul>
+<li><code>01</code>：夹爪编号</li>
+<li><code>03</code>：读取寄存器</li>
+<li><code>02 02</code>：夹爪实时位置寄存器</li>
+<li><code>00 01</code>：读取实时位置指令</li>
+<li><code>24 72</code>：校验码</li>
+</ul>
+<p>返回：<code>01 03 02 xx xx crc1 crc2</code></p>
+<ul>
+<li><code>xx xx</code>：16 进制夹爪位置，对应 0-1000 夹爪开合程度百分比</li>
+</ul>
+<h3 id="3-1-4-夹爪状态反馈"><a href="#3-1-4-夹爪状态反馈" class="headerlink" title="3.1.4 夹爪状态反馈"></a>3.1.4 夹爪状态反馈</h3><p><strong>获取夹爪运动状态</strong>：读取目前夹爪的状态</p>
+<p>发送：<code>01 03 02 01 00 01 D4 72</code></p>
+<ul>
+<li><code>01</code>：夹爪编号</li>
+<li><code>03</code>：读取寄存器</li>
+<li><code>02 01</code>：夹爪状态寄存器</li>
+<li><code>00 01</code>：读取夹爪状态指令</li>
+<li><code>24 72</code>：校验码</li>
+</ul>
+<p>返回：<code>01 03 02 00 02 39 85</code></p>
+<ul>
+<li><code>00 02</code>：代表夹住物体</li>
+</ul>
+<blockquote>
+<p>00：夹爪处于正在运动状态。<br>01：夹爪停止运动，且夹爪未检测到夹到物体。<br>02：夹爪停止运动，且夹爪检测到夹到物体。<br>03：夹爪检测到夹住物体后，发现物体掉落。</p>
+</blockquote>
+<h2 id="3-2-Ubuntu-控制夹爪"><a href="#3-2-Ubuntu-控制夹爪" class="headerlink" title="3.2 Ubuntu 控制夹爪"></a>3.2 Ubuntu 控制夹爪</h2><h3 id="3-2-1-连接夹爪"><a href="#3-2-1-连接夹爪" class="headerlink" title="3.2.1 连接夹爪"></a>3.2.1 连接夹爪</h3><p><strong>（1）查看夹爪串口</strong></p>
+<p>命令行输入 <code>ls -l /dev/ttyUSB*</code>，此时如果没有插入其它 usb 设备，则看不到输出</p>
+<p>将 RS485 转 USB 连接至电脑，重新执行 <code>ls -l /dev/ttyUSB*</code> 命令，可以看到多出了一个 <code>/dev/ttyUSB0</code>，该设备即为夹爪的串口。</p>
+<p><strong>（2）固定 ttyUSB 编号</strong></p>
+<p>首先命令行输入 <code>lsusb</code> 查看设备 ID，可以拔插一次观察多出来的那一行就是夹爪设备，例如我的设备 ID 是  <code>0403:6001</code>，分别代表 <code>idVendor:idProduct</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Bus 001 Device 005: ID 0403:6001 Future Technology Devices International, Ltd FT232 Serial (UART) IC</span><br></pre></td></tr></table></figure>
+<p>然后创建并编辑配置文件：<code>sudo vim /etc/udev/rules.d/usb.rules</code>，输入以下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KERNEL==&quot;ttyUSB*&quot;, ATTRS&#123;idVendor&#125;==&quot;0403&quot;, ATTRS&#123;idProduct&#125;==&quot;6001&quot;, MODE:=&quot;0777&quot;, SYMLINK+=&quot;dh_gripper&quot;</span><br></pre></td></tr></table></figure>
+<p>其中</p>
+<ul>
+<li><code>KERNEL</code>：不修改</li>
+<li><code>ATTRS&#123;idVendor&#125;</code>：填写 ID 冒号前的部分</li>
+<li><code>ATTRS&#123;idProduct&#125;</code>：填写 ID 冒号后的部分</li>
+<li><code>MODE</code>：默认设置为 0777 即可，可读可写可执行</li>
+<li><code>SYMLINK</code>：自定义，也就是想要将 ttyUSB0 改成什么一个固定的名字</li>
+</ul>
+<p>重启 <code>udev</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service udev reload</span><br><span class="line">service udev restart</span><br></pre></td></tr></table></figure>
+<p>重新插拔设备，然后 <code>ls /dev/</code>，就可以看到自己设置的端口名出现。</p>
+<h3 id="3-2-2-Python-串口控制"><a href="#3-2-2-Python-串口控制" class="headerlink" title="3.2.2 Python 串口控制"></a>3.2.2 Python 串口控制</h3><p><strong>（1）安装依赖</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyserial</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>【设备使用】法奥意威 FR5 机械臂 Python 控制</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://www.mahaofei.com/post/fr5-ag95.html">https://www.mahaofei.com/post/fr5-ag95.html</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>马浩飞</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2024-04-10</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2024-04-10</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA/">机器人</a><a class="post-meta__tags" href="/tags/%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8/">设备使用</a></div><div class="post_share"><div class="social-share" data-image="https://img.mahaofei.com/img/202404102038456.png" data-sites="qq,wechat,weibo,facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/img/wechatpay.png" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/easyocr.html"><img class="prev-cover" src="https://img.mahaofei.com/img/202404101030620.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Python识别图片中文字和数字_easyocr</div></div></a></div><div class="next-post pull-right"><a href="/post/paper-review.html"><img class="next-cover" src="/img/linux_debian.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">审稿意见撰写流程</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><a href="https://www.mahaofei.com"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></a></div><div class="author-info__name">马浩飞</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">250</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">44</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://academic.mahaofei.com/"><i class="fa-solid fa-graduation-cap"></i><span>学术主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/HaofeiMa" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:mail@mahaofei.com" target="_blank" title="E-Mail"><i class="fa fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">新增了<a target="_blank" rel="noopener" href="https://academic.mahaofei.com/">学术主页</a>！<br>有任何问题欢迎留言评论或邮件联系。<br>E-mail：<a href="mailto:blog@mahaofei.com" style="text-decoration:underline;">blog@mahaofei.com</a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81FR5-%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">一、FR5 机器人使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E8%BF%9E%E6%8E%A5"><span class="toc-text">1.1 机器人安装与连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F"><span class="toc-text">1.2 示例程序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81FR5-%E5%B8%B8%E7%94%A8-Python-%E6%8E%A5%E5%8F%A3"><span class="toc-text">二、FR5 常用 Python 接口</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9F%BA%E7%A1%80"><span class="toc-text">2.1 机器人基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%9C%BA%E5%99%A8%E4%BA%BA"><span class="toc-text">2.1.1 实例化机器人</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-%E6%9F%A5%E8%AF%A2-SDK-%E7%89%88%E6%9C%AC%E5%8F%B7"><span class="toc-text">2.1.2 查询 SDK 版本号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-3-%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%89%8B%E5%8A%A8-%E8%87%AA%E5%8A%A8%E6%A8%A1%E5%BC%8F%E5%88%87%E6%8D%A2"><span class="toc-text">2.1.3 机器人手动&#x2F;自动模式切换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-4-%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%8A%E4%BD%BF%E8%83%BD%E6%88%96%E4%B8%8B%E4%BD%BF%E8%83%BD"><span class="toc-text">2.1.4 控制机器人上使能或下使能</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%BF%90%E5%8A%A8%E6%8E%A7%E5%88%B6"><span class="toc-text">2.2 机器人运动控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%82%B9%E5%8A%A8"><span class="toc-text">2.2.1 机器人点动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-%E5%85%B3%E8%8A%82%E7%A9%BA%E9%97%B4%E8%BF%90%E5%8A%A8"><span class="toc-text">2.2.2 关节空间运动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3-%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A9%BA%E9%97%B4%E7%9B%B4%E7%BA%BF%E8%BF%90%E5%8A%A8"><span class="toc-text">2.2.3 笛卡尔空间直线运动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-4-%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A9%BA%E9%97%B4%E7%82%B9%E5%88%B0%E7%82%B9%E8%BF%90%E5%8A%A8"><span class="toc-text">2.2.4 笛卡尔空间点到点运动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-5-%E4%BC%BA%E6%9C%8D%E8%BF%90%E5%8A%A8"><span class="toc-text">2.2.5 伺服运动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="toc-text">2.3 机器人参数设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80%E9%80%9F%E5%BA%A6"><span class="toc-text">2.3.1 设置全局速度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-%E8%AE%BE%E7%BD%AE%E7%B3%BB%E7%BB%9F%E5%8F%98%E9%87%8F%E5%80%BC"><span class="toc-text">2.3.2 设置系统变量值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-3-%E8%AE%BE%E7%BD%AE%E5%B7%A5%E5%85%B7%E5%9D%90%E6%A0%87%E7%B3%BB"><span class="toc-text">2.3.3 设置工具坐标系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-4-%E8%AE%BE%E7%BD%AE%E5%A4%96%E9%83%A8%E5%B7%A5%E5%85%B7%E5%9D%90%E6%A0%87%E7%B3%BB"><span class="toc-text">2.3.4 设置外部工具坐标系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-5-%E8%AE%BE%E7%BD%AE%E5%B7%A5%E4%BB%B6%E5%9D%90%E6%A0%87%E7%B3%BB"><span class="toc-text">2.3.5 设置工件坐标系</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE"><span class="toc-text">2.4 机器人安全设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-1-%E7%A2%B0%E6%92%9E%E8%AE%BE%E7%BD%AE"><span class="toc-text">2.4.1 碰撞设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-2-%E8%AE%BE%E7%BD%AE%E5%85%B3%E8%8A%82%E9%99%90%E4%BD%8D"><span class="toc-text">2.4.2 设置关节限位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-3-%E9%94%99%E8%AF%AF%E7%8A%B6%E6%80%81%E6%B8%85%E9%99%A4"><span class="toc-text">2.4.3 错误状态清除</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%8A%B6%E6%80%81%E6%9F%A5%E8%AF%A2"><span class="toc-text">2.5 机器人状态查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-1-%E8%8E%B7%E5%8F%96%E5%85%B3%E8%8A%82%E4%BD%8D%E7%BD%AE"><span class="toc-text">2.5.1 获取关节位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-2-%E8%8E%B7%E5%8F%96%E5%85%B3%E8%8A%82%E5%8F%8D%E9%A6%88%E9%80%9F%E5%BA%A6"><span class="toc-text">2.5.2 获取关节反馈速度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-3-%E8%8E%B7%E5%8F%96%E5%B7%A5%E5%85%B7%E5%9D%90%E6%A0%87%E7%B3%BB%E9%80%9F%E5%BA%A6"><span class="toc-text">2.5.3 获取工具坐标系速度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-4-%E8%8E%B7%E5%8F%96%E5%B7%A5%E5%85%B7%E4%BD%8D%E5%A7%BF"><span class="toc-text">2.5.4 获取工具位姿</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-5-%E8%8E%B7%E5%8F%96%E6%9C%AB%E7%AB%AF%E6%B3%95%E5%85%B0%E4%BD%8D%E5%A7%BF"><span class="toc-text">2.5.5 获取末端法兰位姿</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-6-%E8%8E%B7%E5%8F%96%E5%85%B3%E8%8A%82%E8%BD%AC%E7%9F%A9"><span class="toc-text">2.5.6 获取关节转矩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-7-%E8%8E%B7%E5%8F%96%E5%85%B3%E8%8A%82%E8%BD%AF%E9%99%90%E4%BD%8D"><span class="toc-text">2.5.7 获取关节软限位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-8-%E6%9F%A5%E8%AF%A2%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%BF%90%E5%8A%A8%E6%98%AF%E5%90%A6%E5%AE%8C%E6%88%90"><span class="toc-text">2.5.8 查询机器人运动是否完成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-9-%E8%8E%B7%E5%8F%96-DH-%E5%8F%82%E6%95%B0"><span class="toc-text">2.5.9 获取 DH 参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%BF%90%E5%8A%A8%E5%AD%A6"><span class="toc-text">2.6 机器人运动学</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-1-%E6%AD%A3%E8%BF%90%E5%8A%A8%E5%AD%A6%E6%B1%82%E8%A7%A3"><span class="toc-text">2.6.1 正运动学求解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-2-%E9%80%86%E8%BF%90%E5%8A%A8%E5%AD%A6"><span class="toc-text">2.6.2 逆运动学</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7-%E5%A4%B9%E7%88%AA%E9%85%8D%E7%BD%AE"><span class="toc-text">2.7 夹爪配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-1-%E5%A4%B9%E7%88%AA%E9%85%8D%E7%BD%AE"><span class="toc-text">2.7.1 夹爪配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-2-%E5%A4%B9%E7%88%AA%E6%8E%A7%E5%88%B6"><span class="toc-text">2.7.2 夹爪控制</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%A4%A7%E5%AF%B0-AG95-%E5%A4%B9%E7%88%AA%E4%BD%BF%E7%94%A8"><span class="toc-text">三、大寰 AG95 夹爪使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-RS385-%E6%8E%A7%E5%88%B6%E6%8E%A5%E5%8F%A3"><span class="toc-text">3.1 RS385 控制接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1-RS485-%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE"><span class="toc-text">3.1.1 RS485 默认配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2-%E5%91%BD%E4%BB%A4%E6%A0%BC%E5%BC%8F"><span class="toc-text">3.1.2 命令格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%A4%B9%E7%88%AA"><span class="toc-text">3.1.3 初始化夹爪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3-%E5%A4%B9%E7%88%AA%E4%BD%8D%E7%BD%AE%E6%8E%A7%E5%88%B6"><span class="toc-text">3.1.3 夹爪位置控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-4-%E5%A4%B9%E7%88%AA%E7%8A%B6%E6%80%81%E5%8F%8D%E9%A6%88"><span class="toc-text">3.1.4 夹爪状态反馈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-Ubuntu-%E6%8E%A7%E5%88%B6%E5%A4%B9%E7%88%AA"><span class="toc-text">3.2 Ubuntu 控制夹爪</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-%E8%BF%9E%E6%8E%A5%E5%A4%B9%E7%88%AA"><span class="toc-text">3.2.1 连接夹爪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-Python-%E4%B8%B2%E5%8F%A3%E6%8E%A7%E5%88%B6"><span class="toc-text">3.2.2 Python 串口控制</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recommend-post"><div class="item-headline"><i class="fas fa-dharmachakra"></i><span>相关推荐</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/omega7.html" title="【设备使用】omega.7主手配置与使用方法"><img src="https://img.mahaofei.com/img/202403201333916.png" alt="【设备使用】omega.7主手配置与使用方法"></a><div class="content"><a class="title" href="/post/omega7.html" title="【设备使用】omega.7主手配置与使用方法">【设备使用】omega.7主手配置与使用方法</a><time datetime="2024-03-20" title="发表于 2024-03-20">2024-03-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/robomimic.html" title="【仿真实验】robomimic项目复现"><img src="https://img.mahaofei.com/img/202312311001765.png" alt="【仿真实验】robomimic项目复现"></a><div class="content"><a class="title" href="/post/robomimic.html" title="【仿真实验】robomimic项目复现">【仿真实验】robomimic项目复现</a><time datetime="2023-12-27" title="发表于 2023-12-27">2023-12-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/hrc-papers.html" title="【论文笔记】人机协作"><img src="https://img.mahaofei.com/img/202312050854381.png" alt="【论文笔记】人机协作"></a><div class="content"><a class="title" href="/post/hrc-papers.html" title="【论文笔记】人机协作">【论文笔记】人机协作</a><time datetime="2023-11-27" title="发表于 2023-11-27">2023-11-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/standford-cs25.html" title="【课程笔记】Stanford CS25 V2 - Robotics and Imitation Learning"><img src="https://img.mahaofei.com/img/202312241400108.png" alt="【课程笔记】Stanford CS25 V2 - Robotics and Imitation Learning"></a><div class="content"><a class="title" href="/post/standford-cs25.html" title="【课程笔记】Stanford CS25 V2 - Robotics and Imitation Learning">【课程笔记】Stanford CS25 V2 - Robotics and Imitation Learning</a><time datetime="2023-12-24" title="发表于 2023-12-24">2023-12-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/act.html" title="【论文笔记】ACT 使用低成本硬件的双手操作模仿学习"><img src="https://img.mahaofei.com/img/202401051028504.png" alt="【论文笔记】ACT 使用低成本硬件的双手操作模仿学习"></a><div class="content"><a class="title" href="/post/act.html" title="【论文笔记】ACT 使用低成本硬件的双手操作模仿学习">【论文笔记】ACT 使用低成本硬件的双手操作模仿学习</a><time datetime="2024-01-05" title="发表于 2024-01-05">2024-01-05</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.mahaofei.com/img/GoodnightCopenhagen.png')"><div id="footer-wrap"><div class="footer_custom_text"><p><a style="margin-inline:5px"target="_blank"href="https://github.com/"><img src="https://img.shields.io/badge/Hosted-Github-brightgreen?style=flat&logo=GitHub"title="本站项目由Gtihub托管"></a><a style="margin-inline:5px"target="_blank"href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo"title="博客框架为Hexo"></a><a style="margin-inline:5px"target="_blank"href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?logoColor=white&style=flat&logo=buefy"title="主题采用butterfly"></a><a style="margin-inline:5px"target="_blank"href="https://aliyun.com/product/cdn"><img src="https://img.shields.io/badge/DNS-Cloudflare-orange?style=flat&logo=Cloudflare"title="本站使用Cloudflare网络服务"></a><a style="margin-inline:5px"target="_blank"href="https://beian.miit.gov.cn/"><img src="https://img.shields.io/badge/%E6%B4%A5ICP%E5%A4%87-2021000769%E5%8F%B7--3-red?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAdCAYAAAC9pNwMAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDIgNzkuMTYwOTI0LCAyMDE3LzA3LzEzLTAxOjA2OjM5ICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+nhxg7wAACNlJREFUSInF1mmMVeUdx/Hv2e+5+519mJWBYQZkGxZZxLKJqBXGoLS1iXWrmihotFXaJiTWWlsbl6q1aetWd5u0VkKjNG4YEJSlOCibDLMwM8x679z9nnPP1jcVJUxf+7z6J8+LT37/Z4VvaQhfFS8+sBXbctCDGrVTKlBUH4mxAbI9Hfj0IJLsp6paJ5/tmn20N/D0wKDRMq9F/c3M2U1/V0vDfWMFh+tv/Ig1zYPMabDImPJ52OaXO87W580KggCiiOsJOJ6I3wcNFaaeNKxrt72f2fLGu4FpJ/sDQABRzD22fH7/Yze069vGc6mrDLNIJCDik10sxz2by3VdPM87xzkP9jwPTZFRVI1YUJKH+oy7n3tbvv/P2wW/UQxRWe6w4ZJRptYLHDoCuz8v5cP92XbI762O+h6UVWHnUFbPpU0fEb2A60mMJ7MUi9b/b7UgKhiZMaIxm8YLplLMDPz8hl/EH+rs8TNlUpFf32uyZJGLPDwCiTGUyTWodTN49eUCdz2YwXb9NNcObp1X98WDoufynzMVCEKGn27ayPTWBi5ad8P5iQUkJEnFLjqM9Z+hrVX0vfDe6K2dPRWsW2bwyp9EUifSJB84gdxrkR0eRgv1o/3I4fbbprJ6scqamzVO9pffec1S5ZWY2Nfz5qEy/FqOC2Y3s3j53HMSi18VRjFPwSwg+1RfVbl115vvJrsfej7UGIsYPPGgQ7JXoO+Xx5B3dHEomyJ9x1qiQozkr95h5937aFnVyouPlgJK+Ss7Fxz64OTSxSX+LHYxT2IsRW5kbGI4oHcR0jqoqTjV9se3I7/f8rS/ClS23GxSXhph6L5d9Akm7qqZhHWBQGUJ+CWGFzcg7e7m6D3/ZuW1Ea5YKdA3EojuONi813TqNi+YPYOKUhXDtCeGL26/hakLLiEcdsaHRkRAoLRc4fJrmhnekyF0apgZowWSwwkaa+rw3f8WA1GZZsPP5JEChX8dhZTN6iU6kAcs5s+dHd183SJ0VVKL57pfw6YdRQw23aeWTns47DPTALWlRTR7kMLew6hGgYqUhWXYFFUdPZ6lUBahLA8hVcOftckfi7No7VRAAQqsX1dybfvG1qwriM9mM5mJ4e4jO5Cc01dPqixbr8tWGBQUL4vjGigEEShi+xUmZ2RiR/sJ1pbS8NkgZrKAGw0TsgQsQyFaF/nfYTGprAlMFysbA1pI3mhkR6snhGsaymYGvPyFEb9IdbUE2AzFFTwpRqCtBY0wmdER+hZW4j63gcJj38V+/ErSUZXsYBfjIZHIRW0c2Z8BskCAqN+CbBJBFnyyKjR+Ez57nBxLqpfMUeSISElMBFz6x2Q6OxzWrYjyxWVzEewioU3LCS5vQY6nMUrLwNaxXvoQ59IloFSx54PPAZtQLExVZZDxsVE8J4dn6v4JYatgbSjk0owPw7RGH2ADMo88Z7L20ip8f7gC7fAo0q4+0rt7kEQDvaghVZbiPHUHcyeXcfLjT3jmpR7AYsnSScya3UR8bARVMck7Y/cB75/X6rDf3Fg2dw2jKZm5dXGm1LuAzO5DCo9v6aT0ibco5kzOvLOP+NGTFJtDpPYeZKijk/Rn3QxsfZV7txwhX7ABiZUXBsGvIvguQApNQQva9RMmTvZ2dpVUls+tX/UD7GN/Y8Ws05w6rQF+9vyzg1vZjbvMRJhXiRSU8DpTFFe0QE8S6SfPkOkZoktrB2oAhZWrwljxOPmchiSMYOWNoxNuruFU5vWeXdsojiUon345113dBBQBmTYlTimgdB8nfPo4WjaNFgN9OMEkJ02dnadVt5ki54Esqy+bzKJltVhSPbI3iN2zCyMTeXNCuG7Omm2Zok7PR2+R7jvD8ouruHhmCrB5jVZeYxLdrTP4sr4Vtd9g4MA4qc4c+6cu5NPamfw4P59t2WrA4YdXKkASf7SFivo6PDdEPmf1fRM++zp1bH/0r4I1dD1ODtOWaW4IsvPjL7nqXhloQiSPwjjgMYkMASyGEBkjhISCQwkwzve/18AbT+pk8pVY4UacQi9y+gyZ0eRAw4qHa89LXEx1LXMSPfhDJYRb59BtlLKg2WPT2l6qYl1svtGkrLYckyA1S+t5+2ATm37WCui0LSynsckDNH5zTxAchbQtkx08hDHYiW6NgC0enHBzEZ102UDH8QORdEckjEzZrNWkRydzyx17uGnDXqbUnGZ6dRPjSY91q2TqwjFuvTxLo5Zn5Qo/pumRSFcTLQtybEhGE0fQrDhhJ0VvH2lTnnHPhGtsmWan469apERjI2MH3qN7+7MEfH6ql29CbV7PvsMG32k6yU2XDhEKyZw66eJaRdrXR7CzCcqUNC3zwgymPJRCH4KRRLINimpL14A5Y4GDeOqbsPRVcfuN7Xj44pav/hFfrNT2kr2rsqf2Ibp5pEA14ZIImUyW3t5REkkTXRGQ/DGGhtLginhqCWknQDE5hKf5UFSF9Lj020Q2ul5V1AR2hr+8vuP8Vlc2zMPRxoSjnx7XBC14sDoydahSGq7KdO/HFyrBchxCVfX4fDKp4T7SCQejYODZLrYgIqgKFsNIgQqEYob8mW6yiUyb7Z64LVK/+B85xznnJ3AWzqTzuIX46mr5wLs+UUTyIriBCjRNxguHMJIFDLEEvXEOVRWnSJ0+jCd4CJoGjoedM1CLcXQziW3nMV2TSMBeOx7vWZvPt1r+cMPzE8KunaUkFn0vNrvtqXj34c1W6gzxlEQ6naIoBahtnkMwoFMwIVzSRNguMt53Aj2s4nkSlgPoGqLkICsRNF0gl8rYWuP8+11/w/OOJDEhHPKLCIpOXmi+M9AgP+maiesLifF2T1Rn5ZNj5Lo/Qc/GcPMmhdoqlEgIGzCK4PiCmJKK68p4KfF3qYGuF0qCRUkJTzleUbvQyWRTuE5xYthxQbBs7EISAbkzUFG3VfXXbK2YFi3X/eryfKKnqVBItNjJxDzH8erddC4SqWwcN5WyTtlyO1RP/Lh3eHD76MB40swmiDVJyDLYRhpc5+ub6tse/wWKbvSQEAw1awAAAABJRU5ErkJggg=="title="备案号:津ICP备2021000769号-3"></a><a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris"title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><i class="fas fa-adjust"><use id="modeicon" xlink:href="#icon-moon"></use></i></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Algolia</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, "https://cdn.jsdelivr.net/gh/zhheo/twikoo@dev/dist/twikoo.all.min.js"))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.mahaofei.com/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script><script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script><script src="/js/custom/categoryBar.js"></script><script src="/js/custom/cardHistory.js"></script><script src="/js/custom/light_dark.js"></script><script src="/js/custom/forbidCopy.js"></script><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"Jfmc1FSFWs09EC8r",ck:"Jfmc1FSFWs09EC8r"})</script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script>new LingQue.Monitor().init({id:"JfmcYvlVsVAZlVkS"});</script><script defer src="https://cloud.umami.is/script.js" data-website-id="86b466f8-e8bc-415b-954e-289b3d0110fb"></script><script src="/js/custom/custom.js"></script><script src="/js/custom/nav.js"></script><script id="canvas_nest" defer="defer" color="66,66,66" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
