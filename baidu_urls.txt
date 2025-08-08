@@ -94,10 +94,10 @@ https://www.mahaofei.com/post/deeplearning-note1.html
 https://www.mahaofei.com/post/deeplearning-basic.html
 https://www.mahaofei.com/post/channel.html
 https://www.mahaofei.com/post/convolution.html
-https://www.mahaofei.com/post/pytorch.html
 https://www.mahaofei.com/post/cuda.html
-https://www.mahaofei.com/post/latex-basic.html
+https://www.mahaofei.com/post/pytorch.html
 https://www.mahaofei.com/post/ieee-format.html
+https://www.mahaofei.com/post/latex-basic.html
 https://www.mahaofei.com/post/latex-formula.html
 https://www.mahaofei.com/post/butterfly.html
 https://www.mahaofei.com/post/numpy.html
@@ -117,8 +117,8 @@ https://www.mahaofei.com/post/g2o.html
 https://www.mahaofei.com/post/ceres.html
 https://www.mahaofei.com/post/stm32-serialbug.html
 https://www.mahaofei.com/post/ros-usbcamera.html
-https://www.mahaofei.com/post/keil5-c51.html
 https://www.mahaofei.com/post/keil5-mdk.html
+https://www.mahaofei.com/post/keil5-c51.html
 https://www.mahaofei.com/post/gazebo-car.html
 https://www.mahaofei.com/post/labview-2020.html
 https://www.mahaofei.com/post/opencv-pythonversion.html
