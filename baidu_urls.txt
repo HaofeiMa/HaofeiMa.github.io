@@ -94,11 +94,11 @@ https://www.mahaofei.com/post/deeplearning-note1.html
 https://www.mahaofei.com/post/deeplearning-basic.html
 https://www.mahaofei.com/post/channel.html
 https://www.mahaofei.com/post/convolution.html
-https://www.mahaofei.com/post/cuda.html
 https://www.mahaofei.com/post/pytorch.html
+https://www.mahaofei.com/post/cuda.html
 https://www.mahaofei.com/post/latex-basic.html
-https://www.mahaofei.com/post/latex-formula.html
 https://www.mahaofei.com/post/ieee-format.html
+https://www.mahaofei.com/post/latex-formula.html
 https://www.mahaofei.com/post/butterfly.html
 https://www.mahaofei.com/post/numpy.html
 https://www.mahaofei.com/post/anaconda.html
@@ -195,8 +195,8 @@ https://www.mahaofei.com/post/ros-note2.html
 https://www.mahaofei.com/post/ros-note1.html
 https://www.mahaofei.com/post/rosdep.html
 https://www.mahaofei.com/post/ros-install.html
-https://www.mahaofei.com/post/ubuntu-vnc.html
 https://www.mahaofei.com/post/nodejs.html
+https://www.mahaofei.com/post/ubuntu-vnc.html
 https://www.mahaofei.com/post/raspberrypi-ubuntu.html
 https://www.mahaofei.com/post/ubuntu-buglist.html
 https://www.mahaofei.com/post/website-build-wordpress.html
