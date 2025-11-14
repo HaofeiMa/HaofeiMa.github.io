@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.mahaofei.com/post/cloudflare-r2.html</loc>
+    <lastmod>2025-05-14</lastmod>
+  </url>
+  <url>
     <loc>https://www.mahaofei.com/post/isaacsim-ik.html</loc>
     <lastmod>2025-03-07</lastmod>
   </url>
@@ -27,6 +31,14 @@
   <url>
     <loc>https://www.mahaofei.com/post/paper-review.html</loc>
     <lastmod>2024-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://www.mahaofei.com/post/usb_distinguish.html</loc>
+    <lastmod>2024-08-22</lastmod>
+  </url>
+  <url>
+    <loc>https://www.mahaofei.com/post/ea8ce298.html</loc>
+    <lastmod>2024-07-26</lastmod>
   </url>
   <url>
     <loc>https://www.mahaofei.com/post/fr5-ag95.html</loc>
@@ -133,6 +145,10 @@
     <lastmod>2023-08-02</lastmod>
   </url>
   <url>
+    <loc>https://www.mahaofei.com/post/connect-world.html</loc>
+    <lastmod>2023-08-02</lastmod>
+  </url>
+  <url>
     <loc>https://www.mahaofei.com/post/ppo.html</loc>
     <lastmod>2023-07-24</lastmod>
   </url>
@@ -143,6 +159,10 @@
   <url>
     <loc>https://www.mahaofei.com/post/ubuntu-screen-record.html</loc>
     <lastmod>2023-05-26</lastmod>
+  </url>
+  <url>
+    <loc>https://www.mahaofei.com/post/ros-buglist.html</loc>
+    <lastmod>2023-05-15</lastmod>
   </url>
   <url>
     <loc>https://www.mahaofei.com/post/ros-buglist.html</loc>
@@ -401,11 +421,11 @@
     <lastmod>2022-04-26</lastmod>
   </url>
   <url>
-    <loc>https://www.mahaofei.com/post/latex-formula.html</loc>
+    <loc>https://www.mahaofei.com/post/ieee-format.html</loc>
     <lastmod>2022-04-26</lastmod>
   </url>
   <url>
-    <loc>https://www.mahaofei.com/post/ieee-format.html</loc>
+    <loc>https://www.mahaofei.com/post/latex-formula.html</loc>
     <lastmod>2022-04-26</lastmod>
   </url>
   <url>
@@ -485,11 +505,11 @@
     <lastmod>2021-10-20</lastmod>
   </url>
   <url>
-    <loc>https://www.mahaofei.com/post/keil5-c51.html</loc>
+    <loc>https://www.mahaofei.com/post/keil5-mdk.html</loc>
     <lastmod>2021-10-16</lastmod>
   </url>
   <url>
-    <loc>https://www.mahaofei.com/post/keil5-mdk.html</loc>
+    <loc>https://www.mahaofei.com/post/keil5-c51.html</loc>
     <lastmod>2021-10-16</lastmod>
   </url>
   <url>
@@ -789,11 +809,11 @@
     <lastmod>2021-02-19</lastmod>
   </url>
   <url>
-    <loc>https://www.mahaofei.com/post/ubuntu-vnc.html</loc>
+    <loc>https://www.mahaofei.com/post/nodejs.html</loc>
     <lastmod>2021-02-18</lastmod>
   </url>
   <url>
-    <loc>https://www.mahaofei.com/post/nodejs.html</loc>
+    <loc>https://www.mahaofei.com/post/ubuntu-vnc.html</loc>
     <lastmod>2021-02-18</lastmod>
   </url>
   <url>

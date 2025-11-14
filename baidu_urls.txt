@@ -1,3 +1,4 @@
+https://www.mahaofei.com/post/cloudflare-r2.html
 https://www.mahaofei.com/post/isaacsim-ik.html
 https://www.mahaofei.com/post/ros2-urdf.html
 https://www.mahaofei.com/post/ros2-command.html
@@ -5,6 +6,8 @@ https://www.mahaofei.com/post/zsh.html
 https://www.mahaofei.com/post/isaacsim-intro.html
 https://www.mahaofei.com/post/cron.html
 https://www.mahaofei.com/post/paper-review.html
+https://www.mahaofei.com/post/usb_distinguish.html
+https://www.mahaofei.com/post/ea8ce298.html
 https://www.mahaofei.com/post/fr5-ag95.html
 https://www.mahaofei.com/post/easyocr.html
 https://www.mahaofei.com/post/omega7.html
@@ -33,6 +36,7 @@ https://www.mahaofei.com/post/lfd-grasp-papers.html
 https://www.mahaofei.com/post/ppo.html
 https://www.mahaofei.com/post/tranformer-convnext.html
 https://www.mahaofei.com/post/ubuntu-screen-record.html
+https://www.mahaofei.com/post/ros-buglist.html
 https://www.mahaofei.com/post/ros-buglist.html
 https://www.mahaofei.com/post/gazebo-grasp.html
 https://www.mahaofei.com/post/yolov8.html
@@ -96,8 +100,8 @@ https://www.mahaofei.com/post/convolution.html
 https://www.mahaofei.com/post/cuda.html
 https://www.mahaofei.com/post/pytorch.html
 https://www.mahaofei.com/post/latex-basic.html
-https://www.mahaofei.com/post/latex-formula.html
 https://www.mahaofei.com/post/ieee-format.html
+https://www.mahaofei.com/post/latex-formula.html
 https://www.mahaofei.com/post/butterfly.html
 https://www.mahaofei.com/post/numpy.html
 https://www.mahaofei.com/post/anaconda.html
@@ -116,8 +120,8 @@ https://www.mahaofei.com/post/g2o.html
 https://www.mahaofei.com/post/ceres.html
 https://www.mahaofei.com/post/stm32-serialbug.html
 https://www.mahaofei.com/post/ros-usbcamera.html
-https://www.mahaofei.com/post/keil5-c51.html
 https://www.mahaofei.com/post/keil5-mdk.html
+https://www.mahaofei.com/post/keil5-c51.html
 https://www.mahaofei.com/post/gazebo-car.html
 https://www.mahaofei.com/post/labview-2020.html
 https://www.mahaofei.com/post/opencv-pythonversion.html
@@ -126,6 +130,7 @@ https://www.mahaofei.com/post/camera-distortion.html
 https://www.mahaofei.com/post/video-vip.html
 https://www.mahaofei.com/post/postgraduate-recommand-question.html
 https://www.mahaofei.com/post/postgraduate-recommand-experience.html
+https://www.mahaofei.com/post/connect-world.html
 https://www.mahaofei.com/post/connect-world.html
 https://www.mahaofei.com/post/baidunetdisk-download.html
 https://www.mahaofei.com/post/windows-crack.html
@@ -194,8 +199,8 @@ https://www.mahaofei.com/post/ros-note2.html
 https://www.mahaofei.com/post/ros-note1.html
 https://www.mahaofei.com/post/rosdep.html
 https://www.mahaofei.com/post/ros-install.html
-https://www.mahaofei.com/post/ubuntu-vnc.html
 https://www.mahaofei.com/post/nodejs.html
+https://www.mahaofei.com/post/ubuntu-vnc.html
 https://www.mahaofei.com/post/raspberrypi-ubuntu.html
 https://www.mahaofei.com/post/ubuntu-buglist.html
 https://www.mahaofei.com/post/website-build-wordpress.html
