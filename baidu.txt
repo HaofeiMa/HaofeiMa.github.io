@@ -1,3 +1,4 @@
+https://www.mahaofei.com/post/940c0a0.html
 https://www.mahaofei.com/post/cloudflare-r2.html
 https://www.mahaofei.com/post/isaacsim-ik.html
 https://www.mahaofei.com/post/ros2-urdf.html
@@ -27,4 +28,3 @@ https://www.mahaofei.com/post/rl-buglist.html
 https://www.mahaofei.com/post/lfd-rl-papers.html
 https://www.mahaofei.com/post/behavior-cloning.html
 https://www.mahaofei.com/post/rl-basic.html
-https://www.mahaofei.com/post/mimicplay.html
